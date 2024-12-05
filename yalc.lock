@@ -1,0 +1,10 @@
+{
+  "version": "v1",
+  "packages": {
+    "@lowping/brand-kit": {
+      "signature": "b41475fc2c5dedf599748dc9094c80ac",
+      "file": true,
+      "replaced": "^1.0.3"
+    }
+  }
+}
