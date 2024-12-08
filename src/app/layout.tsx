@@ -1,13 +1,16 @@
+// app/layout.tsx
 import type { Metadata } from 'next'
 import { Alexandria } from 'next/font/google'
 import './globals.css'
 import { cn } from '@/lib/utils'
-import { Navbar } from '@/components/navbar'
+import { Navbar } from '@/components/Navbar'
+import { SmoothScroll } from '@/components/SmoothScroll'
+import 'lenis/dist/lenis.css'
 
 const alexandria = Alexandria({
   subsets: ['latin'],
   variable: '--font-alexandria',
-  weight: ['300', '400', '500', '700'],
+  weight: ['300', '400', '500', '700', '900'],
 })
 
 export const metadata: Metadata = {
@@ -28,11 +31,15 @@ export default function RootLayout({
           alexandria.variable
         )}
       >
-        <div className="pattern-overlay z-50" />
-        <div className="relative">
-          <Navbar />
-          <main>{children}</main>
-        </div>
+        <SmoothScroll>
+          <div className="pattern-overlay z-50" />
+          <div className="relative">
+            <div className='absolute z-50 w-full'>
+            <Navbar />
+            </div>
+            <main>{children}</main>
+          </div>
+        </SmoothScroll>
       </body>
     </html>
   )

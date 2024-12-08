@@ -8,13 +8,14 @@
     background-image: url('https://framerusercontent.com/images/rR6HYXBrMmX4cRpXfXUOvpvpB0.png');
     background-size: 80px;
     background-repeat: repeat;
-    opacity: 0.05;
+    opacity: 0.1;
   }
 }
 
 @layer base {
   :root {
     --background: 120 20% 3%; /* #060906 */
+    /*     --background: 220 17% 7%; /* #060906 */
     --foreground: 0 0% 100%;
 
     --card: 120 7% 5%; /* #080A09 */
@@ -42,7 +43,7 @@
     --input: 120 7% 5%;
     --ring: 82 96% 49%;
 
-    --radius: 0.5rem;
+    --radius: 0.2rem;
 
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
