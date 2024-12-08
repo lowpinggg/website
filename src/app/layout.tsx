@@ -33,7 +33,7 @@ export default function RootLayout({
       >
         <SmoothScroll>
           <div className="pattern-overlay z-50" />
-          <div className="relative">
+          <div className="relative z-0">
             <div className='absolute z-50 w-full'>
             <Navbar />
             </div>
