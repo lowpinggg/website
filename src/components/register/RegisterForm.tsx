@@ -1,31 +1,46 @@
 'use client'
+
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
+
 import { Button } from '@/components/ui/button'
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage
+} from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from '@/components/ui/select'
 
 const ranks = [
-  "IRON",
-  "BRONZE",
-  "SILVER",
-  "GOLD",
-  "PLATINUM",
-  "DIAMOND",
-  "MASTER",
-  "GRANDMASTER",
-  "CHALLENGER"
+  'IRON',
+  'BRONZE',
+  'SILVER',
+  'GOLD',
+  'PLATINUM',
+  'DIAMOND',
+  'MASTER',
+  'GRANDMASTER',
+  'CHALLENGER'
 ] as const
 
 const formSchema = z.object({
-  name: z.string().min(2, "Le nom doit contenir au moins 2 caractères"),
-  email: z.string().email("Email invalide"),
-  discord: z.string().min(2, "Le Discord doit contenir au moins 2 caractères"),
-  riotId: z.string().min(2, "Le Riot ID doit contenir au moins 2 caractères"),
+  name: z.string().min(2, 'Le nom doit contenir au moins 2 caractères'),
+  email: z.string().email('Email invalide'),
+  discord: z.string().min(2, 'Le Discord doit contenir au moins 2 caractères'),
+  riotId: z.string().min(2, 'Le Riot ID doit contenir au moins 2 caractères'),
   rank: z.enum(ranks, {
-    required_error: "Veuillez sélectionner votre rang",
+    required_error: 'Veuillez sélectionner votre rang'
   })
 })
 
@@ -39,7 +54,7 @@ type RegisterFormProps = {
 }
 
 export default function RegisterForm({ event, onComplete }: RegisterFormProps) {
-  console.log("RegisterForm - event:", event);
+  console.log('RegisterForm - event:', event)
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -47,7 +62,7 @@ export default function RegisterForm({ event, onComplete }: RegisterFormProps) {
       email: 'fe@jd.com',
       discord: 'wd',
       riotId: 'wd',
-      rank: "IRON"
+      rank: 'IRON'
     }
   })
 
@@ -57,36 +72,42 @@ export default function RegisterForm({ event, onComplete }: RegisterFormProps) {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 max-w-md">
-        <div className='flex gap-4'>
-      
-        <FormField
-          control={form.control}
-          name="name"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Nom</FormLabel>
-              <FormControl>
-                <Input type="text" placeholder="Votre nom" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Email</FormLabel>
-              <FormControl>
-                <Input type="email" placeholder="votre@email.com" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="space-y-6 max-w-md"
+      >
+        <div className="flex gap-4">
+          <FormField
+            control={form.control}
+            name="name"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Nom</FormLabel>
+                <FormControl>
+                  <Input type="text" placeholder="Votre nom" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
           />
-            </div>
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Email</FormLabel>
+                <FormControl>
+                  <Input
+                    type="email"
+                    placeholder="votre@email.com"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
         <FormField
           control={form.control}
           name="discord"
@@ -119,10 +140,7 @@ export default function RegisterForm({ event, onComplete }: RegisterFormProps) {
           render={({ field }) => (
             <FormItem>
               <FormLabel>Rang actuel</FormLabel>
-              <Select 
-                onValueChange={field.onChange} 
-                defaultValue={field.value}
-              >
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
                     <SelectValue placeholder="Sélectionnez votre rang" />

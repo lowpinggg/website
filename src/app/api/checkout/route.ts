@@ -1,6 +1,7 @@
 // app/api/checkout/route.ts
-import { stripe } from '@/lib/stripe-server'
 import { NextResponse } from 'next/server'
+
+import { stripe } from '@/lib/stripe-server'
 
 export async function POST(req: Request) {
   try {
@@ -36,15 +37,15 @@ export async function POST(req: Request) {
           price_data: {
             currency: 'cad',
             product_data: {
-              name: event.name,
+              name: event.name
             },
-            unit_amount: event.price,
+            unit_amount: event.price
           },
-          quantity: 1,
-        },
+          quantity: 1
+        }
       ],
       success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/registration/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/registration/cancelled`,
+      cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/registration/cancelled?session_id={CHECKOUT_SESSION_ID}`
     })
 
     return NextResponse.json({ sessionId: session.id })

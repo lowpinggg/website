@@ -1,18 +1,17 @@
 // app/[event]/register/page.tsx
-import { RegisterClient } from '@/app/[event]/register/client'
-import { supabase } from '@/lib/supabase'
 import { notFound } from 'next/navigation'
+
 import { Database } from '@/types/generated-types'
+import { supabase } from '@/lib/supabase'
+import { RegisterClient } from '@/app/[event]/register/client'
 
 type Event = Database['public']['Tables']['events']['Row']
 type Props = {
   params: Promise<{ event: string }>
 }
 
-
 export default async function RegisterPage({ params }: Props) {
   const e = await params
-  console.log("RegisterPage - event:", e);
 
   if (!e) {
     return notFound()
@@ -31,11 +30,11 @@ export default async function RegisterPage({ params }: Props) {
 }
 
 export async function generateStaticParams() {
-  const { data: events } = await supabase
-    .from('events')
-    .select('id')
+  const { data: events } = await supabase.from('events').select('id')
 
-  return events?.map(event => ({
-    event: event.id
-  })) || []
+  return (
+    events?.map((event) => ({
+      event: event.id
+    })) || []
+  )
 }
