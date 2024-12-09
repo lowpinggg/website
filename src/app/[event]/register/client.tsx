@@ -3,11 +3,14 @@
 import RegisterForm from '@/components/register/RegisterForm'
 import Summary from '@/components/register/Summary'
 import { useState } from 'react'
+import { Separator } from '@/components/ui/separator'
 
 type RegistrationData = {
   name: string
   email: string
   discord: string
+  riotId: string
+  rank: string
 }
 
 type Props = {
@@ -15,6 +18,7 @@ type Props = {
     id: string
     name: string
     date: string
+    price: number
   }
 }
 
@@ -32,10 +36,12 @@ export function RegisterClient({ event }: Props) {
   }
 
   return (
-    <main className="container py-10">
-      <div className="pattern-overlay" />
-      <h1 className="text-4xl font-bold mb-8">{event.name} Registration</h1>
-      
+    <main className="container gap-6 max-w-md py-10 h-screen mx-auto flex justify-center flex-col items-center">
+      <div className='flex flex-col gap-2 w-full'>
+      <h3>Registration</h3>
+      <h1 className="text-4xl font-bold">{event.name} </h1>
+     </div>
+      <Separator />
       {step === 1 && (
         <RegisterForm 
           event={event} 
