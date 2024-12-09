@@ -1,22 +1,19 @@
-// src/app/[event]/register/page.tsx
-import RegisterForm from '@/components/RegisterForm'
+// app/[event]/register/page.tsx (Server Component)
+import { RegisterClient } from '@/app/[event]/register/client'
 import { events } from '@/data/events'
 import { notFound } from 'next/navigation'
 
-export default async function RegisterPage({
-  params: eventParams
-}: {
+type Props = {
   params: Promise<{ event: string }>
-}) {
-  const params = await eventParams
-  const event = events.find(e => e.id === params.event)
-  if (!event) return notFound()
+}
 
-  return (
-    <main className="container py-10">
-      <div className="pattern-overlay" />
-      <h1 className="text-4xl font-bold mb-8">{event.name} Registration</h1>
-      <RegisterForm event={event} />
-    </main>
-  )
+export default async function RegisterPage(props: Props) {
+  const { event: eventId } = await props.params
+  const event = events.find((e) => e.id === eventId)
+
+  if (!event) {
+    return notFound()
+  }
+
+  return <RegisterClient event={event} />
 }

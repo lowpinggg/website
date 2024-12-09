@@ -2,9 +2,9 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
-import { Button } from './ui/button'
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from './ui/form'
-import { Input } from './ui/input'
+import { Button } from '@/components/ui/button'
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
 
 const formSchema = z.object({
   name: z.string().min(2),
@@ -18,20 +18,21 @@ type RegisterFormProps = {
     name: string
     date: string
   }
+  onComplete: (data: z.infer<typeof formSchema>) => void
 }
 
-export default function RegisterForm({ event }: RegisterFormProps) {
+export default function RegisterForm({ event, onComplete }: RegisterFormProps) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: '',
-      email: '',
-      discord: ''
+      name: 'John',
+      email: 'john@jo.com',
+      discord: 'ddjo'
     }
   })
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values)
+    onComplete(values)
   }
 
   return (
