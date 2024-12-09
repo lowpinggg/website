@@ -1,22 +1,16 @@
 // components/register/Summary.tsx
 'use client'
-
 import { useState } from 'react'
-
-import { getStripe } from '@/lib/stripe'
+import { getStripe } from '@/lib/stripe/stripe'
 import { useToast } from '@/hooks/use-toast'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
+import type { FormData } from '@/types/registration'
 
 type SummaryProps = {
-  formData: {
-    name: string
-    email: string
-    discord: string
-    riotId: string
-    rank: string
-  }
+  formData: FormData
+  formFields: { name: string; label: string }[]
   event: {
     id: string
     name: string
@@ -26,7 +20,7 @@ type SummaryProps = {
   onBack: () => void
 }
 
-export default function Summary({ formData, event, onBack }: SummaryProps) {
+export default function Summary({ formData, formFields, event, onBack }: SummaryProps) {
   const [isLoading, setIsLoading] = useState(false)
   const { toast } = useToast()
 
@@ -85,43 +79,38 @@ export default function Summary({ formData, event, onBack }: SummaryProps) {
             {new Date(event.date).toLocaleDateString()}
           </p>
         </div>
-
         <Separator />
-
         <div className="space-y-1">
           <h3 className="text-sm font-medium">Vos informations</h3>
           <div className="text-sm text-muted-foreground space-y-1">
-            <p>Nom: {formData.name}</p>
-            <p>Email: {formData.email}</p>
-            <p>Discord: {formData.discord}</p>
-            <p>Riot ID: {formData.riotId}</p>
-            <p>Rang: {formData.rank}</p>
+            {formFields.map(field => (
+              formData[field.name] && (
+                <p key={field.name}>
+                  {field.label}: {formData[field.name]}
+                </p>
+              )
+            ))}
           </div>
         </div>
-
         <Separator />
-
         <div className="pt-4 space-y-1">
           <h3 className="text-sm font-medium">Total</h3>
           <p className="text-2xl font-bold">
             {(event.price / 100).toFixed(2)} $CAD
           </p>
         </div>
-
         <div className="flex gap-4 pt-6">
           <Button
             variant="outline"
             onClick={onBack}
             disabled={isLoading}
-            className="flex-1"
-          >
+            className="flex-1">
             Retour
           </Button>
           <Button
             onClick={handlePayment}
             disabled={isLoading}
-            className="flex-1"
-          >
+            className="flex-1">
             {isLoading ? 'En cours...' : 'Payer maintenant'}
           </Button>
         </div>
