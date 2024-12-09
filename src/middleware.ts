@@ -1,11 +1,13 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
+const tempRedirectPath = '/example-tournament/register'
+
 export function middleware(request: NextRequest) {
   // Don't redirect API routes, _next routes, static files, or specific pages
   if (
     request.nextUrl.pathname.startsWith('/api') ||
-    request.nextUrl.pathname === '/example-tournament/register' ||
+    request.nextUrl.pathname === tempRedirectPath ||
     request.nextUrl.pathname.startsWith('/registration/success') ||
     request.nextUrl.pathname.startsWith('/registration/cancelled')
   ) {
@@ -13,7 +15,7 @@ export function middleware(request: NextRequest) {
   }
 
   const url = request.nextUrl.clone()
-  url.pathname = '/example-tournament/register'
+  url.pathname = tempRedirectPath
   return NextResponse.redirect(url)
 }
 

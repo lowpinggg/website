@@ -24,9 +24,12 @@ export async function POST(req: Request) {
       mode: 'payment',
       metadata: {
         eventId: event.id,
-        userEmail: formData.email,
+        eventName: event.name,
         userName: formData.name,
+        userEmail: formData.email,
         userDiscord: formData.discord,
+        userRiotId: formData.riotId,
+        userRank: formData.rank
       },
       line_items: [
         {
@@ -35,13 +38,13 @@ export async function POST(req: Request) {
             product_data: {
               name: event.name,
             },
-            unit_amount: event.price, // $20.00 - replace with actual event price
+            unit_amount: event.price,
           },
           quantity: 1,
         },
       ],
-      success_url: `${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/registration/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/registration/cancelled`,
+      success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/registration/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/registration/cancelled`,
     })
 
     return NextResponse.json({ sessionId: session.id })

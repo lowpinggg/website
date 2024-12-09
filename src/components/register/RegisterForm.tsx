@@ -43,11 +43,11 @@ export default function RegisterForm({ event, onComplete }: RegisterFormProps) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: '',
-      email: '',
-      discord: '',
-      riotId: '',
-      rank: undefined
+      name: 'fef',
+      email: 'fe@jd.com',
+      discord: 'wd',
+      riotId: 'wd',
+      rank: "IRON"
     }
   })
 
