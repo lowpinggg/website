@@ -1,17 +1,13 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Alexandria } from 'next/font/google'
+import { cn } from '@/lib/utils'
 import "./globals.css";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+const alexandria = Alexandria({
+  subsets: ['latin'],
+  variable: '--font-alexandria',
+  weight: ['300', '400', '500', '700'],
+})
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -26,8 +22,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={cn(
+          'max-w-page relative bg-background font-alexandria text-white antialiased dark',
+          alexandria.variable
+        )}
       >
+         <div className="pattern-overlay z-50" />
         {children}
       </body>
     </html>
