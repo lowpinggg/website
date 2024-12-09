@@ -1,14 +1,16 @@
 // app/api/webhook/route.ts
 import { headers } from 'next/headers'
 import { NextResponse } from 'next/server'
-import { stripe } from '@/lib/stripe-server'
 import Stripe from 'stripe'
+
+import { stripe } from '@/lib/stripe-server'
+import { supabase } from '@/lib/supabase'
 
 export async function POST(req: Request) {
   const body = await req.text()
   const headersList = await headers()
   const signature = headersList.get('stripe-signature')
-  
+
   if (!signature) {
     return NextResponse.json(
       { error: 'Missing stripe-signature header' },
@@ -26,7 +28,9 @@ export async function POST(req: Request) {
     )
   } catch (err) {
     return NextResponse.json(
-      { error: `Webhook Error: ${err instanceof Error ? err.message : 'Unknown Error'}` },
+      {
+        error: `Webhook Error: ${err instanceof Error ? err.message : 'Unknown Error'}`
+      },
       { status: 400 }
     )
   }
@@ -45,40 +49,61 @@ export async function POST(req: Request) {
 }
 
 async function handleSuccessfulPayment(session: Stripe.Checkout.Session) {
-  // Get the metadata from the session
-  const { eventId, userEmail, userName, userDiscord } = session.metadata || {}
+  const { eventId, userEmail, userName, userDiscord, userRiotId, userRank } =
+    session.metadata || {}
 
-  if (!eventId || !userEmail || !userName || !userDiscord) {
+  if (!session.metadata) {
     console.error('Missing metadata in Stripe session')
     return
   }
 
+  // Get the payment ID
+  const paymentId =
+    typeof session.payment_intent === 'string'
+      ? session.payment_intent
+      : session.payment_intent?.id
+
+  if (!paymentId) {
+    console.error('Missing payment_intent in session')
+    return
+  }
+
   try {
-    // TODO: Add your database logic here
-    // Example:
-    // await prisma.registration.create({
-    //   data: {
-    //     eventId,
-    //     userEmail,
-    //     userName,
-    //     userDiscord,
-    //     paymentId: session.id,
-    //     amount: session.amount_total,
-    //     status: 'completed'
-    //   }
-    // })
+    // First, verify the event exists
+    const { data: event, error: eventError } = await supabase
+      .from('events')
+      .select('id')
+      .eq('id', eventId)
+      .single()
 
-    // TODO: Send confirmation email
-    // Example:
-    // await sendConfirmationEmail({
-    //   to: userEmail,
-    //   eventId,
-    //   userName
-    // })
+    if (eventError || !event) {
+      console.error('Event not found:', eventId)
+      return
+    }
 
+    // Insert the registration
+    const { error } = await supabase.from('event_registrations').insert({
+      name: userName,
+      email: userEmail,
+      discord: userDiscord,
+      riot_id: userRiotId,
+      rank: userRank,
+      event_id: eventId,
+      payment_id: paymentId
+    })
+
+    if (error) {
+      console.error('Error inserting registration:', error)
+      throw error
+    }
+
+    console.log('Successfully registered user for event:', {
+      userName,
+      eventId,
+      paymentId
+    })
   } catch (error) {
     console.error('Error processing successful payment:', error)
-    // You might want to notify your error tracking service here
   }
 }
 
@@ -86,6 +111,6 @@ async function handleSuccessfulPayment(session: Stripe.Checkout.Session) {
 // so we can access the raw body for webhook verification
 export const config = {
   api: {
-    bodyParser: false,
-  },
+    bodyParser: false
+  }
 }

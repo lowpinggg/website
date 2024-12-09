@@ -1,19 +1,40 @@
-// app/[event]/register/page.tsx (Server Component)
-import { RegisterClient } from '@/app/[event]/register/client'
-import { events } from '@/data/events'
+// app/[event]/register/page.tsx
 import { notFound } from 'next/navigation'
 
+import { Database } from '@/types/generated-types'
+import { supabase } from '@/lib/supabase'
+import { RegisterClient } from '@/app/[event]/register/client'
+
+type Event = Database['public']['Tables']['events']['Row']
 type Props = {
   params: Promise<{ event: string }>
 }
 
-export default async function RegisterPage(props: Props) {
-  const { event: eventId } = await props.params
-  const event = events.find((e) => e.id === eventId)
+export default async function RegisterPage({ params }: Props) {
+  const e = await params
 
-  if (!event) {
+  if (!e) {
+    return notFound()
+  }
+  const { data: event, error } = await supabase
+    .from('events')
+    .select('*')
+    .eq('id', e.event)
+    .single()
+
+  if (error || !event) {
     return notFound()
   }
 
-  return <RegisterClient event={event} />
+  return <RegisterClient event={event as Event} />
+}
+
+export async function generateStaticParams() {
+  const { data: events } = await supabase.from('events').select('id')
+
+  return (
+    events?.map((event) => ({
+      event: event.id
+    })) || []
+  )
 }

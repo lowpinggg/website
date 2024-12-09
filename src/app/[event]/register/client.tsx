@@ -1,9 +1,11 @@
 // app/[event]/register/client.tsx (Client Component)
 'use client'
+
+import { useState } from 'react'
+
+import { Separator } from '@/components/ui/separator'
 import RegisterForm from '@/components/register/RegisterForm'
 import Summary from '@/components/register/Summary'
-import { useState } from 'react'
-import { Separator } from '@/components/ui/separator'
 
 type RegistrationData = {
   name: string
@@ -24,7 +26,8 @@ type Props = {
 
 export function RegisterClient({ event }: Props) {
   const [step, setStep] = useState(1)
-  const [registrationData, setRegistrationData] = useState<RegistrationData | null>(null)
+  const [registrationData, setRegistrationData] =
+    useState<RegistrationData | null>(null)
 
   const handleRegistrationComplete = (data: RegistrationData) => {
     setRegistrationData(data)
@@ -37,20 +40,17 @@ export function RegisterClient({ event }: Props) {
 
   return (
     <main className="container gap-6 max-w-md py-10 h-screen mx-auto flex justify-center flex-col items-center">
-      <div className='flex flex-col gap-2 w-full'>
-      <h3>Registration</h3>
-      <h1 className="text-4xl font-bold">{event.name} </h1>
-     </div>
+      <div className="flex flex-col gap-2 w-full">
+        <h3>Registration</h3>
+        <h1 className="text-4xl font-bold">{event.name} </h1>
+      </div>
       <Separator />
       {step === 1 && (
-        <RegisterForm 
-          event={event} 
-          onComplete={handleRegistrationComplete} 
-        />
+        <RegisterForm event={event} onComplete={handleRegistrationComplete} />
       )}
-      
+
       {step === 2 && registrationData && (
-        <Summary 
+        <Summary
           formData={registrationData}
           event={event}
           onBack={handleBack}
