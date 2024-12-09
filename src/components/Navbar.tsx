@@ -5,10 +5,10 @@ import { Button } from '@/components/ui/button'
 
 export function Navbar() {
   return (
-    <nav className="border-dark-800 border-b">
+    <nav className="">
       <div className="container flex items-center justify-between py-4">
         <Link href="/">
-          <Full width={150} color="white" />
+          <Full width={120} color="white" />
         </Link>
 
         <div className="hidden items-center gap-8 md:flex">
