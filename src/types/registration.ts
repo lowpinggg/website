@@ -25,7 +25,7 @@ export const formConfigs: Record<string, FormConfig> = {
         label: 'Rang actuel', 
         type: 'select', 
         placeholder: 'Sélectionnez votre rang',
-        options: ['IRON', 'BRONZE', 'SILVER', 'GOLD', 'PLATINUM', 'DIAMOND', 'MASTER', 'GRANDMASTER', 'CHALLENGER']
+        options: ['IRON', 'BRONZE', 'SILVER', 'GOLD', 'PLATINUM', 'DIAMOND']
       }
     ]
   },
@@ -40,7 +40,7 @@ export const formConfigs: Record<string, FormConfig> = {
         label: 'Rang actuel', 
         type: 'select', 
         placeholder: 'Sélectionnez votre rang',
-        options: ['IRON', 'BRONZE', 'SILVER', 'GOLD', 'PLATINUM', 'DIAMOND', 'MASTER', 'GRANDMASTER', 'CHALLENGER']
+        options: ['IRON', 'BRONZE', 'SILVER', 'GOLD', 'PLATINUM', 'DIAMOND']
       }
     ]
   }

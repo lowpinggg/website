@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
-const ENABLE_TEMP_REDIRECT = true
+const ENABLE_TEMP_REDIRECT = false
 const TEMP_REDIRECT_PATH = '/example-tournament/register'
 
 // Protected routes that require session_id

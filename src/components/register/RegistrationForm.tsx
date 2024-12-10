@@ -39,8 +39,10 @@ export default function RegistrationForm({ type, onComplete }: Props) {
   // Create dynamic schema based on field configurations
   const schemaObject: Record<string, z.ZodType> = {}
   config.fields.forEach(field => {
-    if (field.type === 'email') {
-      schemaObject[field.name] = z.string().email('Email invalide')
+    if (field.type === 'select' && field.options) {
+      schemaObject[field.name] = z.enum(field.options as [string, ...string[]], {
+        required_error: `${field.label} est requis`
+      }).nullish() // Make it nullable
     } else if (field.type === 'select' && field.options) {
       schemaObject[field.name] = z.enum(field.options as [string, ...string[]], {
         required_error: `${field.label} est requis`
@@ -56,7 +58,7 @@ export default function RegistrationForm({ type, onComplete }: Props) {
     resolver: zodResolver(formSchema),
     defaultValues: config.fields.reduce((acc, field) => ({
       ...acc,
-      [field.name]: ''
+      [field.name]: field.type === 'select' && field.options ? field.options[0] : ''
     }), {})
   })
 
@@ -70,9 +72,10 @@ export default function RegistrationForm({ type, onComplete }: Props) {
           <FormLabel>{field.label}</FormLabel>
           <FormControl>
             {field.type === 'select' ? (
-              <Select 
-                onValueChange={formField.onChange} 
-                defaultValue={formField.value}
+              <Select
+                onValueChange={formField.onChange}
+                defaultValue={formField.value || undefined}
+                value={formField.value || undefined}
               >
                 <SelectTrigger>
                   <SelectValue placeholder={field.placeholder} />
@@ -93,7 +96,7 @@ export default function RegistrationForm({ type, onComplete }: Props) {
               />
             )}
           </FormControl>
-          <FormMessage />
+          <FormMessage className='text-xs font-normal' />
         </FormItem>
       )}
     />
@@ -101,8 +104,8 @@ export default function RegistrationForm({ type, onComplete }: Props) {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onComplete)} className="space-y-6 max-w-md">
-        <div className="flex gap-4">
+      <form onSubmit={form.handleSubmit(onComplete)} className="space-y-4">
+        <div className="flex gap-2">
           {config.fields
             .filter(f => ['name', 'email'].includes(f.name))
             .map(renderField)}
@@ -110,6 +113,7 @@ export default function RegistrationForm({ type, onComplete }: Props) {
         {config.fields
           .filter(f => !['name', 'email'].includes(f.name))
           .map(renderField)}
+
         <Button type="submit">Sinscrire</Button>
       </form>
     </Form>
