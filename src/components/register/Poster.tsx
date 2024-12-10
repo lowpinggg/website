@@ -2,6 +2,7 @@
 'use client'
 import Image from 'next/image'
 import Tilt from 'react-parallax-tilt'
+import { motion } from 'motion/react'
 
 type Props = {
   className?: string
@@ -10,6 +11,10 @@ type Props = {
 
 export function Poster({ className = '', imageUrl = '/default-poster.png' }: Props) {
   return (
+    <motion.div
+      animate={{ y: [0, -24, 0] }}
+      transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+    >
     <Tilt
       className={`w-[420px] h-[560px] ${className}`}
       perspective={1000}
@@ -31,6 +36,7 @@ export function Poster({ className = '', imageUrl = '/default-poster.png' }: Pro
           sizes="(max-width: 420px) 100vw, 420px"
           priority
         />
-    </Tilt>
+      </Tilt>
+      </motion.div>
   )
 }
