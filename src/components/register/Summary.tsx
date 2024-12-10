@@ -1,22 +1,14 @@
-// components/register/Summary.tsx
 'use client'
-
 import { useState } from 'react'
-
-import { getStripe } from '@/lib/stripe'
+import { getStripe } from '@/lib/stripe/stripe'
 import { useToast } from '@/hooks/use-toast'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
+import type { FormData } from '@/types/registration'
 
 type SummaryProps = {
-  formData: {
-    name: string
-    email: string
-    discord: string
-    riotId: string
-    rank: string
-  }
+  formData: FormData
+  formFields: { name: string; label: string }[]
   event: {
     id: string
     name: string
@@ -26,7 +18,7 @@ type SummaryProps = {
   onBack: () => void
 }
 
-export default function Summary({ formData, event, onBack }: SummaryProps) {
+export default function Summary({ formData, formFields, event, onBack }: SummaryProps) {
   const [isLoading, setIsLoading] = useState(false)
   const { toast } = useToast()
 
@@ -40,7 +32,6 @@ export default function Summary({ formData, event, onBack }: SummaryProps) {
         },
         body: JSON.stringify({ event, formData })
       })
-
       const data = await response.json()
 
       if (!data.sessionId) {
@@ -63,8 +54,7 @@ export default function Summary({ formData, event, onBack }: SummaryProps) {
       toast({
         variant: 'destructive',
         title: 'Erreur',
-        description:
-          'Un problème est survenu lors du traitement de votre paiement.'
+        description: 'Un problème est survenu lors du traitement de votre paiement.'
       })
       console.error('Payment error:', error)
     } finally {
@@ -73,59 +63,59 @@ export default function Summary({ formData, event, onBack }: SummaryProps) {
   }
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>{"Confirmer l'inscription"}</CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-6">
-        <div className="space-y-1">
+    <div className="w-full">
+      <div className="mb-6">
+        <h2 className="text-xl font-semibold">{"Confirmer l'inscription"}</h2>
+      </div>
+      <div className="space-y-4 font-light">
+        <div className="space-y-2">
           <h3 className="text-sm font-medium">Événement</h3>
-          <p className="text-sm text-muted-foreground">{event.name}</p>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-xs text-muted-foreground">{event.name}</p>
+          <p className="text-xs text-muted-foreground">
             {new Date(event.date).toLocaleDateString()}
           </p>
         </div>
-
         <Separator />
-
-        <div className="space-y-1">
+        <div className="space-y-2">
           <h3 className="text-sm font-medium">Vos informations</h3>
-          <div className="text-sm text-muted-foreground space-y-1">
-            <p>Nom: {formData.name}</p>
-            <p>Email: {formData.email}</p>
-            <p>Discord: {formData.discord}</p>
-            <p>Riot ID: {formData.riotId}</p>
-            <p>Rang: {formData.rank}</p>
+          <div className="text-xs space-y-1">
+            {formFields.map(field => (
+              formData[field.name] && (
+                <p key={field.name} className='font-medium'>
+                  {field.label}: <span className="font-light">{formData[field.name]}</span>
+                </p>
+              )
+            ))}
           </div>
         </div>
-
         <Separator />
-
-        <div className="pt-4 space-y-1">
+        <div className="space-y-1">
           <h3 className="text-sm font-medium">Total</h3>
           <p className="text-2xl font-bold">
             {(event.price / 100).toFixed(2)} $CAD
           </p>
-        </div>
 
+        </div>
         <div className="flex gap-4 pt-6">
           <Button
             variant="outline"
             onClick={onBack}
             disabled={isLoading}
-            className="flex-1"
-          >
+            className="flex-1">
             Retour
           </Button>
           <Button
             onClick={handlePayment}
             disabled={isLoading}
-            className="flex-1"
-          >
+            className="flex-1">
             {isLoading ? 'En cours...' : 'Payer maintenant'}
           </Button>
+
         </div>
-      </CardContent>
-    </Card>
+        <p className="text-xs text-muted-foreground font-light">
+          {'En cliquant sur "Payer maintenant", vous serez redirigé vers Stripe pour effectuer votre paiement de manière sécurisée.'}
+        </p>
+      </div>
+    </div>
   )
 }

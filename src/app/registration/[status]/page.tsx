@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { CircleCheck, CircleX } from 'lucide-react'
 
-import { stripe } from '@/lib/stripe-server'
+import { stripe } from '@/lib/stripe/stripe-server'
 import { Button } from '@/components/ui/button'
 
 type Props = {
