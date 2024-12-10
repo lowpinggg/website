@@ -12,6 +12,16 @@
   }
 }
 
+.poster {
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  transition: all 0.2s ease-out;
+}
+
+.poster:hover {
+  transition: all 0.2s ease-out;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

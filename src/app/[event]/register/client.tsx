@@ -9,6 +9,7 @@ import { FormData, formConfigs } from '@/types/registration'
 import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
+import { Poster } from '@/components/register/Poster'
 
 type Props = {
   event: {
@@ -40,9 +41,7 @@ export function RegisterClient({ event }: Props) {
 
   return (
     <main className="container h-screen mx-auto justify-center gap-24 flex items-center">
-      <section className='flex justify-center'>
-        <div className='bg-zinc-900 border border-zinc-800 w-[420px] h-[560px]'></div>
-      </section>
+        <Poster />
       <section className=' flex items-center justify-center w-full h-full max-w-sm'>
 
         {step === 1 && (
