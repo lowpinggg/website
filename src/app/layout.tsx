@@ -1,11 +1,10 @@
+// app/layout.tsx
 import type { Metadata } from 'next'
 import { Alexandria } from 'next/font/google'
-
 import { cn } from '@/lib/utils'
-
 import './globals.css'
-
 import { Toaster } from '@/components/ui/toaster'
+import { Providers } from '@/app/Providers'
 
 const alexandria = Alexandria({
   subsets: ['latin'],
@@ -35,7 +34,9 @@ export default function RootLayout({
         )}
       >
         <div className="pattern-overlay z-50" />
-        {children}
+        <Providers>
+          {children}
+        </Providers>
         <Toaster />
       </body>
     </html>

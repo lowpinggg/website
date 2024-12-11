@@ -12,22 +12,21 @@ type Props = {
 export function Poster({ className = '', imageUrl = '/default-poster.png' }: Props) {
   return (
     <motion.div
-      animate={{ y: [0, -16, 0] }}
+      animate={{ y: [0, 12, 0] }}
       transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
     >
-    <Tilt
-      className={`w-[420px] h-[560px] ${className}`}
-      perspective={1000}
-      scale={1.03}
-      tiltMaxAngleX={15}
-      tiltMaxAngleY={15}
-      glareEnable={true}
-      glareMaxOpacity={0.5}
-      glareColor="#ffffff"
-      glarePosition="all"
-      glareBorderRadius="11px"
-    >
-
+      <Tilt
+        className={`w-[420px] h-[560px] mx-auto ${className}`}
+        perspective={1000}
+        scale={1.03}
+        tiltMaxAngleX={15}
+        tiltMaxAngleY={15}
+        glareEnable={true}
+        glareMaxOpacity={0.5}
+        glareColor="#ffffff"
+        glarePosition="all"
+        glareBorderRadius="11px"
+      >
         <Image
           src={imageUrl}
           alt="Poster image"
@@ -37,6 +36,6 @@ export function Poster({ className = '', imageUrl = '/default-poster.png' }: Pro
           priority
         />
       </Tilt>
-      </motion.div>
+    </motion.div>
   )
 }
