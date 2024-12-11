@@ -30,7 +30,7 @@ export const animations = {
       transition: { 
         ease: EASE,
         duration: 0.8,
-        delay 
+        delay
       }
     })
   }
