@@ -1,4 +1,4 @@
-// components/register/forms/SummonerForm.tsx
+// features/registration/components/forms/TftForm.tsx
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -23,53 +23,30 @@ import {
   SelectValue
 } from '@/components/ui/select'
 
-import { FormField as CustomFormField } from '.'
-
-export const summonerFields: CustomFormField[] = [
-  { name: 'name', label: 'Nom', type: 'text', placeholder: 'Votre nom' },
-  {
-    name: 'email',
-    label: 'Email',
-    type: 'email',
-    placeholder: 'votre@email.com'
-  },
-  {
-    name: 'discord',
-    label: 'Discord',
-    type: 'text',
-    placeholder: 'Votre#0000'
-  },
-  { name: 'riotId', label: 'Riot ID', type: 'text', placeholder: 'Pseudo#TAG' },
-  {
-    name: 'rank',
-    label: 'Rang',
-    type: 'select',
-    placeholder: 'Sélectionnez votre rang',
-    options: ['IRON', 'BRONZE', 'SILVER', 'GOLD', 'PLATINUM', 'DIAMOND']
-  }
-] as const
+import { 
+  TftFormData, 
+  tftFields 
+} from '@/features/registration/types/forms'
 
 const formSchema = z.object({
   name: z.string().min(2, 'Nom doit contenir au moins 2 caractères'),
   email: z.string().email('Email invalide'),
-  discord: z.string().min(2, 'Discord doit contenir au moins 2 caractères'),
   riotId: z.string().min(2, 'Riot ID doit contenir au moins 2 caractères'),
   rank: z.enum(['IRON', 'BRONZE', 'SILVER', 'GOLD', 'PLATINUM', 'DIAMOND'])
 })
 
-export type SummonerFormData = z.infer<typeof formSchema>
-
-export function SummonerForm({
-  onComplete
+export function TftForm({
+  onComplete,
+  defaultValues
 }: {
-  onComplete: (data: SummonerFormData) => void
+    onComplete: (data: TftFormData) => void
+    defaultValues?: Partial<TftFormData>
 }) {
-  const form = useForm<SummonerFormData>({
+  const form = useForm<TftFormData>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
+    defaultValues: defaultValues || {
       name: '',
       email: '',
-      discord: '',
       riotId: '',
       rank: 'IRON'
     }
@@ -79,13 +56,13 @@ export function SummonerForm({
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onComplete)} className="space-y-4">
         <div className="flex gap-2">
-          {summonerFields
+          {tftFields
             .filter((field) => ['name', 'email'].includes(field.name))
             .map((field) => (
               <FormField
                 key={field.name}
                 control={form.control}
-                name={field.name as keyof SummonerFormData}
+                name={field.name as keyof TftFormData}
                 render={({ field: formField }) => (
                   <FormItem>
                     <FormLabel>{field.label}</FormLabel>
@@ -103,13 +80,13 @@ export function SummonerForm({
             ))}
         </div>
 
-        {summonerFields
+        {tftFields
           .filter((field) => !['name', 'email'].includes(field.name))
           .map((field) => (
             <FormField
               key={field.name}
               control={form.control}
-              name={field.name as keyof SummonerFormData}
+              name={field.name as keyof TftFormData}
               render={({ field: formField }) => (
                 <FormItem>
                   <FormLabel>{field.label}</FormLabel>

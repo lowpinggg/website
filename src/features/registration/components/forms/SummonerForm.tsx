@@ -1,8 +1,10 @@
-// components/register/forms/TftForm.tsx
+// features/registration/components/forms/SummonerForm.tsx
 'use client'
+
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
+
 import { Button } from '@/components/ui/button'
 import {
   Form,
@@ -20,53 +22,47 @@ import {
   SelectTrigger,
   SelectValue
 } from '@/components/ui/select'
-import { FormField as CustomFormField } from '.'
 
-export const tftFields: CustomFormField[] = [
-  { name: 'name', label: 'Nom', type: 'text', placeholder: 'Votre nom' },
-  { name: 'email', label: 'Email', type: 'email', placeholder: 'votre@email.com' },
-  { name: 'riotId', label: 'Riot ID', type: 'text', placeholder: 'Pseudo#TAG' },  
-  { 
-    name: 'rank', 
-    label: 'Rang', 
-    type: 'select', 
-    placeholder: 'Sélectionnez votre rang',
-    options: ['IRON', 'BRONZE', 'SILVER', 'GOLD', 'PLATINUM', 'DIAMOND']
-  }
-] as const
+import { 
+  SummonerFormData, 
+  summonerFields 
+} from '@/features/registration/types/forms'
 
 const formSchema = z.object({
-  name: z.string().min(2, "Nom doit contenir au moins 2 caractères"),
-  email: z.string().email("Email invalide"),
-  riotId: z.string().min(2, "Riot ID doit contenir au moins 2 caractères"),
+  name: z.string().min(2, 'Nom doit contenir au moins 2 caractères'),
+  email: z.string().email('Email invalide'),
+  discord: z.string().min(2, 'Discord doit contenir au moins 2 caractères'),
+  riotId: z.string().min(2, 'Riot ID doit contenir au moins 2 caractères'),
   rank: z.enum(['IRON', 'BRONZE', 'SILVER', 'GOLD', 'PLATINUM', 'DIAMOND'])
 })
 
-export type TftFormData = z.infer<typeof formSchema>
-
-export function TftForm({
-  onComplete,
-  defaultValues,
+export function SummonerForm({
+  onComplete
 }: {
-  onComplete: (data: TftFormData) => void;
-  defaultValues: TftFormData;
+  onComplete: (data: SummonerFormData) => void
 }) {
-  const form = useForm<TftFormData>({
+  const form = useForm<SummonerFormData>({
     resolver: zodResolver(formSchema),
-    defaultValues,
-  });
+    defaultValues: {
+      name: '',
+      email: '',
+      discord: '',
+      riotId: '',
+      rank: 'IRON'
+    }
+  })
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onComplete)} className="space-y-4">
         <div className="flex gap-2">
-          {tftFields
-            .filter(field => ['name', 'email'].includes(field.name))
+          {summonerFields
+            .filter((field) => ['name', 'email'].includes(field.name))
             .map((field) => (
               <FormField
                 key={field.name}
                 control={form.control}
-                name={field.name as keyof TftFormData}
+                name={field.name as keyof SummonerFormData}
                 render={({ field: formField }) => (
                   <FormItem>
                     <FormLabel>{field.label}</FormLabel>
@@ -77,20 +73,20 @@ export function TftForm({
                         {...formField}
                       />
                     </FormControl>
-                    <FormMessage className='text-xs font-normal' />
+                    <FormMessage className="text-xs font-normal" />
                   </FormItem>
                 )}
               />
             ))}
         </div>
 
-        {tftFields
-          .filter(field => !['name', 'email'].includes(field.name))
+        {summonerFields
+          .filter((field) => !['name', 'email'].includes(field.name))
           .map((field) => (
             <FormField
               key={field.name}
               control={form.control}
-              name={field.name as keyof TftFormData}
+              name={field.name as keyof SummonerFormData}
               render={({ field: formField }) => (
                 <FormItem>
                   <FormLabel>{field.label}</FormLabel>
@@ -119,7 +115,7 @@ export function TftForm({
                       />
                     )}
                   </FormControl>
-                  <FormMessage className='text-xs font-normal' />
+                  <FormMessage className="text-xs font-normal" />
                 </FormItem>
               )}
             />
