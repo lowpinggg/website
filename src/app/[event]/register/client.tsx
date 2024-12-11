@@ -6,7 +6,6 @@ import { ArrowLeft } from 'lucide-react'
 import { motion } from 'motion/react'
 
 import { Database } from '@/types/generated-types'
-import { Button } from '@/components/ui/button'
 import { DynamicForm } from '@/components/register/DynamicForm'
 import { FormData, formRegistry } from '@/components/register/forms'
 import { Poster } from '@/components/register/Poster'
@@ -43,17 +42,16 @@ export function RegisterClient({ event }: Props) {
           transition={{ duration: 1, ease: [0.19, 1, 0.22, 1], delay: 0.3 }}
           className="sticky top-12"
         >
-          <Poster imageUrl={`/${event.id}.png`} />
+          <Poster imageUrl={event.poster_url || ''} />
         </motion.div>
 
         <div className="flex flex-col gap-6">
           <motion.div
-            className="overflow-hidden"
             animate={{ y: 0, opacity: 1 }}
             initial={{ y: 24, opacity: 0 }}
             transition={{ duration: 1, ease: [0.19, 1, 0.22, 1], delay: 0.3 }}
           >
-            <Link href="/" className="mb-4 flex text-xs items-center">
+            <Link href="/" className="mb-4 flex text-xs items-center transition-all hover:-translate-x-1 w-fit">
                 <ArrowLeft size={14} />Events
             </Link>
           </motion.div>

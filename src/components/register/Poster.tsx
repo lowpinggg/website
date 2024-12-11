@@ -12,7 +12,7 @@ type Props = {
 export function Poster({ className = '', imageUrl = '/default-poster.png' }: Props) {
   return (
     <motion.div
-      animate={{ y: [0, -24, 0] }}
+      animate={{ y: [0, -16, 0] }}
       transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
     >
     <Tilt
@@ -32,7 +32,7 @@ export function Poster({ className = '', imageUrl = '/default-poster.png' }: Pro
           src={imageUrl}
           alt="Poster image"
           fill
-          className="object-cover"
+          className="object-cover rounded-md"
           sizes="(max-width: 420px) 100vw, 420px"
           priority
         />
