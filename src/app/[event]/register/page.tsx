@@ -2,7 +2,7 @@
 import { notFound } from 'next/navigation'
 import { Database } from '@/types/generated-types'
 import { supabase } from '@/lib/supabase'
-import { RegisterClient } from '@/features/registration/components/client'
+import { RegisterClient } from '@/features/registration/components/RegisterClient'
 import { formRegistry } from '@/features/registration/types/forms'
 
 // Extend the Event type to include type field
