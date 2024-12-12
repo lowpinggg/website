@@ -1,24 +1,14 @@
 // app/page.tsx
-import { supabase } from '@/lib/supabase'
-import HomeClient from './HomeClient'
-import { Database } from '@/types/generated-types'
-
-type Event = Database['public']['Tables']['events']['Row']
-
-async function getEvents(): Promise<Event[]> {
-  const { data, error } = await supabase
-    .from('events')
-    .select('*')
-    .order('date', { ascending: true })
-  
-  if (error) {
-    console.error('Error fetching events:', error)
-    return []
-  }
-  return data
-}
+import { EventSection } from '@/features/events/components/EventSection'
 
 export default async function Home() {
-  const events = await getEvents()
-  return <HomeClient events={events} />
+
+    
+    return (
+      <main className="min-h-screen">
+        <EventSection />
+        {/* Add other sections here */}
+      </main>
+    )
+ 
 }

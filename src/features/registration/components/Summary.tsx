@@ -1,23 +1,24 @@
-// components/register/Summary.tsx
+// features/registration/components/Summary.tsx
 'use client'
 import { useState } from 'react'
 import { motion } from 'motion/react'
+
 import { Database } from '@/types/generated-types'
 import { getStripe } from '@/lib/stripe/stripe'
 import { useToast } from '@/hooks/use-toast'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
-import { FormData, FormField } from '@/components/register/forms'
 import { animations } from '@/lib/animation'
+import { FormData, BaseField } from '@/features/registration/types/forms'
 
 type Props = {
   formData: FormData
   event: Database['public']['Tables']['events']['Row']
-  fields: readonly FormField[]
+  fields: readonly BaseField[]
   onBack: () => void
 }
 
-export default function Summary({ formData, event, fields, onBack }: Props) {
+export function Summary({ formData, event, fields, onBack }: Props) {
   const [isLoading, setIsLoading] = useState(false)
   const { toast } = useToast()
 

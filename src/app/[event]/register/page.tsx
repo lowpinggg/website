@@ -2,12 +2,12 @@
 import { notFound } from 'next/navigation'
 import { Database } from '@/types/generated-types'
 import { supabase } from '@/lib/supabase'
-import { RegisterClient } from '@/app/[event]/register/client'
-import { formConfigs } from '@/types/registration'
+import { RegisterClient } from '@/features/registration/components/RegisterClient'
+import { formRegistry } from '@/features/registration/types/forms'
 
 // Extend the Event type to include type field
 type Event = Database['public']['Tables']['events']['Row'] & {
-  type: keyof typeof formConfigs
+  type: keyof typeof formRegistry
 }
 
 type Props = {
@@ -31,7 +31,7 @@ export default async function RegisterPage({ params }: Props) {
   }
 
   // Verify that the event has a valid form type
-  if (!event.type || !(event.type in formConfigs)) {
+  if (!event.type || !(event.type in formRegistry)) {
     console.error(`Invalid or missing form type for event: ${event.id}`)
     return notFound()
   }
