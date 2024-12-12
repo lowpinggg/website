@@ -32,11 +32,7 @@ export function EventSection() {
   }, [])
 
   if (isLoading) {
-    return (
-      <div className="flex items-center justify-center min-h-[400px]">
-        Loading events...
-      </div>
-    )
+    return null
   }
 
   if (error) {
@@ -48,18 +44,25 @@ export function EventSection() {
   }
 
   return (
+    <motion.div
+      variants={animations.fadeUp}
+      custom={0.4}
+    initial="hidden"
+    animate="visible"
+    className="relative z-10 pb-24"
+  >
     <section>
-      <div className="container mx-auto px-4 py-20">
         <motion.h1
           variants={animations.fadeUp}
           initial="hidden"
           animate="visible"
           className="text-4xl font-bold text-foreground mb-12"
         >
-          Events
+          Événements
         </motion.h1>
         <EventGrid events={events} />
-      </div>
-    </section>
+       
+      </section>
+      </motion.div>
   )
 }

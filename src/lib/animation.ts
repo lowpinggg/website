@@ -22,12 +22,13 @@ export const animations = {
       }
     }
   },
+  
   fadeUp: {
     hidden: { y: 20, opacity: 0 },
-    visible: (delay = 0) => ({
+    visible: (delay: number = 0) => ({
       y: 0,
       opacity: 1,
-      transition: { 
+      transition: {
         ease: EASE,
         duration: 0.8,
         delay

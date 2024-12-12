@@ -13,14 +13,14 @@ interface EventGridProps {
 
 export function EventGrid({ events }: EventGridProps) {
   return (
-    <div className="grid grid-cols-4 h-[500px] gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 min-h-[500px] gap-4">
       {events.map((event, index) => (
         <motion.div
           key={event.id}
           variants={animations.fadeUp}
           initial="hidden"
           animate="visible"
-          custom={0.1 * index}
+          custom={0.4 * index}
         >
           <EventPoster
             event={event}

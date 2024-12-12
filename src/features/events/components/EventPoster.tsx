@@ -13,7 +13,7 @@ import type { Database } from '@/types/generated-types'
 
 type Event = Database['public']['Tables']['events']['Row']
 
-type PosterSize = 'sm' | 'md' | 'lg' | 'xl' | 'custom' | 'full'
+type PosterSize = 'sm' | 'md' | 'lg' | 'xl' | 'custom' | 'full' | 'responsive'
 type GlarePosition = 'all' | 'top' | 'right' | 'bottom' | 'left'
 
 type TiltProps = {
@@ -57,17 +57,22 @@ const defaultTiltProps: TiltProps = {
 }
 
 const sizeDimensions = {
-  sm: { width: '200px', height: '267px' },
-  md: { width: '300px', height: '400px' },
-  lg: { width: '400px', height: '533px' },
-  xl: { width: '500px', height: '667px' },
-  full: { width: '100%', height: '100%' },
-  custom: { width: 'auto', height: 'auto' },
+  sm: { width: 'w-[200px]', height: 'h-[267px]' },
+  md: { width: 'w-[300px]', height: 'h-[400px]' },
+  lg: { width: 'w-[400px]', height: 'h-[533px]' },
+  xl: { width: 'w-[500px]', height: 'h-[667px]' },
+  full: { width: 'w-full', height: 'h-full' },
+  custom: { width: 'w-auto', height: 'h-auto' },
+}
+
+const responsiveDimensions = {
+  width: 'w-[280px] sm:w-[320px] md:w-[360px] lg:w-[400px]',
+  height: 'h-[373px] sm:h-[427px] md:h-[480px] lg:h-[533px]'
 }
 
 export function EventPoster({ 
   event,
-  size = 'full',
+  size = 'responsive',
   customWidth,
   customHeight,
   className,
@@ -85,14 +90,23 @@ export function EventPoster({
     }
   }, [])
 
-  const dimensions = size === 'custom' 
-    ? { width: customWidth, height: customHeight }
-    : sizeDimensions[size]
-
-  const containerStyle = {
-    width: dimensions.width,
-    height: dimensions.height,
+  const getDimensions = () => {
+    if (size === 'responsive') {
+      return responsiveDimensions
+    }
+    if (size === 'custom') {
+      return { width: customWidth, height: customHeight }
+    }
+    return sizeDimensions[size]
   }
+
+  const dimensions = getDimensions()
+  
+  const containerClassName = cn(
+    dimensions.width,
+    dimensions.height,
+    className
+  )
 
   const cardContent = (
     <motion.div
@@ -115,7 +129,7 @@ export function EventPoster({
             alt={event.name}
             fill
             className="object-cover"
-            sizes={`(max-width: ${dimensions.width}) 100vw, ${dimensions.width}`}
+            sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, (max-width: 1024px) 360px, 400px"
             priority
           />
         </motion.div>
@@ -142,7 +156,7 @@ export function EventPoster({
   )
 
   const content = showCTA ? (
-    <Link href={`/${event.id}/register`} className="block w-full h-full">
+    <Link href={`/${event.id}/register`} target='_blank' className="block w-full h-full">
       {cardContent}
     </Link>
   ) : cardContent
@@ -152,8 +166,7 @@ export function EventPoster({
       variants={animations.fadeUp}
       initial="hidden"
       animate="visible"
-      className={cn("inline-block", className)}
-      style={containerStyle}
+      className={cn("inline-block", containerClassName)}
     >
       <Tilt
         className="w-full h-full rounded-md"
