@@ -121,7 +121,9 @@ export function SummonerForm({
             />
           ))}
 
-        <Button type="submit">Sinscrire</Button>
+        <div className='flex w-full justify-end'>
+          <Button type="submit">{"S'inscrire"}</Button>
+        </div>
       </form>
     </Form>
   )

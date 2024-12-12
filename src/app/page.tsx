@@ -46,14 +46,14 @@ export default function HomeClient() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowOverlay(false);
-    }, 2000);
+    }, 1000);
     return () => clearTimeout(timer);
   }, []);
 
   return (
     <>
-      <AnimatePresence>{showOverlay && <IntroOverlay />}</AnimatePresence>
-      <main className="min-h-screen  mx-auto container">
+       <AnimatePresence>{showOverlay && <IntroOverlay />}</AnimatePresence>
+      <main className="min-h-screen  mx-auto container px-4">
         <motion.div
           variants={animations.stagger.parent}
           initial="hidden"
@@ -72,14 +72,12 @@ export default function HomeClient() {
           <Header
             onIntroComplete={() => setIntroComplete(true)}
             showOverlay={showOverlay}
-            introComplete={introComplete}
           />
         </motion.div>
         {introComplete && (
           <>
             <motion.div
               variants={animations.fadeUp}
-              custom={0.4}
               initial="hidden"
               animate="visible"
             >

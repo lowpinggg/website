@@ -24,13 +24,13 @@ export function DynamicForm({ type, onComplete, defaultValues = {} }: Props) {
   return (
     <div>
       <motion.div
-        className="w-full flex flex-col gap-4"
+        className="w-full flex flex-col gap-2"
         variants={animations.stagger.parent}
         initial="hidden"
         animate="visible"
       >
         <motion.div variants={animations.stagger.child}>
-          <h2 className="text-xl font-semibold">Registration Details</h2>
+          <h2 className="text-lg font-semibold">Registration Details</h2>
         </motion.div>
         <motion.div variants={animations.stagger.child}>
           <FormComponent

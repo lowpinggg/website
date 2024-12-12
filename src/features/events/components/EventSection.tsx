@@ -32,7 +32,10 @@ export function EventSection() {
   }, [])
 
   if (isLoading) {
-    return null
+    return (
+      <div className="flex items-center justify-center min-h-[400px] ">
+      </div>
+    )
   }
 
   if (error) {
@@ -51,12 +54,12 @@ export function EventSection() {
     animate="visible"
     className="relative z-10 pb-24"
   >
-    <section>
+    <section className='flex flex-col gap-6'>
         <motion.h1
           variants={animations.fadeUp}
           initial="hidden"
           animate="visible"
-          className="text-4xl font-bold text-foreground mb-12"
+          className="text-2xl sm:text-4xl font-bold text-foreground"
         >
           Événements
         </motion.h1>

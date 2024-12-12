@@ -54,8 +54,7 @@ export function TftForm({
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onComplete)} className="space-y-4">
-        <div className="flex gap-2">
+      <form onSubmit={form.handleSubmit(onComplete)} className="space-y-4 w-full">
           {tftFields
             .filter((field) => ['name', 'email'].includes(field.name))
             .map((field) => (
@@ -64,13 +63,19 @@ export function TftForm({
                 control={form.control}
                 name={field.name as keyof TftFormData}
                 render={({ field: formField }) => (
-                  <FormItem>
-                    <FormLabel>{field.label}</FormLabel>
+                  <FormItem
+                  className="w-full"
+                  
+                  >
+                    <FormLabel
+                    className="text-xs font-normal"
+                    >{field.label}</FormLabel>
                     <FormControl>
                       <Input
                         type={field.type}
                         placeholder={field.placeholder}
                         {...formField}
+                        
                       />
                     </FormControl>
                     <FormMessage className="text-xs font-normal" />
@@ -78,8 +83,6 @@ export function TftForm({
                 )}
               />
             ))}
-        </div>
-
         {tftFields
           .filter((field) => !['name', 'email'].includes(field.name))
           .map((field) => (
@@ -88,9 +91,14 @@ export function TftForm({
               control={form.control}
               name={field.name as keyof TftFormData}
               render={({ field: formField }) => (
-                <FormItem>
-                  <FormLabel>{field.label}</FormLabel>
-                  <FormControl>
+                <FormItem
+                className="w-full"
+                
+                >
+                  <FormLabel
+                  className="text-xs font-normal"
+                  >{field.label}</FormLabel>
+                  <FormControl >
                     {field.type === 'select' ? (
                       <Select
                         onValueChange={formField.onChange}
@@ -120,8 +128,9 @@ export function TftForm({
               )}
             />
           ))}
-
-        <Button type="submit">Sinscrire</Button>
+        <div className='flex w-full justify-end'>
+          <Button type="submit">{"S'inscrire"}</Button>
+       </div>
       </form>
     </Form>
   )

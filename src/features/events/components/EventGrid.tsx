@@ -13,7 +13,7 @@ interface EventGridProps {
 
 export function EventGrid({ events }: EventGridProps) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 min-h-[500px] gap-4">
+    <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
       {events.map((event, index) => (
         <motion.div
           key={event.id}
@@ -21,10 +21,11 @@ export function EventGrid({ events }: EventGridProps) {
           initial="hidden"
           animate="visible"
           custom={0.4 * index}
+          className="w-full mx-auto"
         >
           <EventPoster
             event={event}
-            size='full'
+            size='responsive'
             tiltProps={{
               tiltMaxAngleX: 8,
               tiltMaxAngleY: 8,

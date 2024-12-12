@@ -1,15 +1,17 @@
 // features/events/components/EventPoster.tsx
 'use client'
+
+import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
+import { ArrowRight } from 'lucide-react'
 import { motion } from 'motion/react'
 import Tilt from 'react-parallax-tilt'
-import Link from 'next/link'
-import { useEffect, useRef, useState } from 'react'
-import { Button } from '@/components/ui/button'
-import { ArrowRight } from 'lucide-react'
+
+import type { Database } from '@/types/generated-types'
 import { animations, EASE } from '@/lib/animation'
 import { cn } from '@/lib/utils'
-import type { Database } from '@/types/generated-types'
+import { Button } from '@/components/ui/button'
 
 type Event = Database['public']['Tables']['events']['Row']
 
@@ -49,28 +51,28 @@ const defaultTiltProps: TiltProps = {
   tiltMaxAngleY: 5,
   glareEnable: true,
   glareMaxOpacity: 0.2,
-  glareColor: "#ffffff",
-  glarePosition: "all",
-  glareBorderRadius: "11px",
+  glareColor: '#ffffff',
+  glarePosition: 'all',
+  glareBorderRadius: '11px',
   transitionSpeed: 300,
-  tiltEnable: true,
+  tiltEnable: true
 }
 
 const sizeDimensions = {
-  sm: { width: 'w-[200px]', height: 'h-[267px]' },
-  md: { width: 'w-[300px]', height: 'h-[400px]' },
-  lg: { width: 'w-[400px]', height: 'h-[533px]' },
-  xl: { width: 'w-[500px]', height: 'h-[667px]' },
-  full: { width: 'w-full', height: 'h-full' },
-  custom: { width: 'w-auto', height: 'h-auto' },
+  sm: { width: 'w-full max-w-[200px]', height: 'aspect-[604/854]' },
+  md: { width: 'w-full max-w-[300px]', height: 'aspect-[604/854]' },
+  lg: { width: 'w-full max-w-[400px]', height: 'aspect-[604/854]' },
+  xl: { width: 'w-full max-w-[700px]', height: 'aspect-[604/854]' },
+  full: { width: 'w-full', height: 'aspect-[604/854]' },
+  custom: { width: 'w-auto', height: 'h-auto' }
 }
 
 const responsiveDimensions = {
-  width: 'w-[280px] sm:w-[320px] md:w-[360px] lg:w-[400px]',
-  height: 'h-[373px] sm:h-[427px] md:h-[480px] lg:h-[533px]'
+  width: 'w-full max-w-full',
+  height: 'aspect-[604/854]'
 }
 
-export function EventPoster({ 
+export function EventPoster({
   event,
   size = 'responsive',
   customWidth,
@@ -81,9 +83,9 @@ export function EventPoster({
 }: EventPosterProps) {
   const buttonRef = useRef<HTMLDivElement>(null)
   const [buttonHeight, setButtonHeight] = useState(0)
-  
+
   const finalTiltProps = { ...defaultTiltProps, ...tiltProps }
-  
+
   useEffect(() => {
     if (buttonRef.current) {
       setButtonHeight(buttonRef.current.offsetHeight)
@@ -101,35 +103,36 @@ export function EventPoster({
   }
 
   const dimensions = getDimensions()
-  
-  const containerClassName = cn(
-    dimensions.width,
-    dimensions.height,
-    className
-  )
+
+  const containerClassName = cn(dimensions.width, dimensions.height, className)
 
   const cardContent = (
     <motion.div
-      className="rounded-md relative"
+      className="relative"
       initial="initial"
-      whileHover={showCTA ? "hover" : undefined}
+      whileHover={showCTA ? 'hover' : undefined}
       style={{ overflow: 'hidden', width: '100%', height: '100%' }}
     >
       <div className="relative w-full h-full">
         <motion.div
-          variants={showCTA ? {
-            initial: { y: 0 },
-            hover: { y: -buttonHeight }
-          } : undefined}
+          variants={
+            showCTA
+              ? {
+                  initial: { y: 0 },
+                  hover: { y: -buttonHeight }
+                }
+              : undefined
+          }
           transition={HOVER_TRANSITION}
           className="h-full"
         >
           <Image
             src={event.poster_url || '/default-poster.png'}
             alt={event.name}
-            fill
-            className="object-cover"
-            sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, (max-width: 1024px) 360px, 400px"
+            width={604}
+            height={854}
+            className="object-cover rounded-lg w-full h-full"
+            sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
             priority
           />
         </motion.div>
@@ -146,8 +149,8 @@ export function EventPoster({
           }}
           transition={HOVER_TRANSITION}
         >
-          <Button className="w-full rounded-none h-12 flex items-center justify-center gap-1">
-            <span>Register Now</span>
+          <Button className="w-full h-12 flex items-center justify-center gap-1 rounded-b-lg">
+            <span>Inscription</span>
             <ArrowRight size={16} />
           </Button>
         </motion.div>
@@ -156,22 +159,25 @@ export function EventPoster({
   )
 
   const content = showCTA ? (
-    <Link href={`/${event.id}/register`} target='_blank' className="block w-full h-full">
+    <Link
+      href={`/${event.id}/register`}
+      target="_blank"
+      className="block w-full h-full"
+    >
       {cardContent}
     </Link>
-  ) : cardContent
+  ) : (
+    cardContent
+  )
 
   return (
     <motion.div
       variants={animations.fadeUp}
       initial="hidden"
       animate="visible"
-      className={cn("inline-block", containerClassName)}
+      className={cn('inline-block', containerClassName)}
     >
-      <Tilt
-        className="w-full h-full rounded-md"
-        {...finalTiltProps}
-      >
+      <Tilt className="w-full h-full" {...finalTiltProps}>
         {content}
       </Tilt>
     </motion.div>

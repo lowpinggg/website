@@ -59,7 +59,11 @@ export default {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)'
-      }
+      },
+      screens: {
+        // Add a custom breakpoint called 'xd'
+        xs: '480px', // Adjust to your desired width
+      },
     }
   }
 } satisfies Config
