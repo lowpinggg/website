@@ -168,10 +168,7 @@ export function Poster({
   ) : cardContent;
 
   return (
-    <motion.div
-      animate={{ y: [0, 12, 0] }}
-      transition={{ repeat: Infinity, duration: 5, ease: 'easeInOut' }}
-    >
+
       <motion.div
         variants={animations.fadeUp}
         initial="hidden"
@@ -186,6 +183,5 @@ export function Poster({
           {content}
         </Tilt>
       </motion.div>
-    </motion.div>
   );
 }

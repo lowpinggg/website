@@ -39,15 +39,20 @@ export function RegisterClient({ event }: Props) {
           initial="hidden"
           animate="visible"
         >
-          <Poster
-            imageUrl="/example-tournament.png"
-            altText="Tournament Poster"
-            size="lg"
-          />
+          <motion.div
+            animate={{ y: [0, 12, 0] }}
+            transition={{ repeat: Infinity, duration: 5, ease: 'easeInOut' }}
+          >
+            <Poster
+              imageUrl={event.poster_url || '/default-poster.png'}
+              altText="Tournament Poster"
+              size="lg"
+            />
+          </motion.div>
         </motion.div>
 
         {/* Right Column - Content */}
-        <motion.div 
+        <motion.div
           className="flex flex-col max-w-[400px]"
           variants={animations.stagger.parent}
           initial="hidden"
@@ -63,7 +68,7 @@ export function RegisterClient({ event }: Props) {
                 size={16}
                 className="group-hover:-translate-x-1 transition-transform"
               />
-              <span>Back to Events</span>
+              <span>Events</span>
             </Link>
           </motion.div>
 
@@ -80,7 +85,7 @@ export function RegisterClient({ event }: Props) {
                 </h1>
               </motion.div>
 
-              <motion.div 
+              <motion.div
                 className="text-gray-300 space-y-2 mb-4"
                 variants={animations.stagger.child}
               >
