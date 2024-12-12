@@ -13,6 +13,8 @@ import { animations } from '@/lib/animation';
 import { Badge } from '@/components/ui/badge';
 import { Footer } from '@/components/Footer';
 
+// TODO: Pass default value so it saves between steps
+
 type Props = {
   event: Database['public']['Tables']['events']['Row'];
 };
@@ -151,7 +153,6 @@ function ContentSection({
           )}
         </div>
 
-        {/* Optional: Additional Info */}
         <motion.div 
           variants={animations.stagger.child}
           className="text-xs text-muted-foreground text-center"
