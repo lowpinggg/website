@@ -8,7 +8,8 @@ import { animations } from '@/lib/animation'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 import { DynamicForm } from '@/features/registration/components/DynamicForm'
-import { Poster } from '@/features/registration/components/Poster'
+//import { Poster } from '@/features/registration/components/Poster'
+import { EventPoster } from '@/features/events/components/EventPoster'
 import { Summary } from '@/features/registration/components/Summary'
 import { FormData, formRegistry } from '@/features/registration/types/forms'
 
@@ -43,10 +44,10 @@ export function RegisterClient({ event }: Props) {
             animate={{ y: [0, 12, 0] }}
             transition={{ repeat: Infinity, duration: 5, ease: 'easeInOut' }}
           >
-            <Poster
-              imageUrl={event.poster_url || '/default-poster.png'}
-              altText="Tournament Poster"
+            <EventPoster
+              event={event}
               size="lg"
+              showCTA={false}
             />
           </motion.div>
         </motion.div>

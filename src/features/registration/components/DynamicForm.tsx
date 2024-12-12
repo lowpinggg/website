@@ -1,13 +1,15 @@
 // features/registration/components/DynamicForm.tsx
 'use client'
+
+import {
+  FormData,
+  formRegistry,
+  FormType
+} from '@/features/registration/types/forms'
 import { motion } from 'motion/react'
+
 import { Database } from '@/types/generated-types'
 import { animations } from '@/lib/animation'
-import { 
-  FormData, 
-  formRegistry, 
-  FormType 
-} from '@/features/registration/types/forms'
 
 type Props = {
   type: FormType
@@ -16,11 +18,7 @@ type Props = {
   defaultValues?: Partial<FormData>
 }
 
-export function DynamicForm({ 
-  type, 
-  onComplete, 
-  defaultValues = {} 
-}: Props) {
+export function DynamicForm({ type, onComplete, defaultValues = {} }: Props) {
   const FormComponent = formRegistry[type].component
 
   return (
