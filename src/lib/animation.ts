@@ -8,7 +8,7 @@ export const animations = {
       visible: {
         opacity: 1,
         transition: {
-          staggerChildren: 0.1,
+          staggerChildren: 0.2,
           delay: 0.2
         }
       }

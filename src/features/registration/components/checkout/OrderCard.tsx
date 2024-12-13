@@ -1,8 +1,10 @@
 // features/registration/components/checkout/OrderCard.tsx
+'use client'
+
 import { Card } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import { Database } from '@/types/generated-types'
-import { FormData } from '../../types/forms'
+import { FormData } from '@/features/registration/types/forms'
 import { motion } from 'motion/react'
 import { animations } from '@/lib/animation'
 
@@ -20,7 +22,7 @@ export function OrderCard({ event, registration, variant = 'preview' }: Props) {
       initial="hidden"
       animate="visible"
     >
-      <Card className="space-y-4 bg-none border-none">
+      <Card className="space-y-4 bg-transparent border-none">
         {variant === 'confirmation' && (
           <motion.div variants={animations.stagger.child}>
             <h2 className="text-xl font-semibold">{"Confirmer l'inscription"}</h2>
