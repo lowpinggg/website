@@ -1,12 +1,13 @@
 // features/registration/components/checkout/OrderCard.tsx
 'use client'
 
-import { Card } from '@/components/ui/card'
-import { Separator } from '@/components/ui/separator'
-import { Database } from '@/types/generated-types'
 import { FormData } from '@/features/registration/types/forms'
 import { motion } from 'motion/react'
+
+import { Database } from '@/types/generated-types'
 import { animations } from '@/lib/animation'
+import { Card } from '@/components/ui/card'
+import { Separator } from '@/components/ui/separator'
 
 type Props = {
   event: Database['public']['Tables']['events']['Row']
@@ -25,11 +26,16 @@ export function OrderCard({ event, registration, variant = 'preview' }: Props) {
       <Card className="space-y-4 bg-transparent border-none">
         {variant === 'confirmation' && (
           <motion.div variants={animations.stagger.child}>
-            <h2 className="text-xl font-semibold">{"Confirmer l'inscription"}</h2>
+            <h2 className="text-xl font-semibold">
+              {"Confirmer l'inscription"}
+            </h2>
           </motion.div>
         )}
 
-        <motion.div className="space-y-4 font-light" variants={animations.stagger.child}>
+        <motion.div
+          className="space-y-4 font-light"
+          variants={animations.stagger.child}
+        >
           <div className="space-y-2">
             <h3 className="text-sm font-medium">Événement</h3>
             <p className="text-xs text-muted-foreground">{event.name}</p>
@@ -48,8 +54,7 @@ export function OrderCard({ event, registration, variant = 'preview' }: Props) {
           <div className="text-xs space-y-1">
             {Object.entries(registration).map(([key, value]) => (
               <p key={key} className="font-medium">
-                {key}:{' '}
-                <span className="font-light">{value}</span>
+                {key}: <span className="font-light">{value}</span>
               </p>
             ))}
           </div>

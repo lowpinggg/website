@@ -1,13 +1,15 @@
 // features/registration/components/checkout/CheckoutSummary.tsx
 import { useState } from 'react'
+import { motion } from 'motion/react'
+
+import { Database } from '@/types/generated-types'
+import { animations } from '@/lib/animation'
 import { getStripe } from '@/lib/stripe/stripe'
 import { useToast } from '@/hooks/use-toast'
-import { Database } from '@/types/generated-types'
+import { Button } from '@/components/ui/button'
+
 import { FormData } from '../../types/forms'
 import { OrderCard } from './OrderCard'
-import { Button } from '@/components/ui/button'
-import { motion } from 'motion/react'
-import { animations } from '@/lib/animation'
 
 type Props = {
   formData: FormData
@@ -45,7 +47,8 @@ export function CheckoutSummary({ formData, event, onBack }: Props) {
       toast({
         variant: 'destructive',
         title: 'Erreur',
-        description: 'Un problème est survenu lors du traitement de votre paiement.'
+        description:
+          'Un problème est survenu lors du traitement de votre paiement.'
       })
       console.error('Payment error:', error)
     } finally {
@@ -60,11 +63,7 @@ export function CheckoutSummary({ formData, event, onBack }: Props) {
       initial="hidden"
       animate="visible"
     >
-      <OrderCard
-        event={event}
-        registration={formData}
-        variant="preview"
-      />
+      <OrderCard event={event} registration={formData} variant="preview" />
 
       <motion.div variants={animations.stagger.child}>
         <div className="flex gap-2">
@@ -89,8 +88,8 @@ export function CheckoutSummary({ formData, event, onBack }: Props) {
         variants={animations.stagger.child}
         className="text-xs text-muted-foreground text-start font-light"
       >
-        En cliquant sur &ldquo;Payer maintenant&rdquo;, vous serez redirigé vers Stripe
-        pour effectuer votre paiement de manière sécurisée.
+        En cliquant sur &ldquo;Payer maintenant&rdquo;, vous serez redirigé vers
+        Stripe pour effectuer votre paiement de manière sécurisée.
       </motion.div>
     </motion.div>
   )

@@ -1,39 +1,45 @@
 // features/registration/components/RegisterClient.tsx
-'use client';
+'use client'
 
-import { useState } from 'react';
-import { EventPoster } from '@/features/events/components/EventPoster';
-import { DynamicForm } from '@/features/registration/components/DynamicForm';
-import { FormData, formRegistry } from '@/features/registration/types/forms';
-import { motion } from 'motion/react';
-import { Database } from '@/types/generated-types';
-import { animations } from '@/lib/animation';
-import { Badge } from '@/components/ui/badge';
-import { Footer } from '@/components/Footer';
-import { CheckoutSummary } from './checkout/CheckoutSummary';
+import { useState } from 'react'
+import { EventPoster } from '@/features/events/components/EventPoster'
+import { DynamicForm } from '@/features/registration/components/DynamicForm'
+import { FormData, formRegistry } from '@/features/registration/types/forms'
+import { motion } from 'motion/react'
+
+import { Database } from '@/types/generated-types'
+import { animations } from '@/lib/animation'
+import { Badge } from '@/components/ui/badge'
+import { Footer } from '@/components/Footer'
+
+import { CheckoutSummary } from './checkout/CheckoutSummary'
 
 type Props = {
-  event: Database['public']['Tables']['events']['Row'];
-};
+  event: Database['public']['Tables']['events']['Row']
+}
 
 function generateInitialState(eventType: keyof typeof formRegistry): FormData {
-  const fields = formRegistry[eventType].fields;
-  return fields.reduce((acc, field) => ({
-    ...acc,
-    [field.name]: field.type === 'select' && field.options ? field.options[0] : ''
-  }), {}) as FormData;
+  const fields = formRegistry[eventType].fields
+  return fields.reduce(
+    (acc, field) => ({
+      ...acc,
+      [field.name]:
+        field.type === 'select' && field.options ? field.options[0] : ''
+    }),
+    {}
+  ) as FormData
 }
 
 export function RegisterClient({ event }: Props) {
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(1)
 
   const [registrationData, setRegistrationData] = useState<FormData>(
     generateInitialState(event.type)
-  );
+  )
   const handleRegistrationComplete = (data: FormData) => {
-    setRegistrationData(data);
-    setStep(2);
-  };
+    setRegistrationData(data)
+    setStep(2)
+  }
 
   return (
     <div className="min-h-screen flex flex-col w-full container mx-auto p-4">
@@ -57,7 +63,7 @@ export function RegisterClient({ event }: Props) {
 
       <Footer />
     </div>
-  );
+  )
 }
 
 function EventPosterSection({ event }: { event: Props['event'] }) {
@@ -71,14 +77,10 @@ function EventPosterSection({ event }: { event: Props['event'] }) {
         animate={{ y: [0, 12, 0] }}
         transition={{ repeat: Infinity, duration: 5, ease: 'easeInOut' }}
       >
-        <EventPoster
-          event={event}
-          size="xl"
-          showCTA={false}
-        />
+        <EventPoster event={event} size="xl" showCTA={false} />
       </motion.div>
     </motion.div>
-  );
+  )
 }
 
 function ContentSection({
@@ -86,13 +88,13 @@ function ContentSection({
   event,
   registrationData,
   onRegistrationComplete,
-  onBack,
+  onBack
 }: {
-  step: number;
-  event: Props['event'];
-  registrationData: FormData;
-  onRegistrationComplete: (data: FormData) => void;
-  onBack: () => void;
+  step: number
+  event: Props['event']
+  registrationData: FormData
+  onRegistrationComplete: (data: FormData) => void
+  onBack: () => void
 }) {
   return (
     <div className="w-full sm:max-w-xl md:max-w-xl">
@@ -109,7 +111,9 @@ function ContentSection({
               {event.name}
             </h1>
             <p className="text-muted-foreground text-xs md:text-base">
-              {step === 1 ? 'Complete your registration details below' : 'Review your order'}
+              {step === 1
+                ? 'Complete your registration details below'
+                : 'Review your order'}
             </p>
           </motion.div>
         </div>
@@ -145,10 +149,10 @@ function ContentSection({
               />
             </motion.div>
           ) : (
-            <CheckoutSummary 
-              event={event} 
-              formData={registrationData} 
-              onBack={onBack} 
+            <CheckoutSummary
+              event={event}
+              formData={registrationData}
+              onBack={onBack}
             />
           )}
         </div>
@@ -161,5 +165,5 @@ function ContentSection({
         </motion.div>
       </motion.div>
     </div>
-  );
+  )
 }

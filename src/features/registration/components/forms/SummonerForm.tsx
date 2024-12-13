@@ -1,6 +1,10 @@
 // features/registration/components/forms/SummonerForm.tsx
 'use client'
 
+import {
+  summonerFields,
+  SummonerFormData
+} from '@/features/registration/types/forms'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
@@ -23,11 +27,6 @@ import {
   SelectValue
 } from '@/components/ui/select'
 
-import { 
-  SummonerFormData, 
-  summonerFields 
-} from '@/features/registration/types/forms'
-
 const formSchema = z.object({
   name: z.string().min(2, 'Nom doit contenir au moins 2 caractères'),
   email: z.string().email('Email invalide'),
@@ -40,8 +39,8 @@ export function SummonerForm({
   onComplete,
   defaultValues
 }: {
-    onComplete: (data: SummonerFormData) => void
-    defaultValues?: Partial<SummonerFormData>
+  onComplete: (data: SummonerFormData) => void
+  defaultValues?: Partial<SummonerFormData>
 }) {
   const form = useForm<SummonerFormData>({
     resolver: zodResolver(formSchema),
@@ -117,7 +116,7 @@ export function SummonerForm({
             />
           ))}
 
-        <div className='flex w-full justify-end'>
+        <div className="flex w-full justify-end">
           <Button type="submit">{"S'inscrire"}</Button>
         </div>
       </form>

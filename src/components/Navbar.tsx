@@ -1,5 +1,6 @@
 // components/Navbar.tsx
 'use client'
+
 import Link from 'next/link'
 import { Full } from '@lowping/brand-kit'
 
@@ -11,7 +12,7 @@ export function Navbar() {
           <Link href="/" className="flex items-center">
             <Full width={100} />
           </Link>
-          
+
           {/* When you add pages, you can uncomment this */}
           {/* <div className="flex items-center gap-8">
             <Link 

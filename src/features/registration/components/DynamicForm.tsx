@@ -1,7 +1,13 @@
 // features/registration/components/DynamicForm.tsx
 'use client'
-import { FormData, formRegistry, FormType } from '@/features/registration/types/forms'
+
+import {
+  FormData,
+  formRegistry,
+  FormType
+} from '@/features/registration/types/forms'
 import { motion } from 'motion/react'
+
 import { Database } from '@/types/generated-types'
 import { animations } from '@/lib/animation'
 

@@ -1,9 +1,10 @@
 // features/registration/api/getRegistrationDetails.ts
-import { stripe } from '@/lib/stripe/stripe-server'
 import { getEventById } from '@/features/events/api/getEvents'
-import { supabase } from '@/lib/supabase'
-import { FormData } from '../types/forms'
 
+import { stripe } from '@/lib/stripe/stripe-server'
+import { supabase } from '@/lib/supabase'
+
+import { FormData } from '../types/forms'
 
 type RegistrationDetails = {
   event: NonNullable<Awaited<ReturnType<typeof getEventById>>['data']>
@@ -11,11 +12,15 @@ type RegistrationDetails = {
   receipt_url: string | null
 }
 
-export async function getRegistrationDetails(sessionId: string): Promise<RegistrationDetails | null> {
+export async function getRegistrationDetails(
+  sessionId: string
+): Promise<RegistrationDetails | null> {
   try {
     const session = await stripe.checkout.sessions.retrieve(sessionId)
-    
-    const { data: event } = await getEventById(session.metadata?.eventId as string)
+
+    const { data: event } = await getEventById(
+      session.metadata?.eventId as string
+    )
     if (!event) return null
 
     let registration = null

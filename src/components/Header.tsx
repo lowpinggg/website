@@ -6,6 +6,7 @@ import { Full } from '@lowping/brand-kit'
 import { Globe } from 'lucide-react'
 import { motion } from 'motion/react'
 import { useScramble } from 'use-scramble'
+
 import { EASE } from '@/lib/animation'
 import { Button } from '@/components/ui/button'
 
@@ -14,10 +15,7 @@ interface HeaderProps {
   showOverlay: boolean
 }
 
-export function Header({
-  onIntroComplete,
-  showOverlay,
-}: HeaderProps) {
+export function Header({ onIntroComplete, showOverlay }: HeaderProps) {
   const { ref: titleRef } = useScramble({
     text: 'Portail Événementiel',
     speed: 0.4,
@@ -28,7 +26,7 @@ export function Header({
     chance: 0.8,
     ignore: [' '],
     onAnimationEnd: () => {
-        onIntroComplete?.()
+      onIntroComplete?.()
     }
   })
 
@@ -56,7 +54,7 @@ export function Header({
     })
   }
 
-  const DELAY= 1.3;
+  const DELAY = 1.3
   return (
     <motion.div
       initial={{ scale: 1.2 }}
@@ -78,7 +76,6 @@ export function Header({
           className="mb-8"
         >
           <Full width={180} />
-        
         </motion.div>
         <div className="overflow-hidden relative">
           <motion.h1
@@ -92,7 +89,7 @@ export function Header({
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            custom={DELAY+2}
+            custom={DELAY + 2}
             className="w-full"
           >
             <p className="text-xs sm:text-base text-center sm:text-left mb-8 sm:max-w-2xl text-muted-foreground font-light">
@@ -125,11 +122,11 @@ export function Header({
                 href="https://lowping.gg"
                 target="_blank"
                 rel="noopener noreferrer"
-                className='w-full sm:w-fit'
+                className="w-full sm:w-fit pointer-events-none"
               >
-                <Button size="lg" className="flex gap-2 w-full">
+                <Button size="lg" className="flex gap-1 w-full" disabled>
                   <Globe size={24} />
-                  Website
+                  Website (soon)
                 </Button>
               </Link>
             </div>

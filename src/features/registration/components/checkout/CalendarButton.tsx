@@ -1,7 +1,9 @@
 // features/registration/components/checkout/ActionButtons.tsx
 'use client'
-import { Button } from '@/components/ui/button'
+
 import { Calendar } from 'lucide-react'
+
+import { Button } from '@/components/ui/button'
 
 type Props = {
   event: {
@@ -18,7 +20,11 @@ export function CalendarButton({ event }: Props) {
   }
 
   return (
-    <Button variant="link" onClick={()=> handleAddToCalendar()} className="p-0 m-0">
+    <Button
+      variant="link"
+      onClick={() => handleAddToCalendar()}
+      className="p-0 m-0"
+    >
       <Calendar size={16} />
       Ajouter au calendrier
     </Button>

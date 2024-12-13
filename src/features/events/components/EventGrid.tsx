@@ -1,9 +1,12 @@
 // features/events/components/EventGrid.tsx
 'use client'
+
 import { motion } from 'motion/react'
-import { animations } from '@/lib/animation'
-import { EventPoster } from './EventPoster'
+
 import type { Database } from '@/types/generated-types'
+import { animations } from '@/lib/animation'
+
+import { EventPoster } from './EventPoster'
 
 type Event = Database['public']['Tables']['events']['Row']
 
@@ -25,12 +28,12 @@ export function EventGrid({ events }: EventGridProps) {
         >
           <EventPoster
             event={event}
-            size='responsive'
+            size="responsive"
             tiltProps={{
               tiltMaxAngleX: 8,
               tiltMaxAngleY: 8,
-              glareMaxOpacity: .2,
-              transitionSpeed: 400,
+              glareMaxOpacity: 0.2,
+              transitionSpeed: 400
             }}
           />
         </motion.div>

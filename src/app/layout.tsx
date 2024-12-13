@@ -9,6 +9,7 @@ import './globals.css'
 import { Toaster } from '@/components/ui/toaster'
 import { SmoothScroll } from '@/components/SmoothScroll'
 import { Providers } from '@/app/Providers'
+
 import 'lenis/dist/lenis.css'
 
 const alexandria = Alexandria({
@@ -40,9 +41,7 @@ export default function RootLayout({
       >
         <SmoothScroll>
           <div className="pattern-overlay z-50" />
-          <Providers>
-            {children}
-          </Providers>
+          <Providers>{children}</Providers>
           <Toaster />
         </SmoothScroll>
       </body>

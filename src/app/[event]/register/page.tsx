@@ -1,9 +1,10 @@
 // app/[event]/register/page.tsx
 import { notFound } from 'next/navigation'
-import { Database } from '@/types/generated-types'
-import { supabase } from '@/lib/supabase'
 import { RegisterClient } from '@/features/registration/components/RegisterClient'
 import { formRegistry } from '@/features/registration/types/forms'
+
+import { Database } from '@/types/generated-types'
+import { supabase } from '@/lib/supabase'
 
 // Extend the Event type to include type field
 type Event = Database['public']['Tables']['events']['Row'] & {

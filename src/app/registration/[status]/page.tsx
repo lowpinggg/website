@@ -3,22 +3,21 @@ import { notFound } from 'next/navigation'
 import { EventPoster } from '@/features/events/components/EventPoster'
 import { getRegistrationDetails } from '@/features/registration/api/getRegistrationDetails'
 import { CalendarButton } from '@/features/registration/components/checkout/CalendarButton'
+import { RegistrationStatusClient } from '@/features/registration/components/RegistrationStatusClient'
 import { Full } from '@lowping/brand-kit'
 import { Check, X } from 'lucide-react'
 
+import { Database } from '@/types/generated-types'
 import { Button } from '@/components/ui/button'
 
-import { RegistrationStatusClient } from '@/features/registration/components/RegistrationStatusClient'
-import { Database } from '@/types/generated-types'
-
-type Event = Database['public']['Tables']['events']['Row'];
-type Registration = Database['public']['Tables']['event_registrations']['Row'];
+type Event = Database['public']['Tables']['events']['Row']
+type Registration = Database['public']['Tables']['event_registrations']['Row']
 
 type RegistrationDetails = {
-  event: Event;
-  registration: Registration;
-  receipt_url?: string;
-} ;
+  event: Event
+  registration: Registration
+  receipt_url?: string
+}
 
 type Props = {
   params: Promise<{ status: string }>
@@ -56,7 +55,7 @@ export default async function RegistrationStatusPage({
   let details: RegistrationDetails | null = null
   if (status === 'success' && sessionId) {
     try {
-      details = await getRegistrationDetails(sessionId) as RegistrationDetails
+      details = (await getRegistrationDetails(sessionId)) as RegistrationDetails
       if (!details) {
         console.error('Details not found for session ID:', sessionId)
         return notFound()
@@ -71,7 +70,12 @@ export default async function RegistrationStatusPage({
 
   return (
     <main>
-      <RegistrationStatusClient status={status} details={details} title={title} description={description} />
+      <RegistrationStatusClient
+        status={status}
+        details={details}
+        title={title}
+        description={description}
+      />
     </main>
   )
 }
@@ -87,7 +91,8 @@ function SuccessSection({ details, title }: { details: any; title: string }) {
             <h1 className="text-2xl font-bold">{title}</h1>
             {details.registration && (
               <p className="text-muted-foreground text-sm font-normal">
-                Un email de confirmation a été envoyé à {details.registration.email}
+                Un email de confirmation a été envoyé à{' '}
+                {details.registration.email}
               </p>
             )}
           </div>
@@ -108,7 +113,13 @@ function SuccessSection({ details, title }: { details: any; title: string }) {
   )
 }
 
-function CancelledSection({ title, description }: { title: string; description: string }) {
+function CancelledSection({
+  title,
+  description
+}: {
+  title: string
+  description: string
+}) {
   return (
     <div className="flex flex-col justify-center items-center flex-1">
       <div className="flex-1 justify-center items-center flex flex-col">

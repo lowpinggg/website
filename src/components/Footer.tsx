@@ -10,7 +10,7 @@ import { Badge } from '@/components/ui/badge'
 
 export function Footer() {
   return (
-    <footer className='w-full md:container mx-auto'>
+    <footer className="w-full md:container mx-auto">
       <div className="mx-auto flex flex-col gap-4 justify-between items-end py-8 border-t">
         <div className="flex justify-between items-end w-full">
           <div className="flex flex-col gap-4">

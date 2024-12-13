@@ -6,7 +6,7 @@ export default {
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/**/*.{js,ts,jsx,tsx,mdx}'
   ],
   theme: {
     extend: {
@@ -62,8 +62,8 @@ export default {
       },
       screens: {
         // Add a custom breakpoint called 'xd'
-        xs: '480px', // Adjust to your desired width
-      },
+        xs: '480px' // Adjust to your desired width
+      }
     }
   }
 } satisfies Config

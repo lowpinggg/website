@@ -1,15 +1,16 @@
 // features/registration/components/Summary.tsx
 'use client'
+
 import { useState } from 'react'
+import { BaseField, FormData } from '@/features/registration/types/forms'
 import { motion } from 'motion/react'
 
 import { Database } from '@/types/generated-types'
+import { animations } from '@/lib/animation'
 import { getStripe } from '@/lib/stripe/stripe'
 import { useToast } from '@/hooks/use-toast'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
-import { animations } from '@/lib/animation'
-import { FormData, BaseField } from '@/features/registration/types/forms'
 
 type Props = {
   formData: FormData
@@ -54,7 +55,8 @@ export function Summary({ formData, event, fields, onBack }: Props) {
       toast({
         variant: 'destructive',
         title: 'Erreur',
-        description: 'Un problème est survenu lors du traitement de votre paiement.'
+        description:
+          'Un problème est survenu lors du traitement de votre paiement.'
       })
       console.error('Payment error:', error)
     } finally {
@@ -74,7 +76,10 @@ export function Summary({ formData, event, fields, onBack }: Props) {
           <h2 className="text-xl font-semibold">{"Confirmer l'inscription"}</h2>
         </motion.div>
 
-        <motion.div className="space-y-4 font-light" variants={animations.stagger.child}>
+        <motion.div
+          className="space-y-4 font-light"
+          variants={animations.stagger.child}
+        >
           <div className="space-y-2">
             <h3 className="text-sm font-medium">Événement</h3>
             <p className="text-xs text-muted-foreground">{event.name}</p>
@@ -138,7 +143,9 @@ export function Summary({ formData, event, fields, onBack }: Props) {
           className="text-xs text-muted-foreground font-light"
           variants={animations.stagger.child}
         >
-          {'En cliquant sur "Payer maintenant", vous serez redirigé vers Stripe pour effectuer votre paiement de manière sécurisée.'}
+          {
+            'En cliquant sur "Payer maintenant", vous serez redirigé vers Stripe pour effectuer votre paiement de manière sécurisée.'
+          }
         </motion.div>
       </motion.div>
     </div>

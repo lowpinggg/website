@@ -1,6 +1,7 @@
 // features/registration/components/forms/TftForm.tsx
 'use client'
 
+import { tftFields, TftFormData } from '@/features/registration/types/forms'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
@@ -23,11 +24,6 @@ import {
   SelectValue
 } from '@/components/ui/select'
 
-import { 
-  TftFormData, 
-  tftFields 
-} from '@/features/registration/types/forms'
-
 const formSchema = z.object({
   name: z.string().min(2, 'Nom doit contenir au moins 2 caractères'),
   email: z.string().email('Email invalide'),
@@ -40,8 +36,8 @@ export function TftForm({
   onComplete,
   defaultValues
 }: {
-    onComplete: (data: TftFormData) => void
-    defaultValues?: Partial<TftFormData>
+  onComplete: (data: TftFormData) => void
+  defaultValues?: Partial<TftFormData>
 }) {
   const form = useForm<TftFormData>({
     resolver: zodResolver(formSchema),
@@ -50,35 +46,34 @@ export function TftForm({
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onComplete)} className="space-y-4 w-full">
-          {tftFields
-            .filter((field) => ['name', 'email'].includes(field.name))
-            .map((field) => (
-              <FormField
-                key={field.name}
-                control={form.control}
-                name={field.name as keyof TftFormData}
-                render={({ field: formField }) => (
-                  <FormItem
-                  className="w-full"
-                  
-                  >
-                    <FormLabel
-                    className="text-xs font-normal"
-                    >{field.label}</FormLabel>
-                    <FormControl>
-                      <Input
-                        type={field.type}
-                        placeholder={field.placeholder}
-                        {...formField}
-                        
-                      />
-                    </FormControl>
-                    <FormMessage className="text-xs font-normal" />
-                  </FormItem>
-                )}
-              />
-            ))}
+      <form
+        onSubmit={form.handleSubmit(onComplete)}
+        className="space-y-4 w-full"
+      >
+        {tftFields
+          .filter((field) => ['name', 'email'].includes(field.name))
+          .map((field) => (
+            <FormField
+              key={field.name}
+              control={form.control}
+              name={field.name as keyof TftFormData}
+              render={({ field: formField }) => (
+                <FormItem className="w-full">
+                  <FormLabel className="text-xs font-normal">
+                    {field.label}
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      type={field.type}
+                      placeholder={field.placeholder}
+                      {...formField}
+                    />
+                  </FormControl>
+                  <FormMessage className="text-xs font-normal" />
+                </FormItem>
+              )}
+            />
+          ))}
         {tftFields
           .filter((field) => !['name', 'email'].includes(field.name))
           .map((field) => (
@@ -87,14 +82,11 @@ export function TftForm({
               control={form.control}
               name={field.name as keyof TftFormData}
               render={({ field: formField }) => (
-                <FormItem
-                className="w-full"
-                
-                >
-                  <FormLabel
-                  className="text-xs font-normal"
-                  >{field.label}</FormLabel>
-                  <FormControl >
+                <FormItem className="w-full">
+                  <FormLabel className="text-xs font-normal">
+                    {field.label}
+                  </FormLabel>
+                  <FormControl>
                     {field.type === 'select' ? (
                       <Select
                         onValueChange={formField.onChange}
@@ -124,9 +116,9 @@ export function TftForm({
               )}
             />
           ))}
-        <div className='flex w-full justify-end'>
+        <div className="flex w-full justify-end">
           <Button type="submit">{"S'inscrire"}</Button>
-       </div>
+        </div>
       </form>
     </Form>
   )

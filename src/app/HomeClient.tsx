@@ -1,7 +1,9 @@
 // app/HomeClient.tsx
 'use client'
-import { Database } from '@/types/generated-types'
+
 import { EventSection } from '@/features/events/components/EventSection'
+
+import { Database } from '@/types/generated-types'
 
 type Event = Database['public']['Tables']['events']['Row']
 

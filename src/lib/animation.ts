@@ -22,7 +22,7 @@ export const animations = {
       }
     }
   },
-  
+
   fadeUp: {
     hidden: { y: 20, opacity: 0 },
     visible: (delay: number = 0) => ({
