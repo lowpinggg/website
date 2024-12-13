@@ -1,25 +1,19 @@
 // app/registration/[status]/page.tsx
-import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { CircleCheck, CircleX } from 'lucide-react'
-
-import { stripe } from '@/lib/stripe/stripe-server'
-import { Button } from '@/components/ui/button'
-
-import { getEventById } from '@/features/events/api/getEvents'
+import { getRegistrationDetails } from '@/features/registration/api/getRegistrationDetails'
+import { OrderCard } from '@/features/registration/components/checkout/OrderCard'
+import { ActionButtons } from '@/features/registration/components/checkout/ActionButtons'
 
 type Props = {
-  params: Promise<{
-    status: string
-  }>
+  params: Promise<{ status: string }>
   searchParams: Promise<{ session_id?: string }>
 }
 
 const messages = {
   success: {
     title: 'Paiement réussi !',
-    description:
-      'Merci pour votre inscription. Vous recevrez un email de confirmation sous peu.'
+    description: 'Merci pour votre inscription. Vous recevrez un email de confirmation sous peu.'
   },
   cancelled: {
     title: 'Paiement annulé',
@@ -33,62 +27,67 @@ export default async function RegistrationStatusPage({
 }: Props) {
   const { status } = await params
   const { session_id: sessionId } = await searchParams
-  let receiptUrl = null
-
-  console.log('RegistrationStatusPage - status:', status)
   
-  if (!(status in messages)) {
-    return notFound()
-  }
+  if (!(status in messages)) return notFound()
 
+  let details = null
   if (status === 'success' && sessionId) {
     try {
-      const session = await stripe.checkout.sessions.retrieve(sessionId)
-      console.log('RegistrationStatusPage - sessionId:', session)
-      const { data } = await getEventById(session.metadata?.eventId as string)
-      console.log('RegistrationStatusPage - eventData:', data)
-
-      if (typeof session.payment_intent === 'string') {
-        const charges = await stripe.charges.list({
-          payment_intent: session.payment_intent
-        })
-        receiptUrl = charges.data[0]?.receipt_url
-      }
+      details = await getRegistrationDetails(sessionId)
+      console.log('Details:', details)
     } catch (error) {
-      console.error('Error fetching receipt URL:', error)
+      console.error('Error fetching details:', error)
     }
   }
 
   const { title, description } = messages[status as keyof typeof messages]
 
   return (
-    <section className="flex flex-col items-center justify-center h-full space-y-6 max-w-xl mx-auto">
-      <div className="container py-10 h-screen mx-auto flex gap-4 justify-center flex-col items-start">
-        <div>
-          {status === 'success' ? (
-            <CircleCheck size={32} className="text-success text-green-600" />
-          ) : (
-            <CircleX size={32} className="text-error text-red-600" />
-          )}
-        </div>
-        <div className="flex flex-col gap-2 mb-4">
+    <main className="min-h-screen bg-gradient-to-b from-gray-900 to-black">
+      <div className="container max-w-2xl mx-auto px-4 py-12">
+        <div className="space-y-8">
+          {/* Status Header */}
+          <div className="text-center">
+            {status === 'success' ? (
+              <>
+                <CircleCheck className="w-16 h-16 text-green-500 mx-auto mb-4" />
+                <h1 className="text-3xl font-bold mb-2">{title}</h1>
+                {details?.registration && (
+                  <p className="text-muted-foreground">
+                    Un email de confirmation a été envoyé à {details.registration.email}
+                  </p>
+                )}
+              </>
+            ) : (
+              <>
+                <CircleX className="w-16 h-16 text-red-500 mx-auto mb-4" />
+                <h1 className="text-3xl font-bold mb-2">{title}</h1>
+                <p className="text-muted-foreground">{description}</p>
+              </>
+            )}
+          </div>
 
-          <h1 className="text-2xl font-bold">{title}</h1>
-          <p className="text-muted-foreground text-base font-normal">
-            {description}
-          </p>
-        </div>
-        <div className="flex gap-2">
-          <Link href="/">
-            <Button>Retour</Button>
-          </Link>
-          {status === 'success' && receiptUrl && (
-            <Link href={receiptUrl} target="_blank" rel="noopener noreferrer">
-              <Button variant="outline">Voir ma commande</Button>
-            </Link>
+          {/* Order Details */}
+          {details?.registration && details.event && (
+            <div className="space-y-6">
+              <OrderCard 
+                event={details.event} 
+                registration={details.registration}
+                variant="confirmation"
+              />
+              
+              <ActionButtons 
+                receiptUrl={details.receipt_url} 
+                event={details.event}
+              />
+
+              <div className="text-center text-sm text-muted-foreground">
+                <p>Des questions? Contactez-nous à support@example.com</p>
+              </div>
+            </div>
           )}
         </div>
       </div>
-    </section>
+    </main>
   )
 }

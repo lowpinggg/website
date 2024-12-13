@@ -29,7 +29,7 @@ export async function POST(req: Request) {
         userName: formData.name,
         userEmail: formData.email,
         userDiscord: formData.discord,
-        userRiotId: formData.riotId,
+        userRiotId: formData.riot_id,
         userRank: formData.rank
       },
       line_items: [

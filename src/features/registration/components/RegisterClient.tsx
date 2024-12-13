@@ -4,13 +4,13 @@
 import { useState } from 'react';
 import { EventPoster } from '@/features/events/components/EventPoster';
 import { DynamicForm } from '@/features/registration/components/DynamicForm';
-import { Summary } from '@/features/registration/components/Summary';
 import { FormData, formRegistry } from '@/features/registration/types/forms';
 import { motion } from 'motion/react';
 import { Database } from '@/types/generated-types';
 import { animations } from '@/lib/animation';
 import { Badge } from '@/components/ui/badge';
 import { Footer } from '@/components/Footer';
+import { CheckoutSummary } from './checkout/CheckoutSummary';
 
 type Props = {
   event: Database['public']['Tables']['events']['Row'];
@@ -109,27 +109,30 @@ function ContentSection({
               {event.name}
             </h1>
             <p className="text-muted-foreground text-xs md:text-base">
-              Complete your registration details below
+              {step === 1 ? 'Complete your registration details below' : 'Review your order'}
             </p>
           </motion.div>
         </div>
 
-        <motion.div variants={animations.stagger.child}>
-          <div className="grid grid-cols-2 gap-4 p-4 bg-black/30 rounded-lg border border-white/10">
-            <div className="space-y-1">
-              <p className="text-xs text-muted-foreground">Date</p>
-              <p className="text-white font-medium">
-                {new Date(event.date).toLocaleDateString()}
-              </p>
+        {/* Event details - only show in step 1 */}
+        {step === 1 && (
+          <motion.div variants={animations.stagger.child}>
+            <div className="grid grid-cols-2 gap-4 p-4 bg-black/30 rounded-lg border border-white/10">
+              <div className="space-y-1">
+                <p className="text-xs text-muted-foreground">Date</p>
+                <p className="text-white font-medium">
+                  {new Date(event.date).toLocaleDateString()}
+                </p>
+              </div>
+              <div className="space-y-1">
+                <p className="text-xs text-gray-400">Price</p>
+                <p className="text-white font-medium">
+                  ${(event.price / 100).toFixed(2)}
+                </p>
+              </div>
             </div>
-            <div className="space-y-1">
-              <p className="text-xs text-gray-400">Price</p>
-              <p className="text-white font-medium">
-                ${(event.price / 100).toFixed(2)}
-              </p>
-            </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        )}
 
         <div className="bg-black/20 rounded-lg border border-white/10 p-6">
           {step === 1 ? (
@@ -142,11 +145,10 @@ function ContentSection({
               />
             </motion.div>
           ) : (
-            <Summary
-              formData={registrationData}
-              event={event}
-              fields={formRegistry[event.type].fields}
-              onBack={onBack}
+            <CheckoutSummary 
+              event={event} 
+              formData={registrationData} 
+              onBack={onBack} 
             />
           )}
         </div>

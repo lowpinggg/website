@@ -20,7 +20,7 @@ export type TftFormData = {
   name: string
   email: string
   discord: string
-  riotId: string
+  riot_id: string
   rank: string
 }
 
@@ -28,7 +28,7 @@ export type SummonerFormData = {
   name: string
   email: string
   discord: string
-  riotId: string
+  riot_id: string
   rank: string
 }
 
@@ -39,7 +39,7 @@ export const tftFields: readonly BaseField[] = [
   { name: 'name', label: 'Nom', type: 'text', placeholder: 'Votre nom' },
   { name: 'email', label: 'Email', type: 'email', placeholder: 'votre@email.com' },
   { name: 'discord', label: 'Discord', type: 'text', placeholder: 'Votre#0000' },
-  { name: 'riotId', label: 'Riot ID', type: 'text', placeholder: 'Pseudo#TAG' },
+  { name: 'riot_id', label: 'Riot ID', type: 'text', placeholder: 'Pseudo#TAG' },
   {
     name: 'rank',
     label: 'Rang actuel',
@@ -53,7 +53,7 @@ export const summonerFields: readonly BaseField[] = [
   { name: 'name', label: 'Nom', type: 'text', placeholder: 'Votre nom' },
   { name: 'email', label: 'Email', type: 'email', placeholder: 'votre@email.com' },
   { name: 'discord', label: 'Discord', type: 'text', placeholder: 'Votre#0000' },
-  { name: 'riotId', label: 'Riot ID', type: 'text', placeholder: 'Pseudo#TAG' },
+  { name: 'riot_id', label: 'Riot ID', type: 'text', placeholder: 'Pseudo#TAG' },
   {
     name: 'rank',
     label: 'Rang actuel',
