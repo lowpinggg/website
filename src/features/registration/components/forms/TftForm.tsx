@@ -31,6 +31,7 @@ import {
 const formSchema = z.object({
   name: z.string().min(2, 'Nom doit contenir au moins 2 caractères'),
   email: z.string().email('Email invalide'),
+  discord: z.string().min(2, 'Discord doit contenir au moins 2 caractères'),
   riotId: z.string().min(2, 'Riot ID doit contenir au moins 2 caractères'),
   rank: z.enum(['IRON', 'BRONZE', 'SILVER', 'GOLD', 'PLATINUM', 'DIAMOND'])
 })
@@ -44,12 +45,7 @@ export function TftForm({
 }) {
   const form = useForm<TftFormData>({
     resolver: zodResolver(formSchema),
-    defaultValues: defaultValues || {
-      name: '',
-      email: '',
-      riotId: '',
-      rank: 'IRON'
-    }
+    defaultValues: defaultValues
   })
 
   return (

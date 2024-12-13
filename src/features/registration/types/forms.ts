@@ -19,6 +19,7 @@ export type BaseField = {
 export type TftFormData = {
   name: string
   email: string
+  discord: string
   riotId: string
   rank: string
 }
@@ -33,21 +34,8 @@ export type SummonerFormData = {
 
 export type FormData = TftFormData | SummonerFormData
 
-// Form configurations
-export const tftFields: BaseField[] = [
-  { name: 'name', label: 'Nom', type: 'text', placeholder: 'Votre nom' },
-  { name: 'email', label: 'Email', type: 'email', placeholder: 'votre@email.com' },
-  { name: 'riotId', label: 'Riot ID', type: 'text', placeholder: 'Pseudo#TAG' },
-  {
-    name: 'rank',
-    label: 'Rang actuel',
-    type: 'select',
-    placeholder: 'Sélectionnez votre rang',
-    options: ['IRON', 'BRONZE', 'SILVER', 'GOLD', 'PLATINUM', 'DIAMOND']
-  }
-]
-
-export const summonerFields: BaseField[] = [
+// Form fields with explicit typing
+export const tftFields: readonly BaseField[] = [
   { name: 'name', label: 'Nom', type: 'text', placeholder: 'Votre nom' },
   { name: 'email', label: 'Email', type: 'email', placeholder: 'votre@email.com' },
   { name: 'discord', label: 'Discord', type: 'text', placeholder: 'Votre#0000' },
@@ -57,18 +45,35 @@ export const summonerFields: BaseField[] = [
     label: 'Rang actuel',
     type: 'select',
     placeholder: 'Sélectionnez votre rang',
-    options: ['IRON', 'BRONZE', 'SILVER', 'GOLD', 'PLATINUM', 'DIAMOND']
+    options: ['IRON', 'BRONZE', 'SILVER', 'GOLD', 'PLATINUM', 'DIAMOND'] as const
   }
-]
+] as const
 
-// Form registry
+export const summonerFields: readonly BaseField[] = [
+  { name: 'name', label: 'Nom', type: 'text', placeholder: 'Votre nom' },
+  { name: 'email', label: 'Email', type: 'email', placeholder: 'votre@email.com' },
+  { name: 'discord', label: 'Discord', type: 'text', placeholder: 'Votre#0000' },
+  { name: 'riotId', label: 'Riot ID', type: 'text', placeholder: 'Pseudo#TAG' },
+  {
+    name: 'rank',
+    label: 'Rang actuel',
+    type: 'select',
+    placeholder: 'Sélectionnez votre rang',
+    options: ['IRON', 'BRONZE', 'SILVER', 'GOLD', 'PLATINUM', 'DIAMOND'] as const
+  }
+] as const
+
+// Registry with proper typing
 export const formRegistry = {
   tft: {
-    component: TftForm,  // You'll need to import these
+    component: TftForm,
     fields: tftFields
   },
   summoner: {
-    component: SummonerForm,  // You'll need to import these
+    component: SummonerForm,
     fields: summonerFields
   }
 } as const
+
+// Type helpers for components that need them
+export type FormFields = typeof tftFields | typeof summonerFields

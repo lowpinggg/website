@@ -37,19 +37,15 @@ const formSchema = z.object({
 })
 
 export function SummonerForm({
-  onComplete
+  onComplete,
+  defaultValues
 }: {
-  onComplete: (data: SummonerFormData) => void
+    onComplete: (data: SummonerFormData) => void
+    defaultValues?: Partial<SummonerFormData>
 }) {
   const form = useForm<SummonerFormData>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      name: '',
-      email: '',
-      discord: '',
-      riotId: '',
-      rank: 'IRON'
-    }
+    defaultValues: defaultValues
   })
 
   return (

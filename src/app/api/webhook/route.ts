@@ -83,6 +83,7 @@ async function handleSuccessfulPayment(session: Stripe.Checkout.Session) {
 
     // Insert the registration
     const { error } = await supabase.from('event_registrations').insert({
+      id: crypto.randomUUID(),
       name: userName,
       email: userEmail,
       discord: userDiscord,

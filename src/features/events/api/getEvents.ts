@@ -9,3 +9,13 @@ export async function getEvents() {
     .select('*')
     .order('date', { ascending: true })
 }
+
+export async function getEventById(id: string) {
+  const supabase = createClientComponentClient<Database>()
+  
+  return await supabase
+    .from('events')
+    .select('*')
+    .eq('id', id)
+    .single()
+}

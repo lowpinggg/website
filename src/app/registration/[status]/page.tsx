@@ -6,6 +6,8 @@ import { CircleCheck, CircleX } from 'lucide-react'
 import { stripe } from '@/lib/stripe/stripe-server'
 import { Button } from '@/components/ui/button'
 
+import { getEventById } from '@/features/events/api/getEvents'
+
 type Props = {
   params: Promise<{
     status: string
@@ -34,7 +36,7 @@ export default async function RegistrationStatusPage({
   let receiptUrl = null
 
   console.log('RegistrationStatusPage - status:', status)
-
+  
   if (!(status in messages)) {
     return notFound()
   }
@@ -42,6 +44,10 @@ export default async function RegistrationStatusPage({
   if (status === 'success' && sessionId) {
     try {
       const session = await stripe.checkout.sessions.retrieve(sessionId)
+      console.log('RegistrationStatusPage - sessionId:', session)
+      const { data } = await getEventById(session.metadata?.eventId as string)
+      console.log('RegistrationStatusPage - eventData:', data)
+
       if (typeof session.payment_intent === 'string') {
         const charges = await stripe.charges.list({
           payment_intent: session.payment_intent
@@ -66,6 +72,7 @@ export default async function RegistrationStatusPage({
           )}
         </div>
         <div className="flex flex-col gap-2 mb-4">
+
           <h1 className="text-2xl font-bold">{title}</h1>
           <p className="text-muted-foreground text-base font-normal">
             {description}
