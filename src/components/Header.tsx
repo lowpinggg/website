@@ -4,8 +4,9 @@
 import Link from 'next/link'
 import { Full } from '@lowping/brand-kit'
 import { Globe } from 'lucide-react'
-import { motion } from 'motion/react'
+import { motion, useAnimationControls } from 'motion/react'
 import { useScramble } from 'use-scramble'
+import { useEffect } from 'react'
 
 import { EASE } from '@/lib/animation'
 import { Button } from '@/components/ui/button'
@@ -30,6 +31,28 @@ export function Header({ onIntroComplete, showOverlay }: HeaderProps) {
     }
   })
 
+  const { ref: versionRef } = useScramble({
+    text: 'Alpha 0.0.1',
+    speed: 0.8,
+    tick: 1,
+    step: 1,
+    scramble: 4,
+    seed: 2,
+    chance: 0.8,
+    ignore: [' '],
+  })
+  const versionControls = useAnimationControls()
+
+useEffect(() => {
+  const animateVersion = async () => {
+    await versionControls.start({ y: 0, transition: { duration: 0.5, ease: EASE } })
+    await new Promise(resolve => setTimeout(resolve, 1000)) // 1 second delay
+    await versionControls.start({ y: -20, transition: { duration: 0.5, ease: EASE } })
+  }
+  
+  animateVersion()
+}, [])
+
   const fadeUpWithColor = {
     hidden: { y: 100, opacity: 0 },
     visible: (custom: number) => ({
@@ -37,9 +60,9 @@ export function Header({ onIntroComplete, showOverlay }: HeaderProps) {
       opacity: 1,
       color: showOverlay ? '#000' : '#fff',
       transition: {
-        y: { delay: custom * 0.2 + 1, duration: 0.8, ease: EASE },
-        opacity: { delay: custom * 0.2 + 1, duration: 0.8, ease: EASE },
-        color: { duration: 1, ease: EASE }
+        y: { delay: custom * 0.2 + 1, duration: 0.2, ease: EASE },
+        opacity: { delay: custom * 0.2 + 1, duration: 0.2, ease: EASE },
+        color: { duration: 0.2, ease: EASE, delay: 0.2 }
       }
     })
   }
@@ -54,7 +77,7 @@ export function Header({ onIntroComplete, showOverlay }: HeaderProps) {
     })
   }
 
-  const DELAY = 1.3
+  const DELAY = 1.6
   return (
     <motion.div
       initial={{ scale: 1.2 }}
@@ -78,11 +101,26 @@ export function Header({ onIntroComplete, showOverlay }: HeaderProps) {
           <Full width={180} />
         </motion.div>
         <div className="overflow-hidden relative">
+          <div className='overflow-hidden'>
           <motion.h1
+            initial={{ y: 100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.5, duration: 1, ease: EASE }}
             className="font-bold leading-auto md:leading-[62px] text-center text-4xl sm:text-left sm:text-5xl  md:text-6xl"
             ref={titleRef}
             style={{ color: showOverlay ? '#000' : '#fff' }}
           ></motion.h1>
+          </div>
+          <div className='overflow-hidden'>
+  <motion.pre 
+    ref={versionRef}
+    animate={versionControls}
+    initial={{ y: 0 }}
+    className="text-sm text-black font-bold"
+  >
+    Alpha 2
+  </motion.pre>
+</div>
         </div>
         <div className="overflow-hidden">
           <motion.div

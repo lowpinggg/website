@@ -47,7 +47,7 @@ export default function HomeClient() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowOverlay(false)
-    }, 1000)
+    }, 1500)
     return () => clearTimeout(timer)
   }, [])
 
