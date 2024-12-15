@@ -108,7 +108,7 @@ export function EventPoster({
 
   const cardContent = (
     <motion.div
-      className="relative"
+      className="relative rounded-lg overflow-hidden"
       initial="initial"
       whileHover={showCTA ? 'hover' : undefined}
       style={{ overflow: 'hidden', width: '100%', height: '100%' }}
@@ -131,7 +131,7 @@ export function EventPoster({
             alt={event.name}
             width={604}
             height={854}
-            className="object-cover rounded-lg w-full h-full"
+            className="object-cover rounded-none w-full h-full"
             sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
             priority
           />
@@ -149,7 +149,7 @@ export function EventPoster({
           }}
           transition={HOVER_TRANSITION}
         >
-          <Button className="w-full h-12 flex items-center justify-center gap-1 rounded-b-lg">
+          <Button className="w-full h-12 flex items-center justify-center gap-1 rounded-none">
             <span>Inscription</span>
             <ArrowRight size={16} />
           </Button>
