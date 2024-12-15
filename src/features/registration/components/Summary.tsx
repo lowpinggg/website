@@ -1,12 +1,8 @@
-// features/registration/components/Summary.tsx
 'use client'
 
 import { useState } from 'react'
 import { BaseField, FormData } from '@/features/registration/types/forms'
-import { motion } from 'motion/react'
-
 import { Database } from '@/types/generated-types'
-import { animations } from '@/lib/animation'
 import { getStripe } from '@/lib/stripe/stripe'
 import { useToast } from '@/hooks/use-toast'
 import { Button } from '@/components/ui/button'
@@ -66,20 +62,12 @@ export function Summary({ formData, event, fields, onBack }: Props) {
 
   return (
     <div>
-      <motion.div
-        className="w-full flex flex-col gap-4"
-        variants={animations.stagger.parent}
-        initial="hidden"
-        animate="visible"
-      >
-        <motion.div variants={animations.stagger.child}>
+      <div className="w-full flex flex-col gap-4">
+        <div>
           <h2 className="text-xl font-semibold">{"Confirmer l'inscription"}</h2>
-        </motion.div>
+        </div>
 
-        <motion.div
-          className="space-y-4 font-light"
-          variants={animations.stagger.child}
-        >
+        <div className="space-y-4 font-light">
           <div className="space-y-2">
             <h3 className="text-sm font-medium">Événement</h3>
             <p className="text-xs text-muted-foreground">{event.name}</p>
@@ -87,13 +75,11 @@ export function Summary({ formData, event, fields, onBack }: Props) {
               {new Date(event.date).toLocaleDateString()}
             </p>
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div variants={animations.stagger.child}>
-          <Separator />
-        </motion.div>
+        <Separator />
 
-        <motion.div className="space-y-2" variants={animations.stagger.child}>
+        <div className="space-y-2">
           <h3 className="text-sm font-medium">Vos informations</h3>
           <div className="text-xs space-y-1">
             {fields.map(
@@ -108,20 +94,18 @@ export function Summary({ formData, event, fields, onBack }: Props) {
                 )
             )}
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div variants={animations.stagger.child}>
-          <Separator />
-        </motion.div>
+        <Separator />
 
-        <motion.div className="space-y-1" variants={animations.stagger.child}>
+        <div className="space-y-1">
           <h3 className="text-sm font-medium">Total</h3>
           <p className="text-2xl font-bold">
             {(event.price / 100).toFixed(2)} $CAD
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div className="flex gap-4" variants={animations.stagger.child}>
+        <div className="flex gap-4">
           <Button
             variant="outline"
             onClick={onBack}
@@ -137,17 +121,14 @@ export function Summary({ formData, event, fields, onBack }: Props) {
           >
             {isLoading ? 'En cours...' : 'Payer maintenant'}
           </Button>
-        </motion.div>
+        </div>
 
-        <motion.div
-          className="text-xs text-muted-foreground font-light"
-          variants={animations.stagger.child}
-        >
+        <div className="text-xs text-muted-foreground font-light">
           {
             'En cliquant sur "Payer maintenant", vous serez redirigé vers Stripe pour effectuer votre paiement de manière sécurisée.'
           }
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </div>
   )
 }

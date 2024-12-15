@@ -183,7 +183,7 @@
   --mf-color-primary: transparent;
   --mf-color-secondary: transparent;
   border-radius: 100%;
-  border-color: #BFF603;
+  border-color: white;
   border-width: 1px !important;
   background-color: transparent;
   scale: 5;
@@ -194,6 +194,6 @@
 
 /* Scale the dot when cursor is active */
 .mf-cursor.-active::before {
-  background-color: #BFF603 !important;
+  background-color: white !important;
   scale: 3;
 }
