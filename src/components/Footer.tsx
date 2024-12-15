@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { Full } from '@lowping/brand-kit'
 import { motion } from 'motion/react'
 
-import { EASE } from '@/lib/animation'
+import { EASE } from '@/lib/animations/properties'
 import { Badge } from '@/components/ui/badge'
 
 export function Footer() {

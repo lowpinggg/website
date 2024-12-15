@@ -9,7 +9,7 @@ import { motion } from 'motion/react'
 import Tilt from 'react-parallax-tilt'
 
 import type { Database } from '@/types/generated-types'
-import { animations, EASE } from '@/lib/animation'
+import { EASE } from '@/lib/animations/properties'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 
@@ -172,9 +172,6 @@ export function EventPoster({
 
   return (
     <motion.div
-      variants={animations.fadeUp}
-      initial="hidden"
-      animate="visible"
       className={cn('inline-block', containerClassName)}
     >
       <Tilt className="w-full h-full" {...finalTiltProps}>

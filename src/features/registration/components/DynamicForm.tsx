@@ -7,9 +7,7 @@ import {
   FormType
 } from '@/features/registration/types/forms'
 import { motion } from 'motion/react'
-
 import { Database } from '@/types/generated-types'
-import { animations } from '@/lib/animation'
 
 type Props = {
   type: FormType
@@ -22,23 +20,21 @@ export function DynamicForm({ type, onComplete, defaultValues = {} }: Props) {
   const FormComponent = formRegistry[type].component
 
   return (
-    <div>
-      <motion.div
-        className="w-full flex flex-col gap-2"
-        variants={animations.stagger.parent}
-        initial="hidden"
-        animate="visible"
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="w-full flex flex-col gap-2"
       >
-        <motion.div variants={animations.stagger.child}>
-          <h2 className="text-lg font-semibold">Registration Details</h2>
-        </motion.div>
-        <motion.div variants={animations.stagger.child}>
+        <motion.h2 className="text-lg font-semibold">
+          Registration Details
+        </motion.h2>
+        <motion.div>
           <FormComponent
             onComplete={onComplete}
             defaultValues={defaultValues}
           />
         </motion.div>
       </motion.div>
-    </div>
   )
 }

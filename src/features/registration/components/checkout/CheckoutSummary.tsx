@@ -1,9 +1,6 @@
 // features/registration/components/checkout/CheckoutSummary.tsx
 import { useState } from 'react'
-import { motion } from 'motion/react'
-
 import { Database } from '@/types/generated-types'
-import { animations } from '@/lib/animation'
 import { getStripe } from '@/lib/stripe/stripe'
 import { useToast } from '@/hooks/use-toast'
 import { Button } from '@/components/ui/button'
@@ -57,15 +54,10 @@ export function CheckoutSummary({ formData, event, onBack }: Props) {
   }
 
   return (
-    <motion.div
-      className="w-full flex flex-col gap-4"
-      variants={animations.stagger.parent}
-      initial="hidden"
-      animate="visible"
+    <div className="w-full flex flex-col gap-4"
     >
       <OrderCard event={event} registration={formData} variant="preview" />
 
-      <motion.div variants={animations.stagger.child}>
         <div className="flex gap-2">
           <Button
             variant="outline"
@@ -83,14 +75,11 @@ export function CheckoutSummary({ formData, event, onBack }: Props) {
             {isLoading ? 'En cours...' : 'Payer maintenant'}
           </Button>
         </div>
-      </motion.div>
-      <motion.div
-        variants={animations.stagger.child}
-        className="text-xs text-muted-foreground text-start font-light"
+      <div className="text-xs text-muted-foreground text-start font-light"
       >
         En cliquant sur &ldquo;Payer maintenant&rdquo;, vous serez redirigé vers
         Stripe pour effectuer votre paiement de manière sécurisée.
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   )
 }

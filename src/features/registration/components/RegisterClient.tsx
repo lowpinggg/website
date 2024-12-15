@@ -8,7 +8,6 @@ import { FormData, formRegistry } from '@/features/registration/types/forms'
 import { motion } from 'motion/react'
 
 import { Database } from '@/types/generated-types'
-import { animations } from '@/lib/animation'
 import { Badge } from '@/components/ui/badge'
 import { Footer } from '@/components/Footer'
 
@@ -68,18 +67,12 @@ export function RegisterClient({ event }: Props) {
 
 function EventPosterSection({ event }: { event: Props['event'] }) {
   return (
-    <motion.div
-      variants={animations.stagger.child}
-      initial="hidden"
-      animate="visible"
-    >
       <motion.div
         animate={{ y: [0, 12, 0] }}
         transition={{ repeat: Infinity, duration: 5, ease: 'easeInOut' }}
       >
         <EventPoster event={event} size="xl" showCTA={false} />
       </motion.div>
-    </motion.div>
   )
 }
 
@@ -98,14 +91,8 @@ function ContentSection({
 }) {
   return (
     <div className="w-full sm:max-w-xl md:max-w-xl">
-      <motion.div
-        className="flex flex-col w-full space-y-6"
-        variants={animations.stagger.parent}
-        initial="hidden"
-        animate="visible"
-      >
-        <div>
-          <motion.div variants={animations.stagger.child}>
+      <div className="flex flex-col w-full space-y-6">
+          <div>
             <Badge className="font-medium">{event.game}</Badge>
             <h1 className="text-2xl lg:text-3xl font-bold text-white mt-4 mb-1">
               {event.name}
@@ -115,12 +102,10 @@ function ContentSection({
                 ? 'Complete your registration details below'
                 : 'Review your order'}
             </p>
-          </motion.div>
-        </div>
+          </div>
 
         {/* Event details - only show in step 1 */}
         {step === 1 && (
-          <motion.div variants={animations.stagger.child}>
             <div className="grid grid-cols-2 gap-4 p-4 bg-black/30 rounded-lg border border-white/10">
               <div className="space-y-1">
                 <p className="text-xs text-muted-foreground">Date</p>
@@ -135,19 +120,16 @@ function ContentSection({
                 </p>
               </div>
             </div>
-          </motion.div>
         )}
 
         <div className="bg-black/20 rounded-lg border border-white/10 p-6">
           {step === 1 ? (
-            <motion.div variants={animations.stagger.child}>
               <DynamicForm
                 type={event.type}
                 event={event}
                 onComplete={onRegistrationComplete}
                 defaultValues={registrationData}
               />
-            </motion.div>
           ) : (
             <CheckoutSummary
               event={event}
@@ -157,13 +139,10 @@ function ContentSection({
           )}
         </div>
 
-        <motion.div
-          variants={animations.stagger.child}
-          className="text-xs text-muted-foreground text-center"
-        >
+        <div className="text-xs text-muted-foreground text-center">
           <p>By registering, you agree to our terms and conditions.</p>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </div>
   )
 }

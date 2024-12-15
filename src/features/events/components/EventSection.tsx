@@ -2,10 +2,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { motion } from 'motion/react'
-
 import type { Database } from '@/types/generated-types'
-import { animations } from '@/lib/animation'
 
 import { getEvents } from '../api/getEvents'
 import { EventGrid } from './EventGrid'
@@ -50,14 +47,11 @@ export function EventSection() {
 
   return (
     <section className="flex flex-col gap-6 relative z-10 pb-24">
-      <motion.h1
-        variants={animations.fadeUp}
-        initial="hidden"
-        animate="visible"
+      <h1
         className="text-2xl sm:text-4xl font-bold text-foreground"
       >
         Événements
-      </motion.h1>
+      </h1>
       <EventGrid events={events} />
     </section>
   )
