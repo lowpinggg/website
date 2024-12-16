@@ -1,6 +1,6 @@
 // features/registration/types/forms.ts
-import { SummonerForm } from '@/features/registration/components/forms/SummonerForm'
 import { TftForm } from '@/features/registration/components/forms/TftForm'
+import { SummonerForm } from '@/features/registration/components/forms/SummonerForm'
 
 import { Database } from '@/types/generated-types'
 

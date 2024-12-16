@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import { getRegistrationDetails } from '@/features/registration/api/getRegistrationDetails'
-import { RegistrationStatusClient } from '@/features/registration/components/RegistrationStatusClient'
+import { PaymentStatusPage } from '@/features/registration/components/PaymentStatusPage'
 import { Database } from '@/types/generated-types'
 
 
@@ -63,13 +63,11 @@ export default async function RegistrationStatusPage({
   const { title, description } = messages[status]
 
   return (
-    <main>
-      <RegistrationStatusClient
-        status={status}
-        details={details}
-        title={title}
-        description={description}
-      />
-    </main>
+    <PaymentStatusPage
+      status={status}
+      details={details}
+      title={title}
+      description={description}
+    />
   )
 }

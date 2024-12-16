@@ -27,7 +27,7 @@ type Props = {
   description: string
 }
 
-export function RegistrationStatusClient({
+export function PaymentStatusPage({
   status,
   details,
   title,
