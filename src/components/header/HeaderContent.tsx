@@ -1,18 +1,16 @@
 // components/header/HeaderContent.tsx
-import { motion } from 'motion/react'
-import { Globe } from 'lucide-react'
 import Link from 'next/link'
-import { Button } from '@/components/ui/button'
+import { Globe } from 'lucide-react'
+import { motion } from 'motion/react'
+
 import { introVariants } from '@/lib/animations/variants'
-import { DiscordLogo } from '@/components/icons/DiscordLogo'
+import { Button } from '@/components/ui/button'
+import { DiscordLogo } from '@/components/icons/DiscordLogo'
 
 export function HeaderContent() {
   return (
     <div className="overflow-hidden">
-      <motion.div
-        {...introVariants.content}
-        className="w-full"
-      >
+      <motion.div {...introVariants.content} className="w-full">
         <p className="text-xs sm:text-base text-center sm:text-left mb-8 sm:max-w-2xl text-muted-foreground font-light">
           Tous nos événements esport au même endroit. Inscrivez-vous aux
           prochains tournois, suivez vos résultats et participez à des
@@ -25,9 +23,7 @@ export function HeaderContent() {
             className="bg-[#5763ED] text-white hover:bg-[#3744DB] w-full sm:w-fit"
           >
             Discord
-            <div>
-             <DiscordLogo />
-            </div>
+            <DiscordLogo />
           </Button>
 
           <Link

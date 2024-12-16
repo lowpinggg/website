@@ -10,18 +10,15 @@ import { useState } from 'react'
 
 function IntroOverlay({ onComplete }: { onComplete: () => void }) {
   window.scrollTo(0, 0)
-
   return (
     <motion.div
-      className="fixed inset-0 mix-blend-screen z-60"
+      className="fixed inset-0 z-30" // Middle layer
       style={{ backgroundColor: '#BFF603' }}
       variants={introVariants.overlay}
       initial="initial"
       animate="animate"
-      exit="exit" 
-      onAnimationComplete={() => {
-        onComplete()
-      }}
+      exit="exit"
+      onAnimationComplete={onComplete}
     />
   )
 }
@@ -29,15 +26,14 @@ function IntroOverlay({ onComplete }: { onComplete: () => void }) {
 export default function Page() {
   const [isLocked, setIsLocked] = useState(true)
   useScrollLock(isLocked)
-
   return (
     <>
       <AnimatePresence mode="wait">
-        <IntroOverlay key="overlay" onComplete={()=> {setIsLocked(false)}} />
+        <IntroOverlay key="overlay" onComplete={() => setIsLocked(false)} />
       </AnimatePresence>
-      <main className="min-h-screen mx-auto container px-4">
+      <main className="min-h-screen mx-auto">
         <motion.div
-          className="relative z-10"
+          className="relative z-30" // Top layer
           initial="hidden"
           animate="visible"
           variants={introVariants.container}
@@ -47,7 +43,7 @@ export default function Page() {
             variants={introVariants.events}
             initial="initial"
             animate="animate"
-            className='overflow-hidden'
+            className="overflow-hidden"
           >
             <EventSection />
           </motion.div>
@@ -57,7 +53,7 @@ export default function Page() {
             variants={introVariants.footer}
           >
             <Footer />
-            </motion.div>
+          </motion.div>
         </motion.div>
       </main>
     </>

@@ -131,6 +131,7 @@ export function EventPoster({
             alt={event.name}
             width={604}
             height={854}
+            quality={80}
             className="object-cover rounded-none w-full h-full"
             sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
             priority

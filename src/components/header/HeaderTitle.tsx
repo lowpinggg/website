@@ -74,13 +74,11 @@ export function HeaderTitle() {
 
   return (
     <div className="overflow-hidden relative">
-      <div className='overflow-hidden'>
         <motion.h1
           {...introVariants.title}
           className="font-bold leading-auto md:leading-[62px] text-center text-4xl sm:text-left sm:text-5xl md:text-6xl"
           ref={ref}
         />
-      </div>
       <VersionBadge />
     </div>
   )

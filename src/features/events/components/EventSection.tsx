@@ -33,7 +33,7 @@ export function EventSection() {
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center min-h-[400px] "></div>
+      <div className="flex items-center justify-center min-h-[400px]"></div>
     )
   }
 
@@ -46,11 +46,11 @@ export function EventSection() {
   }
 
   return (
-    <section className="flex flex-col gap-6 relative z-10 pb-24">
+    <section className="flex flex-col gap-6 relative z-10 pb-24 px-4 sm:px-0 container mx-auto">
       <h1
-        className="text-2xl sm:text-4xl font-bold text-foreground"
+        className="text-2xl sm:text-4xl font-bold text-foreground flex items-center gap-2"
       >
-        Événements
+        Événements <span className='text-base font-light'>({events.length})</span>
       </h1>
       <EventGrid events={events} />
     </section>

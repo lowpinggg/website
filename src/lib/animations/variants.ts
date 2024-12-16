@@ -129,6 +129,26 @@ export const introVariants = {
       }
     }
   },
+  image: {
+    initial: {
+      y: -25,
+      opacity: 0,
+      filter: 'blur(10px)',
+      zIndex: -1
+    },
+    animate: {
+      y: 0,
+      scale: 1,
+      opacity: 1, 
+      filter: 'blur(0px)',
+      zIndex: 0,
+      transition: {
+        delay: INTRO_SEQUENCE.logo.start + .2,
+        duration: INTRO_SEQUENCE.logo.duration,
+        ease: EASE_OUT_EXPO
+      }
+    }
+  },
   logo: {
     initial: {
       y: 100,
