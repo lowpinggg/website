@@ -8,6 +8,8 @@ import {
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
+import { motion } from 'motion/react'
+import { formStaggerVariants } from '@/lib/animations/variants'
 
 import { Button } from '@/components/ui/button'
 import {
@@ -49,8 +51,14 @@ export function SummonerForm({
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onComplete)} className="space-y-4">
-        <div className="flex gap-2">
+      <motion.form 
+        variants={formStaggerVariants.parent}
+        initial="initial"
+        animate="animate"
+        onSubmit={form.handleSubmit(onComplete)} 
+        className="space-y-4"
+      >
+        <motion.div variants={formStaggerVariants.child} className="flex gap-2">
           {summonerFields
             .filter((field) => ['name', 'email'].includes(field.name))
             .map((field) => (
@@ -73,53 +81,54 @@ export function SummonerForm({
                 )}
               />
             ))}
-        </div>
+        </motion.div>
 
         {summonerFields
           .filter((field) => !['name', 'email'].includes(field.name))
           .map((field) => (
-            <FormField
-              key={field.name}
-              control={form.control}
-              name={field.name as keyof SummonerFormData}
-              render={({ field: formField }) => (
-                <FormItem>
-                  <FormLabel>{field.label}</FormLabel>
-                  <FormControl>
-                    {field.type === 'select' ? (
-                      <Select
-                        onValueChange={formField.onChange}
-                        defaultValue={formField.value}
-                      >
-                        <SelectTrigger>
-                          <SelectValue placeholder={field.placeholder} />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {field.options?.map((option) => (
-                            <SelectItem key={option} value={option}>
-                              {option}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    ) : (
-                      <Input
-                        type={field.type}
-                        placeholder={field.placeholder}
-                        {...formField}
-                      />
-                    )}
-                  </FormControl>
-                  <FormMessage className="text-xs font-normal" />
-                </FormItem>
-              )}
-            />
+            <motion.div key={field.name} variants={formStaggerVariants.child}>
+              <FormField
+                control={form.control}
+                name={field.name as keyof SummonerFormData}
+                render={({ field: formField }) => (
+                  <FormItem>
+                    <FormLabel>{field.label}</FormLabel>
+                    <FormControl>
+                      {field.type === 'select' ? (
+                        <Select
+                          onValueChange={formField.onChange}
+                          defaultValue={formField.value}
+                        >
+                          <SelectTrigger>
+                            <SelectValue placeholder={field.placeholder} />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {field.options?.map((option) => (
+                              <SelectItem key={option} value={option}>
+                                {option}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      ) : (
+                        <Input
+                          type={field.type}
+                          placeholder={field.placeholder}
+                          {...formField}
+                        />
+                      )}
+                    </FormControl>
+                    <FormMessage className="text-xs font-normal" />
+                  </FormItem>
+                )}
+              />
+            </motion.div>
           ))}
 
-        <div className="flex w-full justify-end">
+        <motion.div variants={formStaggerVariants.child} className="flex w-full justify-end">
           <Button type="submit">{"S'inscrire"}</Button>
-        </div>
-      </form>
+        </motion.div>
+      </motion.form>
     </Form>
   )
 }

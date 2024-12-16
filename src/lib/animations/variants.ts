@@ -1,6 +1,42 @@
 // lib/animations/variants.ts
-import { EASE_OUT_EXPO } from './properties'
+import { EASE_OUT_EXPO, EASE } from './properties'
 import { INTRO_SEQUENCE } from './constants'
+
+export const slideUpVariants = {
+  initial: { y: 20, opacity: 0 },
+  animate: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.6,
+      ease: EASE_OUT_EXPO
+    }
+  }
+}
+
+export const staggerContainer = {
+  initial: { opacity: 0 },
+  animate: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.3,
+      ease: EASE_OUT_EXPO
+    }
+  }
+}
+
+export const staggerChild = {
+  initial: { y: 50, opacity: 0 },
+  animate: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.6,
+      ease: EASE
+    }
+  }
+}
 
 export const introVariants = {
   overlay: {
@@ -117,6 +153,31 @@ export const introVariants = {
       transition: {
         delay: INTRO_SEQUENCE.content.delay + INTRO_SEQUENCE.content.start,
         duration: INTRO_SEQUENCE.content.duration,
+        ease: EASE_OUT_EXPO
+      }
+    }
+  }
+}
+
+export const formStaggerVariants = {
+  parent: {
+    initial: { opacity: 0 },
+    animate: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+        ease: EASE_OUT_EXPO
+      }
+    }
+  },
+  child: {
+    initial: { y: 10, opacity: 0 },
+    animate: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.4,
         ease: EASE_OUT_EXPO
       }
     }
