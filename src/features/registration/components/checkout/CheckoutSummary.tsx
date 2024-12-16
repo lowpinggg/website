@@ -1,5 +1,5 @@
 // features/registration/components/checkout/CheckoutSummary.tsx
-import { FormData, formRegistry, FormType } from '../../types/forms'
+import { FormData, formRegistry, FormType, BaseField } from '../../types/forms'
 import { Database } from '@/types/generated-types'
 import { useCheckout } from '../../hooks/useCheckout'
 import { Button } from '@/components/ui/button'
@@ -15,12 +15,12 @@ type Props = {
 
 export function CheckoutSummary({ event, formData, onBack }: Props) {
   const { isLoading, handleCheckout } = useCheckout()
-
-  // Get the correct fields based on event type
-  const fields = formRegistry[event.type as FormType].fields
+  
+  const config = formRegistry[event.type as FormType]
+  const allFields = [...config.baseFields, ...config.specificFields] as readonly BaseField[]
 
   return (
-    <motion.div 
+    <motion.div
       className="space-y-6"
       variants={formStaggerVariants.parent}
       initial="initial"
@@ -41,7 +41,7 @@ export function CheckoutSummary({ event, formData, onBack }: Props) {
       <motion.div variants={formStaggerVariants.child} className="space-y-2">
         <h3 className="text-sm font-medium">Vos informations</h3>
         <div className="text-xs space-y-1">
-          {fields.map((field) => {
+          {allFields.map((field: BaseField) => {
             const key = field.name as keyof FormData
             return (
               <motion.p key={field.name} className="font-medium">

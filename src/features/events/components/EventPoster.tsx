@@ -60,8 +60,8 @@ const defaultTiltProps: TiltProps = {
 
 const sizeDimensions = {
   sm: { width: 'w-full max-w-[200px]', height: 'aspect-[604/854]' },
-  md: { width: 'w-full max-w-[300px]', height: 'aspect-[604/854]' },
-  lg: { width: 'w-full sm:max-w-[400px]', height: 'aspect-[604/854]' },
+  md: { width: 'w-full max-w-[360px]', height: 'aspect-[604/854]' },
+  lg: { width: 'w-full sm:max-w-[460px]', height: 'aspect-[604/854]' },
   xl: { width: 'w-full max-w-[700px]', height: 'aspect-[604/854]' },
   full: { width: 'w-full', height: 'aspect-[604/854]' },
   custom: { width: 'w-auto', height: 'h-auto' }

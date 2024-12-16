@@ -9,6 +9,8 @@ import { introVariants } from '@/lib/animations/variants'
 import { useState } from 'react'
 
 function IntroOverlay({ onComplete }: { onComplete: () => void }) {
+  window.scrollTo(0, 0)
+
   return (
     <motion.div
       className="fixed inset-0 mix-blend-screen z-60"
@@ -41,12 +43,21 @@ export default function Page() {
           variants={introVariants.container}
         >
           <Header />
-          <motion.div variants={introVariants.events}>
+          <motion.div
+            variants={introVariants.events}
+            initial="initial"
+            animate="animate"
+            className='overflow-hidden'
+          >
             <EventSection />
           </motion.div>
-          <motion.div variants={introVariants.footer}>
+          <motion.div
+            initial="initial"
+            animate="animate"
+            variants={introVariants.footer}
+          >
             <Footer />
-          </motion.div>
+            </motion.div>
         </motion.div>
       </main>
     </>

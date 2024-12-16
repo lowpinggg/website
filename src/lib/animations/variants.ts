@@ -2,10 +2,13 @@
 import { EASE_OUT_EXPO, EASE } from './properties'
 import { INTRO_SEQUENCE } from './constants'
 
-export const slideUpVariants = {
-  initial: { y: 20, opacity: 0 },
+// ============================================================================
+// Base Animation Variants
+// ============================================================================
+
+export const fadeInVariants = {
+  initial: { opacity: 0 },
   animate: {
-    y: 0,
     opacity: 1,
     transition: {
       duration: 0.6,
@@ -14,19 +17,7 @@ export const slideUpVariants = {
   }
 }
 
-export const staggerContainer = {
-  initial: { opacity: 0 },
-  animate: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-      delayChildren: 0.3,
-      ease: EASE_OUT_EXPO
-    }
-  }
-}
-
-export const staggerChild = {
+export const slideUpVariants = {
   initial: { y: 50, opacity: 0 },
   animate: {
     y: 0,
@@ -38,6 +29,65 @@ export const staggerChild = {
   }
 }
 
+// ============================================================================
+// Stagger Animation Variants
+// ============================================================================
+
+export const staggerVariants = {
+  parent: {
+    initial: { opacity: 0 },
+    animate: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3,
+        ease: EASE_OUT_EXPO
+      }
+    }
+  },
+  child: {
+    initial: { y: 50, opacity: 0 },
+    animate: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.6,
+        ease: EASE
+      }
+    }
+  }
+}
+
+export const formStaggerVariants = {
+  parent: {
+    initial: { opacity: 0 },
+    animate: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+        ease: EASE_OUT_EXPO
+      }
+    }
+  },
+  child: {
+    initial: { y: 10, opacity: 0 },
+    animate: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.4,
+        ease: EASE_OUT_EXPO
+      }
+    }
+  }
+}
+
+// ============================================================================
+// Page-Specific Animation Variants
+// ============================================================================
+
+// lib/animations/variants.ts
 export const introVariants = {
   overlay: {
     initial: { height: '100vh' },
@@ -53,13 +103,11 @@ export const introVariants = {
   container: {
     initial: {
       scale: 1.2,
-      y: '50vh',
-      height: '100vh'
+      y: '50%',
     },
     animate: {
       scale: 1,
       y: 0,
-      height: 'auto',
       transition: {
         scale: {
           delay: INTRO_SEQUENCE.container.start,
@@ -134,51 +182,26 @@ export const introVariants = {
     }
   },
   events: {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
+    initial: { opacity: 0, y: 100 },
+    animate: {
       opacity: 1,
       y: 0,
       transition: {
-        delay: INTRO_SEQUENCE.content.delay + INTRO_SEQUENCE.content.start,
+        delay: INTRO_SEQUENCE.content.start + .5,
         duration: INTRO_SEQUENCE.content.duration,
-        ease: EASE_OUT_EXPO
+        ease: EASE
       }
     }
   },
   footer: {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
+    initial: { opacity: 0, y: 100 },
+    animate: {
       opacity: 1,
       y: 0,
       transition: {
-        delay: INTRO_SEQUENCE.content.delay + INTRO_SEQUENCE.content.start,
+        delay: INTRO_SEQUENCE.content.start + .5,
         duration: INTRO_SEQUENCE.content.duration,
-        ease: EASE_OUT_EXPO
-      }
-    }
-  }
-}
-
-export const formStaggerVariants = {
-  parent: {
-    initial: { opacity: 0 },
-    animate: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-        ease: EASE_OUT_EXPO
-      }
-    }
-  },
-  child: {
-    initial: { y: 10, opacity: 0 },
-    animate: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.4,
-        ease: EASE_OUT_EXPO
+        ease: EASE
       }
     }
   }

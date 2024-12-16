@@ -1,13 +1,15 @@
 // features/registration/hooks/useRegistration.ts
 import { useState } from 'react'
-import { FormData, formRegistry } from '../types/forms'
+import { FormData, formRegistry, FormType } from '../types/forms'
 import { Database } from '@/types/generated-types'
 
 type Event = Database['public']['Tables']['events']['Row']
 
-function generateInitialState(eventType: keyof typeof formRegistry): FormData {
-  const fields = formRegistry[eventType].fields
-  return fields.reduce(
+function generateInitialState(eventType: FormType): FormData {
+  const config = formRegistry[eventType]
+  const allFields = [...config.baseFields, ...config.specificFields]
+  
+  return allFields.reduce(
     (acc, field) => ({
       ...acc,
       [field.name]:
@@ -19,8 +21,8 @@ function generateInitialState(eventType: keyof typeof formRegistry): FormData {
 
 export function useRegistration(event: Event) {
   const [step, setStep] = useState(1)
-  const [registrationData, setRegistrationData] = useState<FormData>(
-    generateInitialState(event.type)
+  const [registrationData, setRegistrationData] = useState<FormData>(() => 
+    generateInitialState(event.type as FormType)
   )
 
   const handleRegistrationComplete = (data: FormData) => {
