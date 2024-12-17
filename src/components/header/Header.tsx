@@ -32,25 +32,25 @@ export function Header() {
     <div className="relative w-full h-full">
       {/* Video Background with Circular Mask */}
 
-  <div className="absolute inset-0 w-full h-full [mask-image:linear-gradient(to_bottom,black_0%,transparent_100%)]">
+      <div className="absolute inset-0 w-full h-full [mask-image:linear-gradient(to_bottom,black_0%,transparent_100%)]">
         <div className="absolute inset-0 w-full h-full [mask-image:linear-gradient(to_left,black_0%,transparent_100%)]">
-        <motion.div
-  variants={introVariants.image}
-  initial="initial"
-  animate="animate"
-  className="absolute inset-0"
-  style={{ y }}
->
-      <Image
-        src="/banner-hero.png"
-        alt="Lowping"
-        fill
-        className="object-cover"
-        priority
+          <motion.div
+            variants={introVariants.image}
+            initial="initial"
+            animate="animate"
+            className="absolute inset-0"
+            style={{ y }}
+          >
+            <Image
+              src="/banner-hero.png"
+              alt="Lowping"
+              fill
+              className="object-cover"
+              priority
             />
-            </motion.div>
-    </div>
-  </div>
+          </motion.div>
+        </div>
+      </div>
 
       {/* Content */}
       <motion.div

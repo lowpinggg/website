@@ -1,12 +1,14 @@
 // app/page.tsx
 'use client'
+
+import { useState } from 'react'
 import { EventSection } from '@/features/events/components/EventSection'
 import { AnimatePresence, motion } from 'motion/react'
+
+import { introVariants } from '@/lib/animations/variants'
 import { useScrollLock } from '@/hooks/useScrollLock'
 import { Footer } from '@/components/Footer'
 import { Header } from '@/components/header/Header'
-import { introVariants } from '@/lib/animations/variants'
-import { useState } from 'react'
 
 function IntroOverlay({ onComplete }: { onComplete: () => void }) {
   window.scrollTo(0, 0)

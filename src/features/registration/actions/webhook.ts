@@ -1,8 +1,10 @@
 // features/registration/actions/webhook.ts
-import { supabase } from '@/lib/supabase'
-import { FormData } from '../types/forms'
-import Stripe from 'stripe'
 import crypto from 'crypto'
+import Stripe from 'stripe'
+
+import { supabase } from '@/lib/supabase'
+
+import { FormData } from '../types/forms'
 
 export async function handleWebhook(
   stripeEvent: Stripe.Event,
@@ -49,18 +51,16 @@ export async function handleWebhook(
       }
 
       // Create registration record
-      const { error } = await supabase
-        .from('event_registrations')
-        .insert({
-          id: crypto.randomUUID(),
-          event_id: eventId,
-          email: registrationData.email,
-          name: registrationData.name,
-          discord: registrationData.discord,
-          riot_id: registrationData.riot_id,
-          rank: registrationData.rank,
-          payment_id: paymentId
-        })
+      const { error } = await supabase.from('event_registrations').insert({
+        id: crypto.randomUUID(),
+        event_id: eventId,
+        email: registrationData.email,
+        name: registrationData.name,
+        discord: registrationData.discord,
+        riot_id: registrationData.riot_id,
+        rank: registrationData.rank,
+        payment_id: paymentId
+      })
 
       if (error) {
         console.error('Supabase error:', error)

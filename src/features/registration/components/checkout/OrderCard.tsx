@@ -16,17 +16,15 @@ type Props = {
 
 export function OrderCard({ event, registration, variant = 'preview' }: Props) {
   return (
-    <div className="w-full flex flex-col gap-4"
-    >
+    <div className="w-full flex flex-col gap-4">
       <Card className="space-y-4 bg-transparent border-none">
         {variant === 'confirmation' && (
           <motion.h2 className="text-xl font-semibold">
-              {"Confirmer l'inscription"}
+            {"Confirmer l'inscription"}
           </motion.h2>
         )}
 
-        <div className="space-y-4 font-light"
-        >
+        <div className="space-y-4 font-light">
           <div className="space-y-2">
             <h3 className="text-sm font-medium">Événement</h3>
             <p className="text-xs text-muted-foreground">{event.name}</p>
@@ -36,7 +34,7 @@ export function OrderCard({ event, registration, variant = 'preview' }: Props) {
           </div>
         </div>
 
-          <Separator className="bg-white/10" />
+        <Separator className="bg-white/10" />
 
         <div className="space-y-2">
           <h3 className="text-sm font-medium">Vos informations</h3>
@@ -49,7 +47,7 @@ export function OrderCard({ event, registration, variant = 'preview' }: Props) {
           </div>
         </div>
 
-          <Separator className="bg-white/10" />
+        <Separator className="bg-white/10" />
 
         <div className="space-y-1">
           <h3 className="text-sm font-medium">Total</h3>

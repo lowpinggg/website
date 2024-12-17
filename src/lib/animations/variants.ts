@@ -1,6 +1,6 @@
 // lib/animations/variants.ts
-import { EASE_OUT_EXPO, EASE } from './properties'
 import { INTRO_SEQUENCE } from './constants'
+import { EASE, EASE_OUT_EXPO } from './properties'
 
 // ============================================================================
 // Base Animation Variants
@@ -103,7 +103,7 @@ export const introVariants = {
   container: {
     initial: {
       scale: 1.2,
-      y: '50%',
+      y: '50%'
     },
     animate: {
       scale: 1,
@@ -139,11 +139,11 @@ export const introVariants = {
     animate: {
       y: 0,
       scale: 1,
-      opacity: 1, 
+      opacity: 1,
       filter: 'blur(0px)',
       zIndex: 0,
       transition: {
-        delay: INTRO_SEQUENCE.logo.start + .2,
+        delay: INTRO_SEQUENCE.logo.start + 0.2,
         duration: INTRO_SEQUENCE.logo.duration,
         ease: EASE_OUT_EXPO
       }
@@ -207,7 +207,7 @@ export const introVariants = {
       opacity: 1,
       y: 0,
       transition: {
-        delay: INTRO_SEQUENCE.content.start + .5,
+        delay: INTRO_SEQUENCE.content.start + 0.5,
         duration: INTRO_SEQUENCE.content.duration,
         ease: EASE
       }
@@ -219,7 +219,7 @@ export const introVariants = {
       opacity: 1,
       y: 0,
       transition: {
-        delay: INTRO_SEQUENCE.content.start + .5,
+        delay: INTRO_SEQUENCE.content.start + 0.5,
         duration: INTRO_SEQUENCE.content.duration,
         ease: EASE
       }

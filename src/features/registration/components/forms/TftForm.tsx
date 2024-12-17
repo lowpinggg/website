@@ -2,7 +2,7 @@
 'use client'
 
 import { BaseForm } from '@/features/registration/components/forms/BaseForm'
-import { TftFormData, formRegistry } from '@/features/registration/types/forms'
+import { formRegistry, TftFormData } from '@/features/registration/types/forms'
 
 type Props = {
   onComplete: (data: TftFormData) => void
@@ -11,7 +11,7 @@ type Props = {
 
 export function TftForm({ onComplete, defaultValues }: Props) {
   const config = formRegistry.tft
-  
+
   return (
     <BaseForm<TftFormData>
       baseFields={config.baseFields}

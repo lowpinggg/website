@@ -1,7 +1,8 @@
 // app/api/webhook/route.ts
-import { handleWebhook } from '@/features/registration/actions/webhook'
-import { NextRequest, NextResponse } from 'next/server'
 import { headers } from 'next/headers'
+import { NextRequest, NextResponse } from 'next/server'
+import { handleWebhook } from '@/features/registration/actions/webhook'
+
 import { stripe } from '@/lib/stripe/stripe-server'
 
 export async function POST(request: NextRequest) {
@@ -27,11 +28,11 @@ export async function POST(request: NextRequest) {
     const result = await handleWebhook(stripeEvent, body, signature)
     return NextResponse.json(result)
   } catch (error) {
-    console.error('Webhook error:', error instanceof Error ? error.message : 'Unknown Error')
-    return NextResponse.json(
-      { error: 'Webhook failed' },
-      { status: 400 }
+    console.error(
+      'Webhook error:',
+      error instanceof Error ? error.message : 'Unknown Error'
     )
+    return NextResponse.json({ error: 'Webhook failed' }, { status: 400 })
   }
 }
 

@@ -2,28 +2,30 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm, Path, DefaultValues } from 'react-hook-form'
 import { motion } from 'motion/react'
+import { DefaultValues, Path, useForm } from 'react-hook-form'
+import { z } from 'zod'
+
 import { formStaggerVariants } from '@/lib/animations/variants'
-import { BaseField, FormData } from '../../types/forms'
-import { 
+import { Button } from '@/components/ui/button'
+import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormLabel,
-  FormMessage 
+  FormMessage
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { 
+import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue 
+  SelectValue
 } from '@/components/ui/select'
-import { Button } from '@/components/ui/button'
-import { z } from 'zod'
+
+import { BaseField, FormData } from '../../types/forms'
 
 interface BaseFormProps<T extends FormData> {
   baseFields: readonly BaseField[]
@@ -95,18 +97,12 @@ export function BaseForm<T extends FormData>({
         className="space-y-6"
       >
         {/* Base Fields */}
-        <motion.div 
-          variants={formStaggerVariants.child}
-          className="space-y-4"
-        >
+        <motion.div variants={formStaggerVariants.child} className="space-y-4">
           {baseFields.map(renderField)}
         </motion.div>
 
         {/* Specific Fields */}
-        <motion.div 
-          variants={formStaggerVariants.child}
-          className="space-y-4"
-        >
+        <motion.div variants={formStaggerVariants.child} className="space-y-4">
           {specificFields.map(renderField)}
         </motion.div>
 

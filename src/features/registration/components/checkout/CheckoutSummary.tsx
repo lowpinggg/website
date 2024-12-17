@@ -1,11 +1,13 @@
 // features/registration/components/checkout/CheckoutSummary.tsx
-import { FormData, formRegistry, FormType, BaseField } from '../../types/forms'
+import { motion } from 'motion/react'
+
 import { Database } from '@/types/generated-types'
-import { useCheckout } from '../../hooks/useCheckout'
+import { formStaggerVariants } from '@/lib/animations/variants'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
-import { motion } from 'motion/react'
-import { formStaggerVariants } from '@/lib/animations/variants'
+
+import { useCheckout } from '../../hooks/useCheckout'
+import { BaseField, FormData, formRegistry, FormType } from '../../types/forms'
 
 type Props = {
   event: Database['public']['Tables']['events']['Row']
@@ -15,9 +17,12 @@ type Props = {
 
 export function CheckoutSummary({ event, formData, onBack }: Props) {
   const { isLoading, handleCheckout } = useCheckout()
-  
+
   const config = formRegistry[event.type as FormType]
-  const allFields = [...config.baseFields, ...config.specificFields] as readonly BaseField[]
+  const allFields = [
+    ...config.baseFields,
+    ...config.specificFields
+  ] as readonly BaseField[]
 
   return (
     <motion.div
@@ -46,9 +51,7 @@ export function CheckoutSummary({ event, formData, onBack }: Props) {
             return (
               <motion.p key={field.name} className="font-medium">
                 {field.label}:{' '}
-                <span className="font-light">
-                  {formData[key]}
-                </span>
+                <span className="font-light">{formData[key]}</span>
               </motion.p>
             )
           })}
@@ -84,8 +87,12 @@ export function CheckoutSummary({ event, formData, onBack }: Props) {
         </Button>
       </motion.div>
 
-      <motion.div variants={formStaggerVariants.child} className="text-xs text-muted-foreground">
-        En cliquant sur Payer maintenant, vous serez redirigé vers Stripe pour effectuer votre paiement de manière sécurisée.
+      <motion.div
+        variants={formStaggerVariants.child}
+        className="text-xs text-muted-foreground"
+      >
+        En cliquant sur Payer maintenant, vous serez redirigé vers Stripe pour
+        effectuer votre paiement de manière sécurisée.
       </motion.div>
     </motion.div>
   )

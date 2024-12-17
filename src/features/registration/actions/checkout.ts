@@ -1,7 +1,8 @@
 // features/registration/actions/checkout.ts
-import { FormData } from '../types/forms'
 import { Database } from '@/types/generated-types'
 import { stripe } from '@/lib/stripe/stripe-server'
+
+import { FormData } from '../types/forms'
 
 type Event = Database['public']['Tables']['events']['Row']
 

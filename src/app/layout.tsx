@@ -1,8 +1,9 @@
 // app/layout.tsx
 import type { Metadata } from 'next'
 import { Alexandria } from 'next/font/google'
-import { Cursor } from '@/components/Cursor'
+
 import { cn } from '@/lib/utils'
+import { Cursor } from '@/components/Cursor'
 
 import './globals.css'
 
@@ -39,13 +40,13 @@ export default function RootLayout({
           'max-w-page relative bg-background font-alexandria text-white antialiased dark',
           alexandria.variable
         )}
-      ><Cursor />
-          <SmoothScroll>
-            <div className="pattern-overlay z-50" />
-            <Providers>{children}</Providers>
-            <Toaster />
-          </SmoothScroll>
-      
+      >
+        <Cursor />
+        <SmoothScroll>
+          <div className="pattern-overlay z-50" />
+          <Providers>{children}</Providers>
+          <Toaster />
+        </SmoothScroll>
       </body>
     </html>
   )

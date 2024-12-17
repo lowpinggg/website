@@ -24,6 +24,6 @@ export const INTRO_SEQUENCE = {
   content: {
     start: 2,
     duration: 1,
-    delay: 1,
+    delay: 1
   }
 } as const

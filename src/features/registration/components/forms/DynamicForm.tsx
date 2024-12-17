@@ -1,7 +1,7 @@
 // features/registration/components/forms/DynamicForm.tsx
 'use client'
 
-import { FormType, FormData, formRegistry } from '../../types/forms'
+import { FormData, formRegistry, FormType } from '../../types/forms'
 
 type Props = {
   type: FormType
@@ -11,11 +11,6 @@ type Props = {
 
 export function DynamicForm({ type, onComplete, defaultValues }: Props) {
   const FormComponent = formRegistry[type].component
-  
-  return (
-    <FormComponent 
-      onComplete={onComplete}
-      defaultValues={defaultValues}
-    />
-  )
+
+  return <FormComponent onComplete={onComplete} defaultValues={defaultValues} />
 }

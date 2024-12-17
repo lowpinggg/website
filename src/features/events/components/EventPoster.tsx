@@ -172,9 +172,7 @@ export function EventPoster({
   )
 
   return (
-    <motion.div
-      className={cn('inline-block', containerClassName)}
-    >
+    <motion.div className={cn('inline-block', containerClassName)}>
       <Tilt className="w-full h-full" {...finalTiltProps}>
         {content}
       </Tilt>

@@ -2,6 +2,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+
 import type { Database } from '@/types/generated-types'
 
 import { getEvents } from '../api/getEvents'
@@ -47,10 +48,9 @@ export function EventSection() {
 
   return (
     <section className="flex flex-col gap-6 relative z-10 pb-24 px-4 sm:px-0 container mx-auto">
-      <h1
-        className="text-2xl sm:text-4xl font-bold text-foreground flex items-center gap-2"
-      >
-        Événements <span className='text-base font-light'>({events.length})</span>
+      <h1 className="text-2xl sm:text-4xl font-bold text-foreground flex items-center gap-2">
+        Événements{' '}
+        <span className="text-base font-light">({events.length})</span>
       </h1>
       <EventGrid events={events} />
     </section>

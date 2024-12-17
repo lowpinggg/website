@@ -1,15 +1,17 @@
 'use client'
+
 import { useEffect } from 'react'
 import Link from 'next/link'
 import { EventPoster } from '@/features/events/components/EventPoster'
 import { CalendarButton } from '@/features/registration/components/checkout/CalendarButton'
 import confetti from 'canvas-confetti'
 import { Check, X } from 'lucide-react'
+import { motion } from 'motion/react'
+
 import { Database } from '@/types/generated-types'
+import { formStaggerVariants, slideUpVariants } from '@/lib/animations/variants'
 import { Button } from '@/components/ui/button'
 import { Footer } from '@/components/Footer'
-import { motion } from 'motion/react'
-import { slideUpVariants, formStaggerVariants } from '@/lib/animations/variants'
 
 type Event = Database['public']['Tables']['events']['Row']
 type Registration = Database['public']['Tables']['event_registrations']['Row']
@@ -72,7 +74,7 @@ function SuccessSection({
   }
 
   return (
-    <motion.div 
+    <motion.div
       variants={formStaggerVariants.parent}
       initial="initial"
       animate="animate"
@@ -83,7 +85,7 @@ function SuccessSection({
       </motion.div>
 
       <div className="flex flex-col items-center md:items-start">
-        <motion.div 
+        <motion.div
           variants={formStaggerVariants.child}
           className="flex flex-col gap-6 justify-center items-center md:items-start"
         >
@@ -91,7 +93,7 @@ function SuccessSection({
             <Check size={40} className="text-green-500" />
           </motion.div>
 
-          <motion.div 
+          <motion.div
             variants={formStaggerVariants.child}
             className="flex flex-col gap-2 text-center md:text-left"
           >
@@ -104,7 +106,10 @@ function SuccessSection({
             )}
           </motion.div>
 
-          <motion.div variants={formStaggerVariants.child} className="flex gap-2">
+          <motion.div
+            variants={formStaggerVariants.child}
+            className="flex gap-2"
+          >
             <Link href="/">
               <Button>Retour</Button>
             </Link>
@@ -132,23 +137,29 @@ function CancelledSection({
   description: string
 }) {
   return (
-    <motion.div 
+    <motion.div
       variants={slideUpVariants}
       initial="initial"
       animate="animate"
       className="flex flex-col justify-center items-center flex-1"
     >
-      <motion.div 
+      <motion.div
         variants={formStaggerVariants.parent}
         className="flex-1 justify-center items-center flex flex-col gap-4"
       >
         <motion.div variants={formStaggerVariants.child}>
           <X size={50} className="text-red-500" />
         </motion.div>
-        <motion.h1 variants={formStaggerVariants.child} className="text-2xl font-bold">
+        <motion.h1
+          variants={formStaggerVariants.child}
+          className="text-2xl font-bold"
+        >
           {title}
         </motion.h1>
-        <motion.p variants={formStaggerVariants.child} className="text-muted-foreground text-sm">
+        <motion.p
+          variants={formStaggerVariants.child}
+          className="text-muted-foreground text-sm"
+        >
           {description}
         </motion.p>
         <motion.div variants={formStaggerVariants.child}>

@@ -1,9 +1,11 @@
 // features/registration/hooks/useCheckout.ts
 import { useState } from 'react'
-import { useToast } from '@/hooks/use-toast'
-import { getStripe } from '@/lib/stripe/stripe'
-import { FormData } from '../types/forms'
+
 import { Database } from '@/types/generated-types'
+import { getStripe } from '@/lib/stripe/stripe'
+import { useToast } from '@/hooks/use-toast'
+
+import { FormData } from '../types/forms'
 
 type Event = Database['public']['Tables']['events']['Row']
 
