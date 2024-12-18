@@ -17,7 +17,7 @@ export function HeaderContent() {
           compétitions bien structurées.
         </p>
 
-        <div className="flex flex-col sm:flex-row items-center gap-2">
+        <div className="flex flex-col xs:flex-row items-center gap-2">
           <Button
             size="lg"
             className="bg-[#5763ED] text-white hover:bg-[#3744DB] w-full sm:w-fit"

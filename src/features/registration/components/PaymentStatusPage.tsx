@@ -78,7 +78,7 @@ function SuccessSection({
       variants={formStaggerVariants.parent}
       initial="initial"
       animate="animate"
-      className="flex flex-col md:grid grid-cols-1 gap-6 md:gap-12 sm:grid-cols-2 justify-center items-center flex-1 px-4 sm:px-0 py-16 sm:py-4"
+      className="flex flex-col md:grid grid-cols-1 gap-6 sm:grid-cols-2 justify-center items-center flex-1 px-4 sm:px-0 py-16 sm:py-4"
     >
       <motion.div variants={slideUpVariants}>
         <EventPoster event={details.event} showCTA={false} size="md" />
@@ -87,7 +87,7 @@ function SuccessSection({
       <div className="flex flex-col items-center md:items-start">
         <motion.div
           variants={formStaggerVariants.child}
-          className="flex flex-col gap-6 justify-center items-center md:items-start"
+          className="flex flex-col gap-4 justify-center items-center md:items-start"
         >
           <motion.div variants={formStaggerVariants.child}>
             <Check size={40} className="text-green-500" />

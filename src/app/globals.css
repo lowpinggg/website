@@ -174,7 +174,7 @@
     @apply border-border;
   }
   body {
-    @apply relative bg-background font-alexandria text-foreground;
+    @apply relative bg-background font-alexandria text-foreground scroll-p-0;
   }
 }
 

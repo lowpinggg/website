@@ -17,7 +17,7 @@ export function Header() {
   const y = useTransform(
     scrollYProgress,
     [0, 1],
-    ['0%', '20%'],
+    ['0%', '50%'],
     { clamp: false } // This ensures smooth interpolation
   )
 
@@ -46,6 +46,12 @@ export function Header() {
               alt="Lowping"
               fill
               className="object-cover"
+              style={{
+                objectFit: 'cover',
+                objectPosition: 'center',
+                width: '100%',
+
+               } }
               priority
             />
           </motion.div>
@@ -55,7 +61,7 @@ export function Header() {
       {/* Content */}
       <motion.div
         {...introVariants.container}
-        className="origin-center sm:origin-left z-40 container px-4 mx-auto py-40 relative"
+        className="origin-center sm:origin-left z-40 container px-4 xs:px-0 mx-auto pt-32 pb-40 relative"
       >
         <div className="flex-col flex justify-center items-center sm:items-start">
           <div className="overflow-hidden">
