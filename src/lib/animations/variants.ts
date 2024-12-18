@@ -2,10 +2,6 @@
 import { INTRO_SEQUENCE } from './constants'
 import { EASE, EASE_OUT_EXPO } from './properties'
 
-// ============================================================================
-// Base Animation Variants
-// ============================================================================
-
 export const fadeInVariants = {
   initial: { opacity: 0 },
   animate: {
@@ -28,10 +24,6 @@ export const slideUpVariants = {
     }
   }
 }
-
-// ============================================================================
-// Stagger Animation Variants
-// ============================================================================
 
 export const staggerVariants = {
   parent: {
@@ -83,19 +75,14 @@ export const formStaggerVariants = {
   }
 }
 
-// ============================================================================
-// Page-Specific Animation Variants
-// ============================================================================
-
-// lib/animations/variants.ts
 export const introVariants = {
   overlay: {
     initial: { height: '100vh' },
     animate: {
       height: 0,
       transition: {
-        duration: INTRO_SEQUENCE.overlay.duration,
-        delay: INTRO_SEQUENCE.overlay.start,
+        duration: INTRO_SEQUENCE.timeline[2].duration,
+        delay: INTRO_SEQUENCE.getStartTime('overlay'),
         ease: EASE_OUT_EXPO
       }
     }
@@ -110,22 +97,15 @@ export const introVariants = {
       y: 0,
       transition: {
         scale: {
-          delay: INTRO_SEQUENCE.container.start,
-          duration: INTRO_SEQUENCE.container.duration,
+          delay: INTRO_SEQUENCE.getStartTime('container'),
+          duration: INTRO_SEQUENCE.timeline[3].duration,
           ease: EASE_OUT_EXPO
         },
         y: {
-          delay: INTRO_SEQUENCE.container.start,
-          duration: INTRO_SEQUENCE.container.duration,
+          delay: INTRO_SEQUENCE.getStartTime('container'),
+          duration: INTRO_SEQUENCE.timeline[3].duration,
           ease: EASE_OUT_EXPO
-        },
-        height: {
-          delay: INTRO_SEQUENCE.container.start,
-          duration: INTRO_SEQUENCE.container.duration,
-          ease: EASE_OUT_EXPO
-        },
-        delayChildren: INTRO_SEQUENCE.title.start,
-        staggerChildren: 0.2
+        }
       }
     }
   },
@@ -143,8 +123,8 @@ export const introVariants = {
       filter: 'blur(0px)',
       zIndex: 0,
       transition: {
-        delay: INTRO_SEQUENCE.logo.start + 0.2,
-        duration: INTRO_SEQUENCE.logo.duration,
+        delay: INTRO_SEQUENCE.getStartTime('logo') + 0.2,
+        duration: INTRO_SEQUENCE.timeline[4].duration,
         ease: EASE_OUT_EXPO
       }
     }
@@ -159,13 +139,13 @@ export const introVariants = {
       color: 'white',
       transition: {
         y: {
-          delay: INTRO_SEQUENCE.logo.start,
-          duration: INTRO_SEQUENCE.logo.duration,
+          delay: INTRO_SEQUENCE.getStartTime('logo'),
+          duration: INTRO_SEQUENCE.timeline[4].duration,
           ease: EASE_OUT_EXPO
         },
         color: {
-          delay: INTRO_SEQUENCE.container.start + 0.6,
-          duration: 0,
+          delay: INTRO_SEQUENCE.special.colorTransition.delay,
+          duration: INTRO_SEQUENCE.special.colorTransition.duration,
           ease: EASE_OUT_EXPO
         }
       }
@@ -178,15 +158,35 @@ export const introVariants = {
       color: 'white',
       transition: {
         y: {
-          delay: INTRO_SEQUENCE.title.start,
-          duration: INTRO_SEQUENCE.title.duration,
+          delay: INTRO_SEQUENCE.getStartTime('title'),
+          duration: INTRO_SEQUENCE.timeline[1].duration,
           ease: EASE_OUT_EXPO
         },
         color: {
-          delay: INTRO_SEQUENCE.container.start + 0.5,
-          duration: 0,
+          delay: INTRO_SEQUENCE.special.colorTransition.delay,
+          duration: INTRO_SEQUENCE.special.colorTransition.duration,
           ease: EASE_OUT_EXPO
         }
+      }
+    }
+  },
+  version: {
+    initial: { y: 100, opacity: 0 },
+    animate: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: INTRO_SEQUENCE.special.version.duration,
+        ease: EASE_OUT_EXPO
+      }
+    },
+    exit: {
+      y: 100,
+      opacity: 0,
+      transition: {
+        delay: INTRO_SEQUENCE.special.version.displayDuration,
+        duration: INTRO_SEQUENCE.special.version.duration,
+        ease: EASE_OUT_EXPO
       }
     }
   },
@@ -195,8 +195,8 @@ export const introVariants = {
     animate: {
       y: 0,
       transition: {
-        delay: INTRO_SEQUENCE.content.start,
-        duration: INTRO_SEQUENCE.content.duration,
+        delay: INTRO_SEQUENCE.getStartTime('content'),
+        duration: INTRO_SEQUENCE.timeline[5].duration,
         ease: EASE_OUT_EXPO
       }
     }
@@ -207,8 +207,8 @@ export const introVariants = {
       opacity: 1,
       y: 0,
       transition: {
-        delay: INTRO_SEQUENCE.content.start + 0.5,
-        duration: INTRO_SEQUENCE.content.duration,
+        delay: INTRO_SEQUENCE.getStartTime('content') + 0.5,
+        duration: INTRO_SEQUENCE.timeline[5].duration,
         ease: EASE
       }
     }
@@ -219,8 +219,8 @@ export const introVariants = {
       opacity: 1,
       y: 0,
       transition: {
-        delay: INTRO_SEQUENCE.content.start + 0.5,
-        duration: INTRO_SEQUENCE.content.duration,
+        delay: INTRO_SEQUENCE.getStartTime('content') + 0.5,
+        duration: INTRO_SEQUENCE.timeline[5].duration,
         ease: EASE
       }
     }
