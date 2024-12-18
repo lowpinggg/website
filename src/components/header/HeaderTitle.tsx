@@ -22,7 +22,7 @@ export function VersionBadge() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(false)
-    }, INTRO_TIMELINE.version.displayDuration * 1000)
+    }, INTRO_TIMELINE.version.delay * 1000)
     return () => clearTimeout(timer)
   }, [])
 

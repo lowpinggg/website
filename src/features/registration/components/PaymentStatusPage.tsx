@@ -74,26 +74,26 @@ function SuccessSection({
 
   return (
     <motion.div
-      variants={staggerVariants.form.parent}
+      variants={staggerVariants.list.parent}
       initial="initial"
       animate="animate"
       className="flex flex-col md:grid grid-cols-1 gap-6 sm:grid-cols-2 justify-center items-center flex-1 px-4 sm:px-0 py-16 sm:py-4"
     >
-      <motion.div variants={baseVariants.slide}>
+      <motion.div variants={baseVariants.slideUp}>
         <EventPoster event={details.event} showCTA={false} size="md" />
       </motion.div>
 
       <div className="flex flex-col items-center md:items-start">
         <motion.div
-          variants={staggerVariants.form.child}
+          variants={staggerVariants.list.child}
           className="flex flex-col gap-4 justify-center items-center md:items-start"
         >
-          <motion.div variants={staggerVariants.form.child}>
+          <motion.div variants={staggerVariants.list.child}>
             <Check size={40} className="text-green-500" />
           </motion.div>
 
           <motion.div
-            variants={staggerVariants.form.child}
+            variants={staggerVariants.list.child}
             className="flex flex-col gap-2 text-center md:text-left"
           >
             <h1 className="text-2xl font-bold">{title}</h1>
@@ -106,7 +106,7 @@ function SuccessSection({
           </motion.div>
 
           <motion.div
-            variants={staggerVariants.form.child}
+            variants={staggerVariants.list.child}
             className="flex gap-2"
           >
             <Link href="/">
@@ -120,7 +120,7 @@ function SuccessSection({
           </motion.div>
         </motion.div>
 
-        <motion.div variants={staggerVariants.form.child} className="mt-6">
+        <motion.div variants={staggerVariants.list.child} className="mt-6">
           <CalendarButton event={details.event} />
         </motion.div>
       </div>
@@ -137,31 +137,31 @@ function CancelledSection({
 }) {
   return (
     <motion.div
-      variants={baseVariants.slide}
+      variants={baseVariants.slideUp}
       initial="initial"
       animate="animate"
       className="flex flex-col justify-center items-center flex-1"
     >
       <motion.div
-        variants={staggerVariants.form.parent}
+        variants={staggerVariants.list.parent}
         className="flex-1 justify-center items-center flex flex-col gap-4"
       >
-        <motion.div variants={staggerVariants.form.child}>
+        <motion.div variants={staggerVariants.list.child}>
           <X size={50} className="text-red-500" />
         </motion.div>
         <motion.h1
-          variants={staggerVariants.form.child}
+          variants={staggerVariants.list.child}
           className="text-2xl font-bold"
         >
           {title}
         </motion.h1>
         <motion.p
-          variants={staggerVariants.form.child}
+          variants={staggerVariants.list.child}
           className="text-muted-foreground text-sm"
         >
           {description}
         </motion.p>
-        <motion.div variants={staggerVariants.form.child}>
+        <motion.div variants={staggerVariants.list.child}>
           <Button variant="outline">Retour</Button>
         </motion.div>
       </motion.div>

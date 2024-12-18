@@ -1,10 +1,10 @@
 // lib/animations/utils/createTransition.ts
-import { TRANSITIONS, Ease } from '../config/transitions'
+import { TRANSITIONS } from '../config/transitions'
 
 export const createTransition = (
-  duration: number,
+  duration: number = 1,
   delay: number = 0,
-  ease: Ease = TRANSITIONS.ease
+  ease = TRANSITIONS.ease
 ) => ({
   duration,
   delay,

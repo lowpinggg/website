@@ -25,7 +25,7 @@ export function RegistrationClient({ event }: Props) {
       <main>
         <div className="grid grid-cols-1 sm:grid-cols-2 min-h-[calc(100vh-64px)] items-start gap-6 sm:gap-12 xl:gap-0 py-4 md:py-12">
           <motion.div
-            variants={baseVariants.slide}
+            variants={baseVariants.slideUp}
             initial="initial"
             animate="animate"
             className="flex items-center justify-center sm:sticky top-10 pb-10"

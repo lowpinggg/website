@@ -18,7 +18,3 @@ export const TRANSITIONS = {
     medium: 0.2,
   }
 } as const
-
-export type Ease = typeof TRANSITIONS.ease
-export type Duration = typeof TRANSITIONS.duration[keyof typeof TRANSITIONS.duration]
-export type Delay = typeof TRANSITIONS.delay[keyof typeof TRANSITIONS.delay]

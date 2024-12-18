@@ -1,7 +1,8 @@
 // lib/animations/variants/intro.ts
-import { TRANSITIONS } from '../config/transitions'
 import { INTRO_TIMELINE } from '../config/timeline'
+import { TRANSITIONS } from '../config/transitions'
 import { createTransition } from '../utils/createTransition'
+import { baseVariants } from './base'
 
 export const introVariants = {
   overlay: {
@@ -48,8 +49,8 @@ export const introVariants = {
       filter: 'blur(0px)',
       zIndex: 0,
       transition: createTransition(
-        INTRO_TIMELINE.logo.duration,
-        INTRO_TIMELINE.logo.start + 0.2,
+        INTRO_TIMELINE.image.duration,
+        INTRO_TIMELINE.image.start,
         TRANSITIONS.easeOutExpo
       )
     }
@@ -114,10 +115,10 @@ export const introVariants = {
       opacity: 0,
       transition: createTransition(
         INTRO_TIMELINE.version.duration,
-        INTRO_TIMELINE.version.displayDuration,
+        INTRO_TIMELINE.version.delay,
         TRANSITIONS.easeOutExpo
       )
-    },
+    }
   },
   content: {
     initial: { y: 200 },
@@ -131,26 +132,24 @@ export const introVariants = {
     }
   },
   events: {
-    initial: { opacity: 0, y: 100 },
+    ...baseVariants.slideUp,
     animate: {
-      opacity: 1,
-      y: 0,
+      ...baseVariants.slideUp.animate,
       transition: createTransition(
-        INTRO_TIMELINE.content.duration,
-        INTRO_TIMELINE.content.start + 0.5,
-        TRANSITIONS.ease
+        undefined,
+        INTRO_TIMELINE.events.start,
+        undefined
       )
     }
   },
   footer: {
-    initial: { opacity: 0, y: 100 },
+    ...baseVariants.slideUp,
     animate: {
-      opacity: 1,
-      y: 0,
+      ...baseVariants.slideUp.animate,
       transition: createTransition(
-        INTRO_TIMELINE.content.duration,
-        INTRO_TIMELINE.content.start + 0.5,
-        TRANSITIONS.ease
+        undefined,
+        INTRO_TIMELINE.footer.start,
+        undefined
       )
     }
   }
