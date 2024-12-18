@@ -15,7 +15,11 @@ export const baseVariants = {
     animate: {
       y: 0,
       opacity: 1,
-      transition: createTransition(TRANSITIONS.duration.medium, undefined, TRANSITIONS.easeOutExpo)
+      transition: createTransition(
+        TRANSITIONS.duration.medium,
+        undefined,
+        TRANSITIONS.easeOutExpo
+      )
     }
   }
 }

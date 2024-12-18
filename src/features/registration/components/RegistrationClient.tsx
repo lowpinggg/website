@@ -1,13 +1,15 @@
 // features/registration/components/RegisterClient.tsx
 'use client'
 
-import { motion } from 'motion/react'
 import { EventPoster } from '@/features/events/components/EventPoster'
 import { useRegistration } from '@/features/registration/hooks/useRegistration'
+import { motion } from 'motion/react'
+
 import { Database } from '@/types/generated-types'
 import { baseVariants, staggerVariants } from '@/lib/animations'
 import { Badge } from '@/components/ui/badge'
 import { Footer } from '@/components/Footer'
+
 import { FormData } from '../types/forms'
 import { CheckoutSummary } from './checkout/CheckoutSummary'
 import { DynamicForm } from './forms/DynamicForm'

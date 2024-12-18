@@ -5,8 +5,6 @@ import { Full } from '@lowping/brand-kit'
 import { motion, useScroll, useTransform } from 'motion/react'
 
 import { introVariants } from '@/lib/animations'
-
-
 import { useScrollLock } from '@/hooks/useScrollLock'
 import { HeaderContent } from '@/components/header/HeaderContent'
 import { HeaderTitle } from '@/components/header/HeaderTitle'
@@ -51,9 +49,8 @@ export function Header() {
               style={{
                 objectFit: 'cover',
                 objectPosition: 'center',
-                width: '100%',
-
-               } }
+                width: '100%'
+              }}
               priority
             />
           </motion.div>

@@ -1,9 +1,11 @@
 // features/registration/components/checkout/CheckoutSummary.tsx
 import { motion } from 'motion/react'
+
 import { Database } from '@/types/generated-types'
 import { staggerVariants } from '@/lib/animations'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
+
 import { useCheckout } from '../../hooks/useCheckout'
 import { BaseField, FormData, formRegistry, FormType } from '../../types/forms'
 

@@ -1,9 +1,11 @@
 // features/registration/components/forms/BaseForm.tsx
 'use client'
+
 import { zodResolver } from '@hookform/resolvers/zod'
 import { motion } from 'motion/react'
 import { DefaultValues, Path, useForm } from 'react-hook-form'
 import { z } from 'zod'
+
 import { staggerVariants } from '@/lib/animations'
 import { Button } from '@/components/ui/button'
 import {
@@ -22,6 +24,7 @@ import {
   SelectTrigger,
   SelectValue
 } from '@/components/ui/select'
+
 import { BaseField, FormData } from '../../types/forms'
 
 interface BaseFormProps<T extends FormData> {

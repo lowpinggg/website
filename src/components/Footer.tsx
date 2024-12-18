@@ -3,6 +3,7 @@
 
 import Link from 'next/link'
 import { Full } from '@lowping/brand-kit'
+
 import { Badge } from '@/components/ui/badge'
 
 export function Footer() {

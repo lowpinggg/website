@@ -1,9 +1,11 @@
 // components/header/HeaderTitle.tsx
 'use client'
+
+import { useEffect, useState } from 'react'
 import { motion } from 'motion/react'
 import { useScramble } from 'use-scramble'
-import { introVariants, INTRO_TIMELINE } from '@/lib/animations'
-import { useEffect, useState } from 'react'
+
+import { INTRO_TIMELINE, introVariants } from '@/lib/animations'
 
 export function VersionBadge() {
   const { ref } = useScramble({
@@ -16,9 +18,9 @@ export function VersionBadge() {
     chance: 0.8,
     ignore: [' ']
   })
-  
+
   const [isVisible, setIsVisible] = useState(true)
-  
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(false)
@@ -32,7 +34,7 @@ export function VersionBadge() {
         ref={ref}
         variants={introVariants.version}
         initial="initial"
-        animate={isVisible ? "animate" : "exit"}
+        animate={isVisible ? 'animate' : 'exit'}
         className="text-sm text-black font-bold"
       />
     </div>
@@ -52,7 +54,9 @@ export function HeaderTitle() {
           Portail Événementiel
         </motion.h1>
       </div>
-      <div><VersionBadge /></div>
+      <div>
+        <VersionBadge />
+      </div>
     </>
   )
 }

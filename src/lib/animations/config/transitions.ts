@@ -5,16 +5,16 @@ export const TRANSITIONS = {
   duration: {
     short: 0.4,
     medium: 0.6,
-    long: 1.0,
+    long: 1.0
   },
   delay: {
     none: 0,
     short: 0.2,
     medium: 0.5,
-    long: 1,
+    long: 1
   },
   stagger: {
     short: 0.1,
-    medium: 0.2,
+    medium: 0.2
   }
 } as const

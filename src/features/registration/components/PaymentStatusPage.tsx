@@ -7,6 +7,7 @@ import { CalendarButton } from '@/features/registration/components/checkout/Cale
 import confetti from 'canvas-confetti'
 import { Check, X } from 'lucide-react'
 import { motion } from 'motion/react'
+
 import { Database } from '@/types/generated-types'
 import { baseVariants, staggerVariants } from '@/lib/animations'
 import { Button } from '@/components/ui/button'
