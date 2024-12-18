@@ -1,10 +1,7 @@
 // features/events/components/EventGrid.tsx
 'use client'
 
-import { motion } from 'motion/react'
-
 import type { Database } from '@/types/generated-types'
-import { animations } from '@/lib/animation'
 
 import { EventPoster } from './EventPoster'
 
@@ -16,27 +13,23 @@ interface EventGridProps {
 
 export function EventGrid({ events }: EventGridProps) {
   return (
-    <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-      {events.map((event, index) => (
-        <motion.div
-          key={event.id}
-          variants={animations.fadeUp}
-          initial="hidden"
-          animate="visible"
-          custom={0.4 * index}
-          className="w-full mx-auto"
-        >
+    <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-4">
+      {events.map((event) => (
+        <div key={event.id} className="w-full mx-auto">
           <EventPoster
             event={event}
             size="responsive"
+            showCTA={!!events.find((e) => e.id === event.id)}
             tiltProps={{
               tiltMaxAngleX: 8,
               tiltMaxAngleY: 8,
-              glareMaxOpacity: 0.2,
-              transitionSpeed: 400
+              glareMaxOpacity: !!events.find((e) => e.id === event.id)
+                ? 0.3
+                : 0.1,
+              transitionSpeed: 800
             }}
           />
-        </motion.div>
+        </div>
       ))}
     </div>
   )

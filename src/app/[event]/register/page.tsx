@@ -1,6 +1,6 @@
 // app/[event]/register/page.tsx
 import { notFound } from 'next/navigation'
-import { RegisterClient } from '@/features/registration/components/RegisterClient'
+import { RegistrationClient } from '@/features/registration/components/RegistrationClient'
 import { formRegistry } from '@/features/registration/types/forms'
 
 import { Database } from '@/types/generated-types'
@@ -15,7 +15,7 @@ type Props = {
   params: Promise<{ event: string }>
 }
 
-export default async function RegisterPage({ params }: Props) {
+export default async function RegistrationPage({ params }: Props) {
   const e = await params
   if (!e) {
     return notFound()
@@ -37,7 +37,7 @@ export default async function RegisterPage({ params }: Props) {
     return notFound()
   }
 
-  return <RegisterClient event={event as Event} />
+  return <RegistrationClient event={event as Event} />
 }
 
 export async function generateStaticParams() {
