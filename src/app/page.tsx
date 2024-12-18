@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { EventSection } from '@/features/events/components/EventSection'
 import { AnimatePresence, motion } from 'motion/react'
 
-import { introVariants } from '@/lib/animations/variants'
+import { introVariants } from '@/lib/animations'
 import { useScrollLock } from '@/hooks/useScrollLock'
 import { Footer } from '@/components/Footer'
 import { Header } from '@/components/header/Header'

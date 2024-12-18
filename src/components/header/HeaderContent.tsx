@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { Globe } from 'lucide-react'
 import { motion } from 'motion/react'
 
-import { introVariants } from '@/lib/animations/variants'
+import { introVariants } from '@/lib/animations'
 import { Button } from '@/components/ui/button'
 import { DiscordLogo } from '@/components/icons/DiscordLogo'
 

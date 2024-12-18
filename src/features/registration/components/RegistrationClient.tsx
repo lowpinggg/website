@@ -1,15 +1,13 @@
 // features/registration/components/RegisterClient.tsx
 'use client'
 
+import { motion } from 'motion/react'
 import { EventPoster } from '@/features/events/components/EventPoster'
 import { useRegistration } from '@/features/registration/hooks/useRegistration'
-import { motion } from 'motion/react'
-
 import { Database } from '@/types/generated-types'
-import { slideUpVariants, staggerVariants } from '@/lib/animations/variants'
+import { baseVariants, staggerVariants } from '@/lib/animations'
 import { Badge } from '@/components/ui/badge'
 import { Footer } from '@/components/Footer'
-
 import { FormData } from '../types/forms'
 import { CheckoutSummary } from './checkout/CheckoutSummary'
 import { DynamicForm } from './forms/DynamicForm'
@@ -27,7 +25,7 @@ export function RegistrationClient({ event }: Props) {
       <main>
         <div className="grid grid-cols-1 sm:grid-cols-2 min-h-[calc(100vh-64px)] items-start gap-6 sm:gap-12 xl:gap-0 py-4 md:py-12">
           <motion.div
-            variants={slideUpVariants}
+            variants={baseVariants.slide}
             initial="initial"
             animate="animate"
             className="flex items-center justify-center sm:sticky top-10 pb-10"
@@ -67,16 +65,16 @@ function ContentSection({
 }) {
   return (
     <motion.div
-      variants={staggerVariants.parent}
+      variants={staggerVariants.list.parent}
       initial="initial"
       animate="animate"
       className="w-full sm:max-w-xl md:max-w-xl"
     >
       <motion.div
-        variants={staggerVariants.child}
+        variants={staggerVariants.list.child}
         className="flex flex-col w-full space-y-6"
       >
-        <motion.div variants={staggerVariants.child}>
+        <motion.div variants={staggerVariants.list.child}>
           <Badge className="font-medium">{event.game}</Badge>
           <h1 className="text-2xl lg:text-3xl font-bold text-white mt-4 mb-1">
             {event.name}
@@ -90,7 +88,7 @@ function ContentSection({
 
         {step === 1 && (
           <motion.div
-            variants={staggerVariants.child}
+            variants={staggerVariants.list.child}
             className="grid grid-cols-2 gap-4 p-4 bg-black/30 rounded-lg border border-white/10"
           >
             <div className="space-y-1">
@@ -109,7 +107,7 @@ function ContentSection({
         )}
 
         <motion.div
-          variants={staggerVariants.child}
+          variants={staggerVariants.list.child}
           className="bg-black/20 rounded-lg border border-white/10 p-6"
         >
           {step === 1 ? (
@@ -128,7 +126,7 @@ function ContentSection({
         </motion.div>
 
         <motion.div
-          variants={staggerVariants.child}
+          variants={staggerVariants.list.child}
           className="text-xs text-muted-foreground text-center"
         >
           <p>By registering, you agree to our terms and conditions.</p>

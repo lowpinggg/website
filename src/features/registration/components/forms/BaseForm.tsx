@@ -1,12 +1,10 @@
 // features/registration/components/forms/BaseForm.tsx
 'use client'
-
 import { zodResolver } from '@hookform/resolvers/zod'
 import { motion } from 'motion/react'
 import { DefaultValues, Path, useForm } from 'react-hook-form'
 import { z } from 'zod'
-
-import { formStaggerVariants } from '@/lib/animations/variants'
+import { staggerVariants } from '@/lib/animations'
 import { Button } from '@/components/ui/button'
 import {
   Form,
@@ -24,7 +22,6 @@ import {
   SelectTrigger,
   SelectValue
 } from '@/components/ui/select'
-
 import { BaseField, FormData } from '../../types/forms'
 
 interface BaseFormProps<T extends FormData> {
@@ -48,7 +45,7 @@ export function BaseForm<T extends FormData>({
   })
 
   const renderField = (field: BaseField) => (
-    <motion.div variants={formStaggerVariants.child} key={field.name}>
+    <motion.div variants={staggerVariants.form.child} key={field.name}>
       <FormField
         control={form.control}
         name={field.name as Path<T>}
@@ -90,23 +87,21 @@ export function BaseForm<T extends FormData>({
   return (
     <Form {...form}>
       <motion.form
-        variants={formStaggerVariants.parent}
+        variants={staggerVariants.form.parent}
         initial="initial"
         animate="animate"
         onSubmit={form.handleSubmit(onComplete)}
         className="space-y-6"
       >
-        {/* Base Fields */}
-        <motion.div variants={formStaggerVariants.child} className="space-y-4">
+        <motion.div variants={staggerVariants.form.child} className="space-y-4">
           {baseFields.map(renderField)}
         </motion.div>
 
-        {/* Specific Fields */}
-        <motion.div variants={formStaggerVariants.child} className="space-y-4">
+        <motion.div variants={staggerVariants.form.child} className="space-y-4">
           {specificFields.map(renderField)}
         </motion.div>
 
-        <motion.div variants={formStaggerVariants.child}>
+        <motion.div variants={staggerVariants.form.child}>
           <Button type="submit" className="w-full">
             {"S'inscrire"}
           </Button>

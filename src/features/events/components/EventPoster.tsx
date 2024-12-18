@@ -9,7 +9,7 @@ import { motion } from 'motion/react'
 import Tilt from 'react-parallax-tilt'
 
 import type { Database } from '@/types/generated-types'
-import { EASE } from '@/lib/animations/properties'
+import { TRANSITIONS } from '@/lib/animations'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 
@@ -42,7 +42,7 @@ interface EventPosterProps {
   showCTA?: boolean
 }
 
-const HOVER_TRANSITION = { ease: EASE, duration: 0.8 }
+const HOVER_TRANSITION = { ease: TRANSITIONS.ease, duration: 0.8 }
 
 const defaultTiltProps: TiltProps = {
   perspective: 1000,

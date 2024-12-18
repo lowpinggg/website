@@ -4,7 +4,9 @@ import Image from 'next/image'
 import { Full } from '@lowping/brand-kit'
 import { motion, useScroll, useTransform } from 'motion/react'
 
-import { introVariants } from '@/lib/animations/variants'
+import { introVariants } from '@/lib/animations'
+
+
 import { useScrollLock } from '@/hooks/useScrollLock'
 import { HeaderContent } from '@/components/header/HeaderContent'
 import { HeaderTitle } from '@/components/header/HeaderTitle'

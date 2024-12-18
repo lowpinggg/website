@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { Full } from '@lowping/brand-kit'
 import { motion } from 'motion/react'
 
-import { EASE } from '@/lib/animations/properties'
+import { TRANSITIONS } from '@/lib/animations'
 import { Badge } from '@/components/ui/badge'
 
 export function Footer() {
@@ -19,7 +19,7 @@ export function Footer() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 3, duration: 2, ease: EASE }}
+            transition={{ delay: 3, duration: 2, ease: TRANSITIONS.ease }}
           >
             <Badge variant={'secondary'} className="font-normal">
               alpha 0.01

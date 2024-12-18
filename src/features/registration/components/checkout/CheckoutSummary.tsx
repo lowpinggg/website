@@ -1,11 +1,9 @@
 // features/registration/components/checkout/CheckoutSummary.tsx
 import { motion } from 'motion/react'
-
 import { Database } from '@/types/generated-types'
-import { formStaggerVariants } from '@/lib/animations/variants'
+import { staggerVariants } from '@/lib/animations'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
-
 import { useCheckout } from '../../hooks/useCheckout'
 import { BaseField, FormData, formRegistry, FormType } from '../../types/forms'
 
@@ -17,7 +15,6 @@ type Props = {
 
 export function CheckoutSummary({ event, formData, onBack }: Props) {
   const { isLoading, handleCheckout } = useCheckout()
-
   const config = formRegistry[event.type as FormType]
   const allFields = [
     ...config.baseFields,
@@ -27,11 +24,11 @@ export function CheckoutSummary({ event, formData, onBack }: Props) {
   return (
     <motion.div
       className="space-y-6"
-      variants={formStaggerVariants.parent}
+      variants={staggerVariants.form.parent}
       initial="initial"
       animate="animate"
     >
-      <motion.div variants={formStaggerVariants.child} className="space-y-2">
+      <motion.div variants={staggerVariants.form.child} className="space-y-2">
         <h3 className="text-sm font-medium">Événement</h3>
         <p className="text-xs text-muted-foreground">{event.name}</p>
         <p className="text-xs text-muted-foreground">
@@ -39,11 +36,11 @@ export function CheckoutSummary({ event, formData, onBack }: Props) {
         </p>
       </motion.div>
 
-      <motion.div variants={formStaggerVariants.child}>
+      <motion.div variants={staggerVariants.form.child}>
         <Separator />
       </motion.div>
 
-      <motion.div variants={formStaggerVariants.child} className="space-y-2">
+      <motion.div variants={staggerVariants.form.child} className="space-y-2">
         <h3 className="text-sm font-medium">Vos informations</h3>
         <div className="text-xs space-y-1">
           {allFields.map((field: BaseField) => {
@@ -58,18 +55,18 @@ export function CheckoutSummary({ event, formData, onBack }: Props) {
         </div>
       </motion.div>
 
-      <motion.div variants={formStaggerVariants.child}>
+      <motion.div variants={staggerVariants.form.child}>
         <Separator />
       </motion.div>
 
-      <motion.div variants={formStaggerVariants.child} className="space-y-1">
+      <motion.div variants={staggerVariants.form.child} className="space-y-1">
         <h3 className="text-sm font-medium">Total</h3>
         <p className="text-2xl font-bold">
           ${(event.price / 100).toFixed(2)} CAD
         </p>
       </motion.div>
 
-      <motion.div variants={formStaggerVariants.child} className="flex gap-4">
+      <motion.div variants={staggerVariants.form.child} className="flex gap-4">
         <Button
           variant="outline"
           onClick={onBack}
@@ -88,7 +85,7 @@ export function CheckoutSummary({ event, formData, onBack }: Props) {
       </motion.div>
 
       <motion.div
-        variants={formStaggerVariants.child}
+        variants={staggerVariants.form.child}
         className="text-xs text-muted-foreground"
       >
         En cliquant sur Payer maintenant, vous serez redirigé vers Stripe pour

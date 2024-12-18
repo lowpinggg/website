@@ -1,14 +1,10 @@
 // components/header/HeaderTitle.tsx
-'use cient'
-
+'use client'
 import { motion } from 'motion/react'
 import { useScramble } from 'use-scramble'
-import { introVariants } from '@/lib/animations/variants'
+import { introVariants, INTRO_TIMELINE } from '@/lib/animations'
 import { useEffect, useState } from 'react'
-import { INTRO_SEQUENCE } from '@/lib/animations/constants'
 
-// In the VersionBadge component:
-// components/header/HeaderTitle.tsx
 export function VersionBadge() {
   const { ref } = useScramble({
     text: 'Alpha 0.0.1',
@@ -20,14 +16,13 @@ export function VersionBadge() {
     chance: 0.8,
     ignore: [' ']
   })
-
+  
   const [isVisible, setIsVisible] = useState(true)
-
+  
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(false)
-    }, INTRO_SEQUENCE.special.version.displayDuration * 1000)
-
+    }, INTRO_TIMELINE.version.displayDuration * 1000)
     return () => clearTimeout(timer)
   }, [])
 
@@ -43,19 +38,21 @@ export function VersionBadge() {
     </div>
   )
 }
+
 export function HeaderTitle() {
   return (
     <>
-    <div className="overflow-hidden relative h-fit">
-      <motion.h1
-        {...introVariants.title}
-        className="font-bold leading-auto md:leading-[62px] text-center text-4xl sm:text-left sm:text-5xl md:text-6xl"
-      >
-        Portail Événementiel
-      </motion.h1>
-      
-    </div>
+      <div className="overflow-hidden relative h-fit">
+        <motion.h1
+          variants={introVariants.title}
+          initial="initial"
+          animate="animate"
+          className="font-bold leading-auto md:leading-[62px] text-center text-4xl sm:text-left sm:text-5xl md:text-6xl"
+        >
+          Portail Événementiel
+        </motion.h1>
+      </div>
       <div><VersionBadge /></div>
-      </>
+    </>
   )
 }
