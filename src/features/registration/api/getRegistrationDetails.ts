@@ -19,7 +19,7 @@ export async function getRegistrationDetails(
     const session = await stripe.checkout.sessions.retrieve(sessionId)
 
     const { data: event } = await getEventById(
-      session.metadata?.eventId as string
+      session.metadata?.event_id as string
     )
     if (!event) return null
 

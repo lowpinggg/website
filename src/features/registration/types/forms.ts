@@ -1,10 +1,14 @@
 // features/registration/types/forms.ts
-import { SummonerForm } from '@/features/registration/components/forms/SummonerForm'
-import { TftForm } from '@/features/registration/components/forms/TftForm'
+import { schemas } from '@/features/registration/schemas'
 
 import { Database } from '@/types/generated-types'
 
-// Base types
+import { TftForm } from '../components/forms/TftForm'
+
+// ============================================================================
+// Base Types
+// ============================================================================
+
 export type FormType = Database['public']['Enums']['event_type']
 
 export type BaseField = {
@@ -12,38 +16,47 @@ export type BaseField = {
   label: string
   type: 'text' | 'email' | 'select'
   placeholder: string
-  options?: string[]
+  options?: readonly string[]
   required?: boolean
 }
 
-// Form specific types
-export type TftFormData = {
+// ============================================================================
+// Form Data Interfaces
+// ============================================================================
+
+export interface BaseFormData {
   name: string
   email: string
+}
+
+export interface TftFormData extends BaseFormData {
   discord: string
   riot_id: string
   rank: string
 }
 
-export type SummonerFormData = {
-  name: string
-  email: string
-  discord: string
-  riot_id: string
-  rank: string
-}
+export type FormData = TftFormData
 
-export type FormData = TftFormData | SummonerFormData
+// ============================================================================
+// Field Configurations
+// ============================================================================
 
-// Form fields with explicit typing
-export const tftFields: readonly BaseField[] = [
-  { name: 'name', label: 'Nom', type: 'text', placeholder: 'Votre nom' },
+export const baseFields: readonly BaseField[] = [
+  {
+    name: 'name',
+    label: 'Nom',
+    type: 'text',
+    placeholder: 'Votre nom'
+  },
   {
     name: 'email',
     label: 'Email',
     type: 'email',
     placeholder: 'votre@email.com'
-  },
+  }
+] as const
+
+export const tftSpecificFields: readonly BaseField[] = [
   {
     name: 'discord',
     label: 'Discord',
@@ -61,64 +74,27 @@ export const tftFields: readonly BaseField[] = [
     label: 'Rang actuel',
     type: 'select',
     placeholder: 'Sélectionnez votre rang',
-    options: [
-      'IRON',
-      'BRONZE',
-      'SILVER',
-      'GOLD',
-      'PLATINUM',
-      'DIAMOND'
-    ] as const
+    options: ['IRON', 'BRONZE', 'SILVER', 'GOLD', 'PLATINUM', 'DIAMOND']
   }
 ] as const
 
-export const summonerFields: readonly BaseField[] = [
-  { name: 'name', label: 'Nom', type: 'text', placeholder: 'Votre nom' },
-  {
-    name: 'email',
-    label: 'Email',
-    type: 'email',
-    placeholder: 'votre@email.com'
-  },
-  {
-    name: 'discord',
-    label: 'Discord',
-    type: 'text',
-    placeholder: 'Votre#0000'
-  },
-  {
-    name: 'riot_id',
-    label: 'Riot ID',
-    type: 'text',
-    placeholder: 'Pseudo#TAG'
-  },
-  {
-    name: 'rank',
-    label: 'Rang actuel',
-    type: 'select',
-    placeholder: 'Sélectionnez votre rang',
-    options: [
-      'IRON',
-      'BRONZE',
-      'SILVER',
-      'GOLD',
-      'PLATINUM',
-      'DIAMOND'
-    ] as const
-  }
-] as const
+// ============================================================================
+// Form Registry
+// ============================================================================
 
-// Registry with proper typing
+/**
+ * Central registry for all form configurations.
+ * Each entry contains:
+ * - component: The React component for the form
+ * - baseFields: Common fields shared across all forms
+ * - specificFields: Fields specific to this form type
+ * - schema: Zod validation schema
+ */
 export const formRegistry = {
   tft: {
     component: TftForm,
-    fields: tftFields
-  },
-  summoner: {
-    component: SummonerForm,
-    fields: summonerFields
+    baseFields: baseFields,
+    specificFields: tftSpecificFields,
+    schema: schemas.tft
   }
 } as const
-
-// Type helpers for components that need them
-export type FormFields = typeof tftFields | typeof summonerFields

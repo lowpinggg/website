@@ -9,7 +9,7 @@ import { motion } from 'motion/react'
 import Tilt from 'react-parallax-tilt'
 
 import type { Database } from '@/types/generated-types'
-import { animations, EASE } from '@/lib/animation'
+import { TRANSITIONS } from '@/lib/animations'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 
@@ -42,7 +42,7 @@ interface EventPosterProps {
   showCTA?: boolean
 }
 
-const HOVER_TRANSITION = { ease: EASE, duration: 0.8 }
+const HOVER_TRANSITION = { ease: TRANSITIONS.ease, duration: 0.8 }
 
 const defaultTiltProps: TiltProps = {
   perspective: 1000,
@@ -60,8 +60,8 @@ const defaultTiltProps: TiltProps = {
 
 const sizeDimensions = {
   sm: { width: 'w-full max-w-[200px]', height: 'aspect-[604/854]' },
-  md: { width: 'w-full max-w-[300px]', height: 'aspect-[604/854]' },
-  lg: { width: 'w-full max-w-[400px]', height: 'aspect-[604/854]' },
+  md: { width: 'w-full max-w-[340px]', height: 'aspect-[604/854]' },
+  lg: { width: 'w-full sm:max-w-[460px]', height: 'aspect-[604/854]' },
   xl: { width: 'w-full max-w-[700px]', height: 'aspect-[604/854]' },
   full: { width: 'w-full', height: 'aspect-[604/854]' },
   custom: { width: 'w-auto', height: 'h-auto' }
@@ -108,7 +108,7 @@ export function EventPoster({
 
   const cardContent = (
     <motion.div
-      className="relative"
+      className="relative rounded-lg overflow-hidden"
       initial="initial"
       whileHover={showCTA ? 'hover' : undefined}
       style={{ overflow: 'hidden', width: '100%', height: '100%' }}
@@ -131,7 +131,8 @@ export function EventPoster({
             alt={event.name}
             width={604}
             height={854}
-            className="object-cover rounded-lg w-full h-full"
+            quality={80}
+            className="object-cover rounded-none w-full h-full"
             sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
             priority
           />
@@ -149,7 +150,7 @@ export function EventPoster({
           }}
           transition={HOVER_TRANSITION}
         >
-          <Button className="w-full h-12 flex items-center justify-center gap-1 rounded-b-lg">
+          <Button className="w-full h-12 flex items-center justify-center gap-1 rounded-none">
             <span>Inscription</span>
             <ArrowRight size={16} />
           </Button>
@@ -171,12 +172,7 @@ export function EventPoster({
   )
 
   return (
-    <motion.div
-      variants={animations.fadeUp}
-      initial="hidden"
-      animate="visible"
-      className={cn('inline-block', containerClassName)}
-    >
+    <motion.div className={cn('inline-block', containerClassName)}>
       <Tilt className="w-full h-full" {...finalTiltProps}>
         {content}
       </Tilt>

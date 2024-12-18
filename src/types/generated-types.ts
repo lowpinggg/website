@@ -45,6 +45,7 @@ export type Database = {
           payment_id: string
           rank: string
           riot_id: string
+          stripe: Json | null
         }
         Insert: {
           created_at?: string
@@ -56,6 +57,7 @@ export type Database = {
           payment_id: string
           rank: string
           riot_id: string
+          stripe?: Json | null
         }
         Update: {
           created_at?: string
@@ -67,6 +69,7 @@ export type Database = {
           payment_id?: string
           rank?: string
           riot_id?: string
+          stripe?: Json | null
         }
         Relationships: [
           {
@@ -97,7 +100,7 @@ export type Database = {
           name: string
           poster_url?: string
           price: number
-          type?: Database['public']['Enums']['event_type']
+          type: Database['public']['Enums']['event_type']
         }
         Update: {
           created_at?: string
@@ -119,7 +122,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      event_type: 'tft' | 'summoner'
+      event_type: 'tft'
     }
     CompositeTypes: {
       [_ in never]: never

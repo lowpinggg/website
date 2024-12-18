@@ -1,100 +1,62 @@
-// HomeClient.tsx
+// app/page.tsx
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { EventSection } from '@/features/events/components/EventSection'
 import { AnimatePresence, motion } from 'motion/react'
 
-import { animations, EASE } from '@/lib/animation'
+import { introVariants } from '@/lib/animations'
 import { useScrollLock } from '@/hooks/useScrollLock'
 import { Footer } from '@/components/Footer'
-import { Header } from '@/components/Header'
+import { Header } from '@/components/header/Header'
 
-function IntroOverlay() {
+function IntroOverlay({ onComplete }: { onComplete: () => void }) {
+  window.scrollTo(0, 0)
   return (
     <motion.div
-      className="fixed inset-0 mix-blend-screen z-60"
+      className="fixed inset-0 z-30" // Middle layer
       style={{ backgroundColor: '#BFF603' }}
-      initial={{ height: '100vh' }}
-      animate={{ height: '100vh' }}
-      exit={{
-        height: 0,
-        transition: {
-          duration: 1,
-          ease: EASE
-        }
-      }}
+      variants={introVariants.overlay}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      onAnimationComplete={onComplete}
     />
   )
 }
 
-export default function HomeClient() {
-  const [introComplete, setIntroComplete] = useState(false)
+export default function Page() {
   const [isLocked, setIsLocked] = useState(true)
-  const [showOverlay, setShowOverlay] = useState(true)
-
   useScrollLock(isLocked)
-
-  useEffect(() => {
-    if (introComplete) {
-      const timer = setTimeout(() => {
-        setIsLocked(false)
-      }, 1000)
-      return () => clearTimeout(timer)
-    }
-  }, [introComplete])
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowOverlay(false)
-    }, 1500)
-    return () => clearTimeout(timer)
-  }, [])
-
   return (
     <>
-      <AnimatePresence>{showOverlay && <IntroOverlay />}</AnimatePresence>
-      <main className="min-h-screen  mx-auto container px-4">
+      <AnimatePresence mode="wait">
+        <IntroOverlay key="overlay" onComplete={() => setIsLocked(false)} />
+      </AnimatePresence>
+      <main className="min-h-screen mx-auto">
         <motion.div
-          variants={animations.stagger.parent}
+          className="relative z-30" // Top layer
           initial="hidden"
           animate="visible"
-          style={{
-            height: introComplete ? 'auto' : '100vh'
-          }}
-          transition={{
-            height: {
-              duration: 1,
-              delay: 2,
-              ease: [0.19, 1, 0.22, 1]
-            }
-          }}
+          variants={introVariants.container}
         >
-          <Header
-            onIntroComplete={() => setIntroComplete(true)}
-            showOverlay={showOverlay}
-          />
+          <Header />
+          <motion.div
+            variants={introVariants.events}
+            initial="initial"
+            animate="animate"
+            className="overflow-hidden"
+          >
+            <EventSection />
+          </motion.div>
+          <motion.div
+            initial="initial"
+            animate="animate"
+            variants={introVariants.footer}
+          >
+            <Footer />
+          </motion.div>
         </motion.div>
-        {introComplete && (
-          <>
-            <motion.div
-              variants={animations.fadeUp}
-              custom={0.2}
-              initial="hidden"
-              animate="visible"
-            >
-              <EventSection />
-              <motion.div
-                variants={animations.fadeUp}
-                custom={1}
-                initial="hidden"
-                animate="visible"
-              >
-                <Footer />
-              </motion.div>
-            </motion.div>
-          </>
-        )}
       </main>
     </>
   )

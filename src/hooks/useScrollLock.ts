@@ -3,25 +3,47 @@ import { useEffect } from 'react'
 
 export const useScrollLock = (lock: boolean) => {
   useEffect(() => {
+    if (typeof window === 'undefined') return
+
     if (lock) {
-      // Store current scroll position
       const scrollPosition = window.scrollY
 
-      // Just prevent scrolling without fixed positioning
-      document.body.style.overflow = 'hidden'
-      document.body.style.height = '100vh'
+      const styles = {
+        overflow: 'hidden',
+        height: '100vh',
+        position: 'fixed',
+        width: '100%',
+        top: `-${scrollPosition}px`,
+        left: '0'
+      }
 
-      // Maintain scroll position
-      window.scrollTo(0, scrollPosition)
-    } else {
-      // Restore scrolling
-      document.body.style.overflow = ''
-      document.body.style.height = ''
-    }
+      Object.assign(document.documentElement.style, styles)
+      Object.assign(document.body.style, styles)
 
-    return () => {
-      document.body.style.overflow = ''
-      document.body.style.height = ''
+      const preventDefault = (e: TouchEvent) => e.preventDefault()
+      document.addEventListener('touchmove', preventDefault, { passive: false })
+
+      const preventWheel = (e: WheelEvent) => e.preventDefault()
+      document.addEventListener('wheel', preventWheel, { passive: false })
+
+      return () => {
+        const resetStyles = {
+          overflow: '',
+          height: '',
+          position: '',
+          width: '',
+          top: '',
+          left: ''
+        }
+
+        Object.assign(document.documentElement.style, resetStyles)
+        Object.assign(document.body.style, resetStyles)
+
+        window.scrollTo(0, scrollPosition)
+
+        document.removeEventListener('touchmove', preventDefault)
+        document.removeEventListener('wheel', preventWheel)
+      }
     }
   }, [lock])
 }
