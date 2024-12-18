@@ -17,10 +17,11 @@ export function HeaderContent() {
           compétitions bien structurées.
         </p>
 
-        <div className="flex flex-col xs:flex-row items-center gap-2">
+        <div className="flex items-center justify-between w-full">
+          <div className='sm:mx-0 mx-auto flex flex-col xs:flex-row justify-center gap-2'>
           <Button
             size="lg"
-            className="bg-[#5763ED] text-white hover:bg-[#3744DB] w-full sm:w-fit"
+            className="bg-[#5763ED] text-white hover:bg-[#3744DB] w-full"
           >
             Discord
             <DiscordLogo />
@@ -32,11 +33,12 @@ export function HeaderContent() {
             rel="noopener noreferrer"
             className="w-full sm:w-fit pointer-events-none"
           >
-            <Button size="lg" className="flex gap-1 w-full" disabled>
+            <Button size="lg" className="flex-1" disabled>
               <Globe size={24} />
               Website (soon)
             </Button>
           </Link>
+        </div>
         </div>
       </motion.div>
     </div>

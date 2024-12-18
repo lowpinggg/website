@@ -1,4 +1,3 @@
-// features/events/components/EventPoster.tsx
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
@@ -7,11 +6,11 @@ import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { motion } from 'motion/react'
 import Tilt from 'react-parallax-tilt'
-
 import type { Database } from '@/types/generated-types'
 import { TRANSITIONS } from '@/lib/animations'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
+import { useMedia } from '@/features/events/hooks/useMedia'
 
 type Event = Database['public']['Tables']['events']['Row']
 
@@ -42,16 +41,16 @@ interface EventPosterProps {
   showCTA?: boolean
 }
 
-const HOVER_TRANSITION = { ease: TRANSITIONS.ease, duration: 0.8 }
+const HOVER_TRANSITION = { ease: TRANSITIONS.easeOutExpo, duration: 0.8 }
 
 const defaultTiltProps: TiltProps = {
   perspective: 1000,
-  scale: 1.02,
+  scale: 1.05,
   tiltMaxAngleX: 5,
   tiltMaxAngleY: 5,
   glareEnable: true,
   glareMaxOpacity: 0.2,
-  glareColor: '#ffffff',
+  glareColor: 'rgba(255, 243, 230, 1)',
   glarePosition: 'all',
   glareBorderRadius: '11px',
   transitionSpeed: 300,
@@ -83,8 +82,14 @@ export function EventPoster({
 }: EventPosterProps) {
   const buttonRef = useRef<HTMLDivElement>(null)
   const [buttonHeight, setButtonHeight] = useState(0)
+  const isDesktop = useMedia('(min-width: 640px)')
 
-  const finalTiltProps = { ...defaultTiltProps, ...tiltProps }
+  const finalTiltProps = { 
+    ...defaultTiltProps, 
+    ...tiltProps,
+    tiltEnable: isDesktop,
+    glareEnable: isDesktop
+  }
 
   useEffect(() => {
     if (buttonRef.current) {
@@ -103,12 +108,11 @@ export function EventPoster({
   }
 
   const dimensions = getDimensions()
-
   const containerClassName = cn(dimensions.width, dimensions.height, className)
 
   const cardContent = (
     <motion.div
-      className="relative rounded-lg overflow-hidden"
+      className="relative rounded-xl overflow-hidden"
       initial="initial"
       whileHover={showCTA ? 'hover' : undefined}
       style={{ overflow: 'hidden', width: '100%', height: '100%' }}
@@ -150,10 +154,24 @@ export function EventPoster({
           }}
           transition={HOVER_TRANSITION}
         >
-          <Button className="w-full h-12 flex items-center justify-center gap-1 rounded-none">
-            <span>Inscription</span>
-            <ArrowRight size={16} />
-          </Button>
+          <div className="relative">
+            <Button
+              className="w-full h-12 flex items-center justify-center gap-1 rounded-none relative"
+            >
+              
+              <div 
+                className="flex items-center gap-1"
+              >
+                <span className="relative z-10 transition-colors delay-200">
+                  Inscription
+                </span>
+                <ArrowRight
+                  size={16}
+                  className="relative z-10 transition-colors delay-200"
+                />
+              </div>
+            </Button>
+          </div>
         </motion.div>
       )}
     </motion.div>

@@ -1,11 +1,8 @@
-// features/events/components/EventGrid.tsx
-'use client'
-
-import type { Database } from '@/types/generated-types'
-
+import type { Event } from '../types'
 import { EventPoster } from './EventPoster'
-
-type Event = Database['public']['Tables']['events']['Row']
+import { isEventPassed } from '../utils/eventHelpers'
+import { AnimatePresence, motion } from 'motion/react'
+import { TRANSITIONS } from '@/lib/animations'
 
 interface EventGridProps {
   events: Event[]
@@ -13,24 +10,39 @@ interface EventGridProps {
 
 export function EventGrid({ events }: EventGridProps) {
   return (
-    <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-4">
-      {events.map((event) => (
-        <div key={event.id} className="w-full mx-auto">
-          <EventPoster
-            event={event}
-            size="responsive"
-            showCTA={!!events.find((e) => e.id === event.id)}
-            tiltProps={{
-              tiltMaxAngleX: 8,
-              tiltMaxAngleY: 8,
-              glareMaxOpacity: !!events.find((e) => e.id === event.id)
-                ? 0.3
-                : 0.1,
-              transitionSpeed: 800
-            }}
-          />
-        </div>
-      ))}
+    <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-4 gap-5">
+      {events.map((event, index) => {
+        const eventHasPassed = isEventPassed(event.date)
+        return (
+          <AnimatePresence mode="wait" key={event.id}>
+            <motion.div
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -20, opacity: 0 }}
+              transition={{ 
+                duration: 0.3, 
+                ease: TRANSITIONS.easeOutExpo,
+                delay: index * 0.1 // This creates the stagger effect
+              }}
+              className={`w-full mx-auto ${
+                eventHasPassed ? 'hover:grayscale-0' : ''
+              }`}
+            >
+              <EventPoster
+                event={event}
+                size="responsive"
+                showCTA={!eventHasPassed}
+                tiltProps={{
+                  tiltMaxAngleX: 8,
+                  tiltMaxAngleY: 8,
+                  glareMaxOpacity: !eventHasPassed ? 0.2 : 0.1,
+                  transitionSpeed: 800
+                }}
+              />
+            </motion.div>
+          </AnimatePresence>
+        )
+      })}
     </div>
   )
 }

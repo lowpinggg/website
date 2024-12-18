@@ -2,7 +2,8 @@
 import { notFound } from 'next/navigation'
 import { RegistrationClient } from '@/features/registration/components/RegistrationClient'
 import { formRegistry } from '@/features/registration/types/forms'
-
+import type { Metadata } from 'next'
+import { metadata as defaultMetadata } from '@/app/layout'
 import { Database } from '@/types/generated-types'
 import { supabase } from '@/lib/supabase'
 
@@ -14,6 +15,29 @@ type Event = Database['public']['Tables']['events']['Row'] & {
 type Props = {
   params: Promise<{ event: string }>
 }
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  try {
+    const e = await params
+    const { data: event } = await supabase
+      .from('events')
+      .select('*')
+      .eq('id', e.event)
+      .single()
+
+    if (event) {
+      return {
+        title: `${event.name} - Lowping`,
+        description: 'Inscrivez-vous à cet événement dès maintenant !'
+      }
+    }
+  } catch (error) {
+    console.error('Error fetching event metadata:', error)
+  }
+  
+  return defaultMetadata
+}
+
 
 export default async function RegistrationPage({ params }: Props) {
   const e = await params

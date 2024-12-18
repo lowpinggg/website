@@ -33,7 +33,7 @@ export default function Page() {
       <AnimatePresence mode="wait">
         <IntroOverlay key="overlay" onComplete={() => setIsLocked(false)} />
       </AnimatePresence>
-      <main className="min-h-screen mx-auto">
+      <main>
         <motion.div
           className="relative z-30" // Top layer
           initial="hidden"

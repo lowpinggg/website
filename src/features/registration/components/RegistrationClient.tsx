@@ -23,9 +23,9 @@ export function RegistrationClient({ event }: Props) {
     useRegistration(event)
 
   return (
-    <div className="min-h-screen flex flex-col w-full container mx-auto px-4 sm:px-0">
-      <main>
-        <div className="grid grid-cols-1 sm:grid-cols-2 min-h-[calc(100vh-64px)] items-start gap-6 sm:gap-12 xl:gap-0 py-4 md:py-12">
+    <main>
+      <div className='container'>
+        <div className="grid grid-cols-1 sm:grid-cols-2 min-h-[calc(100vh-64px)] items-start gap-6 sm:gap-12 py-4 md:py-12">
           <motion.div
             variants={baseVariants.slideUp}
             initial="initial"
@@ -45,10 +45,10 @@ export function RegistrationClient({ event }: Props) {
             />
           </div>
         </div>
-      </main>
+      </div>
 
       <Footer />
-    </div>
+    </main>
   )
 }
 
@@ -70,7 +70,7 @@ function ContentSection({
       variants={staggerVariants.list.parent}
       initial="initial"
       animate="animate"
-      className="w-full sm:max-w-xl md:max-w-xl"
+      className="w-full"
     >
       <motion.div
         variants={staggerVariants.list.child}

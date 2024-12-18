@@ -17,7 +17,7 @@ export function Header() {
   const y = useTransform(
     scrollYProgress,
     [0, 1],
-    ['0%', '50%'],
+    ['0%', '30%'],
     { clamp: false } // This ensures smooth interpolation
   )
 
@@ -31,7 +31,6 @@ export function Header() {
   return (
     <div className="relative w-full h-full">
       {/* Video Background with Circular Mask */}
-
       <div className="absolute inset-0 w-full h-full [mask-image:linear-gradient(to_bottom,black_0%,transparent_100%)]">
         <div className="absolute inset-0 w-full h-full [mask-image:linear-gradient(to_left,black_0%,transparent_100%)]">
           <motion.div
@@ -60,22 +59,24 @@ export function Header() {
       {/* Content */}
       <motion.div
         {...introVariants.container}
-        className="origin-center sm:origin-left z-40 container px-4 xs:px-0 mx-auto pt-32 pb-40 relative"
+        className="origin-center sm:origin-left z-40 container px-4 xs:px-0 pt-32 pb-40 relative"
       >
-        <div className="flex-col flex justify-center items-center sm:items-start">
-          <div className="overflow-hidden">
-            <motion.div
-              variants={introVariants.logo}
-              initial="initial"
-              animate="animate"
-              className="mb-8"
-            >
-              <Full width={180} />
-            </motion.div>
+        <section className="flex justify-start">
+          <div className="flex-col flex justify-center items-center sm:items-start">
+            <div className="overflow-hidden">
+              <motion.div
+                variants={introVariants.logo}
+                initial="initial"
+                animate="animate"
+                className="mb-8"
+              >
+                <Full width={180} />
+              </motion.div>
+            </div>
+            <HeaderTitle />
+            <HeaderContent />
           </div>
-          <HeaderTitle />
-          <HeaderContent />
-        </div>
+        </section>
       </motion.div>
     </div>
   )

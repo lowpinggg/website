@@ -112,6 +112,7 @@ export const introVariants = {
     },
     exit: {
       y: 100,
+      height: 0,
       opacity: 0,
       transition: createTransition(
         INTRO_TIMELINE.version.duration,

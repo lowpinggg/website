@@ -1,18 +1,13 @@
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
-
-import { Database } from '@/types/generated-types'
+import { supabase } from '@/lib/supabase'
 
 export async function getEvents() {
-  const supabase = createClientComponentClient<Database>()
 
   return await supabase
     .from('events')
     .select('*')
-    .order('date', { ascending: true })
+    .order('date', { ascending: false })
 }
 
 export async function getEventById(id: string) {
-  const supabase = createClientComponentClient<Database>()
-
   return await supabase.from('events').select('*').eq('id', id).single()
 }

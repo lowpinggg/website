@@ -44,7 +44,7 @@ export function VersionBadge() {
 export function HeaderTitle() {
   return (
     <>
-      <div className="overflow-hidden relative h-fit">
+      <div className="overflow-hidden relative h-fit mb-2">
         <motion.h1
           variants={introVariants.title}
           initial="initial"
@@ -54,9 +54,7 @@ export function HeaderTitle() {
           Portail Événementiel
         </motion.h1>
       </div>
-      <div>
-        <VersionBadge />
-      </div>
+      <VersionBadge />
     </>
   )
 }

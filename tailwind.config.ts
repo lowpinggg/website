@@ -9,7 +9,26 @@ export default {
     './src/**/*.{js,ts,jsx,tsx,mdx}'
   ],
   theme: {
+    container: {
+      center: true,
+      padding: {
+        DEFAULT: '1rem',
+        sm: '2rem',
+        lg: '4rem',
+        xl: '5rem',
+      },
+      screens: {
+        'xs': '480px',
+        'sm': '640px',
+        'md': '768px',
+        'lg': '1024px',
+        'xl': '1200px',
+      },
+    },
     extend: {
+      transformStyle: {
+        'preserve-3d': 'preserve-3d',
+      },
       fontFamily: {
         alexandria: ['var(--font-alexandria)']
       },
@@ -61,9 +80,8 @@ export default {
         sm: 'calc(var(--radius) - 4px)'
       },
       screens: {
-        // Add a custom breakpoint called 'xd'
-        xs: '480px' // Adjust to your desired width
-      }
+        'xs': '480px',
+      },
     }
   }
 } satisfies Config
