@@ -5,13 +5,15 @@ import Link from 'next/link'
 import { EventPoster } from '@/features/events/components/EventPoster'
 import { CalendarButton } from '@/features/registration/components/checkout/CalendarButton'
 import confetti from 'canvas-confetti'
-import { Check, X } from 'lucide-react'
+import { BadgeCheck, X } from 'lucide-react'
 import { motion } from 'motion/react'
 
 import { Database } from '@/types/generated-types'
 import { baseVariants, staggerVariants } from '@/lib/animations'
 import { Button } from '@/components/ui/button'
 import { Footer } from '@/components/Footer'
+
+import { EventSummaryCard } from './shared/EventSummaryCard'
 
 type Event = Database['public']['Tables']['events']['Row']
 type Registration = Database['public']['Tables']['event_registrations']['Row']
@@ -51,7 +53,7 @@ export function PaymentStatusPage({
   }, [status])
 
   return (
-    <main className="container mx-auto h-screen flex flex-col sm:justify-evenly items-center">
+    <main className="container mx-auto h-screen flex flex-col sm:justify-evenly items-center px-0">
       {status === 'success' && details ? (
         <SuccessSection details={details} title={title} />
       ) : (
@@ -78,7 +80,7 @@ function SuccessSection({
       variants={staggerVariants.list.parent}
       initial="initial"
       animate="animate"
-      className="flex flex-col md:grid grid-cols-1 gap-6 sm:grid-cols-2 justify-center items-center flex-1 px-4 sm:px-0 py-16 sm:py-4"
+      className="flex flex-col md:flex-row gap-12 justify-center items-center flex-1 px-4 sm:px-0 py-16 sm:py-4"
     >
       <motion.div variants={baseVariants.slideUp}>
         <EventPoster event={details.event} showCTA={false} size="md" />
@@ -89,15 +91,12 @@ function SuccessSection({
           variants={staggerVariants.list.child}
           className="flex flex-col gap-4 justify-center items-center md:items-start"
         >
-          <motion.div variants={staggerVariants.list.child}>
-            <Check size={40} className="text-green-500" />
-          </motion.div>
 
           <motion.div
             variants={staggerVariants.list.child}
             className="flex flex-col gap-2 text-center md:text-left"
           >
-            <h1 className="text-2xl font-bold">{title}</h1>
+            <h1 className="text-2xl font-bold justify-center md:justify-start flex items-center gap-2"><BadgeCheck className='text-green-500' size={28} />{title}</h1>
             {details.registration && (
               <p className="text-muted-foreground text-sm font-normal">
                 Un email de confirmation a été envoyé à{' '}
@@ -105,7 +104,9 @@ function SuccessSection({
               </p>
             )}
           </motion.div>
-
+          <motion.div variants={staggerVariants.list.child} className='w-full'>
+            <EventSummaryCard event={details.event} />
+          </motion.div>
           <motion.div
             variants={staggerVariants.list.child}
             className="flex gap-2"
@@ -124,6 +125,8 @@ function SuccessSection({
         <motion.div variants={staggerVariants.list.child} className="mt-6">
           <CalendarButton event={details.event} />
         </motion.div>
+
+
       </div>
     </motion.div>
   )
@@ -152,13 +155,13 @@ function CancelledSection({
         </motion.div>
         <motion.h1
           variants={staggerVariants.list.child}
-          className="text-2xl font-bold"
+          className="text-2xl font-bold text-center"
         >
           {title}
         </motion.h1>
         <motion.p
           variants={staggerVariants.list.child}
-          className="text-muted-foreground text-sm"
+          className="text-muted-foreground text-sm text-center"
         >
           {description}
         </motion.p>

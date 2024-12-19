@@ -108,7 +108,7 @@ export function RegistrationClient({ event }: Props) {
             animate="animate"
             className="flex items-center justify-center md:sticky top-10 md:pb-10"
           >
-            <EventPoster event={event} size={isMobile ? 'md' : 'lg'} showCTA={false} />
+            <EventPoster tiltProps={{scale: 1.02}} event={event} size={isMobile ? 'md' : 'lg'} showCTA={false} />
           </motion.div>
 
           <div className="flex items-center">
