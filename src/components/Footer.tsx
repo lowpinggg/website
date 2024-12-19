@@ -9,7 +9,7 @@ import packageJson from '@/package'
 
 export function Footer() {
   return (
-    <footer className="container flex flex-col gap-2 justify-between items-end py-8 border-t px-0">
+    <footer className="container flex flex-col gap-2 justify-between items-end py-8 border-t sm:px-0">
         <div className="flex justify-between items-end w-full">
           <div className="flex flex-col gap-4">
             <Full width={112} />

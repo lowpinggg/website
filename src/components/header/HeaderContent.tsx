@@ -5,7 +5,7 @@ import { motion } from 'motion/react'
 
 import { introVariants } from '@/lib/animations'
 import { Button } from '@/components/ui/button'
-import { DiscordLogo } from '@/components/icons/DiscordLogo'
+import { Discord } from '@/components/icons/Discord'
 
 export function HeaderContent() {
   return (
@@ -24,7 +24,7 @@ export function HeaderContent() {
             className="bg-[#5763ED] text-white hover:bg-[#3744DB] w-full"
           >
             Discord
-            <DiscordLogo />
+            <Discord />
           </Button>
 
           <Link

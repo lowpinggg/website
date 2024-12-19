@@ -47,8 +47,11 @@ export function BaseForm<T extends FormData>({
     defaultValues
   })
 
+  // Combine all fields
+  const allFields = [...baseFields, ...specificFields]
+
   const renderField = (field: BaseField) => (
-    <motion.div variants={staggerVariants.list.child} key={field.name}>
+    <motion.div variants={staggerVariants.list.child} key={field.name} className='cursor-border'>
       <FormField
         control={form.control}
         name={field.name as Path<T>}
@@ -80,7 +83,7 @@ export function BaseForm<T extends FormData>({
                 />
               )}
             </FormControl>
-            <FormMessage />
+            <FormMessage className='text-xs' />
           </FormItem>
         )}
       />
@@ -94,17 +97,15 @@ export function BaseForm<T extends FormData>({
         initial="initial"
         animate="animate"
         onSubmit={form.handleSubmit(onComplete)}
-        className="space-y-6"
+        className="space-y-4"
       >
-        <motion.div variants={staggerVariants.list.child} className="space-y-4">
-          {baseFields.map(renderField)}
+        <motion.div 
+          variants={staggerVariants.list.child} 
+          className="flex flex-col gap-4"
+        >
+          {allFields.map(renderField)}
         </motion.div>
-
-        <motion.div variants={staggerVariants.list.child} className="space-y-4">
-          {specificFields.map(renderField)}
-        </motion.div>
-
-        <motion.div variants={staggerVariants.list.child}>
+        <motion.div variants={staggerVariants.list.child} className='pt-4'>
           <Button type="submit" className="w-full">
             {"S'inscrire"}
           </Button>
