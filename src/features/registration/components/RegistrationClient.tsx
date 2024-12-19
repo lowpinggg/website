@@ -52,7 +52,7 @@ function ContentSection({
       variants={staggerVariants.list.parent}
       initial="initial"
       animate="animate"
-      className="w-full"
+      className="w-full max-w-lg"
     >
       <motion.div
         variants={staggerVariants.list.child}
@@ -64,7 +64,7 @@ function ContentSection({
           <div className="flex flex-col gap-2 overflow-hidden">
             <motion.div
               variants={staggerVariants.list.child}
-              className="bg-black/20 rounded-lg border border-white/10 p-4"
+              className="bg-black/20 rounded-lg border border-white/10 p-8"
             >
               {step === 1 ? (
                 <DynamicForm
