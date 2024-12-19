@@ -4,12 +4,12 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'motion/react'
 import { useScramble } from 'use-scramble'
-
+import packageJson from '@/package'
 import { INTRO_TIMELINE, introVariants } from '@/lib/animations'
 
 export function VersionBadge() {
   const { ref } = useScramble({
-    text: 'Alpha 0.0.1',
+    text: `Alpha v${packageJson.version}`,
     speed: 0.5,
     tick: 1,
     step: 1,

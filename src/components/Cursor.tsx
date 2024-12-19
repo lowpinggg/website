@@ -1,4 +1,3 @@
-// components/Cursor.tsx
 'use client'
 
 import { useEffect } from 'react'
@@ -16,11 +15,10 @@ export function Cursor() {
       ease: 'expo.Out',
       hideOnLeave: true,
       overwrite: true,
-
-      skewing: 1,
       stateDetection: {
-        '-active': 'button, img, a',
-        '-scale': 'button, img, a'
+        '-active': '.cursor-active, button, a, img',
+        '-blend': '.cursor-blend, button',
+        '-border': '.cursor-border'
       }
     })
     return () => cursor.destroy()

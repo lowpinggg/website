@@ -1,9 +1,11 @@
-import type { Event } from '../types'
-import { EventPoster } from './EventPoster'
-import { isEventPassed } from '../utils/eventHelpers'
 import { AnimatePresence, motion } from 'motion/react'
+
 import { TRANSITIONS } from '@/lib/animations'
 
+import type { Event } from '../types'
+import { isEventPassed } from '../utils/eventHelpers'
+import { EventPoster } from './EventPoster'
+import { cn } from '@/lib/utils'
 interface EventGridProps {
   events: Event[]
 }
@@ -16,17 +18,22 @@ export function EventGrid({ events }: EventGridProps) {
         return (
           <AnimatePresence mode="wait" key={event.id}>
             <motion.div
+              
               initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
+              animate={{ y: 0, opacity: eventHasPassed ? 0.6 : 1 }}
               exit={{ y: -20, opacity: 0 }}
-              transition={{ 
-                duration: 0.3, 
-                ease: TRANSITIONS.easeOutExpo,
-                delay: index * 0.1 // This creates the stagger effect
+              whileHover={{
+                opacity: 1,
+                transition: { duration: 0.1, ease: TRANSITIONS.easeOutExpo } // Hover-specific transition
               }}
-              className={`w-full mx-auto ${
-                eventHasPassed ? 'hover:grayscale-0' : ''
-              }`}
+              transition={{
+                duration: 0.3,
+                delay: index * 0.1
+              }} cursor-border
+              className={cn(`w-full mx-auto`, {
+                'cursor-border': eventHasPassed
+                
+              })}
             >
               <EventPoster
                 event={event}

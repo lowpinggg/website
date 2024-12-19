@@ -193,5 +193,19 @@
 /* Scale the dot when cursor is active */
 .mf-cursor.-active::before {
   background-color: white !important;
+  background-blend-mode: screen !important;
+  mix-blend-mode: multiply !important;
+  scale: 3;
+}
+
+.mf-cursor.-border::before {
+  background-color: transparent !important;
+  border-color: white;
+  scale: 3;
+}
+
+.mf-cursor.-blend::before {
+  background-color: rgba(255, 255, 255, 0.39) !important;
+  border-color: transparent;
   scale: 3;
 }

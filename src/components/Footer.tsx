@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { Full } from '@lowping/brand-kit'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
+import packageJson from '@/package'
 
 export function Footer() {
   return (
@@ -15,7 +16,7 @@ export function Footer() {
           </div>
           <div>
             <Badge variant={'secondary'} className="font-normal">
-              alpha 0.01
+              {`Alpha v${packageJson.version}`}
             </Badge>
           </div>
         </div>
