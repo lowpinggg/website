@@ -49,6 +49,12 @@ export const baseFields: readonly BaseField[] = [
     placeholder: 'Votre nom'
   },
   {
+    name: 'prenom',
+    label: 'Prénom',
+    type: 'text',
+    placeholder: 'Votre prénom'
+  },
+  {
     name: 'email',
     label: 'Email',
     type: 'email',
@@ -74,7 +80,7 @@ export const tftSpecificFields: readonly BaseField[] = [
     label: 'Rang actuel',
     type: 'select',
     placeholder: 'Sélectionnez votre rang',
-    options: ['IRON', 'BRONZE', 'SILVER', 'GOLD', 'PLATINUM', 'DIAMOND']
+    options: ['Iron', 'Bronze', 'Silver', 'Gold', 'Platinum', 'Diamond', 'Master']
   }
 ] as const
 

@@ -1,6 +1,5 @@
 // lib/animations/variants/stagger.ts
 import { TRANSITIONS } from '../config/transitions'
-import { baseVariants } from './base'
 
 export const staggerVariants = {
   list: {
@@ -9,12 +8,22 @@ export const staggerVariants = {
       animate: {
         opacity: 1,
         transition: {
-          staggerChildren: TRANSITIONS.stagger.medium,
-          delayChildren: TRANSITIONS.delay.medium,
-          ease: TRANSITIONS.easeOutExpo
+          staggerChildren: TRANSITIONS.stagger.short,
+          delayChildren: TRANSITIONS.delay.none,
+          ease: TRANSITIONS.ease
         }
       }
     },
-    child: baseVariants.slideUp
+    child: {
+      initial: { y: 20, opacity: 0 },
+      animate: {
+        y: 0,
+        opacity: 1,
+        transition: {
+          duration: TRANSITIONS.duration.medium,
+          ease: TRANSITIONS.ease
+        }
+      }
+    }
   }
 }
