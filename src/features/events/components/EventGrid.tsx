@@ -1,7 +1,5 @@
 import { AnimatePresence, motion } from 'motion/react'
-
 import { TRANSITIONS } from '@/lib/animations'
-
 import type { Event } from '../types'
 import { isEventPassed } from '../utils/eventHelpers'
 import { EventPoster } from './EventPoster'
@@ -12,7 +10,7 @@ interface EventGridProps {
 
 export function EventGrid({ events }: EventGridProps) {
   return (
-    <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-4 gap-5">
+    <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 pb-24">
       {events.map((event, index) => {
         const eventHasPassed = isEventPassed(event.date)
         return (
@@ -24,7 +22,7 @@ export function EventGrid({ events }: EventGridProps) {
               exit={{ y: -20, opacity: 0 }}
               whileHover={{
                 opacity: 1,
-                transition: { duration: 0.1, ease: TRANSITIONS.easeOutExpo } // Hover-specific transition
+                transition: { duration: 0.1, ease: TRANSITIONS.easeOutExpo }
               }}
               transition={{
                 duration: 0.3,

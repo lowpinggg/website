@@ -7,12 +7,9 @@ import { CalendarButton } from '@/features/registration/components/checkout/Cale
 import confetti from 'canvas-confetti'
 import { BadgeCheck, X } from 'lucide-react'
 import { motion } from 'motion/react'
-
 import { Database } from '@/types/generated-types'
 import { baseVariants, staggerVariants } from '@/lib/animations'
 import { Button } from '@/components/ui/button'
-import { Footer } from '@/components/Footer'
-
 import { EventSummaryCard } from './shared/EventSummaryCard'
 
 type Event = Database['public']['Tables']['events']['Row']
@@ -53,14 +50,13 @@ export function PaymentStatusPage({
   }, [status])
 
   return (
-    <main className="container mx-auto h-screen flex flex-col sm:justify-evenly items-center px-0">
+    <div className="py-12 flex flex-col min-h-screen items-center justify-center">
       {status === 'success' && details ? (
         <SuccessSection details={details} title={title} />
       ) : (
         <CancelledSection title={title} description={description} />
       )}
-      <Footer />
-    </main>
+    </div>
   )
 }
 
@@ -80,36 +76,40 @@ function SuccessSection({
       variants={staggerVariants.list.parent}
       initial="initial"
       animate="animate"
-      className="flex flex-col md:flex-row gap-12 justify-center items-center flex-1 px-4 sm:px-0 py-16 sm:py-4"
+      className="flex flex-col md:flex-row items-center justify-center gap-12 h-full"
     >
       <motion.div variants={baseVariants.slideUp}>
         <EventPoster event={details.event} showCTA={false} size="md" />
       </motion.div>
 
-      <div className="flex flex-col items-center md:items-start">
+      <div className="flex flex-col items-center md:items-start max-w-md">
         <motion.div
           variants={staggerVariants.list.child}
-          className="flex flex-col gap-4 justify-center items-center md:items-start"
+          className="flex flex-col gap-6 w-full"
         >
-
           <motion.div
             variants={staggerVariants.list.child}
             className="flex flex-col gap-2 text-center md:text-left"
           >
-            <h1 className="text-2xl font-bold justify-center md:justify-start flex items-center gap-2"><BadgeCheck className='text-green-500' size={28} />{title}</h1>
+            <h1 className="flex items-center gap-2 justify-center md:justify-start text-2xl font-bold">
+              <BadgeCheck className='text-green-500' size={28} />
+              {title}
+            </h1>
             {details.registration && (
-              <p className="text-muted-foreground text-sm font-normal">
+              <p className="text-muted-foreground text-sm">
                 Un email de confirmation a été envoyé à{' '}
                 {details.registration.email}
               </p>
             )}
           </motion.div>
-          <motion.div variants={staggerVariants.list.child} className='w-full'>
+
+          <motion.div variants={staggerVariants.list.child} className="w-full">
             <EventSummaryCard event={details.event} />
           </motion.div>
+
           <motion.div
             variants={staggerVariants.list.child}
-            className="flex gap-2"
+            className="flex gap-2 mx-auto md:mx-0"
           >
             <Link href="/">
               <Button>Retour</Button>
@@ -120,13 +120,11 @@ function SuccessSection({
               </Link>
             )}
           </motion.div>
+
+          <motion.div variants={staggerVariants.list.child}>
+            <CalendarButton event={details.event} />
+          </motion.div>
         </motion.div>
-
-        <motion.div variants={staggerVariants.list.child} className="mt-6">
-          <CalendarButton event={details.event} />
-        </motion.div>
-
-
       </div>
     </motion.div>
   )
@@ -144,29 +142,31 @@ function CancelledSection({
       variants={baseVariants.slideUp}
       initial="initial"
       animate="animate"
-      className="flex flex-col justify-center items-center flex-1"
+      className="flex items-center justify-center"
     >
       <motion.div
         variants={staggerVariants.list.parent}
-        className="flex-1 justify-center items-center flex flex-col gap-4"
+        className="flex flex-col items-center gap-4 max-w-md text-center"
       >
         <motion.div variants={staggerVariants.list.child}>
           <X size={50} className="text-red-500" />
         </motion.div>
         <motion.h1
           variants={staggerVariants.list.child}
-          className="text-2xl font-bold text-center"
+          className="text-2xl font-bold"
         >
           {title}
         </motion.h1>
         <motion.p
           variants={staggerVariants.list.child}
-          className="text-muted-foreground text-sm text-center"
+          className="text-muted-foreground text-sm"
         >
           {description}
         </motion.p>
         <motion.div variants={staggerVariants.list.child}>
-          <Button variant="outline">Retour</Button>
+          <Link href="/">
+            <Button variant="outline">Retour</Button>
+          </Link>
         </motion.div>
       </motion.div>
     </motion.div>

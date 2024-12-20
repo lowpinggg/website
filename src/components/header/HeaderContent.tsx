@@ -11,7 +11,7 @@ export function HeaderContent() {
   return (
     <div className="overflow-hidden">
       <motion.div {...introVariants.content} className="w-full">
-        <p className="text-xs sm:text-base text-center sm:text-left mb-8 sm:max-w-2xl text-muted-foreground font-light">
+        <p className="text-xs sm:text-sm md:text-base text-center sm:text-left max-w-sm mb-8 sm:max-w-xl md:max-w-2xl text-muted-foreground font-light">
           Tous nos événements esport au même endroit. Inscrivez-vous aux
           prochains tournois, suivez vos résultats et participez à des
           compétitions bien structurées.

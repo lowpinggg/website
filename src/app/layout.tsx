@@ -1,16 +1,13 @@
 // app/layout.tsx
 import type { Metadata } from 'next'
 import { Alexandria } from 'next/font/google'
-
 import { cn } from '@/lib/utils'
 import { Cursor } from '@/components/Cursor'
-
 import './globals.css'
 
 import { Toaster } from '@/components/ui/toaster'
 import { SmoothScroll } from '@/components/SmoothScroll'
 import { Providers } from '@/app/Providers'
-
 import 'lenis/dist/lenis.css'
 
 const alexandria = Alexandria({

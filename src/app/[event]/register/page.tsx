@@ -7,7 +7,6 @@ import { metadata as defaultMetadata } from '@/app/layout'
 import { Database } from '@/types/generated-types'
 import { supabase } from '@/lib/supabase'
 
-// Extend the Event type to include type field
 type Event = Database['public']['Tables']['events']['Row'] & {
   type: keyof typeof formRegistry
 }
@@ -28,13 +27,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (event) {
       return {
         title: `${event.name} - Lowping`,
-        description: 'Inscrivez-vous à cet événement dès maintenant !'
+        description: 'Inscrivez-vous à cet événement dès maintenant!'
       }
     }
   } catch (error) {
     console.error('Error fetching event metadata:', error)
   }
-  
+
   return defaultMetadata
 }
 
@@ -55,13 +54,16 @@ export default async function RegistrationPage({ params }: Props) {
     return notFound()
   }
 
-  // Verify that the event has a valid form type
   if (!event.type || !(event.type in formRegistry)) {
     console.error(`Invalid or missing form type for event: ${event.id}`)
     return notFound()
   }
 
-  return <RegistrationClient event={event as Event} />
+  return (
+    <main className="container">
+      <RegistrationClient event={event as Event} />
+    </main>
+  )
 }
 
 export async function generateStaticParams() {

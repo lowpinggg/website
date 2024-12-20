@@ -25,7 +25,7 @@ function EventHeader({ step }: { step: number }) {
         Inscription
       </h1>
       <p className="text-muted-foreground text-xs md:text-base">
-        {step === 1 
+        {step === 1
           ? 'Complétez les informations ci-dessous'
           : 'Vérifiez votre commande'
         }
@@ -97,33 +97,30 @@ function ContentSection({
 export function RegistrationClient({ event }: Props) {
   const { step, registrationData, handleRegistrationComplete, handleBack } = useRegistration(event)
   const isMobile = useMedia('(max-width: 767px)')
- 
-  return (
-    <main>
-      <div className="container sm:px-0">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:min-h-[calc(100vh-64px)] items-start gap-12 md:gap-6 py-12 md:py-12">
-          <motion.div
-            variants={baseVariants.slideUp}
-            initial="initial"
-            animate="animate"
-            className="flex items-center justify-center md:sticky top-10 md:pb-10"
-          >
-            <EventPoster tiltProps={{scale: 1.02}} event={event} size={isMobile ? 'md' : 'lg'} showCTA={false} />
-          </motion.div>
 
-          <div className="flex items-center">
-            <ContentSection
-              step={step}
-              event={event}
-              registrationData={registrationData}
-              onRegistrationComplete={handleRegistrationComplete}
-              onBack={handleBack}
-            />
-          </div>
+  return (
+    <>
+      <div className="grid grid-cols-1 md:grid-cols-2 items-start py-12 gap-6 lg:gap-0">
+        <motion.div
+          variants={baseVariants.slideUp}
+          initial="initial"
+          animate="animate"
+          className="flex items-center justify-center md:sticky top-10"
+        >
+          <EventPoster tiltProps={{ scale: 1.02 }} event={event} size={isMobile ? 'md' : 'lg'} showCTA={false} />
+        </motion.div>
+
+        <div className="flex items-center w-full justify-center">
+          <ContentSection
+            step={step}
+            event={event}
+            registrationData={registrationData}
+            onRegistrationComplete={handleRegistrationComplete}
+            onBack={handleBack}
+          />
         </div>
       </div>
-
       <Footer />
-    </main>
+    </>
   )
 }

@@ -12,17 +12,13 @@ export default {
     container: {
       center: true,
       padding: {
-        DEFAULT: '1rem',
-        sm: '2rem',
-        lg: '4rem',
-        xl: '5rem',
+        DEFAULT: '1rem',      // 16px padding by default (mobile)
+        sm: '2rem',           // 32px padding from sm up
+        md: '3rem',           // 48px padding from md up
+        lg: '4rem',           // 64px padding from lg up
       },
       screens: {
-        'xs': '480px',
-        'sm': '768px',
-        'md': '768px',
-        'lg': '1024px',
-        'xl': '1200px',
+        xl: '1200px',         // Max width 1200px
       },
     },
     extend: {
@@ -81,7 +77,7 @@ export default {
       },
       screens: {
         'xs': '480px',
-      },
+      }
     }
   }
 } satisfies Config

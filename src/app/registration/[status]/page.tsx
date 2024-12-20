@@ -63,11 +63,13 @@ export default async function RegistrationStatusPage({
   const { title, description } = messages[status]
 
   return (
-    <PaymentStatusPage
-      status={status}
-      details={details}
-      title={title}
-      description={description}
-    />
+    <main className="container">
+      <PaymentStatusPage
+        status={status}
+        details={details}
+        title={title}
+        description={description}
+      />
+    </main>
   )
 }
