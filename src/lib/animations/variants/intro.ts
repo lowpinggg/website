@@ -17,7 +17,7 @@ export const introVariants = {
     }
   },
   container: {
-    initial: { scale: 1.2, y: '50%' },
+    initial: { scale: 1.2, y: '50vh'},
     animate: {
       scale: 1,
       y: 0,

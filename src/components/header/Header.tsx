@@ -55,7 +55,6 @@ export function Header() {
 
       <section className="container">
         <motion.div
-          variants={introVariants.container}
           className="origin-center sm:origin-left z-40 pt-32 pb-40 relative"
         >
           <section className="flex justify-center sm:justify-start">
