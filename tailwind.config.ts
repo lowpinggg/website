@@ -5,10 +5,26 @@ export default {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}'
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/**/*.{js,ts,jsx,tsx,mdx}'
   ],
   theme: {
+    container: {
+      center: true,
+      padding: {
+        DEFAULT: '1rem',      // 16px padding by default (mobile)
+        sm: '2rem',           // 32px padding from sm up
+        md: '3rem',           // 48px padding from md up
+        lg: '4rem',           // 64px padding from lg up
+      },
+      screens: {
+        xl: '1200px',         // Max width 1200px
+      },
+    },
     extend: {
+      transformStyle: {
+        'preserve-3d': 'preserve-3d',
+      },
       fontFamily: {
         alexandria: ['var(--font-alexandria)']
       },
@@ -58,6 +74,9 @@ export default {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)'
+      },
+      screens: {
+        'xs': '480px',
       }
     }
   }

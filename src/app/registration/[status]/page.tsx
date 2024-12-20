@@ -1,15 +1,20 @@
-// app/registration/[status]/page.tsx
-import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { CircleCheck, CircleX } from 'lucide-react'
+import { getRegistrationDetails } from '@/features/registration/api/getRegistrationDetails'
+import { PaymentStatusPage } from '@/features/registration/components/PaymentStatusPage'
 
-import { stripe } from '@/lib/stripe/stripe-server'
-import { Button } from '@/components/ui/button'
+import { Database } from '@/types/generated-types'
+
+type Event = Database['public']['Tables']['events']['Row']
+type Registration = Database['public']['Tables']['event_registrations']['Row']
+
+type RegistrationDetails = {
+  event: Event
+  registration: Registration
+  receipt_url?: string
+}
 
 type Props = {
-  params: Promise<{
-    status: string
-  }>
+  params: Promise<{ status: string }>
   searchParams: Promise<{ session_id?: string }>
 }
 
@@ -29,59 +34,42 @@ export default async function RegistrationStatusPage({
   params,
   searchParams
 }: Props) {
-  const { status } = await params
-  const { session_id: sessionId } = await searchParams
-  let receiptUrl = null
+  const resolvedParams = await params
+  const resolvedSearchParams = await searchParams
 
-  console.log('RegistrationStatusPage - status:', status)
+  const { status } = resolvedParams as { status: keyof typeof messages }
+  const { session_id: sessionId } = resolvedSearchParams
 
-  if (!(status in messages)) {
+  if (!(status in messages)) return notFound()
+
+  if (status === 'success' && !sessionId) {
     return notFound()
   }
 
+  let details: RegistrationDetails | null = null
   if (status === 'success' && sessionId) {
     try {
-      const session = await stripe.checkout.sessions.retrieve(sessionId)
-      if (typeof session.payment_intent === 'string') {
-        const charges = await stripe.charges.list({
-          payment_intent: session.payment_intent
-        })
-        receiptUrl = charges.data[0]?.receipt_url
+      details = (await getRegistrationDetails(sessionId)) as RegistrationDetails
+      if (!details) {
+        console.error('Details not found for session ID:', sessionId)
+        return notFound()
       }
     } catch (error) {
-      console.error('Error fetching receipt URL:', error)
+      console.error('Error fetching registration details:', error)
+      return notFound()
     }
   }
 
-  const { title, description } = messages[status as keyof typeof messages]
+  const { title, description } = messages[status]
 
   return (
-    <section className="flex flex-col items-center justify-center h-full space-y-6 max-w-xl mx-auto">
-      <div className="container py-10 h-screen mx-auto flex gap-4 justify-center flex-col items-start">
-        <div>
-          {status === 'success' ? (
-            <CircleCheck size={32} className="text-success text-green-600" />
-          ) : (
-            <CircleX size={32} className="text-error text-red-600" />
-          )}
-        </div>
-        <div className="flex flex-col gap-2 mb-4">
-          <h1 className="text-2xl font-bold">{title}</h1>
-          <p className="text-muted-foreground text-base font-normal">
-            {description}
-          </p>
-        </div>
-        <div className="flex gap-2">
-          <Link href="/">
-            <Button>Retour</Button>
-          </Link>
-          {status === 'success' && receiptUrl && (
-            <Link href={receiptUrl} target="_blank" rel="noopener noreferrer">
-              <Button variant="outline">Voir ma commande</Button>
-            </Link>
-          )}
-        </div>
-      </div>
-    </section>
+    <main className="container">
+      <PaymentStatusPage
+        status={status}
+        details={details}
+        title={title}
+        description={description}
+      />
+    </main>
   )
 }

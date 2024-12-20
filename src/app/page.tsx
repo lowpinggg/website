@@ -1,24 +1,66 @@
 // app/page.tsx
-import { supabase } from '@/lib/supabase'
-import HomeClient from './HomeClient'
-import { Database } from '@/types/generated-types'
+'use client'
 
-type Event = Database['public']['Tables']['events']['Row']
+import { useState } from 'react'
+import { EventSection } from '@/features/events/components/EventSection'
+import { AnimatePresence, motion } from 'motion/react'
 
-async function getEvents(): Promise<Event[]> {
-  const { data, error } = await supabase
-    .from('events')
-    .select('*')
-    .order('date', { ascending: true })
-  
-  if (error) {
-    console.error('Error fetching events:', error)
-    return []
-  }
-  return data
+import { introVariants } from '@/lib/animations'
+import { useScrollLock } from '@/hooks/useScrollLock'
+import { Footer } from '@/components/Footer'
+import { Header } from '@/components/header/Header'
+
+function IntroOverlay({ onComplete }: { onComplete: () => void }) {
+  window.scrollTo(0, 0)
+  return (
+    <motion.div
+      className="fixed inset-0 z-30"
+      style={{ backgroundColor: '#BFF603' }}
+      variants={introVariants.overlay}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      onAnimationComplete={onComplete}
+    />
+  )
 }
 
-export default async function Home() {
-  const events = await getEvents()
-  return <HomeClient events={events} />
+export default function Page() {
+  const [isLocked, setIsLocked] = useState(true)
+  useScrollLock(isLocked)
+
+  return (
+    <>
+      <AnimatePresence mode="wait">
+        <IntroOverlay key="overlay" onComplete={() => setIsLocked(false)} />
+      </AnimatePresence>
+      <main>
+        <motion.div
+          className="relative z-30"
+          animate="animate"
+          initial="initial"
+          variants={introVariants.container}
+        >
+          <Header />
+          <section className="container">
+            <motion.div
+              variants={introVariants.events}
+              initial="initial"
+              animate="animate"
+              className="overflow-hidden"
+            >
+              <EventSection />
+            </motion.div>
+            <motion.div
+              initial="initial"
+              animate="animate"
+              variants={introVariants.footer}
+            >
+              <Footer />
+            </motion.div>
+          </section>
+        </motion.div>
+      </main>
+    </>
+  )
 }

@@ -1,20 +1,44 @@
 // app/[event]/register/page.tsx
 import { notFound } from 'next/navigation'
+import { RegistrationClient } from '@/features/registration/components/RegistrationClient'
+import { formRegistry } from '@/features/registration/types/forms'
+import type { Metadata } from 'next'
+import { metadata as defaultMetadata } from '@/app/layout'
 import { Database } from '@/types/generated-types'
 import { supabase } from '@/lib/supabase'
-import { RegisterClient } from '@/app/[event]/register/client'
-import { formConfigs } from '@/types/registration'
 
-// Extend the Event type to include type field
 type Event = Database['public']['Tables']['events']['Row'] & {
-  type: keyof typeof formConfigs
+  type: keyof typeof formRegistry
 }
 
 type Props = {
   params: Promise<{ event: string }>
 }
 
-export default async function RegisterPage({ params }: Props) {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  try {
+    const e = await params
+    const { data: event } = await supabase
+      .from('events')
+      .select('*')
+      .eq('id', e.event)
+      .single()
+
+    if (event) {
+      return {
+        title: `${event.name} - Lowping`,
+        description: 'Inscrivez-vous à cet événement dès maintenant!'
+      }
+    }
+  } catch (error) {
+    console.error('Error fetching event metadata:', error)
+  }
+
+  return defaultMetadata
+}
+
+
+export default async function RegistrationPage({ params }: Props) {
   const e = await params
   if (!e) {
     return notFound()
@@ -30,13 +54,16 @@ export default async function RegisterPage({ params }: Props) {
     return notFound()
   }
 
-  // Verify that the event has a valid form type
-  if (!event.type || !(event.type in formConfigs)) {
+  if (!event.type || !(event.type in formRegistry)) {
     console.error(`Invalid or missing form type for event: ${event.id}`)
     return notFound()
   }
 
-  return <RegisterClient event={event as Event} />
+  return (
+    <main className="container">
+      <RegistrationClient event={event as Event} />
+    </main>
+  )
 }
 
 export async function generateStaticParams() {

@@ -36,7 +36,7 @@ export type Database = {
     Tables: {
       event_registrations: {
         Row: {
-          created_at: string | null
+          created_at: string
           discord: string
           email: string
           event_id: string
@@ -47,18 +47,18 @@ export type Database = {
           riot_id: string
         }
         Insert: {
-          created_at?: string | null
+          created_at?: string
           discord: string
           email: string
           event_id: string
-          id: string
+          id?: string
           name: string
           payment_id: string
           rank: string
           riot_id: string
         }
         Update: {
-          created_at?: string | null
+          created_at?: string
           discord?: string
           email?: string
           event_id?: string
@@ -80,33 +80,36 @@ export type Database = {
       }
       events: {
         Row: {
-          created_at: string | null
+          created_at: string
           date: string
-          game: string | null
+          game: string
           id: string
           name: string
           poster_url: string | null
           price: number
+          time: string
           type: Database["public"]["Enums"]["event_type"]
         }
         Insert: {
-          created_at?: string | null
+          created_at?: string
           date: string
-          game?: string | null
+          game: string
           id: string
           name: string
           poster_url?: string | null
           price: number
-          type?: Database["public"]["Enums"]["event_type"]
+          time: string
+          type: Database["public"]["Enums"]["event_type"]
         }
         Update: {
-          created_at?: string | null
+          created_at?: string
           date?: string
-          game?: string | null
+          game?: string
           id?: string
           name?: string
           poster_url?: string | null
           price?: number
+          time?: string
           type?: Database["public"]["Enums"]["event_type"]
         }
         Relationships: []
@@ -119,7 +122,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      event_type: "tft" | "summoner"
+      event_type: "tft"
     }
     CompositeTypes: {
       [_ in never]: never
