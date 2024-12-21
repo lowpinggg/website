@@ -145,7 +145,7 @@ export function EventPoster({
           className="h-full"
         >
           <Image
-            src={event.poster_url || '/default-poster.png'}
+            src={event.poster_url || '/null-tournament.png'}
             alt={event.name}
             width={604}
             height={854}
@@ -170,7 +170,7 @@ export function EventPoster({
 
         {showCTA ? (
           <Link
-            href={`/${event.id}/register`}
+            href={`/${event.slug}/register`}
             target="_blank"
             className="block w-full h-full"
           >

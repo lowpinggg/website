@@ -5,13 +5,14 @@ CREATE TYPE event_type AS ENUM ('tft');
 CREATE TABLE events (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     created_at TIMESTAMPTZ DEFAULT NOW(),
-    date TEXT NOT NULL,
+    date DATE NOT NULL,
     game TEXT NOT NULL,
     name TEXT NOT NULL,
     poster_url TEXT,
     price NUMERIC NOT NULL,
-    time TEXT NOT NULL,
+    time TIME NOT NULL,
     type event_type NOT NULL
+    slug TEXT NOT NULL
 );
 
 -- Create event_registrations table

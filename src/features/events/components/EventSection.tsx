@@ -39,7 +39,7 @@ export function EventSection() {
           />
         )}
       </div>
-      {error ? (
+      {!error ? (
         isLoading ? (
           <LoadingSpinner />
         ) : (

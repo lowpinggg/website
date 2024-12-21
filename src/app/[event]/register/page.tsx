@@ -47,7 +47,7 @@ export default async function RegistrationPage({ params }: Props) {
   const { data: event, error } = await supabase
     .from('events')
     .select('*')
-    .eq('id', e.event)
+    .eq('slug', e.event)
     .single()
 
   if (error || !event) {

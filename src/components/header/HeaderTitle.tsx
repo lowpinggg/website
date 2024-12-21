@@ -29,7 +29,7 @@ export function VersionBadge() {
   }, [])
 
   return (
-    <div className="overflow-hidden w-full text-center sm:text-left">
+    <div className="overflow-hidden w-full text-center xs:text-left">
       <motion.pre
         ref={ref}
         variants={introVariants.version}
