@@ -11,7 +11,6 @@ import { Footer } from '@/components/Footer'
 import { Header } from '@/components/header/Header'
 
 function IntroOverlay({ onComplete }: { onComplete: () => void }) {
-  window.scrollTo(0, 0)
   return (
     <motion.div
       className="fixed inset-0 z-30"
