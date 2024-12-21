@@ -34,12 +34,7 @@ export default function Page() {
         <IntroOverlay key="overlay" onComplete={() => setIsLocked(false)} />
       </AnimatePresence>
       <main>
-        <motion.div
-          className="relative z-30"
-          animate="animate"
-          initial="initial"
-          variants={introVariants.container}
-        >
+        <div className="relative z-30">
           <Header />
           <section className="container">
             <motion.div
@@ -58,7 +53,7 @@ export default function Page() {
               <Footer />
             </motion.div>
           </section>
-        </motion.div>
+        </div>
       </main>
     </>
   )

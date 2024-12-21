@@ -13,7 +13,7 @@ import 'lenis/dist/lenis.css'
 const alexandria = Alexandria({
   subsets: ['latin'],
   variable: '--font-alexandria',
-  weight: ['300', '400', '500', '700']
+  weight: ['300', '400', '500', '700', '800', '900']
 })
 
 export const metadata: Metadata = {
@@ -34,7 +34,7 @@ export default function RootLayout({
       </head>
       <body
         className={cn(
-          'max-w-page relative bg-background font-alexandria text-white antialiased dark',
+          'relative bg-background font-alexandria text-white antialiased dark',
           alexandria.variable
         )}
       >

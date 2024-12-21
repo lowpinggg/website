@@ -6,14 +6,12 @@ export const useScrollLock = (lock: boolean) => {
     if (typeof window === 'undefined') return
 
     if (lock) {
-      const scrollPosition = window.scrollY
 
       const styles = {
         overflow: 'hidden',
         height: '100vh',
         position: 'fixed',
         width: '100%',
-        top: `-${scrollPosition}px`,
         left: '0'
       }
 
@@ -39,7 +37,7 @@ export const useScrollLock = (lock: boolean) => {
         Object.assign(document.documentElement.style, resetStyles)
         Object.assign(document.body.style, resetStyles)
 
-        window.scrollTo(0, scrollPosition)
+        window.scrollTo(0, 0)
 
         document.removeEventListener('touchmove', preventDefault)
         document.removeEventListener('wheel', preventWheel)

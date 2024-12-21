@@ -77,6 +77,7 @@ export default {
       },
       screens: {
         'xs': '480px',
+        '2xs': '375px', 
       }
     }
   }

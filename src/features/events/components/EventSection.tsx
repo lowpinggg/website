@@ -15,9 +15,9 @@ function LoadingSpinner() {
 
 function ErrorMessage() {
   return (
-    <section className="flex flex-col gap-6 relative z-10 pb-24 text-sm text-foreground-muted font-light">
+    <div className='py-40 text-center text-muted-foreground text-sm'>
       Failed to load events. Please try again later.
-    </section>
+    </div>
   )
 }
 
@@ -26,26 +26,28 @@ export function EventSection() {
   const { isLoading, error, filterEvents } = useEvents()
   const filteredEvents = filterEvents(activeFilter)
 
-  if (error) {
-    return <ErrorMessage />
-  }
-
   return (
     <section className="flex flex-col gap-8 relative z-10">
       <div className="flex flex-col xs:flex-row sm:items-center gap-4 w-full justify-between border-b pb-4">
         <h1 className="text-2xl sm:text-4xl font-bold text-foreground">
           Événements
         </h1>
-        <EventFilters
-          activeFilter={activeFilter}
-          onFilterChange={setActiveFilter}
-        />
+        {!error && (
+          <EventFilters
+            activeFilter={activeFilter}
+            onFilterChange={setActiveFilter}
+          />
+        )}
       </div>
-      {isLoading ? (
-        <LoadingSpinner />
+      {error ? (
+        isLoading ? (
+          <LoadingSpinner />
+        ) : (
+          <EventGrid events={filteredEvents} />
+        )
       ) : (
-        <EventGrid events={filteredEvents} />
+        <ErrorMessage />
       )}
     </section>
-  )
+  );
 }

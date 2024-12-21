@@ -17,16 +17,10 @@ export const introVariants = {
     }
   },
   container: {
-    initial: { scale: 1.2, y: '50vh'},
+    initial: { y: '25vh'},
     animate: {
-      scale: 1,
       y: 0,
       transition: {
-        scale: createTransition(
-          INTRO_TIMELINE.container.duration,
-          INTRO_TIMELINE.container.start,
-          TRANSITIONS.easeOutExpo
-        ),
         y: createTransition(
           INTRO_TIMELINE.container.duration,
           INTRO_TIMELINE.container.start,
@@ -78,7 +72,7 @@ export const introVariants = {
     }
   },
   title: {
-    initial: { y: 100, color: 'black' },
+    initial: { y: 150, color: 'black' },
     animate: {
       y: 0,
       color: 'white',

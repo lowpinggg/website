@@ -22,7 +22,7 @@ export const INTRO_TIMELINE = {
     duration: 1
   },
   image: {
-    start: 2.2,
+    start: 2.3,
     duration: 1
   }
 } as const
