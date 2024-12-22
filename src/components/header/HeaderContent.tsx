@@ -2,7 +2,6 @@
 import Link from 'next/link'
 import { Globe } from 'lucide-react'
 import { motion } from 'motion/react'
-
 import { introVariants } from '@/lib/animations'
 import { Button } from '@/components/ui/button'
 import { Discord } from '@/components/icons/Discord'
@@ -11,7 +10,7 @@ export function HeaderContent() {
   return (
     <div className="overflow-hidden">
       <motion.div {...introVariants.content}>
-        <p className="text-sm xs:text-base text-center xs:text-left max-w-md mb-8 sm:max-w-xl md:max-w-2xl text-muted-foreground font-light">
+        <p className="text-sm xs:text-base text-center xs:text-left mb-8 max-w-xl md:max-w-2xl text-muted-foreground font-light">
           Tous nos événements esport au même endroit. Inscrivez-vous aux
           prochains tournois, suivez vos résultats et participez à des
           compétitions bien structurées.

@@ -10,13 +10,12 @@ interface EventGridProps {
 
 export function EventGrid({ events }: EventGridProps) {
   return (
-    <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 pb-24">
+    <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 pb-24 relative px-2">
       {events.map((event, index) => {
         const eventHasPassed = isEventPassed(event.date)
         return (
           <AnimatePresence mode="wait" key={event.id}>
             <motion.div
-              
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: eventHasPassed ? 0.6 : 1 }}
               exit={{ y: -20, opacity: 0 }}
@@ -27,23 +26,25 @@ export function EventGrid({ events }: EventGridProps) {
               transition={{
                 duration: 0.3,
                 delay: index * 0.1
-              }} cursor-border
-              className={cn(`w-full mx-auto`, {
+              }}
+              className={cn('w-full h-full', {
                 'cursor-border': eventHasPassed
-                
               })}
             >
-              <EventPoster
-                event={event}
-                size="responsive"
-                showCTA={!eventHasPassed}
-                tiltProps={{
-                  tiltMaxAngleX: 8,
-                  tiltMaxAngleY: 8,
-                  glareMaxOpacity: !eventHasPassed ? 0.2 : 0.1,
-                  transitionSpeed: 800
-                }}
-              />
+              <div className="w-full h-full">
+                <EventPoster
+                  event={event}
+                  size="responsive"
+                  showCTA={!eventHasPassed}
+                  tiltProps={{
+                    tiltMaxAngleX: 8,
+                    tiltMaxAngleY: 8,
+                    glareMaxOpacity: !eventHasPassed ? 0.4 : 0.3,
+                    transitionSpeed: 800,
+                    scale: 1.02
+                  }}
+                />
+              </div>
             </motion.div>
           </AnimatePresence>
         )

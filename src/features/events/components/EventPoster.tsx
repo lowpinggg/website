@@ -1,5 +1,7 @@
 'use client'
 
+// TODO: FIX GLARE
+
 import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -13,10 +15,9 @@ import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 
 type Event = Database['public']['Tables']['events']['Row']
-type GlarePosition = 'all' | 'top' | 'right' | 'bottom' | 'left'
-type PosterSize = 'sm' | 'md' | 'lg' | 'xl' | 'custom' | 'full' | 'responsive'
+type PosterSize = 'sm' | 'md' | 'lg' | 'xl' | 'responsive' | 'full'
 
-interface TiltProps {
+interface TiltConfig {
   perspective?: number
   scale?: number
   tiltMaxAngleX?: number
@@ -24,53 +25,48 @@ interface TiltProps {
   glareEnable?: boolean
   glareMaxOpacity?: number
   glareColor?: string
-  glarePosition?: GlarePosition
   glareBorderRadius?: string
   transitionSpeed?: number
   tiltEnable?: boolean
+  glarePosition?: 'top' | 'right' | 'bottom' | 'left' | 'all'
 }
 
 interface EventPosterProps {
   event: Event
   size?: PosterSize
-  customWidth?: string
-  customHeight?: string
   className?: string
-  tiltProps?: Partial<TiltProps>
+  tiltProps?: Partial<TiltConfig>
   showCTA?: boolean
 }
 
 const HOVER_TRANSITION = { ease: TRANSITIONS.easeOutExpo, duration: 0.8 }
 
-const TILT_DEFAULTS: TiltProps = {
+const DEFAULT_TILT_CONFIG: TiltConfig = {
   perspective: 1000,
   scale: 1.05,
-  tiltMaxAngleX: 5,
-  tiltMaxAngleY: 5,
+  tiltMaxAngleX: 12,
+  tiltMaxAngleY: 12,
   glareEnable: true,
-  glareMaxOpacity: 0.2,
+  glareMaxOpacity: 0.5,
   glareColor: 'rgba(255, 243, 230, 1)',
+  glareBorderRadius: '12px',
   glarePosition: 'all',
-  glareBorderRadius: '11px',
-  transitionSpeed: 300,
+  transitionSpeed: 800,
   tiltEnable: true
 }
 
 const SIZE_DIMENSIONS = {
-  sm: { width: 'w-full max-w-[200px]', height: 'aspect-[604/854]' },
-  md: { width: 'w-full max-w-[340px]', height: 'aspect-[604/854]' },
-  lg: { width: 'w-full sm:max-w-[460px]', height: 'aspect-[604/854]' },
-  xl: { width: 'w-full max-w-[700px]', height: 'aspect-[604/854]' },
-  full: { width: 'w-full', height: 'aspect-[604/854]' },
-  custom: { width: 'w-auto', height: 'h-auto' },
-  responsive: { width: 'w-full max-w-full', height: 'aspect-[604/854]' }
-}
+  sm: 'w-full max-w-[200px]',
+  md: 'w-full max-w-[340px]',
+  lg: 'w-full sm:max-w-[420px]',
+  xl: 'w-full max-w-[700px]',
+  full: 'w-full',
+  responsive: 'w-full max-w-full'
+} as const
 
 export function EventPoster({
   event,
   size = 'responsive',
-  customWidth,
-  customHeight,
   className,
   tiltProps = {},
   showCTA = true
@@ -85,15 +81,8 @@ export function EventPoster({
     }
   }, [])
 
-  const getDimensions = () => {
-    if (size === 'custom') {
-      return { width: customWidth, height: customHeight }
-    }
-    return SIZE_DIMENSIONS[size]
-  }
-
-  const finalTiltProps = {
-    ...TILT_DEFAULTS,
+  const tiltConfig = {
+    ...DEFAULT_TILT_CONFIG,
     ...tiltProps,
     tiltEnable: isDesktop,
     glareEnable: isDesktop
@@ -104,82 +93,61 @@ export function EventPoster({
     hover: { y: -buttonHeight }
   } : undefined
 
-  const renderButton = () => {
-    if (!showCTA) return null
-  
-    return (
-      <motion.div
-        ref={buttonRef}
-        className="absolute left-0 right-0 cursor-active"
-        style={{ bottom: -buttonHeight }}
-        variants={hoverVariants}
-        transition={HOVER_TRANSITION}
-      >
-        <Button className="w-full h-12 flex items-center justify-center gap-1 rounded-none cursor-blend">
-          <div className="flex items-center gap-1">
-            <span className="relative z-10 transition-colors delay-200 text-black">
-              Inscription
-            </span>
-            <ArrowRight
-              size={16}
-              className="relative z-10 transition-colors delay-200"
-            />
-          </div>
-        </Button>
-      </motion.div>
-    )
-  }
-  
-
-  const posterContent = (
+  const CTAButton = showCTA && (
     <motion.div
-      className="relative rounded-xl overflow-hidden"
-      initial="initial"
-      whileHover={showCTA ? 'hover' : undefined}
-      style={{ overflow: 'hidden', width: '100%', height: '100%' }}
+      ref={buttonRef}
+      className="absolute left-0 right-0"
+      style={{ bottom: -buttonHeight }}
+      variants={hoverVariants}
+      transition={HOVER_TRANSITION}
     >
-      <div className="relative w-full h-full">
-        <motion.div
-          variants={hoverVariants}
-          transition={HOVER_TRANSITION}
-          className="h-full"
-        >
-          <Image
-            src={event.poster_url || '/null-tournament.png'}
-            alt={event.name}
-            width={604}
-            height={854}
-            quality={80}
-            className="object-cover rounded-none w-full h-full"
-            sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-            priority
-          />
-        </motion.div>
-      </div>
-      {renderButton()}
+      <Button className="w-full h-12 flex items-center justify-center gap-1 rounded-none">
+        <span className="relative z-10 text-black">Inscription</span>
+        <ArrowRight size={16} className="relative z-10" />
+      </Button>
     </motion.div>
   )
 
-  const { width, height } = getDimensions()
-  const containerClassName = cn(width, height, className)
+  const PosterContent = (
+    <motion.div
+      className="relative h-full overflow-hidden rounded-md"
+      initial="initial"
+      whileHover={showCTA ? 'hover' : undefined}
+    >
+      <motion.div
+        variants={hoverVariants}
+        transition={HOVER_TRANSITION}
+      >
+        <Image
+          src={event.poster_url || '/null-tournament.png'}
+          alt={event.name}
+          width={604}
+          height={854}
+          quality={80}
+          className="object-cover w-full h-full"
+          sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+          priority
+        />
+      </motion.div>
+      {CTAButton}
+    </motion.div>
+  )
 
   return (
-    <motion.div className={cn('inline-block relative', containerClassName)}>
-
-      <Tilt className="w-full h-full" {...finalTiltProps}>
-
+    <div className={cn(SIZE_DIMENSIONS[size], 'aspect-[604/854] relative', className)}>
+      <Tilt className="w-full h-full" {...tiltConfig}>
         {showCTA ? (
           <Link
             href={`/${event.slug}/register`}
             target="_blank"
             className="block w-full h-full"
           >
-            {posterContent}
+            {PosterContent}
           </Link>
         ) : (
-          posterContent
+          PosterContent
         )}
       </Tilt>
-    </motion.div>
+    </div>
   )
 }
