@@ -16,9 +16,9 @@ export const baseVariants = {
       y: 0,
       opacity: 1,
       transition: createTransition(
-        TRANSITIONS.duration.medium,
-        undefined,
-        TRANSITIONS.easeOutExpo
+        TRANSITIONS.duration.long,
+        .3,
+        TRANSITIONS.ease
       )
     }
   }

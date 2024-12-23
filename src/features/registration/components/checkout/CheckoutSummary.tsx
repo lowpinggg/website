@@ -22,12 +22,12 @@ export function CheckoutSummary({ event, formData, onBack }: Props) {
   return (
     <motion.div
       className="space-y-6"
-      variants={staggerVariants.list.parent}
+      variants={staggerVariants.parent}
       initial="initial"
       animate="animate"
     >
       {/* User Information */}
-      <motion.div variants={staggerVariants.list.child} className="space-y-4">
+      <motion.div variants={staggerVariants.child} className="space-y-4">
         <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wide">
           Vos informations
         </h3>
@@ -46,12 +46,12 @@ export function CheckoutSummary({ event, formData, onBack }: Props) {
         </div>
       </motion.div>
 
-      <motion.div variants={staggerVariants.list.child}>
+      <motion.div variants={staggerVariants.child}>
         <Separator />
       </motion.div>
 
       {/* Price and Actions */}
-      <motion.div variants={staggerVariants.list.child} className="space-y-6">
+      <motion.div variants={staggerVariants.child} className="space-y-6">
         <div className="flex justify-between items-center">
           <span className="text-sm font-medium">Total</span>
           <span className="text-2xl font-bold text-primary">

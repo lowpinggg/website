@@ -39,7 +39,7 @@ export function EventGrid({ events }: EventGridProps) {
                   tiltProps={{
                     tiltMaxAngleX: 8,
                     tiltMaxAngleY: 8,
-                    glareMaxOpacity: !eventHasPassed ? 0.4 : 0.3,
+                    glareMaxOpacity: !eventHasPassed ? 0.3 : 0.2,
                     transitionSpeed: 800,
                     scale: 1.02
                   }}

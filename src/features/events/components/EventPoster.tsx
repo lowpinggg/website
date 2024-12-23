@@ -1,7 +1,5 @@
 'use client'
 
-// TODO: FIX GLARE
-
 import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -59,7 +57,7 @@ const SIZE_DIMENSIONS = {
   sm: 'w-full max-w-[200px]',
   md: 'w-full max-w-[340px]',
   lg: 'w-full sm:max-w-[420px]',
-  xl: 'w-full max-w-[700px]',
+  xl: 'w-full max-w-[680px]',
   full: 'w-full',
   responsive: 'w-full max-w-full'
 } as const
@@ -133,21 +131,29 @@ export function EventPoster({
     </motion.div>
   )
 
+  const TiltWrapper = ({ children }: { children: React.ReactNode }) => (
+    <Tilt {...tiltConfig}>
+      {children}
+    </Tilt>
+  )
+
   return (
     <div className={cn(SIZE_DIMENSIONS[size], 'aspect-[604/854] relative', className)}>
-      <Tilt className="w-full h-full" {...tiltConfig}>
-        {showCTA ? (
-          <Link
-            href={`/${event.slug}/register`}
-            target="_blank"
-            className="block w-full h-full"
-          >
+      {showCTA ? (
+        <Link
+          href={`/${event.slug}/register`}
+          target="_blank"
+          className="block w-full h-full"
+        >
+          <TiltWrapper>
             {PosterContent}
-          </Link>
-        ) : (
-          PosterContent
-        )}
-      </Tilt>
+          </TiltWrapper>
+        </Link>
+      ) : (
+        <TiltWrapper>
+          {PosterContent}
+        </TiltWrapper>
+      )}
     </div>
   )
 }

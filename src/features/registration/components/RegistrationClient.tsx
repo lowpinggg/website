@@ -1,12 +1,6 @@
 // features/registration/components/RegisterClient.tsx
 'use client'
 
-// TODO: Better page animation transitions
-// It feel fast and cluncky
-
-// TODO: Fix StripE POST https://eventhubs-johnolivierb-john-barrys-projects.vercel.app/api/checkout
-// payment error: Error: No session ID returned
-
 import { EventPoster } from '@/features/events/components/EventPoster'
 import { useRegistration } from '@/features/registration/hooks/useRegistration'
 import { motion } from 'motion/react'
@@ -26,7 +20,7 @@ type Props = {
 }
 function EventHeader({ step }: { step: number }) {
   return (
-    <motion.div variants={staggerVariants.list.child} className="mb-2 flex flex-col gap-1">
+    <motion.div variants={staggerVariants.child} className="mb-2 flex flex-col gap-1">
       <h1 className="text-2xl lg:text-3xl font-bold text-white">
         Inscription
       </h1>
@@ -40,61 +34,59 @@ function EventHeader({ step }: { step: number }) {
   )
 }
 
-function ContentSection({
-  step,
-  event,
-  registrationData,
-  onRegistrationComplete,
-  onBack
-}: {
+interface ContentSectionProps {
   step: number
   event: Props['event']
   registrationData: FormData
   onRegistrationComplete: (data: FormData) => void
   onBack: () => void
-}) {
+}
+
+export function ContentSection({
+  step,
+  event,
+  registrationData,
+  onRegistrationComplete,
+  onBack
+}: ContentSectionProps) {
   return (
     <motion.div
-      variants={staggerVariants.list.parent}
+      variants={staggerVariants.parent}
       initial="initial"
       animate="animate"
       className="w-full max-w-lg"
     >
-      <motion.div
-        variants={staggerVariants.list.child}
-        className="flex flex-col w-full space-y-2"
-      >
+      <motion.div variants={staggerVariants.child}>
         <EventHeader step={step} />
-        <EventSummaryCard event={event} />
-        <div className="flex flex-col gap-4">
-          <div className="flex flex-col gap-2 overflow-hidden">
-            <motion.div
-              variants={staggerVariants.list.child}
-              className="bg-black/20 rounded-lg border border-white/10 p-8"
-            >
-              {step === 1 ? (
-                <DynamicForm
-                  type={event.type}
-                  onComplete={onRegistrationComplete}
-                  defaultValues={registrationData}
-                />
-              ) : (
-                <CheckoutSummary
-                  event={event}
-                  formData={registrationData}
-                  onBack={onBack}
-                />
-              )}
-            </motion.div>
-          </div>
+      </motion.div>
 
-          <motion.p
-            variants={staggerVariants.list.child}
-            className="text-xs text-muted-foreground text-center"
-          >
-            En vous inscrivant, vous acceptez nos conditions générales de participation.
-          </motion.p>
+      <motion.div variants={staggerVariants.child}>
+        <EventSummaryCard event={event} />
+      </motion.div>
+
+      <motion.div variants={staggerVariants.child} className="flex flex-col gap-4">
+        <div className="bg-black/20 rounded-lg border border-white/10 p-8 overflow-hidden mt-4">
+          {step === 1 ? (
+            <DynamicForm
+              type={event.type}
+              onComplete={onRegistrationComplete}
+              defaultValues={registrationData}
+            />
+          ) : (
+            <CheckoutSummary
+              event={event}
+              formData={registrationData}
+              onBack={onBack}
+            />
+          )}
         </div>
+
+        <motion.p
+          variants={staggerVariants.child}
+          className="text-xs text-muted-foreground text-center"
+        >
+          En vous inscrivant, vous acceptez nos conditions générales de participation.
+        </motion.p>
       </motion.div>
     </motion.div>
   )
@@ -106,14 +98,17 @@ export function RegistrationClient({ event }: Props) {
 
   return (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-2 items-start py-12 gap-6 lg:gap-0">
-        <motion.div
-          variants={baseVariants.slideUp}
+      <motion.div
+          variants={staggerVariants.parent}
           initial="initial"
           animate="animate"
+        
+        className="grid grid-cols-1 md:grid-cols-2 items-start py-12 gap-6 lg:gap-0">
+        <motion.div
+          variants={staggerVariants.child}
           className="flex items-center justify-center md:sticky top-10"
         >
-          <EventPoster tiltProps={{ scale: 1.02 }} event={event} size={isMobile ? 'md' : 'lg'} showCTA={false} />
+          <EventPoster tiltProps={{ scale: 1.02, glareMaxOpacity: 0.3 }} event={event} size={isMobile ? 'md' : 'lg'} showCTA={false} />
         </motion.div>
 
         <div className="flex items-center w-full justify-center">
@@ -125,7 +120,7 @@ export function RegistrationClient({ event }: Props) {
             onBack={handleBack}
           />
         </div>
-      </div>
+      </motion.div>
       <Footer />
     </>
   )

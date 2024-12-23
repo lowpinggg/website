@@ -73,7 +73,7 @@ function SuccessSection({
 
   return (
     <motion.div
-      variants={staggerVariants.list.parent}
+      variants={staggerVariants.parent}
       initial="initial"
       animate="animate"
       className="flex flex-col md:flex-row items-center justify-center gap-12 h-full"
@@ -84,11 +84,11 @@ function SuccessSection({
 
       <div className="flex flex-col items-center md:items-start max-w-md">
         <motion.div
-          variants={staggerVariants.list.child}
+          variants={staggerVariants.child}
           className="flex flex-col gap-6 w-full"
         >
           <motion.div
-            variants={staggerVariants.list.child}
+            variants={staggerVariants.child}
             className="flex flex-col gap-2 text-center md:text-left"
           >
             <h1 className="flex items-center gap-2 justify-center md:justify-start text-2xl font-bold">
@@ -103,12 +103,12 @@ function SuccessSection({
             )}
           </motion.div>
 
-          <motion.div variants={staggerVariants.list.child} className="w-full">
+          <motion.div variants={staggerVariants.child} className="w-full">
             <EventSummaryCard event={details.event} />
           </motion.div>
 
           <motion.div
-            variants={staggerVariants.list.child}
+            variants={staggerVariants.child}
             className="flex gap-2 mx-auto md:mx-0"
           >
             <Link href="/">
@@ -121,7 +121,7 @@ function SuccessSection({
             )}
           </motion.div>
 
-          <motion.div variants={staggerVariants.list.child}>
+          <motion.div variants={staggerVariants.child}>
             <CalendarButton event={details.event} />
           </motion.div>
         </motion.div>
@@ -145,25 +145,25 @@ function CancelledSection({
       className="flex items-center justify-center"
     >
       <motion.div
-        variants={staggerVariants.list.parent}
+        variants={staggerVariants.parent}
         className="flex flex-col items-center gap-4 max-w-md text-center"
       >
-        <motion.div variants={staggerVariants.list.child}>
+        <motion.div variants={staggerVariants.child}>
           <X size={50} className="text-red-500" />
         </motion.div>
         <motion.h1
-          variants={staggerVariants.list.child}
+          variants={staggerVariants.child}
           className="text-2xl font-bold"
         >
           {title}
         </motion.h1>
         <motion.p
-          variants={staggerVariants.list.child}
+          variants={staggerVariants.child}
           className="text-muted-foreground text-sm"
         >
           {description}
         </motion.p>
-        <motion.div variants={staggerVariants.list.child}>
+        <motion.div variants={staggerVariants.child}>
           <Link href="/">
             <Button variant="outline">Retour</Button>
           </Link>
