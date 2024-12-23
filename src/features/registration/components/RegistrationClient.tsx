@@ -1,12 +1,6 @@
 // features/registration/components/RegisterClient.tsx
 'use client'
 
-// TODO: Better page animation transitions
-// It feel fast and cluncky
-
-// TODO: Fix Stripe POST https://eventhubs-johnolivierb-john-barrys-projects.vercel.app/api/checkout
-// payment error: Error: No session ID returned
-
 import { EventPoster } from '@/features/events/components/EventPoster'
 import { useRegistration } from '@/features/registration/hooks/useRegistration'
 import { motion } from 'motion/react'
