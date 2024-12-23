@@ -5,6 +5,12 @@
   "deno.enablePaths": [
     "supabase/functions"
   ],
+  "css.validate": false,
+  "scss.validate": false,
+  "tailwindCSS.validate": true,
+  "css.validate": {
+    "**/node_modules/**": false
+  },
   "deno.lint": true,
   "deno.unstable": [
     "bare-node-builtins",
