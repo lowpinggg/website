@@ -51,7 +51,7 @@ export function BaseForm<T extends FormData>({
   const allFields = [...baseFields, ...specificFields]
 
   const renderField = (field: BaseField) => (
-    <motion.div variants={staggerVariants.list.child} key={field.name} className='cursor-border'>
+    <motion.div variants={staggerVariants.child} key={field.name} className='cursor-border'>
       <FormField
         control={form.control}
         name={field.name as Path<T>}
@@ -93,19 +93,19 @@ export function BaseForm<T extends FormData>({
   return (
     <Form {...form}>
       <motion.form
-        variants={staggerVariants.list.parent}
+        variants={staggerVariants.parent}
         initial="initial"
         animate="animate"
         onSubmit={form.handleSubmit(onComplete)}
         className="space-y-4"
       >
         <motion.div 
-          variants={staggerVariants.list.child} 
+          variants={staggerVariants.child} 
           className="flex flex-col gap-4"
         >
           {allFields.map(renderField)}
         </motion.div>
-        <motion.div variants={staggerVariants.list.child} className='pt-4'>
+        <motion.div variants={staggerVariants.child} className='pt-4'>
           <Button type="submit" className="w-full">
             {"S'inscrire"}
           </Button>
