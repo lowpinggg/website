@@ -1,6 +1,5 @@
 // components/GameBadge.tsx
 import clsx from 'clsx'
-
 import { LeagueOfLegends } from '@/components/icons/LeagueOfLegends'
 import { TeamfightTactics } from '@/components/icons/TeamFightTactics'
 import { Badge } from '@/components/ui/badge'

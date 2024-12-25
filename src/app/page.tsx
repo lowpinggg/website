@@ -2,20 +2,12 @@
 'use client'
 
 import { AnimatePresence, motion } from 'motion/react'
-
 import { useState } from 'react'
-
 import { Footer } from '@/components/Footer'
 import { Header } from '@/components/header/Header'
 import { EventSection } from '@/features/events/components/EventSection'
 import { useScrollLock } from '@/hooks/useScrollLock'
 import { introVariants } from '@/lib/animations'
-
-// app/page.tsx
-
-// app/page.tsx
-
-// app/page.tsx
 
 function IntroOverlay({ onComplete }: { onComplete: () => void }) {
   return (

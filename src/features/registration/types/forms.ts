@@ -1,7 +1,6 @@
 // features/registration/types/forms.ts
 import { schemas } from '@/features/registration/schemas'
 import { Database } from '@/types/generated-types'
-
 import { TftForm } from '../components/forms/TftForm'
 
 // ============================================================================

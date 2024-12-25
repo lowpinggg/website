@@ -1,8 +1,6 @@
 import { AnimatePresence, motion } from 'motion/react'
-
 import { TRANSITIONS } from '@/lib/animations'
 import { cn } from '@/lib/utils'
-
 import type { EventGridProps } from '../types'
 import { isEventPassed } from '../utils/eventHelpers'
 import { EventPoster } from './EventPoster'

@@ -1,6 +1,5 @@
 // features/events/components/EventFilters.tsx
 import clsx from 'clsx'
-
 import type { EventFiltersProps, FilterType } from '../types'
 
 const FILTER_OPTIONS = [

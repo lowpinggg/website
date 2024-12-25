@@ -1,6 +1,5 @@
 // components/icons/LeagueOfLegends.tsx
 import clsx from 'clsx'
-
 import { type ComponentProps } from 'react'
 
 type IconProps = {

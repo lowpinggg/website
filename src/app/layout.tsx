@@ -1,15 +1,12 @@
 // app/layout.tsx
 import 'lenis/dist/lenis.css'
-
 import type { Metadata } from 'next'
 import { Alexandria } from 'next/font/google'
-
 import { Providers } from '@/app/Providers'
 import { Cursor } from '@/components/Cursor'
 import { SmoothScroll } from '@/components/SmoothScroll'
 import { Toaster } from '@/components/ui/toaster'
 import { cn } from '@/lib/utils'
-
 import './globals.css'
 
 const alexandria = Alexandria({

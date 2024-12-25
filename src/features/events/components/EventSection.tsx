@@ -1,6 +1,5 @@
 // features/events/components/EventSection.tsx
 import { useState } from 'react'
-
 import { useEvents } from '../hooks/useEvents'
 import type { FilterType } from '../types'
 import { EventFilters } from './EventFilters'

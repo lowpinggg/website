@@ -1,7 +1,6 @@
 // app/api/webhook/route.ts
 import { headers } from 'next/headers'
 import { NextRequest, NextResponse } from 'next/server'
-
 import { handleWebhook } from '@/features/registration/actions/webhook'
 import { stripe } from '@/lib/stripe/stripe-server'
 

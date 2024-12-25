@@ -3,17 +3,9 @@
 
 import { motion } from 'motion/react'
 import { useScramble } from 'use-scramble'
-
 import { useEffect, useState } from 'react'
-
 import { INTRO_TIMELINE, introVariants } from '@/lib/animations'
 import packageJson from '@/package'
-
-// components/header/HeaderTitle.tsx
-
-// components/header/HeaderTitle.tsx
-
-// components/header/HeaderTitle.tsx
 
 export function VersionBadge() {
   const { ref } = useScramble({

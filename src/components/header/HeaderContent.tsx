@@ -1,9 +1,7 @@
 // components/header/HeaderContent.tsx
 import { Globe } from 'lucide-react'
 import { motion } from 'motion/react'
-
 import Link from 'next/link'
-
 import { Discord } from '@/components/icons/Discord'
 import { Button } from '@/components/ui/button'
 import { introVariants } from '@/lib/animations'

@@ -2,14 +2,7 @@
 'use client'
 
 import { Calendar } from 'lucide-react'
-
 import { Button } from '@/components/ui/button'
-
-// features/registration/components/checkout/ActionButtons.tsx
-
-// features/registration/components/checkout/ActionButtons.tsx
-
-// features/registration/components/checkout/ActionButtons.tsx
 
 type Props = {
   event: {

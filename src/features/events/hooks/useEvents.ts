@@ -1,6 +1,5 @@
 // features/events/hooks/useEvents.ts
 import { useQuery } from '@tanstack/react-query'
-
 import { getEvents } from '../api/getEvents'
 import type { FilterType } from '../types'
 import { isEventPassed } from '../utils/eventHelpers'

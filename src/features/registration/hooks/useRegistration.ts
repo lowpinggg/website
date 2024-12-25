@@ -1,8 +1,6 @@
 // features/registration/hooks/useRegistration.ts
 import { useState } from 'react'
-
 import { Database } from '@/types/generated-types'
-
 import { FormData, formRegistry, FormType } from '../types/forms'
 
 type Event = Database['public']['Tables']['events']['Row']

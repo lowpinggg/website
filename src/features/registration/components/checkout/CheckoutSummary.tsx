@@ -1,11 +1,9 @@
 import { motion } from 'motion/react'
-
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { formatters } from '@/features/events/utils/eventHelpers'
 import { staggerVariants } from '@/lib/animations'
 import { Database } from '@/types/generated-types'
-
 import { useCheckout } from '../../hooks/useCheckout'
 import { BaseField, FormData, formRegistry, FormType } from '../../types/forms'
 

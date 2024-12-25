@@ -1,9 +1,7 @@
 // features/registration/actions/webhook.ts
 import crypto from 'crypto'
 import Stripe from 'stripe'
-
 import { supabase } from '@/lib/supabase'
-
 import { FormData } from '../types/forms'
 
 export async function handleWebhook(

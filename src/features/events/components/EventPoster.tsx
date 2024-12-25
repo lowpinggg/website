@@ -2,19 +2,15 @@
 
 import { ArrowRight } from 'lucide-react'
 import { motion } from 'motion/react'
-
 import { useEffect, useRef, useState } from 'react'
 import Tilt from 'react-parallax-tilt'
-
 import Image from 'next/image'
 import Link from 'next/link'
-
 import { Button } from '@/components/ui/button'
 import { useMedia } from '@/hooks/useMedia'
 import { TRANSITIONS } from '@/lib/animations'
 import { cn } from '@/lib/utils'
 import type { Database } from '@/types/generated-types'
-
 import type { EventPosterProps, TiltConfig } from '../types'
 
 const HOVER_TRANSITION = { ease: TRANSITIONS.easeOutExpo, duration: 0.8 }

@@ -2,7 +2,6 @@
 import { getEventById } from '@/features/events/api/getEvents'
 import { stripe } from '@/lib/stripe/stripe-server'
 import { supabase } from '@/lib/supabase'
-
 import { FormData } from '../types/forms'
 
 type RegistrationDetails = {

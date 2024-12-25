@@ -2,14 +2,7 @@
 'use client'
 
 import Lenis from 'lenis'
-
 import { ReactNode, useEffect } from 'react'
-
-// components/SmoothScroll.tsx
-
-// components/SmoothScroll.tsx
-
-// components/SmoothScroll.tsx
 
 export function SmoothScroll({ children }: { children: ReactNode }) {
   useEffect(() => {

@@ -1,7 +1,6 @@
 // app/[event]/register/page.tsx
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-
 import { metadata as defaultMetadata } from '@/app/layout'
 import { RegistrationClient } from '@/features/registration/components/RegistrationClient'
 import { formRegistry } from '@/features/registration/types/forms'

@@ -2,24 +2,16 @@
 'use client'
 
 import { motion } from 'motion/react'
-
 import { Footer } from '@/components/Footer'
 import { EventPoster } from '@/features/events/components/EventPoster'
 import { EventSummaryCard } from '@/features/registration/components/shared/EventSummaryCard'
 import { useRegistration } from '@/features/registration/hooks/useRegistration'
 import { useMedia } from '@/hooks/useMedia'
-import { baseVariants, staggerVariants } from '@/lib/animations'
+import { staggerVariants } from '@/lib/animations'
 import { Database } from '@/types/generated-types'
-
 import { FormData } from '../types/forms'
 import { CheckoutSummary } from './checkout/CheckoutSummary'
 import { DynamicForm } from './forms/DynamicForm'
-
-// features/registration/components/RegisterClient.tsx
-
-// features/registration/components/RegisterClient.tsx
-
-// features/registration/components/RegisterClient.tsx
 
 type Props = {
   event: Database['public']['Tables']['events']['Row']

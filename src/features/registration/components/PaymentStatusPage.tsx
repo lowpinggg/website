@@ -3,17 +3,13 @@
 import confetti from 'canvas-confetti'
 import { BadgeCheck, X } from 'lucide-react'
 import { motion } from 'motion/react'
-
 import { useEffect } from 'react'
-
 import Link from 'next/link'
-
 import { Button } from '@/components/ui/button'
 import { EventPoster } from '@/features/events/components/EventPoster'
 import { CalendarButton } from '@/features/registration/components/checkout/CalendarButton'
 import { baseVariants, staggerVariants } from '@/lib/animations'
 import { Database } from '@/types/generated-types'
-
 import { EventSummaryCard } from './shared/EventSummaryCard'
 
 type Event = Database['public']['Tables']['events']['Row']
