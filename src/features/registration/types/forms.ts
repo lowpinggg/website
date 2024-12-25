@@ -1,6 +1,5 @@
 // features/registration/types/forms.ts
 import { schemas } from '@/features/registration/schemas'
-
 import { Database } from '@/types/generated-types'
 
 import { TftForm } from '../components/forms/TftForm'
@@ -46,20 +45,20 @@ export const baseFields: readonly BaseField[] = [
     name: 'name',
     label: 'Nom',
     type: 'text',
-    placeholder: 'Votre nom'
+    placeholder: 'Votre nom',
   },
   {
     name: 'prenom',
     label: 'Prénom',
     type: 'text',
-    placeholder: 'Votre prénom'
+    placeholder: 'Votre prénom',
   },
   {
     name: 'email',
     label: 'Email',
     type: 'email',
-    placeholder: 'votre@email.com'
-  }
+    placeholder: 'votre@email.com',
+  },
 ] as const
 
 export const tftSpecificFields: readonly BaseField[] = [
@@ -67,21 +66,29 @@ export const tftSpecificFields: readonly BaseField[] = [
     name: 'discord',
     label: 'Discord',
     type: 'text',
-    placeholder: 'Votre#0000'
+    placeholder: 'Votre#0000',
   },
   {
     name: 'riot_id',
     label: 'Riot ID',
     type: 'text',
-    placeholder: 'Pseudo#TAG'
+    placeholder: 'Pseudo#TAG',
   },
   {
     name: 'rank',
     label: 'Rang actuel',
     type: 'select',
     placeholder: 'Sélectionnez votre rang',
-    options: ['Iron', 'Bronze', 'Silver', 'Gold', 'Platinum', 'Diamond', 'Master']
-  }
+    options: [
+      'Iron',
+      'Bronze',
+      'Silver',
+      'Gold',
+      'Platinum',
+      'Diamond',
+      'Master',
+    ],
+  },
 ] as const
 
 // ============================================================================
@@ -101,6 +108,6 @@ export const formRegistry = {
     component: TftForm,
     baseFields: baseFields,
     specificFields: tftSpecificFields,
-    schema: schemas.tft
-  }
+    schema: schemas.tft,
+  },
 } as const

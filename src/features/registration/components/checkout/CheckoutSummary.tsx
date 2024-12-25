@@ -1,9 +1,11 @@
 import { motion } from 'motion/react'
-import { formatters } from '@/features/events/utils/eventHelpers'
-import { Database } from '@/types/generated-types'
-import { staggerVariants } from '@/lib/animations'
+
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
+import { formatters } from '@/features/events/utils/eventHelpers'
+import { staggerVariants } from '@/lib/animations'
+import { Database } from '@/types/generated-types'
+
 import { useCheckout } from '../../hooks/useCheckout'
 import { BaseField, FormData, formRegistry, FormType } from '../../types/forms'
 
@@ -17,7 +19,10 @@ type Props = {
 export function CheckoutSummary({ event, formData, onBack }: Props) {
   const { isLoading, handleCheckout } = useCheckout()
   const config = formRegistry[event.type as FormType]
-  const allFields = [...config.baseFields, ...config.specificFields] as readonly BaseField[]
+  const allFields = [
+    ...config.baseFields,
+    ...config.specificFields,
+  ] as readonly BaseField[]
 
   return (
     <motion.div
@@ -39,7 +44,9 @@ export function CheckoutSummary({ event, formData, onBack }: Props) {
                 <p className="text-xs font-medium text-muted-foreground">
                   {field.label}
                 </p>
-                <p className="text-sm text-white">{formData[key] || 'Non renseigné'}</p>
+                <p className="text-sm text-white">
+                  {formData[key] || 'Non renseigné'}
+                </p>
               </div>
             )
           })}

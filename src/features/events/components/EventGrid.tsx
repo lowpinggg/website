@@ -1,12 +1,11 @@
 import { AnimatePresence, motion } from 'motion/react'
+
 import { TRANSITIONS } from '@/lib/animations'
-import type { Event } from '../types'
+import { cn } from '@/lib/utils'
+
+import type { EventGridProps } from '../types'
 import { isEventPassed } from '../utils/eventHelpers'
 import { EventPoster } from './EventPoster'
-import { cn } from '@/lib/utils'
-interface EventGridProps {
-  events: Event[]
-}
 
 export function EventGrid({ events }: EventGridProps) {
   return (
@@ -21,14 +20,14 @@ export function EventGrid({ events }: EventGridProps) {
               exit={{ y: -20, opacity: 0 }}
               whileHover={{
                 opacity: 1,
-                transition: { duration: 0.1, ease: TRANSITIONS.easeOutExpo }
+                transition: { duration: 0.1, ease: TRANSITIONS.easeOutExpo },
               }}
               transition={{
                 duration: 0.3,
-                delay: index * 0.1
+                delay: index * 0.1,
               }}
               className={cn('w-full h-full', {
-                'cursor-border': eventHasPassed
+                'cursor-border': eventHasPassed,
               })}
             >
               <div className="w-full h-full">
@@ -41,7 +40,7 @@ export function EventGrid({ events }: EventGridProps) {
                     tiltMaxAngleY: 8,
                     glareMaxOpacity: !eventHasPassed ? 0.3 : 0.2,
                     transitionSpeed: 800,
-                    scale: 1.02
+                    scale: 1.02,
                   }}
                 />
               </div>

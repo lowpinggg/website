@@ -9,9 +9,9 @@ export const staggerVariants = {
       transition: {
         staggerChildren: TRANSITIONS.stagger.short,
         delayChildren: TRANSITIONS.delay.short,
-        ease: TRANSITIONS.ease
-      }
-    }
+        ease: TRANSITIONS.ease,
+      },
+    },
   },
   child: {
     initial: { y: 20, opacity: 0 },
@@ -20,8 +20,8 @@ export const staggerVariants = {
       opacity: 1,
       transition: {
         duration: TRANSITIONS.duration.long,
-        ease: TRANSITIONS.ease
-      }
-    }
-  }
+        ease: TRANSITIONS.ease,
+      },
+    },
+  },
 }

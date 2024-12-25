@@ -1,5 +1,6 @@
 // app/api/checkout/route.ts
 import { NextRequest, NextResponse } from 'next/server'
+
 import { handleCheckout } from '@/features/registration/actions/checkout'
 
 export async function POST(request: NextRequest) {

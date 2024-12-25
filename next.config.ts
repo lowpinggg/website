@@ -1,5 +1,6 @@
-import MillionLint from '@million/lint';
 import type { NextConfig } from 'next'
+
+import MillionLint from '@million/lint'
 
 const nextConfig: NextConfig = {
   /* config options here */
@@ -8,20 +9,20 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'http',
-        hostname: '127.0.0.1'
+        hostname: '127.0.0.1',
       },
       {
         protocol: 'https',
-        hostname: 'oroqkwktxvuxkwoszubb.supabase.co'
+        hostname: 'oroqkwktxvuxkwoszubb.supabase.co',
       },
-    ]
-  }
+    ],
+  },
 }
 
 export default MillionLint.next({
   enabled: true,
   rsc: true,
   filter: {
-    exclude: "**/components/ui/**",
+    exclude: '**/components/ui/**',
   },
-})(nextConfig);
+})(nextConfig)

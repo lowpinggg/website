@@ -1,6 +1,7 @@
 // components/icons/DiscordLogo.tsx
-import { type ComponentProps } from 'react'
 import clsx from 'clsx'
+
+import { type ComponentProps } from 'react'
 
 type IconProps = {
   className?: string

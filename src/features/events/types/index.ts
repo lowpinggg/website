@@ -8,3 +8,30 @@ export interface EventFiltersProps {
   activeFilter: FilterType
   onFilterChange: (filter: FilterType) => void
 }
+export interface EventGridProps {
+  events: Event[]
+}
+
+export type PosterSize = 'sm' | 'md' | 'lg' | 'xl' | 'responsive' | 'full'
+
+export interface TiltConfig {
+  perspective?: number
+  scale?: number
+  tiltMaxAngleX?: number
+  tiltMaxAngleY?: number
+  glareEnable?: boolean
+  glareMaxOpacity?: number
+  glareColor?: string
+  glareBorderRadius?: string
+  transitionSpeed?: number
+  tiltEnable?: boolean
+  glarePosition?: 'top' | 'right' | 'bottom' | 'left' | 'all'
+}
+
+export interface EventPosterProps {
+  event: Event
+  size?: PosterSize
+  className?: string
+  tiltProps?: Partial<TiltConfig>
+  showCTA?: boolean
+}

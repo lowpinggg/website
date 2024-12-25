@@ -1,11 +1,12 @@
 // app/[event]/register/page.tsx
+import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
+
+import { metadata as defaultMetadata } from '@/app/layout'
 import { RegistrationClient } from '@/features/registration/components/RegistrationClient'
 import { formRegistry } from '@/features/registration/types/forms'
-import type { Metadata } from 'next'
-import { metadata as defaultMetadata } from '@/app/layout'
-import { Database } from '@/types/generated-types'
 import { supabase } from '@/lib/supabase'
+import { Database } from '@/types/generated-types'
 
 type Event = Database['public']['Tables']['events']['Row'] & {
   type: keyof typeof formRegistry
@@ -27,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (event) {
       return {
         title: `${event.name} - Lowping`,
-        description: 'Inscrivez-vous à cet événement dès maintenant!'
+        description: 'Inscrivez-vous à cet événement dès maintenant!',
       }
     }
   } catch (error) {
@@ -36,7 +37,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return defaultMetadata
 }
-
 
 export default async function RegistrationPage({ params }: Props) {
   const e = await params
@@ -70,7 +70,7 @@ export async function generateStaticParams() {
   const { data: events } = await supabase.from('events').select('id')
   return (
     events?.map((event) => ({
-      event: event.id
+      event: event.id,
     })) || []
   )
 }

@@ -15,16 +15,16 @@ function generateInitialState(eventType: FormType): FormData {
     (acc, field) => ({
       ...acc,
       [field.name]:
-        field.type === 'select' && field.options ? field.options[0] : ''
+        field.type === 'select' && field.options ? field.options[0] : '',
     }),
-    {}
+    {},
   ) as FormData
 }
 
 export function useRegistration(event: Event) {
   const [step, setStep] = useState(1)
   const [registrationData, setRegistrationData] = useState<FormData>(() =>
-    generateInitialState(event.type as FormType)
+    generateInitialState(event.type as FormType),
   )
 
   const handleRegistrationComplete = (data: FormData) => {
@@ -40,6 +40,6 @@ export function useRegistration(event: Event) {
     step,
     registrationData,
     handleRegistrationComplete,
-    handleBack
+    handleBack,
   }
 }

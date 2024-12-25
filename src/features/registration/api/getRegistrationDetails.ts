@@ -2,6 +2,7 @@
 import { getEventById } from '@/features/events/api/getEvents'
 import { stripe } from '@/lib/stripe/stripe-server'
 import { supabase } from '@/lib/supabase'
+
 import { FormData } from '../types/forms'
 
 type RegistrationDetails = {
@@ -11,13 +12,13 @@ type RegistrationDetails = {
 }
 
 export async function getRegistrationDetails(
-  sessionId: string
+  sessionId: string,
 ): Promise<RegistrationDetails | null> {
   try {
     const session = await stripe.checkout.sessions.retrieve(sessionId)
 
     const { data: event } = await getEventById(
-      session.metadata?.event_id as string
+      session.metadata?.event_id as string,
     )
     if (!event) return null
 
@@ -34,7 +35,7 @@ export async function getRegistrationDetails(
       registration = regData
 
       const charges = await stripe.charges.list({
-        payment_intent: session.payment_intent
+        payment_intent: session.payment_intent,
       })
       receipt_url = charges.data[0]?.receipt_url
     }
@@ -42,7 +43,7 @@ export async function getRegistrationDetails(
     return {
       event,
       registration,
-      receipt_url
+      receipt_url,
     }
   } catch (error) {
     console.error('Error fetching registration details:', error)

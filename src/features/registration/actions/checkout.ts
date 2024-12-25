@@ -1,7 +1,9 @@
 // features/registration/actions/checkout.ts
-import { Database } from '@/types/generated-types'
-import { stripe } from '@/lib/stripe/stripe-server'
 import { headers } from 'next/headers'
+
+import { stripe } from '@/lib/stripe/stripe-server'
+import { Database } from '@/types/generated-types'
+
 import { FormData } from '../types/forms'
 
 type Event = Database['public']['Tables']['events']['Row']
@@ -23,19 +25,19 @@ export async function handleCheckout(event: Event, formData: FormData) {
             currency: 'cad',
             product_data: {
               name: event.name,
-              description: `Registration for ${event.name}`
+              description: `Registration for ${event.name}`,
             },
-            unit_amount: event.price // Price in cents
+            unit_amount: event.price, // Price in cents
           },
-          quantity: 1
-        }
+          quantity: 1,
+        },
       ],
       success_url: `${baseUrl}/registration/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${baseUrl}/registration/cancelled`,
       metadata: {
         event_id: event.id,
-        registration_data: JSON.stringify(formData)
-      }
+        registration_data: JSON.stringify(formData),
+      },
     })
 
     if (!session?.id) {

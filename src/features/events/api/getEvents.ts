@@ -1,7 +1,10 @@
 import { supabase } from '@/lib/supabase'
 
 export async function getEvents() {
-  const { data, error } = await supabase.from('events').select('*').order('date', { ascending: false })
+  const { data, error } = await supabase
+    .from('events')
+    .select('*')
+    .order('date', { ascending: false })
   return { data, error }
 }
 

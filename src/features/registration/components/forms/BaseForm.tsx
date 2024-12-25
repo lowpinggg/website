@@ -1,12 +1,11 @@
 // features/registration/components/forms/BaseForm.tsx
 'use client'
 
-import { zodResolver } from '@hookform/resolvers/zod'
 import { motion } from 'motion/react'
-import { DefaultValues, Path, useForm } from 'react-hook-form'
 import { z } from 'zod'
 
-import { staggerVariants } from '@/lib/animations'
+import { DefaultValues, Path, useForm } from 'react-hook-form'
+
 import { Button } from '@/components/ui/button'
 import {
   Form,
@@ -14,7 +13,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage
+  FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import {
@@ -22,10 +21,14 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue
+  SelectValue,
 } from '@/components/ui/select'
+import { staggerVariants } from '@/lib/animations'
+import { zodResolver } from '@hookform/resolvers/zod'
 
 import { BaseField, FormData } from '../../types/forms'
+
+// features/registration/components/forms/BaseForm.tsx
 
 interface BaseFormProps<T extends FormData> {
   baseFields: readonly BaseField[]
@@ -40,18 +43,22 @@ export function BaseForm<T extends FormData>({
   specificFields,
   schema,
   onComplete,
-  defaultValues
+  defaultValues,
 }: BaseFormProps<T>) {
   const form = useForm<T>({
     resolver: zodResolver(schema),
-    defaultValues
+    defaultValues,
   })
 
   // Combine all fields
   const allFields = [...baseFields, ...specificFields]
 
   const renderField = (field: BaseField) => (
-    <motion.div variants={staggerVariants.child} key={field.name} className='cursor-border'>
+    <motion.div
+      variants={staggerVariants.child}
+      key={field.name}
+      className="cursor-border"
+    >
       <FormField
         control={form.control}
         name={field.name as Path<T>}
@@ -83,7 +90,7 @@ export function BaseForm<T extends FormData>({
                 />
               )}
             </FormControl>
-            <FormMessage className='text-xs' />
+            <FormMessage className="text-xs" />
           </FormItem>
         )}
       />
@@ -99,13 +106,13 @@ export function BaseForm<T extends FormData>({
         onSubmit={form.handleSubmit(onComplete)}
         className="space-y-4"
       >
-        <motion.div 
-          variants={staggerVariants.child} 
+        <motion.div
+          variants={staggerVariants.child}
           className="flex flex-col gap-4"
         >
           {allFields.map(renderField)}
         </motion.div>
-        <motion.div variants={staggerVariants.child} className='pt-4'>
+        <motion.div variants={staggerVariants.child} className="pt-4">
           <Button type="submit" className="w-full">
             {"S'inscrire"}
           </Button>

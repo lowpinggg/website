@@ -6,13 +6,12 @@ export const useScrollLock = (lock: boolean) => {
     if (typeof window === 'undefined') return
 
     if (lock) {
-
       const styles = {
         overflow: 'hidden',
         height: '100vh',
         position: 'fixed',
         width: '100%',
-        left: '0'
+        left: '0',
       }
 
       Object.assign(document.documentElement.style, styles)
@@ -31,7 +30,7 @@ export const useScrollLock = (lock: boolean) => {
           position: '',
           width: '',
           top: '',
-          left: ''
+          left: '',
         }
 
         Object.assign(document.documentElement.style, resetStyles)

@@ -1,8 +1,11 @@
 // components/SmoothScroll.tsx
 'use client'
 
-import { ReactNode, useEffect } from 'react'
 import Lenis from 'lenis'
+
+import { ReactNode, useEffect } from 'react'
+
+// components/SmoothScroll.tsx
 
 export function SmoothScroll({ children }: { children: ReactNode }) {
   useEffect(() => {

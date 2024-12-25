@@ -1,7 +1,8 @@
 // features/events/components/EventSection.tsx
 import { useState } from 'react'
-import type { FilterType } from '../types'
+
 import { useEvents } from '../hooks/useEvents'
+import type { FilterType } from '../types'
 import { EventFilters } from './EventFilters'
 import { EventGrid } from './EventGrid'
 
@@ -15,7 +16,7 @@ function LoadingSpinner() {
 
 function ErrorMessage() {
   return (
-    <div className='py-40 text-center text-muted-foreground text-sm'>
+    <div className="py-40 text-center text-muted-foreground text-sm">
       Failed to load events. Please try again later.
     </div>
   )
@@ -49,5 +50,5 @@ export function EventSection() {
         <ErrorMessage />
       )}
     </section>
-  );
+  )
 }

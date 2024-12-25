@@ -1,10 +1,12 @@
 // components/header/HeaderContent.tsx
-import Link from 'next/link'
 import { Globe } from 'lucide-react'
 import { motion } from 'motion/react'
-import { introVariants } from '@/lib/animations'
-import { Button } from '@/components/ui/button'
+
+import Link from 'next/link'
+
 import { Discord } from '@/components/icons/Discord'
+import { Button } from '@/components/ui/button'
+import { introVariants } from '@/lib/animations'
 
 export function HeaderContent() {
   return (
@@ -17,27 +19,27 @@ export function HeaderContent() {
         </p>
 
         <div className="flex items-center w-full xs:justify-between justify-center">
-  <div className="flex flex-col 2xs:flex-row items-center gap-2">
-    <Button
-      size="lg"
-      className="bg-[#5763ED] text-white hover:bg-[#3744DB] w-full"
-    >
-      Discord
-      <Discord />
-    </Button>
-    <Link
-      href="https://lowping.gg"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="w-fit pointer-events-none"
-    >
-      <Button size="lg" disabled>
-        <Globe size={24} />
-        Website (soon)
-      </Button>
-    </Link>
-  </div>
-</div>
+          <div className="flex flex-col 2xs:flex-row items-center gap-2">
+            <Button
+              size="lg"
+              className="bg-[#5763ED] text-white hover:bg-[#3744DB] w-full"
+            >
+              Discord
+              <Discord />
+            </Button>
+            <Link
+              href="https://lowping.gg"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-fit pointer-events-none"
+            >
+              <Button size="lg" disabled>
+                <Globe size={24} />
+                Website (soon)
+              </Button>
+            </Link>
+          </div>
+        </div>
       </motion.div>
     </div>
   )

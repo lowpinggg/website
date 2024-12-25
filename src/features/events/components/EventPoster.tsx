@@ -1,41 +1,21 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { motion } from 'motion/react'
+
+import { useEffect, useRef, useState } from 'react'
 import Tilt from 'react-parallax-tilt'
+
+import Image from 'next/image'
+import Link from 'next/link'
+
+import { Button } from '@/components/ui/button'
 import { useMedia } from '@/hooks/useMedia'
-import type { Database } from '@/types/generated-types'
 import { TRANSITIONS } from '@/lib/animations'
 import { cn } from '@/lib/utils'
-import { Button } from '@/components/ui/button'
+import type { Database } from '@/types/generated-types'
 
-type Event = Database['public']['Tables']['events']['Row']
-type PosterSize = 'sm' | 'md' | 'lg' | 'xl' | 'responsive' | 'full'
-
-interface TiltConfig {
-  perspective?: number
-  scale?: number
-  tiltMaxAngleX?: number
-  tiltMaxAngleY?: number
-  glareEnable?: boolean
-  glareMaxOpacity?: number
-  glareColor?: string
-  glareBorderRadius?: string
-  transitionSpeed?: number
-  tiltEnable?: boolean
-  glarePosition?: 'top' | 'right' | 'bottom' | 'left' | 'all'
-}
-
-interface EventPosterProps {
-  event: Event
-  size?: PosterSize
-  className?: string
-  tiltProps?: Partial<TiltConfig>
-  showCTA?: boolean
-}
+import type { EventPosterProps, TiltConfig } from '../types'
 
 const HOVER_TRANSITION = { ease: TRANSITIONS.easeOutExpo, duration: 0.8 }
 
@@ -50,7 +30,7 @@ const DEFAULT_TILT_CONFIG: TiltConfig = {
   glareBorderRadius: '12px',
   glarePosition: 'all',
   transitionSpeed: 800,
-  tiltEnable: true
+  tiltEnable: true,
 }
 
 const SIZE_DIMENSIONS = {
@@ -59,7 +39,7 @@ const SIZE_DIMENSIONS = {
   lg: 'w-full sm:max-w-[420px]',
   xl: 'w-full max-w-[680px]',
   full: 'w-full',
-  responsive: 'w-full max-w-full'
+  responsive: 'w-full max-w-full',
 } as const
 
 export function EventPoster({
@@ -67,7 +47,7 @@ export function EventPoster({
   size = 'responsive',
   className,
   tiltProps = {},
-  showCTA = true
+  showCTA = true,
 }: EventPosterProps) {
   const buttonRef = useRef<HTMLDivElement>(null)
   const [buttonHeight, setButtonHeight] = useState(0)
@@ -83,13 +63,15 @@ export function EventPoster({
     ...DEFAULT_TILT_CONFIG,
     ...tiltProps,
     tiltEnable: isDesktop,
-    glareEnable: isDesktop
+    glareEnable: isDesktop,
   }
 
-  const hoverVariants = showCTA ? {
-    initial: { y: 0 },
-    hover: { y: -buttonHeight }
-  } : undefined
+  const hoverVariants = showCTA
+    ? {
+        initial: { y: 0 },
+        hover: { y: -buttonHeight },
+      }
+    : undefined
 
   const CTAButton = showCTA && (
     <motion.div
@@ -112,10 +94,7 @@ export function EventPoster({
       initial="initial"
       whileHover={showCTA ? 'hover' : undefined}
     >
-      <motion.div
-        variants={hoverVariants}
-        transition={HOVER_TRANSITION}
-      >
+      <motion.div variants={hoverVariants} transition={HOVER_TRANSITION}>
         <Image
           src={event.poster_url || '/null-tournament.png'}
           alt={event.name}
@@ -132,27 +111,27 @@ export function EventPoster({
   )
 
   const TiltWrapper = ({ children }: { children: React.ReactNode }) => (
-    <Tilt {...tiltConfig}>
-      {children}
-    </Tilt>
+    <Tilt {...tiltConfig}>{children}</Tilt>
   )
 
   return (
-    <div className={cn(SIZE_DIMENSIONS[size], 'aspect-[604/854] relative', className)}>
+    <div
+      className={cn(
+        SIZE_DIMENSIONS[size],
+        'aspect-[604/854] relative',
+        className,
+      )}
+    >
       {showCTA ? (
         <Link
           href={`/${event.slug}/register`}
           target="_blank"
           className="block w-full h-full"
         >
-          <TiltWrapper>
-            {PosterContent}
-          </TiltWrapper>
+          <TiltWrapper>{PosterContent}</TiltWrapper>
         </Link>
       ) : (
-        <TiltWrapper>
-          {PosterContent}
-        </TiltWrapper>
+        <TiltWrapper>{PosterContent}</TiltWrapper>
       )}
     </div>
   )

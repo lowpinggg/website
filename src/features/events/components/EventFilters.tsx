@@ -1,11 +1,12 @@
 // features/events/components/EventFilters.tsx
-import type { EventFiltersProps, FilterType } from '../types'
 import clsx from 'clsx'
+
+import type { EventFiltersProps, FilterType } from '../types'
 
 const FILTER_OPTIONS = [
   { value: 'all' as const, label: 'Tous' },
   { value: 'upcoming' as const, label: 'À venir' },
-  { value: 'past' as const, label: 'Passés' }
+  { value: 'past' as const, label: 'Passés' },
 ] as const
 
 export function EventFilters({
@@ -30,7 +31,7 @@ export function EventFilters({
               {
                 'bg-primary text-primary-foreground': activeFilter === value,
                 'bg-muted hover:bg-muted/80': activeFilter !== value,
-              }
+              },
             )}
             type="button"
             aria-pressed={activeFilter === value}

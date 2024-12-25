@@ -1,15 +1,19 @@
 'use client'
 
-import { useEffect } from 'react'
-import Link from 'next/link'
-import { EventPoster } from '@/features/events/components/EventPoster'
-import { CalendarButton } from '@/features/registration/components/checkout/CalendarButton'
 import confetti from 'canvas-confetti'
 import { BadgeCheck, X } from 'lucide-react'
 import { motion } from 'motion/react'
-import { Database } from '@/types/generated-types'
-import { baseVariants, staggerVariants } from '@/lib/animations'
+
+import { useEffect } from 'react'
+
+import Link from 'next/link'
+
 import { Button } from '@/components/ui/button'
+import { EventPoster } from '@/features/events/components/EventPoster'
+import { CalendarButton } from '@/features/registration/components/checkout/CalendarButton'
+import { baseVariants, staggerVariants } from '@/lib/animations'
+import { Database } from '@/types/generated-types'
+
 import { EventSummaryCard } from './shared/EventSummaryCard'
 
 type Event = Database['public']['Tables']['events']['Row']
@@ -31,7 +35,7 @@ export function PaymentStatusPage({
   status,
   details,
   title,
-  description
+  description,
 }: Props) {
   useEffect(() => {
     if (status === 'success') {
@@ -41,7 +45,7 @@ export function PaymentStatusPage({
         confetti({
           particleCount: 50,
           startVelocity: 32,
-          spread: 180
+          spread: 180,
         })
         if (Date.now() > end) clearInterval(interval)
       }, 200)
@@ -62,7 +66,7 @@ export function PaymentStatusPage({
 
 function SuccessSection({
   details,
-  title
+  title,
 }: {
   details: RegistrationDetails
   title: string
@@ -92,7 +96,7 @@ function SuccessSection({
             className="flex flex-col gap-2 text-center md:text-left"
           >
             <h1 className="flex items-center gap-2 justify-center md:justify-start text-2xl font-bold">
-              <BadgeCheck className='text-green-500' size={28} />
+              <BadgeCheck className="text-green-500" size={28} />
               {title}
             </h1>
             {details.registration && (
@@ -132,7 +136,7 @@ function SuccessSection({
 
 function CancelledSection({
   title,
-  description
+  description,
 }: {
   title: string
   description: string

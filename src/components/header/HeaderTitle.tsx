@@ -1,11 +1,15 @@
 // components/header/HeaderTitle.tsx
 'use client'
 
-import { useEffect, useState } from 'react'
 import { motion } from 'motion/react'
 import { useScramble } from 'use-scramble'
-import packageJson from '@/package'
+
+import { useEffect, useState } from 'react'
+
 import { INTRO_TIMELINE, introVariants } from '@/lib/animations'
+import packageJson from '@/package'
+
+// components/header/HeaderTitle.tsx
 
 export function VersionBadge() {
   const { ref } = useScramble({
@@ -16,7 +20,7 @@ export function VersionBadge() {
     scramble: 12,
     seed: 2,
     chance: 0.8,
-    ignore: [' ']
+    ignore: [' '],
   })
 
   const [isVisible, setIsVisible] = useState(true)

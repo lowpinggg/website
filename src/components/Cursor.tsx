@@ -1,8 +1,10 @@
 'use client'
-import { useEffect, useState } from 'react'
+
 import gsap from 'gsap'
 import MouseFollower from 'mouse-follower'
 import 'mouse-follower/dist/mouse-follower.min.css'
+
+import { useEffect, useState } from 'react'
 
 export function Cursor() {
   const [isMounted, setIsMounted] = useState(false)
@@ -27,8 +29,8 @@ export function Cursor() {
           stateDetection: {
             '-active': '.cursor-active, button, a, img',
             '-blend': '.cursor-blend, button',
-            '-border': '.cursor-border'
-          }
+            '-border': '.cursor-border',
+          },
         })
         return cursor
       }

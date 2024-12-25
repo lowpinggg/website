@@ -3,16 +3,24 @@ import * as z from 'zod'
 
 export const baseSchema = {
   name: z.string().min(2, 'Nom doit contenir au moins 2 caractères'),
-  email: z.string().email('Email invalide')
+  email: z.string().email('Email invalide'),
 }
 
 export const tftSchema = z.object({
   ...baseSchema,
   discord: z.string().min(2, 'Discord doit contenir au moins 2 caractères'),
   riot_id: z.string().min(2, 'Riot ID doit contenir au moins 2 caractères'),
-  rank: z.enum(['Iron', 'Bronze', 'Silver', 'Gold', 'Platinum', 'Diamond', 'Master'])
+  rank: z.enum([
+    'Iron',
+    'Bronze',
+    'Silver',
+    'Gold',
+    'Platinum',
+    'Diamond',
+    'Master',
+  ]),
 })
 
 export const schemas = {
-  tft: tftSchema
+  tft: tftSchema,
 } as const

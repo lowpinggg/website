@@ -1,9 +1,9 @@
 // features/registration/hooks/useCheckout.ts
 import { useState } from 'react'
 
-import { Database } from '@/types/generated-types'
-import { getStripe } from '@/lib/stripe/stripe'
 import { useToast } from '@/hooks/use-toast'
+import { getStripe } from '@/lib/stripe/stripe'
+import { Database } from '@/types/generated-types'
 
 import { FormData } from '../types/forms'
 
@@ -19,9 +19,9 @@ export function useCheckout() {
       const response = await fetch('/api/checkout', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ event, formData })
+        body: JSON.stringify({ event, formData }),
       })
       const data = await response.json()
 
@@ -35,7 +35,7 @@ export function useCheckout() {
       }
 
       const { error } = await stripe.redirectToCheckout({
-        sessionId: data.sessionId
+        sessionId: data.sessionId,
       })
 
       if (error) {
@@ -46,7 +46,7 @@ export function useCheckout() {
         variant: 'destructive',
         title: 'Erreur',
         description:
-          'Un problème est survenu lors du traitement de votre paiement.'
+          'Un problème est survenu lors du traitement de votre paiement.',
       })
       console.error('Payment error:', error)
     } finally {
@@ -56,6 +56,6 @@ export function useCheckout() {
 
   return {
     isLoading,
-    handleCheckout
+    handleCheckout,
   }
 }

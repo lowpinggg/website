@@ -1,27 +1,14 @@
 {
   "semi": false,
-  "singleQuote": true,
   "tabWidth": 2,
-  "trailingComma": "none",
+  "singleQuote": true,
   "plugins": [
     "prettier-plugin-tailwindcss",
-    "@ianvs/prettier-plugin-sort-imports"
+    "@trivago/prettier-plugin-sort-imports",
+    "prettier-plugin-organize-attributes",
+    "prettier-plugin-packagejson"
   ],
-  "importOrder": [
-    "^(react/(.*)$)|^(react$)",
-    "^(next/(.*)$)|^(next$)",
-    "<THIRD_PARTY_MODULES>",
-    "",
-    "^@/types/(.*)$",
-    "^@/lib/(.*)$",
-    "^@/hooks/(.*)$",
-    "^@/components/ui/(.*)$",
-    "^@/components/(.*)$",
-    "^@/styles/(.*)$",
-    "^@/app/(.*)$",
-    "",
-    "^[./]"
-  ],
-  "importOrderParserPlugins": ["typescript", "jsx", "decorators-legacy"],
-  "proseWrap": "always"
+  "attributeSort": "ASC",
+  "importOrder": ["^react(.*)$", "^next(.*)$", "^@(.*)$", "^[./]"],
+  "importOrderSeparation": true
 }

@@ -1,23 +1,23 @@
-import { useEffect, useState } from 'react'
-import Image from 'next/image'
-import { Full } from '@lowping/brand-kit'
 import { motion, useScroll, useTransform } from 'motion/react'
-import { introVariants } from '@/lib/animations'
-import { useScrollLock } from '@/hooks/useScrollLock'
+
+import { useEffect, useState } from 'react'
+
+import Image from 'next/image'
+
 import { HeaderContent } from '@/components/header/HeaderContent'
 import { HeaderTitle } from '@/components/header/HeaderTitle'
+import { useScrollLock } from '@/hooks/useScrollLock'
+import { introVariants } from '@/lib/animations'
+import { Full } from '@lowping/brand-kit'
 
 export function Header() {
   const [isLocked, setIsLocked] = useState(true)
   useScrollLock(isLocked)
 
   const { scrollYProgress } = useScroll()
-  const y = useTransform(
-    scrollYProgress,
-    [0, 1],
-    ['0%', '30%'],
-    { clamp: false }
-  )
+  const y = useTransform(scrollYProgress, [0, 1], ['0%', '30%'], {
+    clamp: false,
+  })
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -31,7 +31,8 @@ export function Header() {
       animate="animate"
       initial="initial"
       variants={introVariants.container}
-      className="relative w-full origin-left">
+      className="relative w-full origin-left"
+    >
       <div className="absolute inset-0 w-full h-full [mask-image:linear-gradient(to_bottom,black_0%,transparent_100%)]">
         <div className="absolute inset-0 w-full h-full [mask-image:linear-gradient(to_left,black_0%,transparent_100%)]">
           <motion.div
@@ -49,7 +50,7 @@ export function Header() {
               style={{
                 objectFit: 'cover',
                 objectPosition: 'center',
-                width: '100%'
+                width: '100%',
               }}
               quality={100}
               priority

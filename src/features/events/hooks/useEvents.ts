@@ -1,11 +1,16 @@
 // features/events/hooks/useEvents.ts
 import { useQuery } from '@tanstack/react-query'
+
 import { getEvents } from '../api/getEvents'
 import type { FilterType } from '../types'
 import { isEventPassed } from '../utils/eventHelpers'
 
 export function useEvents() {
-  const { data: events = [], isLoading, error } = useQuery({
+  const {
+    data: events = [],
+    isLoading,
+    error,
+  } = useQuery({
     queryKey: ['events'],
     queryFn: async () => {
       const { data, error } = await getEvents()
@@ -16,7 +21,7 @@ export function useEvents() {
   })
 
   const filterEvents = (filter: FilterType) => {
-    return events.filter(event => {
+    return events.filter((event) => {
       if (filter === 'all') return true
       if (filter === 'past') return isEventPassed(event.date)
       return !isEventPassed(event.date)
@@ -27,6 +32,6 @@ export function useEvents() {
     events,
     isLoading,
     error,
-    filterEvents
+    filterEvents,
   }
 }

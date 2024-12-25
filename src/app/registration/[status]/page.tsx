@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
+
 import { getRegistrationDetails } from '@/features/registration/api/getRegistrationDetails'
 import { PaymentStatusPage } from '@/features/registration/components/PaymentStatusPage'
-
 import { Database } from '@/types/generated-types'
 
 type Event = Database['public']['Tables']['events']['Row']
@@ -22,17 +22,17 @@ const messages = {
   success: {
     title: 'Paiement réussi !',
     description:
-      'Merci pour votre inscription. Vous recevrez un email de confirmation sous peu.'
+      'Merci pour votre inscription. Vous recevrez un email de confirmation sous peu.',
   },
   cancelled: {
     title: 'Paiement annulé',
-    description: "Votre paiement a été annulé. Aucun montant n'a été prélevé."
-  }
+    description: "Votre paiement a été annulé. Aucun montant n'a été prélevé.",
+  },
 } as const
 
 export default async function RegistrationStatusPage({
   params,
-  searchParams
+  searchParams,
 }: Props) {
   const resolvedParams = await params
   const resolvedSearchParams = await searchParams

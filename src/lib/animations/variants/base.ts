@@ -7,8 +7,8 @@ export const baseVariants = {
     initial: { opacity: 0 },
     animate: {
       opacity: 1,
-      transition: createTransition(TRANSITIONS.duration.medium)
-    }
+      transition: createTransition(TRANSITIONS.duration.medium),
+    },
   },
   slideUp: {
     initial: { y: 50, opacity: 0 },
@@ -17,9 +17,9 @@ export const baseVariants = {
       opacity: 1,
       transition: createTransition(
         TRANSITIONS.duration.long,
-        .3,
-        TRANSITIONS.ease
-      )
-    }
-  }
+        0.3,
+        TRANSITIONS.ease,
+      ),
+    },
+  },
 }

@@ -9,7 +9,7 @@ import { FormData } from '../types/forms'
 export async function handleWebhook(
   stripeEvent: Stripe.Event,
   rawBody: string,
-  signature: string
+  signature: string,
 ) {
   try {
     console.log('Received webhook:', stripeEvent.type)
@@ -59,7 +59,7 @@ export async function handleWebhook(
         discord: registrationData.discord,
         riot_id: registrationData.riot_id,
         rank: registrationData.rank,
-        payment_id: paymentId
+        payment_id: paymentId,
       })
 
       if (error) {
@@ -70,7 +70,7 @@ export async function handleWebhook(
       console.log('Successfully registered user for event:', {
         name: registrationData.name,
         eventId,
-        paymentId
+        paymentId,
       })
     }
 
