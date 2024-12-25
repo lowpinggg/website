@@ -17,6 +17,10 @@ import { DynamicForm } from './forms/DynamicForm'
 
 // features/registration/components/RegisterClient.tsx
 
+// features/registration/components/RegisterClient.tsx
+
+// features/registration/components/RegisterClient.tsx
+
 type Props = {
   event: Database['public']['Tables']['events']['Row']
 }

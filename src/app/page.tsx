@@ -13,6 +13,10 @@ import { introVariants } from '@/lib/animations'
 
 // app/page.tsx
 
+// app/page.tsx
+
+// app/page.tsx
+
 function IntroOverlay({ onComplete }: { onComplete: () => void }) {
   return (
     <motion.div

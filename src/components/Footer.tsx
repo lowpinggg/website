@@ -10,6 +10,10 @@ import { Full } from '@lowping/brand-kit'
 
 // Footer.tsx
 
+// Footer.tsx
+
+// Footer.tsx
+
 export function Footer() {
   return (
     <footer className="flex flex-col gap-2 justify-between items-end py-8 border-t">

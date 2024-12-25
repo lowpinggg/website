@@ -11,6 +11,10 @@ import packageJson from '@/package'
 
 // components/header/HeaderTitle.tsx
 
+// components/header/HeaderTitle.tsx
+
+// components/header/HeaderTitle.tsx
+
 export function VersionBadge() {
   const { ref } = useScramble({
     text: `Alpha v${packageJson.version}`,
