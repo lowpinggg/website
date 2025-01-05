@@ -1,4 +1,5 @@
 import { AnimatePresence, motion } from 'motion/react'
+import { useScreenResolution } from '@/hooks/use-screen-resolution'
 import { TRANSITIONS } from '@/lib/animations'
 import { cn } from '@/lib/utils'
 import type { EventGridProps } from '../types'
@@ -6,15 +7,17 @@ import { isEventPassed } from '../utils/eventHelpers'
 import { EventPoster } from './EventPoster'
 
 export function EventGrid({ events }: EventGridProps) {
+  const { isMobile } = useScreenResolution()
+
   return (
-    <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 pb-24 relative px-2">
+    <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 pb-24 relative sm:px-2">
       {events.map((event, index) => {
         const eventHasPassed = isEventPassed(event.date)
         return (
           <AnimatePresence mode="wait" key={event.id}>
             <motion.div
               initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: eventHasPassed ? 0.6 : 1 }}
+              animate={{ y: 0, opacity: eventHasPassed && !isMobile ? 0.6 : 1 }}
               exit={{ y: -20, opacity: 0 }}
               whileHover={{
                 opacity: 1,
@@ -38,7 +41,7 @@ export function EventGrid({ events }: EventGridProps) {
                     tiltMaxAngleY: 8,
                     glareMaxOpacity: !eventHasPassed ? 0.3 : 0.2,
                     transitionSpeed: 800,
-                    scale: 1.02,
+                    scale: isMobile ? 1 : 1.02,
                   }}
                 />
               </div>

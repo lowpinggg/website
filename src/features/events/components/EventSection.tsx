@@ -1,5 +1,9 @@
+'use client'
+
 // features/events/components/EventSection.tsx
+import { motion } from 'motion/react'
 import { useState } from 'react'
+import { baseVariants } from '@/lib/animations'
 import { useEvents } from '../hooks/useEvents'
 import type { FilterType } from '../types'
 import { EventFilters } from './EventFilters'
@@ -42,8 +46,15 @@ export function EventSection() {
       {!error ? (
         isLoading ? (
           <LoadingSpinner />
-        ) : (
+        ) : filteredEvents.length > 0 ? (
           <EventGrid events={filteredEvents} />
+        ) : (
+          <motion.div
+            variants={baseVariants.fadeIn}
+            className="flex items-center justify-center w-full h-[400px] text-muted-foreground text-sm"
+          >
+            Aucun événement trouvé.
+          </motion.div>
         )
       ) : (
         <ErrorMessage />

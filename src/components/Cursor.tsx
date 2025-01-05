@@ -29,6 +29,7 @@ export function Cursor() {
             '-active': '.cursor-active, button, a, img',
             '-blend': '.cursor-blend, button',
             '-border': '.cursor-border',
+            '-null': '.cursor-null',
           },
         })
         return cursor
