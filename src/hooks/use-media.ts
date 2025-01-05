@@ -1,4 +1,4 @@
-// hooks/useMedia.ts
+// hooks/use-media.ts
 import { useEffect, useState } from 'react'
 
 export function useMedia(query: string): boolean {

@@ -1,29 +1,29 @@
 'use client'
 
-import { ArrowRight } from 'lucide-react'
+import { ExternalLink } from 'lucide-react'
 import { motion } from 'motion/react'
 import { useEffect, useRef, useState } from 'react'
 import Tilt from 'react-parallax-tilt'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { useMedia } from '@/hooks/useMedia'
+import { useMedia } from '@/hooks/use-media'
 import { TRANSITIONS } from '@/lib/animations'
 import { cn } from '@/lib/utils'
-import type { Database } from '@/types/generated-types'
 import type { EventPosterProps, TiltConfig } from '../types'
+import { getFullImageUrl } from '../utils/eventHelpers'
 
 const HOVER_TRANSITION = { ease: TRANSITIONS.easeOutExpo, duration: 0.8 }
 
 const DEFAULT_TILT_CONFIG: TiltConfig = {
   perspective: 1000,
   scale: 1.05,
-  tiltMaxAngleX: 12,
-  tiltMaxAngleY: 12,
+  tiltMaxAngleX: 8,
+  tiltMaxAngleY: 8,
   glareEnable: true,
   glareMaxOpacity: 0.5,
   glareColor: 'rgba(255, 243, 230, 1)',
-  glareBorderRadius: '12px',
+  glareBorderRadius: '6px',
   glarePosition: 'all',
   transitionSpeed: 800,
   tiltEnable: true,
@@ -77,22 +77,22 @@ export function EventPoster({
       variants={hoverVariants}
       transition={HOVER_TRANSITION}
     >
-      <Button className="w-full h-12 flex items-center justify-center gap-1 rounded-none">
+      <Button className="w-full h-12 flex items-center justify-center gap-2 rounded-none">
         <span className="relative z-10 text-black">Inscription</span>
-        <ArrowRight size={16} className="relative z-10" />
+        <ExternalLink size={14} className="relative z-10 text-black" />
       </Button>
     </motion.div>
   )
 
   const PosterContent = (
     <motion.div
-      className="relative h-full overflow-hidden rounded-md"
+      className="relative h-full overflow-hidden rounded"
       initial="initial"
       whileHover={showCTA ? 'hover' : undefined}
     >
       <motion.div variants={hoverVariants} transition={HOVER_TRANSITION}>
         <Image
-          src={event.poster_url || '/null-tournament.png'}
+          src={getFullImageUrl(event.poster_url || '')}
           alt={event.name}
           width={604}
           height={854}

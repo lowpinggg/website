@@ -11,7 +11,7 @@ CREATE TABLE events (
     poster_url TEXT,
     price NUMERIC NOT NULL,
     time TIME NOT NULL,
-    type event_type NOT NULL
+    type event_type NOT NULL,
     slug TEXT NOT NULL
 );
 

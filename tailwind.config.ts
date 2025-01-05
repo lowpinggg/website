@@ -12,13 +12,13 @@ export default {
     container: {
       center: true,
       padding: {
-        DEFAULT: '1rem', // 16px padding by default (mobile)
-        sm: '2rem', // 32px padding from sm up
-        md: '3rem', // 48px padding from md up
-        lg: '4rem', // 64px padding from lg up
+        DEFAULT: '1rem',
+        sm: '2rem',
+        md: '3rem',
+        lg: '4rem',
       },
       screens: {
-        xl: '1200px', // Max width 1200px
+        xl: '1200px',
       },
     },
     extend: {
@@ -78,6 +78,32 @@ export default {
       screens: {
         xs: '480px',
         '2xs': '375px',
+      },
+      animation: {
+        'shimmer-slide':
+          'shimmer-slide var(--speed) ease-in-out infinite alternate',
+        'spin-around': 'spin-around calc(var(--speed) * 2) infinite linear',
+      },
+      keyframes: {
+        'shimmer-slide': {
+          to: {
+            transform: 'translate(calc(100cqw - 100%), 0)',
+          },
+        },
+        'spin-around': {
+          '0%': {
+            transform: 'translateZ(0) rotate(0)',
+          },
+          '15%, 35%': {
+            transform: 'translateZ(0) rotate(90deg)',
+          },
+          '65%, 85%': {
+            transform: 'translateZ(0) rotate(270deg)',
+          },
+          '100%': {
+            transform: 'translateZ(0) rotate(360deg)',
+          },
+        },
       },
     },
   },

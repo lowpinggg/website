@@ -22,7 +22,7 @@ export function Footer() {
       </div>
       <div className="flex w-full justify-between items-center">
         <p className="text-xs text-muted-foreground">
-          &copy; {new Date().getFullYear()} Lowping. All rights reserved.
+          &copy; {new Date().getFullYear()} Lowping. Tous droits réservés.
         </p>
 
         <div className="flex gap-2">
@@ -41,7 +41,7 @@ export function Footer() {
             rel="noopener noreferrer"
           >
             <Button className="p-0 text-xs" size={'sm'} variant={'link'}>
-              Website
+              Lowping
             </Button>
           </Link>
         </div>

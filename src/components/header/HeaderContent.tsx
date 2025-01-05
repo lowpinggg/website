@@ -1,5 +1,5 @@
 // components/header/HeaderContent.tsx
-import { Globe } from 'lucide-react'
+import { ExternalLink } from 'lucide-react'
 import { motion } from 'motion/react'
 import Link from 'next/link'
 import { Discord } from '@/components/icons/Discord'
@@ -11,19 +11,21 @@ export function HeaderContent() {
     <div className="overflow-hidden">
       <motion.div {...introVariants.content}>
         <p className="text-sm xs:text-base text-center xs:text-left mb-8 max-w-xl md:max-w-2xl text-muted-foreground font-light">
-          Tous nos événements esport au même endroit. Inscrivez-vous aux
-          prochains tournois, suivez vos résultats et participez à des
-          compétitions bien structurées.
+          Tous nos tournois esport, centralisés et accessibles. Trouvez vos
+          prochaines compétitions et inscrivez-vous en quelques clics.
         </p>
 
         <div className="flex items-center w-full xs:justify-between justify-center">
           <div className="flex flex-col 2xs:flex-row items-center gap-2">
             <Button
               size="lg"
-              className="bg-[#5763ED] text-white hover:bg-[#3744DB] w-full"
+              className="relative overflow-hidden  text-white w-full rounded-full  hover:text-[#5763ED] font-semibold group delay-75"
             >
-              Discord
-              <Discord />
+              <div className="absolute inset-0 bg-[#3744DB] z-20 group-hover:-translate-y-full transition-all duration-300"></div>
+              <div className="relative z-30 flex items-center justify-center gap-2">
+                <span>Discord</span>
+                <Discord className="group-hover:text-[#5763ED] delay-75" />
+              </div>
             </Button>
             <Link
               href="https://lowping.gg"
@@ -31,9 +33,9 @@ export function HeaderContent() {
               rel="noopener noreferrer"
               className="w-fit pointer-events-none"
             >
-              <Button size="lg" disabled>
-                <Globe size={24} />
-                Website (soon)
+              <Button size="lg" disabled className="flex gap-2 rounded-full">
+                Lowping.gg
+                <ExternalLink size={24} />
               </Button>
             </Link>
           </div>

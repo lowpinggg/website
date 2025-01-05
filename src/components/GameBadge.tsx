@@ -16,25 +16,21 @@ export const GAME_CONFIG = {
 export type Game = keyof typeof GAME_CONFIG
 
 type GameBadgeProps = {
-  game: string
+  game: string | null
   className?: string
 }
 
 export function GameBadge({ game, className }: GameBadgeProps) {
+  if (!game) return null
+
   const gameConfig = GAME_CONFIG[game as Game]
-
-  if (!gameConfig) {
-    return null
-  }
-
-  const { icon: Icon } = gameConfig
 
   return (
     <Badge
       variant="secondary"
       className={clsx('font-normal flex items-center gap-1 px-2', className)}
     >
-      <Icon size={18} />
+      {gameConfig?.icon && <gameConfig.icon size={18} />}
       {game}
     </Badge>
   )

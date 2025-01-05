@@ -2,11 +2,11 @@
 'use client'
 
 import { AnimatePresence, motion } from 'motion/react'
-import { useState } from 'react'
+import { use, useEffect } from 'react'
 import { Footer } from '@/components/Footer'
 import { Header } from '@/components/header/Header'
 import { EventSection } from '@/features/events/components/EventSection'
-import { useScrollLock } from '@/hooks/useScrollLock'
+import { setScrollLock } from '@/hooks/use-lockscroll'
 import { introVariants } from '@/lib/animations'
 
 function IntroOverlay({ onComplete }: { onComplete: () => void }) {
@@ -24,19 +24,25 @@ function IntroOverlay({ onComplete }: { onComplete: () => void }) {
 }
 
 export default function Page() {
-  const [isLocked, setIsLocked] = useState(true)
-  useScrollLock(isLocked)
+  useEffect(() => {
+    setScrollLock(true)
+  }, [])
 
   return (
     <>
       <AnimatePresence mode="wait">
-        <IntroOverlay key="overlay" onComplete={() => setIsLocked(false)} />
+        <IntroOverlay
+          key="overlay"
+          onComplete={() => setScrollLock(false, 600)}
+        />
       </AnimatePresence>
+
       <main>
         <div className="relative z-30">
           <Header />
           <section className="container">
             <motion.div
+              key="events"
               variants={introVariants.events}
               initial="initial"
               animate="animate"

@@ -17,5 +17,14 @@ export const formatters = {
     new Intl.NumberFormat('fr-FR', {
       style: 'currency',
       currency: 'CAD',
-    }).format(amount / 100),
+    }).format(amount),
+}
+
+export const getFullImageUrl = (posterUrl: string) => {
+  if (!posterUrl) return '/null-tournament.png'
+  if (posterUrl.startsWith('http')) return posterUrl
+  if (posterUrl.startsWith('/storage')) {
+    return `${process.env.NEXT_PUBLIC_SUPABASE_URL}${posterUrl}`
+  }
+  return posterUrl
 }

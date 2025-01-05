@@ -10,10 +10,10 @@ import packageJson from '@/package'
 export function VersionBadge() {
   const { ref } = useScramble({
     text: `Alpha v${packageJson.version}`,
-    speed: 0.5,
+    speed: 0.4,
     tick: 1,
     step: 1,
-    scramble: 12,
+    scramble: 10,
     seed: 2,
     chance: 0.8,
     ignore: [' '],
@@ -30,12 +30,12 @@ export function VersionBadge() {
 
   return (
     <div className="overflow-hidden w-full text-center xs:text-left">
-      <motion.pre
+      <motion.p
         ref={ref}
         variants={introVariants.version}
         initial="initial"
         animate={isVisible ? 'animate' : 'exit'}
-        className="text-sm text-black font-bold"
+        className="text-base text-black font-medium -tracking-wider"
       />
     </div>
   )
@@ -44,7 +44,7 @@ export function VersionBadge() {
 export function HeaderTitle() {
   return (
     <>
-      <div className="overflow-hidden relative mb-2">
+      <div className="overflow-hidden relative mb-3">
         <motion.h1
           variants={introVariants.title}
           initial="initial"

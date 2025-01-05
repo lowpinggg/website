@@ -31,7 +31,7 @@ export const introVariants = {
   },
   image: {
     initial: {
-      y: -25,
+      y: -1,
       opacity: 0,
       filter: 'blur(10px)',
       zIndex: -1,

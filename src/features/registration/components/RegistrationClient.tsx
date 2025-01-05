@@ -6,7 +6,7 @@ import { Footer } from '@/components/Footer'
 import { EventPoster } from '@/features/events/components/EventPoster'
 import { EventSummaryCard } from '@/features/registration/components/shared/EventSummaryCard'
 import { useRegistration } from '@/features/registration/hooks/useRegistration'
-import { useMedia } from '@/hooks/useMedia'
+import { useMedia } from '@/hooks/use-media'
 import { staggerVariants } from '@/lib/animations'
 import { Database } from '@/types/generated-types'
 import { FormData } from '../types/forms'
@@ -22,7 +22,7 @@ function EventHeader({ step }: { step: number }) {
       variants={staggerVariants.child}
       className="mb-2 flex flex-col gap-1"
     >
-      <h1 className="text-2xl lg:text-3xl font-bold text-white">Inscription</h1>
+      <h1 className="text-2xl md:text-3xl font-bold text-white">Inscription</h1>
       <p className="text-muted-foreground text-xs md:text-base">
         {step === 1
           ? 'Complétez les informations ci-dessous'
@@ -54,7 +54,7 @@ export function ContentSection({
       animate="animate"
       className="w-full max-w-lg"
     >
-      <motion.div variants={staggerVariants.child}>
+      <motion.div variants={staggerVariants.child} className="mb-4">
         <EventHeader step={step} />
       </motion.div>
 
@@ -66,7 +66,7 @@ export function ContentSection({
         variants={staggerVariants.child}
         className="flex flex-col gap-4"
       >
-        <div className="bg-black/20 rounded-lg border border-white/10 p-8 overflow-hidden mt-4">
+        <div className="bg-black/20 rounded-lg border border-white/10 p-4 lg:p-6 overflow-hidden mt-4">
           {step === 1 ? (
             <DynamicForm
               type={event.type}
