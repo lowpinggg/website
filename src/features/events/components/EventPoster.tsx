@@ -8,7 +8,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import type { EventPosterProps, TiltConfig } from '@events/types'
 import { getFullImageUrl } from '@events/utils/eventHelpers'
-import { useMedia } from '@hooks/use-media'
+import { useScreenResolution } from '@hooks/use-screen-resolution'
 import { TRANSITIONS } from '@lib/animations'
 import { cn } from '@lib/utils'
 import { Button } from '@ui/button'
@@ -47,7 +47,7 @@ export function EventPoster({
 }: EventPosterProps) {
   const buttonRef = useRef<HTMLDivElement>(null)
   const [buttonHeight, setButtonHeight] = useState(0)
-  const isDesktop = useMedia('(min-width: 640px)')
+  const { isTablet } = useScreenResolution()
 
   useEffect(() => {
     if (buttonRef.current) {
@@ -58,8 +58,8 @@ export function EventPoster({
   const tiltConfig = {
     ...DEFAULT_TILT_CONFIG,
     ...tiltProps,
-    tiltEnable: isDesktop,
-    glareEnable: isDesktop,
+    tiltEnable: isTablet,
+    glareEnable: isTablet,
   }
 
   const hoverVariants = showCTA

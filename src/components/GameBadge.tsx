@@ -24,13 +24,14 @@ export function GameBadge({ game, className }: GameBadgeProps) {
   if (!game) return null
 
   const gameConfig = GAME_CONFIG[game as Game]
+  const IconComponent = gameConfig?.icon
 
   return (
     <Badge
       variant="secondary"
       className={clsx('font-normal flex items-center gap-1 px-2', className)}
     >
-      {gameConfig?.icon && <gameConfig.icon size={18} />}
+      {IconComponent && <IconComponent size={18} />}
       {game}
     </Badge>
   )

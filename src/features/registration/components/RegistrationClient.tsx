@@ -5,7 +5,7 @@ import { motion } from 'motion/react'
 import { Footer } from '@components/Footer'
 import { EventPoster } from '@events/components/EventPoster'
 import { Database } from '@generated/index'
-import { useMedia } from '@hooks/use-media'
+import { useScreenResolution } from '@hooks/use-screen-resolution'
 import { staggerVariants } from '@lib/animations'
 import { EventSummaryCard } from '@registration/components/shared/EventSummaryCard'
 import { useRegistration } from '@registration/hooks/useRegistration'
@@ -97,7 +97,7 @@ export function ContentSection({
 export function RegistrationClient({ event }: Props) {
   const { step, registrationData, handleRegistrationComplete, handleBack } =
     useRegistration(event)
-  const isMobile = useMedia('(max-width: 767px)')
+  const { isMobile, isTablet } = useScreenResolution()
 
   return (
     <>
@@ -114,7 +114,7 @@ export function RegistrationClient({ event }: Props) {
           <EventPoster
             tiltProps={{ scale: 1.02, glareMaxOpacity: 0.3 }}
             event={event}
-            size={isMobile ? 'md' : 'lg'}
+            size={isMobile || isTablet ? 'md' : 'lg'}
             showCTA={false}
           />
         </motion.div>
