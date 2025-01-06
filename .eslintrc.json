@@ -9,6 +9,17 @@
   },
   "settings": {
     "boundaries/include": ["src/**/*"],
+    "boundaries/aliases": {
+      "@components": ["src/components"],
+      "@ui": ["src/components/ui"],
+      "@lib": ["src/lib"],
+      "@hooks": ["src/hooks"],
+      "@features": ["src/features"],
+      "@events": ["src/features/events"],
+      "@registration": ["src/features/registration"],
+      "@types": ["src/types"],
+      "@app": ["src/app"]
+    },
     "boundaries/elements": [
       {
         "type": "shared",
