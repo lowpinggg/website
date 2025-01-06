@@ -1,3 +1,64 @@
 {
-  "extends": "next"
+  "extends": ["next/core-web-vitals", "next/typescript", "next"],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["boundaries", "@typescript-eslint"],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
+  "settings": {
+    "boundaries/include": ["src/**/*"],
+    "boundaries/elements": [
+      {
+        "type": "shared",
+        "pattern": [
+          "src/components/**/*",
+          "src/hooks/**/*",
+          "src/lib/**/*",
+          "src/types/**/*"
+        ]
+      },
+      {
+        "type": "feature",
+        "pattern": "src/features/**/*"
+      },
+      {
+        "type": "app",
+        "pattern": "src/app/**/*"
+      }
+    ]
+  },
+  "rules": {
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "varsIgnorePattern": "^actionTypes$"
+      }
+    ],
+    "boundaries/element-types": [
+      "error",
+      {
+        "default": "disallow",
+        "rules": [
+          {
+            "from": ["shared"],
+            "allow": ["shared"],
+            "message": "Shared code (components, hooks, lib, types) cannot import from features or app"
+          },
+          {
+            "from": ["feature"],
+            "allow": ["shared", "feature"],
+            "message": "Features can only import from shared code and other features"
+          },
+          {
+            "from": ["app"],
+            "allow": ["shared", "feature", "app"],
+            "message": "App code can import from anywhere"
+          }
+        ]
+      }
+    ]
+  },
+  "ignorePatterns": ["node_modules/", ".next/", "dist/"]
 }

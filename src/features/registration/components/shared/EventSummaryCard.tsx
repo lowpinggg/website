@@ -1,16 +1,16 @@
 import { Calendar, Clock, Info, Ticket, Trophy } from 'lucide-react'
 import { motion } from 'motion/react'
-import { GameBadge } from '@/components/GameBadge'
-import { Separator } from '@/components/ui/separator'
+import { GameBadge } from '@components/GameBadge'
+import { Separator } from '@components/ui/separator'
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from '@/components/ui/tooltip'
-import { formatters } from '@/features/events/utils/eventHelpers'
-import { staggerVariants } from '@/lib/animations'
-import { Database } from '@/types/generated-types'
+} from '@components/ui/tooltip'
+import { formatters } from '@events/utils/eventHelpers'
+import type { Database } from '@generated/index'
+import { staggerVariants } from '@lib/animations'
 
 //TODO: Make prize pool dynamic from the database
 

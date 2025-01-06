@@ -6,12 +6,12 @@ import { useEffect, useRef, useState } from 'react'
 import Tilt from 'react-parallax-tilt'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Button } from '@/components/ui/button'
-import { useMedia } from '@/hooks/use-media'
-import { TRANSITIONS } from '@/lib/animations'
-import { cn } from '@/lib/utils'
-import type { EventPosterProps, TiltConfig } from '../types'
-import { getFullImageUrl } from '../utils/eventHelpers'
+import type { EventPosterProps, TiltConfig } from '@events/types'
+import { getFullImageUrl } from '@events/utils/eventHelpers'
+import { useMedia } from '@hooks/use-media'
+import { TRANSITIONS } from '@lib/animations'
+import { cn } from '@lib/utils'
+import { Button } from '@ui/button'
 
 const HOVER_TRANSITION = { ease: TRANSITIONS.easeOutExpo, duration: 0.8 }
 

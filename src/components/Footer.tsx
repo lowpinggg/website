@@ -2,10 +2,10 @@
 'use client'
 
 import Link from 'next/link'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import packageJson from '@/package'
 import { Full } from '@lowping/brand-kit'
+import packageJson from '@package'
+import { Badge } from '@ui/badge'
+import { Button } from '@ui/button'
 
 export function Footer() {
   return (

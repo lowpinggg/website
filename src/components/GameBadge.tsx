@@ -1,8 +1,8 @@
 // components/GameBadge.tsx
 import clsx from 'clsx'
-import { LeagueOfLegends } from '@/components/icons/LeagueOfLegends'
-import { TeamfightTactics } from '@/components/icons/TeamFightTactics'
-import { Badge } from '@/components/ui/badge'
+import { LeagueOfLegends } from '@components/icons/LeagueOfLegends'
+import { TeamfightTactics } from '@components/icons/TeamFightTactics'
+import { Badge } from '@ui/badge'
 
 export const GAME_CONFIG = {
   'League of Legends': {

@@ -4,8 +4,8 @@
 import { motion } from 'motion/react'
 import { useScramble } from 'use-scramble'
 import { useEffect, useState } from 'react'
-import { INTRO_TIMELINE, introVariants } from '@/lib/animations'
-import packageJson from '@/package'
+import { INTRO_TIMELINE, introVariants } from '@lib/animations'
+import packageJson from '@package'
 
 export function VersionBadge() {
   const { ref } = useScramble({

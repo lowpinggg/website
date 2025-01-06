@@ -1,11 +1,11 @@
 // app/[event]/register/page.tsx
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { generateMetadata as baseGenerateMetadata } from '@/app/metadata'
-import { getEventBySlug } from '@/features/events/api/getEvents'
-import { RegistrationClient } from '@/features/registration/components/RegistrationClient'
-import { formRegistry } from '@/features/registration/types/forms'
-import type { Database } from '@/types/generated-types'
+import { generateMetadata as baseGenerateMetadata } from '@app/metadata'
+import { getEventBySlug } from '@events/api/getEvents'
+import type { Database } from '@generated/index'
+import { RegistrationClient } from '@registration/components/RegistrationClient'
+import { formRegistry } from '@registration/types/forms'
 
 type Event = Database['public']['Tables']['events']['Row'] & {
   type: keyof typeof formRegistry

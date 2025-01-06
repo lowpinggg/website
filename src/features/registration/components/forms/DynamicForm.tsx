@@ -1,7 +1,7 @@
 // features/registration/components/forms/DynamicForm.tsx
 'use client'
 
-import { FormData, formRegistry, FormType } from '../../types/forms'
+import { FormData, formRegistry, FormType } from '@registration/types/forms'
 
 type Props = {
   type: FormType

@@ -1,6 +1,6 @@
 // features/events/components/EventFilters.tsx
 import clsx from 'clsx'
-import type { EventFiltersProps, FilterType } from '../types'
+import type { EventFiltersProps, FilterType } from '@events/types'
 
 const FILTER_OPTIONS = [
   { value: 'all' as const, label: 'Tous' },

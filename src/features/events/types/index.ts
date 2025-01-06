@@ -1,5 +1,5 @@
 // features/events/types/index.ts
-import type { Database } from '@/types/generated-types'
+import type { Database } from '@generated/index'
 
 export type Event = Database['public']['Tables']['events']['Row']
 export type FilterType = 'all' | 'past' | 'upcoming'

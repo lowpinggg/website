@@ -3,7 +3,7 @@
 // features/events/components/EventSection.tsx
 import { motion } from 'motion/react'
 import { useState } from 'react'
-import { baseVariants } from '@/lib/animations'
+import { baseVariants } from '@lib/animations'
 import { useEvents } from '../hooks/useEvents'
 import type { FilterType } from '../types'
 import { EventFilters } from './EventFilters'
