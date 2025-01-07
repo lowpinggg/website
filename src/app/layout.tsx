@@ -1,13 +1,13 @@
 // app/layout.tsx
 import 'lenis/dist/lenis.css'
 import { Alexandria } from 'next/font/google'
-import { Providers } from '@/app/Providers'
-import { Cursor } from '@/components/Cursor'
-import { SmoothScroll } from '@/components/SmoothScroll'
-import { Toaster } from '@/components/ui/toaster'
-import { cn } from '@/lib/utils'
-import { generateMetadata } from './metadata'
-import './globals.css'
+import { generateMetadata } from '@app/metadata'
+import { Providers } from '@app/Providers'
+import { Cursor } from '@components/Cursor'
+import { SmoothScroll } from '@components/SmoothScroll'
+import { cn } from '@lib/utils'
+import { Toaster } from '@ui/toaster'
+import '@app/globals.css'
 
 const alexandria = Alexandria({
   subsets: ['latin'],
@@ -15,9 +15,8 @@ const alexandria = Alexandria({
   weight: ['300', '400', '500', '700', '800', '900'],
 })
 
-export const metadata = generateMetadata() // This will use default values
+export const metadata = generateMetadata()
 
-// app/layout.tsx
 export default function RootLayout({
   children,
 }: Readonly<{

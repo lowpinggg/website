@@ -1,8 +1,8 @@
 // features/registration/api/getRegistrationDetails.ts
-import { getEventById } from '@/features/events/api/getEvents'
-import { stripe } from '@/lib/stripe/stripe-server'
-import { supabase } from '@/lib/supabase'
-import { FormData } from '../types/forms'
+import { getEventById } from '@events/api/getEvents'
+import { stripe } from '@lib/services/stripe/stripe-server'
+import { supabase } from '@lib/services/supabase'
+import { FormData } from '@registration/types/forms'
 
 type RegistrationDetails = {
   event: NonNullable<Awaited<ReturnType<typeof getEventById>>['data']>

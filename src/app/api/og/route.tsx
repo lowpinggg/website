@@ -111,6 +111,7 @@ export async function GET() {
             src={posterUrl}
             alt="Banner"
             style={{
+              display: 'block',
               position: 'absolute',
               width: '100%',
               height: '100%',
@@ -124,22 +125,22 @@ export async function GET() {
             display: 'flex',
             flexDirection: 'column',
             width: '100%',
-            justifyContent: 'flex-end',
-            alignItems: 'flex-start',
-            gap: '32px',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: '40px',
             padding: '40px',
             paddingBottom: '60px',
             background:
               'linear-gradient(45deg, rgba(15,17,21,1) 0%, rgba(15,17,21,0.3) 100%)',
           }}
         >
-          <BrandLogo size={200} />
+          <BrandLogo size={260} />
 
           <div
             style={{
               display: 'flex',
               flexDirection: 'column',
-              textAlign: 'center',
+              alignItems: 'center',
             }}
           >
             <h1
@@ -155,7 +156,7 @@ export async function GET() {
             <p
               style={{
                 color: 'rgba(255, 255, 255, 0.8)',
-                fontSize: '24px',
+                fontSize: '26px',
                 fontWeight: 300,
                 margin: '0',
               }}
