@@ -1,4 +1,4 @@
-import { Database } from '@/types/generated-types'
+import type { Database } from '@generated/index'
 import { createClient } from '@supabase/supabase-js'
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!

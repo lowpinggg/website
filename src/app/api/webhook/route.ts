@@ -1,8 +1,8 @@
 // app/api/webhook/route.ts
 import { headers } from 'next/headers'
 import { NextRequest, NextResponse } from 'next/server'
-import { handleWebhook } from '@/features/registration/actions/webhook'
-import { stripe } from '@/lib/stripe/stripe-server'
+import { stripe } from '@lib/services/stripe/stripe-server'
+import { handleWebhook } from '@registration/actions/webhook'
 
 export async function POST(request: NextRequest) {
   try {

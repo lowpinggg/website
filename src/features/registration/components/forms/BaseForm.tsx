@@ -4,7 +4,9 @@
 import { motion } from 'motion/react'
 import { z } from 'zod'
 import { DefaultValues, Path, useForm } from 'react-hook-form'
-import { Button } from '@/components/ui/button'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { staggerVariants } from '@lib/animations'
+import { Button } from '@ui/button'
 import {
   Form,
   FormControl,
@@ -12,17 +14,15 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
+} from '@ui/form'
+import { Input } from '@ui/input'
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select'
-import { staggerVariants } from '@/lib/animations'
-import { zodResolver } from '@hookform/resolvers/zod'
+} from '@ui/select'
 import { BaseField, FormData } from '../../types/forms'
 
 interface BaseFormProps<T extends FormData> {

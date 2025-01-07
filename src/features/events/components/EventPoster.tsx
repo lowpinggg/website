@@ -6,12 +6,12 @@ import { useEffect, useRef, useState } from 'react'
 import Tilt from 'react-parallax-tilt'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Button } from '@/components/ui/button'
-import { useMedia } from '@/hooks/use-media'
-import { TRANSITIONS } from '@/lib/animations'
-import { cn } from '@/lib/utils'
-import type { EventPosterProps, TiltConfig } from '../types'
-import { getFullImageUrl } from '../utils/eventHelpers'
+import type { EventPosterProps, TiltConfig } from '@events/types'
+import { getFullImageUrl } from '@events/utils/eventHelpers'
+import { useScreenResolution } from '@hooks/use-screen-resolution'
+import { TRANSITIONS } from '@lib/animations'
+import { cn } from '@lib/utils'
+import { Button } from '@ui/button'
 
 const HOVER_TRANSITION = { ease: TRANSITIONS.easeOutExpo, duration: 0.8 }
 
@@ -47,7 +47,7 @@ export function EventPoster({
 }: EventPosterProps) {
   const buttonRef = useRef<HTMLDivElement>(null)
   const [buttonHeight, setButtonHeight] = useState(0)
-  const isDesktop = useMedia('(min-width: 640px)')
+  const { isTablet } = useScreenResolution()
 
   useEffect(() => {
     if (buttonRef.current) {
@@ -58,8 +58,8 @@ export function EventPoster({
   const tiltConfig = {
     ...DEFAULT_TILT_CONFIG,
     ...tiltProps,
-    tiltEnable: isDesktop,
-    glareEnable: isDesktop,
+    tiltEnable: isTablet,
+    glareEnable: isTablet,
   }
 
   const hoverVariants = showCTA

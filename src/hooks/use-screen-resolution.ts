@@ -1,4 +1,3 @@
-// hooks/use-screen-resolution.ts
 import { useEffect, useState } from 'react'
 
 interface ScreenResolution {
@@ -6,36 +5,52 @@ interface ScreenResolution {
   height: number
   isMobile: boolean
   isTablet: boolean
-  isLaptop: boolean
   isDesktop: boolean
   isLargeScreen: boolean
+  orientation?: 'portrait' | 'landscape'
 }
 
+const BREAKPOINTS = {
+  sm: 640,
+  md: 768,
+  lg: 1024,
+  xl: 1440,
+} as const
+
+const isBrowser = typeof window !== 'undefined'
+
 export const useScreenResolution = (): ScreenResolution => {
-  const [screenResolution, setScreenResolution] = useState<ScreenResolution>({
-    width: typeof window !== 'undefined' ? window.innerWidth : 0,
-    height: typeof window !== 'undefined' ? window.innerHeight : 0,
-    isMobile: false,
-    isTablet: false,
-    isLaptop: false,
-    isDesktop: false,
-    isLargeScreen: false,
-  })
+  const [screenResolution, setScreenResolution] = useState<ScreenResolution>(
+    () => ({
+      width: isBrowser ? window.innerWidth : 0,
+      height: isBrowser ? window.innerHeight : 0,
+      isMobile: false,
+      isTablet: false,
+      isDesktop: false,
+      isLargeScreen: false,
+      orientation: isBrowser
+        ? window.innerWidth > window.innerHeight
+          ? 'landscape'
+          : 'portrait'
+        : undefined,
+    }),
+  )
 
   useEffect(() => {
-    if (typeof window === 'undefined') return
+    if (!isBrowser) return
 
     const handleResize = () => {
       const width = window.innerWidth
+      const height = window.innerHeight
 
       setScreenResolution({
         width,
-        height: window.innerHeight,
-        isMobile: width >= 320 && width <= 600,
-        isTablet: width >= 601 && width <= 1024,
-        isLaptop: width >= 1025 && width <= 1280,
-        isDesktop: width >= 1281 && width <= 1440,
-        isLargeScreen: width > 1440,
+        height,
+        isMobile: width < BREAKPOINTS.sm,
+        isTablet: width >= BREAKPOINTS.sm && width < BREAKPOINTS.lg,
+        isDesktop: width >= BREAKPOINTS.lg && width < BREAKPOINTS.xl,
+        isLargeScreen: width >= BREAKPOINTS.xl,
+        orientation: width > height ? 'landscape' : 'portrait',
       })
     }
 

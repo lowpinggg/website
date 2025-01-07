@@ -1,8 +1,8 @@
 // components/GameBadge.tsx
 import clsx from 'clsx'
-import { LeagueOfLegends } from '@/components/icons/LeagueOfLegends'
-import { TeamfightTactics } from '@/components/icons/TeamFightTactics'
-import { Badge } from '@/components/ui/badge'
+import { LeagueOfLegends } from '@components/icons/LeagueOfLegends'
+import { TeamfightTactics } from '@components/icons/TeamFightTactics'
+import { Badge } from '@ui/badge'
 
 export const GAME_CONFIG = {
   'League of Legends': {
@@ -24,13 +24,14 @@ export function GameBadge({ game, className }: GameBadgeProps) {
   if (!game) return null
 
   const gameConfig = GAME_CONFIG[game as Game]
+  const IconComponent = gameConfig?.icon
 
   return (
     <Badge
       variant="secondary"
       className={clsx('font-normal flex items-center gap-1 px-2', className)}
     >
-      {gameConfig?.icon && <gameConfig.icon size={18} />}
+      {IconComponent && <IconComponent size={18} />}
       {game}
     </Badge>
   )

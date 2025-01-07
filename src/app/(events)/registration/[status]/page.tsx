@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
-import { getRegistrationDetails } from '@/features/registration/api/getRegistrationDetails'
-import { PaymentStatusPage } from '@/features/registration/components/PaymentStatusPage'
-import { Database } from '@/types/generated-types'
+import { Database } from '@generated/index'
+import { getRegistrationDetails } from '@registration/api/getRegistrationDetails'
+import { PaymentStatusPage } from '@registration/components/PaymentStatusPage'
 
 type Event = Database['public']['Tables']['events']['Row']
 type Registration = Database['public']['Tables']['event_registrations']['Row']

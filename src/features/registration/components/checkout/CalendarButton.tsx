@@ -2,7 +2,7 @@
 'use client'
 
 import { Calendar } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { Button } from '@ui/button'
 
 type Props = {
   event: {

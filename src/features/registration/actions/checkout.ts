@@ -1,8 +1,8 @@
 // features/registration/actions/checkout.ts
 import { headers } from 'next/headers'
-import { stripe } from '@/lib/stripe/stripe-server'
-import { Database } from '@/types/generated-types'
-import { FormData } from '../types/forms'
+import { Database } from '@generated/index'
+import { stripe } from '@lib/services/stripe/stripe-server'
+import { FormData } from '@registration/types/forms'
 
 type Event = Database['public']['Tables']['events']['Row']
 

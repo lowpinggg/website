@@ -2,12 +2,12 @@
 'use client'
 
 import { AnimatePresence, motion } from 'motion/react'
-import { use, useEffect } from 'react'
-import { Footer } from '@/components/Footer'
-import { Header } from '@/components/header/Header'
-import { EventSection } from '@/features/events/components/EventSection'
-import { setScrollLock } from '@/hooks/use-lockscroll'
-import { introVariants } from '@/lib/animations'
+import { useEffect } from 'react'
+import { Footer } from '@components/Footer'
+import { Header } from '@components/header/Header'
+import { EventSection } from '@events/components/EventSection'
+import { setScrollLock } from '@hooks/use-lockscroll'
+import { introVariants } from '@lib/animations'
 
 function IntroOverlay({ onComplete }: { onComplete: () => void }) {
   return (
