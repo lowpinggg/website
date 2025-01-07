@@ -31,11 +31,13 @@ export const introVariants = {
   },
   image: {
     initial: {
+      y: -1,
       opacity: 0,
       filter: 'blur(10px)',
       zIndex: -1,
     },
     animate: {
+      y: 0,
       scale: 1,
       opacity: 1,
       filter: 'blur(0px)',

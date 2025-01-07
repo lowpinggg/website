@@ -3,11 +3,11 @@
 // features/events/components/EventSection.tsx
 import { motion } from 'motion/react'
 import { useState } from 'react'
+import { EventFilters } from '@events/components/EventFilters'
+import { EventGrid } from '@events/components/EventGrid'
+import { useEvents } from '@events/hooks/useEvents'
+import type { FilterType } from '@events/types'
 import { baseVariants } from '@lib/animations'
-import { useEvents } from '../hooks/useEvents'
-import type { FilterType } from '../types'
-import { EventFilters } from './EventFilters'
-import { EventGrid } from './EventGrid'
 
 function LoadingSpinner() {
   return (

@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from 'motion/react'
 import Image from 'next/image'
-import { HeaderContent } from '@components/header/HeaderContent'
-import { HeaderTitle } from '@components/header/HeaderTitle'
+import { HeaderContent } from '@features/events/components/header/HeaderContent'
+import { HeaderTitle } from '@features/events/components/header/HeaderTitle'
 import { introVariants } from '@lib/animations'
 import { Full } from '@lowping/brand-kit'
 

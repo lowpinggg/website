@@ -4,8 +4,8 @@
 import { AnimatePresence, motion } from 'motion/react'
 import { useEffect } from 'react'
 import { Footer } from '@components/Footer'
-import { Header } from '@components/header/Header'
 import { EventSection } from '@events/components/EventSection'
+import { Header } from '@features/events/components/header/Header'
 import { setScrollLock } from '@hooks/use-lockscroll'
 import { introVariants } from '@lib/animations'
 
