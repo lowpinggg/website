@@ -5,7 +5,6 @@ import { generateMetadata } from '@app/metadata'
 import { Providers } from '@app/Providers'
 import { Cursor } from '@components/Cursor'
 import { SmoothScroll } from '@components/SmoothScroll'
-import { cn } from '@lib/utils'
 import { Toaster } from '@ui/toaster'
 import '@app/globals.css'
 
@@ -27,12 +26,7 @@ export default function RootLayout({
       <head>
         <script src="https://js.stripe.com/v3" async />
       </head>
-      <body
-        className={cn(
-          'relative bg-background font-alexandria text-white antialiased dark',
-          alexandria.variable,
-        )}
-      >
+      <body className={alexandria.variable}>
         <Cursor />
         <SmoothScroll>
           <div className="pattern-overlay z-50" />

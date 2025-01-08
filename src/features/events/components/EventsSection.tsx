@@ -8,6 +8,7 @@ import { EventGrid } from '@events/components/EventGrid'
 import { useEvents } from '@events/hooks/useEvents'
 import type { FilterType } from '@events/types'
 import { baseVariants } from '@lib/animations'
+import { cn } from '@lib/utils'
 
 function LoadingSpinner() {
   return (
@@ -25,14 +26,18 @@ function ErrorMessage() {
   )
 }
 
-export function EventSection() {
+interface EventsSectionProps {
+  className?: string
+}
+
+export function EventsSection({ className }: EventsSectionProps) {
   const [activeFilter, setActiveFilter] = useState<FilterType>('all')
   const { isLoading, error, filterEvents } = useEvents()
   const filteredEvents = filterEvents(activeFilter)
 
   return (
-    <section className="flex flex-col gap-8 relative z-10">
-      <div className="flex flex-col xs:flex-row sm:items-center gap-4 w-full justify-between border-b pb-4">
+    <section className={cn('flex flex-col gap-8 relative z-10', className)}>
+      <div className="flex flex-col xs:flex-row sm:items-center gap-4 w-full justify-between container mx-auto">
         <h1 className="text-2xl sm:text-4xl font-bold text-foreground">
           Événements
         </h1>

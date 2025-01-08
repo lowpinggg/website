@@ -47,7 +47,7 @@ export function EventPoster({
 }: EventPosterProps) {
   const buttonRef = useRef<HTMLDivElement>(null)
   const [buttonHeight, setButtonHeight] = useState(0)
-  const { isTablet } = useScreenResolution()
+  const { isMobile } = useScreenResolution()
 
   useEffect(() => {
     if (buttonRef.current) {
@@ -58,8 +58,8 @@ export function EventPoster({
   const tiltConfig = {
     ...DEFAULT_TILT_CONFIG,
     ...tiltProps,
-    tiltEnable: isTablet,
-    glareEnable: isTablet,
+    tiltEnable: !isMobile,
+    glareEnable: !isMobile,
   }
 
   const hoverVariants = showCTA
@@ -77,7 +77,7 @@ export function EventPoster({
       variants={hoverVariants}
       transition={HOVER_TRANSITION}
     >
-      <Button className="w-full h-12 flex items-center justify-center gap-2 rounded-none">
+      <Button className="w-full h-12 flex items-center justify-center gap-2 rounded-none bg-white text-black hover:bg-white/90">
         <span className="relative z-10 text-black">Inscription</span>
         <ExternalLink size={14} className="relative z-10 text-black" />
       </Button>
@@ -120,7 +120,7 @@ export function EventPoster({
     >
       {showCTA ? (
         <Link
-          href={`/${event.slug}/register`}
+          href={`/events/${event.slug}/register`}
           target="_blank"
           className="block w-full h-full"
         >

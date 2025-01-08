@@ -4,7 +4,7 @@
 import { AnimatePresence, motion } from 'motion/react'
 import { useEffect } from 'react'
 import { Footer } from '@components/Footer'
-import { EventSection } from '@events/components/EventSection'
+import { EventsSection } from '@features/events/components/EventsSection'
 import { Header } from '@features/events/components/header/Header'
 import { setScrollLock } from '@hooks/use-lockscroll'
 import { introVariants } from '@lib/animations'
@@ -46,9 +46,9 @@ export default function Page() {
               variants={introVariants.events}
               initial="initial"
               animate="animate"
-              className="overflow-hidden"
+              className="overflow-hidden pb-24"
             >
-              <EventSection />
+              <EventsSection />
             </motion.div>
             <motion.div
               initial="initial"

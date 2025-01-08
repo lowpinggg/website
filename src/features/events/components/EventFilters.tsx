@@ -28,7 +28,7 @@ export function EventFilters({
             className={clsx(
               'px-3 py-1 rounded-full text-sm transition-colors',
               {
-                'bg-primary text-primary-foreground': activeFilter === value,
+                'bg-white text-primary-foreground': activeFilter === value,
                 'bg-muted hover:bg-muted/80': activeFilter !== value,
               },
             )}

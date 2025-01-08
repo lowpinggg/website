@@ -1,5 +1,7 @@
 'use client'
 
+// TODO: Component folders should use PascalCase
+// TODO: The RegistrationClient component seems quite large. You could split it into smaller components
 import confetti from 'canvas-confetti'
 import { BadgeCheck, X } from 'lucide-react'
 import { motion } from 'motion/react'

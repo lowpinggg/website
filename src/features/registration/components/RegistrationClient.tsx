@@ -1,6 +1,15 @@
 // features/registration/components/RegisterClient.tsx
 'use client'
 
+// TODO: Component folders should use PascalCase
+// TODO: The RegistrationClient component seems quite large. You could split it into smaller components
+// registration/
+//   components/
+//     Registration/
+//       Registration.tsx  # Renamed from RegistrationClient.tsx
+//       RegistrationContent.tsx  # Extract ContentSection
+//       RegistrationHeader.tsx   # Extract EventHeader
+//       index.ts
 import { motion } from 'motion/react'
 import { Footer } from '@components/Footer'
 import { EventPoster } from '@events/components/EventPoster'

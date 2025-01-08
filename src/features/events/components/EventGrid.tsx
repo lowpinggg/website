@@ -10,7 +10,7 @@ export function EventGrid({ events }: EventGridProps) {
   const { isMobile } = useScreenResolution()
 
   return (
-    <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 pb-24 relative sm:px-2">
+    <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 container mx-auto">
       {events.map((event, index) => {
         const eventHasPassed = isEventPassed(event.date)
         return (
