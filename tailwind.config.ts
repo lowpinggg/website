@@ -1,6 +1,7 @@
 import type { Config } from 'tailwindcss'
 
 export default {
+  darkMode: ['class'],
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -82,6 +83,9 @@ export default {
         'shimmer-slide':
           'shimmer-slide var(--speed) ease-in-out infinite alternate',
         'spin-around': 'spin-around calc(var(--speed) * 2) infinite linear',
+        grid: 'grid 15s linear infinite',
+        shine: 'shine var(--duration) infinite linear',
+        'border-beam': 'border-beam calc(var(--duration)*1s) infinite linear',
       },
       keyframes: {
         'shimmer-slide': {
@@ -101,6 +105,30 @@ export default {
           },
           '100%': {
             transform: 'translateZ(0) rotate(360deg)',
+          },
+        },
+        grid: {
+          '0%': {
+            transform: 'translateY(-50%)',
+          },
+          '100%': {
+            transform: 'translateY(0)',
+          },
+        },
+        shine: {
+          '0%': {
+            'background-position': '0% 0%',
+          },
+          '50%': {
+            'background-position': '100% 100%',
+          },
+          to: {
+            'background-position': '0% 0%',
+          },
+        },
+        'border-beam': {
+          '100%': {
+            'offset-distance': '100%',
           },
         },
       },

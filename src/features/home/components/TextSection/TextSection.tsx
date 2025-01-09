@@ -6,7 +6,7 @@ import { staggerVariants } from '@lib/animations'
 
 export function TextSection() {
   return (
-    <section className="py-32 container mx-auto">
+    <section className="py-20 container mx-auto">
       <div className="grid grid-cols-2 gap-8 container mx-auto">
         <h2 className="text-5xl font-black leading-tighter">
           {

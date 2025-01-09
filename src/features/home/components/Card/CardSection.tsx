@@ -25,7 +25,7 @@ export const CardSection: React.FC = () => {
   ]
 
   return (
-    <section className="w-full py-20 container mx-auto">
+    <section className="w-full pt-40 pb-20 container mx-auto">
       <div className="flex flex-col items-center gap-10">
         <h2 className="text-white text-4xl font-black text-center">
           DES TOURNOIS SANS PRISE DE TÊTE

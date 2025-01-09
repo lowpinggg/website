@@ -7,6 +7,7 @@ import { Cursor } from '@components/Cursor'
 import { SmoothScroll } from '@components/SmoothScroll'
 import { Toaster } from '@ui/toaster'
 import '@app/globals.css'
+import { cn } from '@lib/utils'
 
 const alexandria = Alexandria({
   subsets: ['latin'],
@@ -26,7 +27,7 @@ export default function RootLayout({
       <head>
         <script src="https://js.stripe.com/v3" async />
       </head>
-      <body className={alexandria.variable}>
+      <body className={cn(alexandria.variable, 'overflow-x-hidden')}>
         <Cursor />
         <SmoothScroll>
           <div className="pattern-overlay z-50" />
