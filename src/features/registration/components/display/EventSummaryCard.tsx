@@ -62,7 +62,9 @@ export function EventSummaryCard({ event }: Props) {
       >
         <div className="flex flex-col space-y-4">
           <div className="flex flex-col-reverse lg:flex-row gap-2 lg:gap-0 justify-between items-start">
-            <h3 className="text-base font-bold text-white">{event.name}</h3>
+            <h3 className="text-base font-bold text-white pr-6">
+              {event.name}
+            </h3>
             <GameBadge game={event.game} />
           </div>
 

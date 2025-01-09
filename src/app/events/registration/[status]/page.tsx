@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
+import { PaymentStatusClient } from '@features/registration/components/PaymentStatusClient'
 import { Database } from '@generated/index'
 import { getRegistrationDetails } from '@registration/api/getRegistrationDetails'
-import { PaymentStatusPage } from '@registration/components/PaymentStatusPage'
 
 type Event = Database['public']['Tables']['events']['Row']
 type Registration = Database['public']['Tables']['event_registrations']['Row']
@@ -49,6 +49,7 @@ export default async function RegistrationStatusPage({
   if (status === 'success' && sessionId) {
     try {
       details = (await getRegistrationDetails(sessionId)) as RegistrationDetails
+      console.log('details', details)
       if (!details) {
         console.error('Details not found for session ID:', sessionId)
         return notFound()
@@ -63,7 +64,7 @@ export default async function RegistrationStatusPage({
 
   return (
     <main className="container">
-      <PaymentStatusPage
+      <PaymentStatusClient
         status={status}
         details={details}
         title={title}
