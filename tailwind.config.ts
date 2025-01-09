@@ -87,6 +87,7 @@ export default {
         shine: 'shine var(--duration) infinite linear',
         'border-beam': 'border-beam calc(var(--duration)*1s) infinite linear',
       },
+
       keyframes: {
         'shimmer-slide': {
           to: {

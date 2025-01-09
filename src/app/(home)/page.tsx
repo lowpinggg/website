@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform } from 'motion/react'
 import { useRef } from 'react'
 import { Footer } from '@components/Footer'
 import { NavBar } from '@components/NavBar'
+import ShinyText from '@components/ShinyText/ShinyText'
 import { BorderBeam } from '@components/ui/border-beam'
 import { Button } from '@components/ui/button'
 import { EventsSection } from '@events/components/EventsSection'
@@ -29,6 +30,13 @@ export default function Home() {
       <TextSection />
 
       <div className="relative container pt-20">
+        <ShinyText
+          text="Just some shiny text!"
+          className="text-white text-5xl"
+          disabled={false}
+          speed={4}
+        />
+
         <motion.div
           className="bg-background sticky top-0 [mask-image:radial-gradient(700px_circle_at_center,white,transparent)]"
           style={{
@@ -36,7 +44,6 @@ export default function Home() {
           }}
         >
           <BorderBeam colorFrom={'white'} colorTo={'white'} />
-
           <motion.div
             className="h-full relative z-20 rounded-[20px] overflow-hidden border border-white/10"
             style={{
@@ -45,17 +52,17 @@ export default function Home() {
               backgroundPosition: 'center',
             }}
           >
-            <motion.div className="flex flex-col justify-center items-center h-full relative z-20 gap-8">
-              <div className="flex flex-col gap-2">
+            <motion.div className="flex flex-col justify-center items-center h-full relative z-20 gap-8 mix-blend-screen">
+              <div className="flex flex-col gap-1">
                 <motion.h2
                   style={{ scale }}
-                  className="text-6xl font-bold text-center"
+                  className="text-6xl font-bold text-center tracking-tight"
                 >
                   Nous comblons les écarts
                 </motion.h2>
                 <motion.p
                   style={{ scale }}
-                  className="text-3xl font-medium text-center"
+                  className="text-3xl font-medium text-center tracking-tight"
                 >
                   Joueurs. Tournois. Compétition. Simple.
                 </motion.p>
@@ -65,7 +72,7 @@ export default function Home() {
                 className="bg-white hover:bg-white/90 text-black"
               >
                 Prochain tournoi
-                <ArrowRightIcon className="w-4 h-4" />
+                <ArrowRightIcon size={18} />
               </Button>
             </motion.div>
           </motion.div>
