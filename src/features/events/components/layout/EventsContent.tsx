@@ -1,14 +1,16 @@
-// features/events/components/EventsSection.tsx
+// features/events/components/layout/EventsContent.tsx
 'use client'
 
 import { motion } from 'motion/react'
 import { useState } from 'react'
+import Link from 'next/link'
 import { useEvents } from '@events/hooks/useEvents'
 import type { FilterType } from '@events/types'
 import { EventsGrid } from '@features/events/components/display'
 import { EventFilters } from '@features/events/components/filters'
 import { baseVariants } from '@lib/animations'
 import { cn } from '@lib/utils'
+import { Button } from '@ui/button'
 
 function LoadingSpinner() {
   return (
@@ -28,31 +30,59 @@ function ErrorMessage() {
 
 interface EventsContentProps {
   className?: string
+  title?: string
+  showFilters?: boolean
+  showCTA?: boolean
+  ctaText?: string
+  ctaHref?: string
+  limitEvents?: number
 }
 
-export function EventsContent({ className }: EventsContentProps) {
+export function EventsContent({
+  className,
+  title = 'Événements',
+  showFilters = false,
+  showCTA = false,
+  ctaText = 'Voir tous',
+  ctaHref = '/events',
+  limitEvents,
+}: EventsContentProps) {
   const [activeFilter, setActiveFilter] = useState<FilterType>('all')
   const { isLoading, error, filterEvents } = useEvents()
-  const filteredEvents = filterEvents(activeFilter)
+
+  let events = filterEvents(activeFilter)
+  if (limitEvents) {
+    events = events.slice(0, limitEvents)
+  }
 
   return (
-    <section className={cn('flex flex-col gap-8 relative z-10', className)}>
-      <div className="flex flex-col xs:flex-row sm:items-center gap-4 w-full justify-between container mx-auto">
+    <section className={cn('flex flex-col gap-6 relative z-10', className)}>
+      <div className="flex flex-col xs:flex-row sm:items-center gap-4 w-full justify-between">
         <h1 className="text-2xl sm:text-4xl font-bold text-foreground">
-          Événements
+          {title}
         </h1>
-        {!error && (
-          <EventFilters
-            activeFilter={activeFilter}
-            onFilterChange={setActiveFilter}
-          />
-        )}
+        <div className="flex items-center gap-2">
+          {showFilters && !error && (
+            <EventFilters
+              activeFilter={activeFilter}
+              onFilterChange={setActiveFilter}
+            />
+          )}
+          {showCTA && (
+            <Link href={ctaHref}>
+              <Button variant="outline" size="sm">
+                {ctaText}
+              </Button>
+            </Link>
+          )}
+        </div>
       </div>
+
       {!error ? (
         isLoading ? (
           <LoadingSpinner />
-        ) : filteredEvents.length > 0 ? (
-          <EventsGrid events={filteredEvents} />
+        ) : events.length > 0 ? (
+          <EventsGrid events={events} />
         ) : (
           <motion.div
             variants={baseVariants.fadeIn}

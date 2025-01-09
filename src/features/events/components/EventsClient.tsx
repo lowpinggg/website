@@ -47,7 +47,10 @@ export function EventsClient() {
               animate="animate"
               className="overflow-hidden pb-24"
             >
-              <EventsContent />
+              <EventsContent
+                showFilters={true}
+                className="py-10 container mx-auto"
+              />
             </motion.div>
             <motion.div
               initial="initial"

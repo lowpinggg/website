@@ -1,5 +1,6 @@
 // features/events/components/EventFilters.tsx
 import clsx from 'clsx'
+import { Button } from '@components/ui/button'
 import type { EventFiltersProps, FilterType } from '@events/types'
 
 const FILTER_OPTIONS = [
@@ -22,21 +23,23 @@ export function EventFilters({
     <div className="flex flex-col gap-2">
       <div className="flex gap-2">
         {FILTER_OPTIONS.map(({ value, label }) => (
-          <button
+          <Button
             key={value}
             onClick={() => handleFilterChange(value)}
+            size="sm"
             className={clsx(
-              'px-3 py-1 rounded-full text-sm transition-colors',
+              'px-3 py-1 rounded-full text-sm transition-colors h-full',
               {
-                'bg-white text-primary-foreground': activeFilter === value,
-                'bg-muted hover:bg-muted/80': activeFilter !== value,
+                'bg-white text-primary-foreground text-black pointer-events-none':
+                  activeFilter === value,
+                'bg-muted hover:bg-muted/80 text-white': activeFilter !== value,
               },
             )}
             type="button"
             aria-pressed={activeFilter === value}
           >
             {label}
-          </button>
+          </Button>
         ))}
       </div>
     </div>
