@@ -25,12 +25,12 @@ export const CardSection: React.FC = () => {
   ]
 
   return (
-    <section className="w-full pt-40 pb-20 container mx-auto">
+    <section className="container mx-auto w-full py-20">
       <div className="flex flex-col items-center gap-10">
-        <h2 className="text-white text-4xl font-black text-center">
+        <h2 className="text-center text-4xl font-black text-white">
           DES TOURNOIS SANS PRISE DE TÊTE
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {cards.map((card, index) => (
             <CardItem
               key={index}

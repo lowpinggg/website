@@ -29,7 +29,8 @@
       "@home/*": ["./src/features/home/*"],
       "@generated/*": ["./src/types/generated-types"],
       "@package": ["./package.json"],
-      "@app/*": ["./src/app/*"]
+      "@app/*": ["./src/app/*"],
+      "src/lib/utils": ["./src/lib/utils"]
     }
   },
   "include": [

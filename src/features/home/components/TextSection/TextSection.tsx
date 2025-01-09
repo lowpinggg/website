@@ -6,19 +6,19 @@ import { staggerVariants } from '@lib/animations'
 
 export function TextSection() {
   return (
-    <section className="py-20 container mx-auto">
-      <div className="grid grid-cols-2 gap-8 container mx-auto">
-        <h2 className="text-5xl font-black leading-tighter">
+    <section className="container mx-auto py-20">
+      <div className="grid grid-cols-2 gap-8">
+        <h2 className="leading-tighter text-5xl font-black">
           {
             "Une organisation pour des tournois fluides. Vous n'avez plus qu'à jouer."
           }
         </h2>
         <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-2">
-            <h2 className="hidden text-2xl font-black text-zinc-200 uppercase tracking-tight">
+            <h2 className="hidden text-2xl font-black uppercase tracking-tight text-zinc-200">
               {'Vos jeux, vos tournois.'}
             </h2>
-            <p className="text-lg font-light leading-relaxed tracking-snug">
+            <p className="tracking-snug text-lg font-light leading-relaxed">
               Figma ipsum component variant main layer. Asset shadow community
               inspect pencil ellipse background content. Link effect invite
               layer component reesizing community ipsum editor.
