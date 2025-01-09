@@ -1,12 +1,12 @@
+// features/events/components/EventsSection.tsx
 'use client'
 
-// features/events/components/EventSection.tsx
 import { motion } from 'motion/react'
 import { useState } from 'react'
-import { EventFilters } from '@events/components/EventFilters'
-import { EventGrid } from '@events/components/EventGrid'
 import { useEvents } from '@events/hooks/useEvents'
 import type { FilterType } from '@events/types'
+import { EventsGrid } from '@features/events/components/display'
+import { EventFilters } from '@features/events/components/filters'
 import { baseVariants } from '@lib/animations'
 import { cn } from '@lib/utils'
 
@@ -26,11 +26,11 @@ function ErrorMessage() {
   )
 }
 
-interface EventsSectionProps {
+interface EventsContentProps {
   className?: string
 }
 
-export function EventsSection({ className }: EventsSectionProps) {
+export function EventsContent({ className }: EventsContentProps) {
   const [activeFilter, setActiveFilter] = useState<FilterType>('all')
   const { isLoading, error, filterEvents } = useEvents()
   const filteredEvents = filterEvents(activeFilter)
@@ -52,7 +52,7 @@ export function EventsSection({ className }: EventsSectionProps) {
         isLoading ? (
           <LoadingSpinner />
         ) : filteredEvents.length > 0 ? (
-          <EventGrid events={filteredEvents} />
+          <EventsGrid events={filteredEvents} />
         ) : (
           <motion.div
             variants={baseVariants.fadeIn}

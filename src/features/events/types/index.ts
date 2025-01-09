@@ -8,7 +8,7 @@ export interface EventFiltersProps {
   activeFilter: FilterType
   onFilterChange: (filter: FilterType) => void
 }
-export interface EventGridProps {
+export interface EventsGridProps {
   events: Event[]
 }
 

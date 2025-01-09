@@ -1,65 +1,6 @@
-// app/page.tsx
-'use client'
+// app/events/page.tsx
+import { EventsClient } from '@features/events/components/EventsClient'
 
-import { AnimatePresence, motion } from 'motion/react'
-import { useEffect } from 'react'
-import { Footer } from '@components/Footer'
-import { EventsSection } from '@features/events/components/EventsSection'
-import { Header } from '@features/events/components/header/Header'
-import { setScrollLock } from '@hooks/use-lockscroll'
-import { introVariants } from '@lib/animations'
-
-function IntroOverlay({ onComplete }: { onComplete: () => void }) {
-  return (
-    <motion.div
-      className="fixed inset-0 z-30"
-      style={{ backgroundColor: '#BFF603' }}
-      variants={introVariants.overlay}
-      initial="initial"
-      animate="animate"
-      exit="exit"
-      onAnimationComplete={onComplete}
-    />
-  )
-}
-
-export default function Page() {
-  useEffect(() => {
-    setScrollLock(true)
-  }, [])
-
-  return (
-    <>
-      <AnimatePresence mode="wait">
-        <IntroOverlay
-          key="overlay"
-          onComplete={() => setScrollLock(false, 600)}
-        />
-      </AnimatePresence>
-
-      <main>
-        <div className="relative z-30">
-          <Header />
-          <section className="container">
-            <motion.div
-              key="events"
-              variants={introVariants.events}
-              initial="initial"
-              animate="animate"
-              className="overflow-hidden pb-24"
-            >
-              <EventsSection />
-            </motion.div>
-            <motion.div
-              initial="initial"
-              animate="animate"
-              variants={introVariants.footer}
-            >
-              <Footer />
-            </motion.div>
-          </section>
-        </div>
-      </main>
-    </>
-  )
+export default function EventsPage() {
+  return <EventsClient />
 }

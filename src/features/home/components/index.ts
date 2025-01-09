@@ -1,4 +1,4 @@
-export { Hero } from './Hero/Hero'
-export { TextSection } from './TextSection/TextSection'
-export { CardSection } from './Card/CardSection'
-export { Banner } from './Banner/Banner'
+export * from './Hero'
+export * from './TextSection'
+export * from './Card'
+export * from './Banner'

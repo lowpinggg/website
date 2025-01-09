@@ -12,7 +12,7 @@
 //       index.ts
 import { motion } from 'motion/react'
 import { Footer } from '@components/Footer'
-import { EventPoster } from '@events/components/EventPoster'
+import { EventPoster } from '@features/events/components/display/EventPoster'
 import { Database } from '@generated/index'
 import { useScreenResolution } from '@hooks/use-screen-resolution'
 import { staggerVariants } from '@lib/animations'
