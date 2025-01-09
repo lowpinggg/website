@@ -1,6 +1,6 @@
 // app/events/page.tsx
-import { EventsClient } from '@features/events/components/EventsClient'
+import { EventsPageClient } from '@features/events/components/EventsPageClient'
 
 export default function EventsPage() {
-  return <EventsClient />
+  return <EventsPageClient />
 }

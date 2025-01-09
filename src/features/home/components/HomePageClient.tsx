@@ -3,7 +3,7 @@
 
 import { Footer } from '@components/Footer'
 import { NavBar } from '@components/NavBar'
-import { EventsContent } from '@features/events/components/layout/EventsContent'
+import { EventsContent } from '@features/events/components/EventGallery/EventsContent'
 import { Banner, CardSection, Hero, TextSection } from '@home/components'
 
 export function HomeClient() {

@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation'
-import { PaymentStatusClient } from '@features/registration/components/PaymentStatusClient'
+import { PaymentStatusPageClient } from '@features/registration/components/PaymentStatusPageClient'
 import { Database } from '@generated/index'
 import { getRegistrationDetails } from '@registration/api/getRegistrationDetails'
 
@@ -64,7 +64,7 @@ export default async function RegistrationStatusPage({
 
   return (
     <main className="container">
-      <PaymentStatusClient
+      <PaymentStatusPageClient
         status={status}
         details={details}
         title={title}

@@ -4,8 +4,8 @@
 import { AnimatePresence, motion } from 'motion/react'
 import { useEffect } from 'react'
 import { Footer } from '@components/Footer'
-import { Header } from '@events/components/layout/Header'
-import { EventsContent } from '@features/events/components/layout/EventsContent'
+import { EventsContent } from '@features/events/components/EventGallery/EventsContent'
+import { Header } from '@features/events/components/Header'
 import { setScrollLock } from '@hooks/use-lockscroll'
 import { introVariants } from '@lib/animations'
 
@@ -23,7 +23,7 @@ function IntroOverlay({ onComplete }: { onComplete: () => void }) {
   )
 }
 
-export function EventsClient() {
+export function EventsPageClient() {
   useEffect(() => {
     setScrollLock(true)
   }, [])

@@ -1,10 +1,10 @@
-// components/RegistrationClient.tsx
+// components/RegistrationPageClient.tsx
 'use client'
 
 import { motion } from 'motion/react'
 import { Footer } from '@components/Footer'
-import { EventPoster } from '@features/events/components/display/EventPoster'
-import { RegistrationContent } from '@features/registration/components/layout/Registration'
+import { EventPoster } from '@features/events/components/EventGallery/EventPoster'
+import { RegistrationContent } from '@features/registration/components/Registration'
 import type { Database } from '@generated/index'
 import { useScreenResolution } from '@hooks/use-screen-resolution'
 import { staggerVariants } from '@lib/animations'
@@ -14,7 +14,7 @@ type Props = {
   event: Database['public']['Tables']['events']['Row']
 }
 
-export function RegistrationClient({ event }: Props) {
+export function RegistrationPageClient({ event }: Props) {
   const { step, registrationData, handleRegistrationComplete, handleBack } =
     useRegistration(event)
   const { isMobile, isTablet } = useScreenResolution()

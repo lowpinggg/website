@@ -1,17 +1,39 @@
 // features/registration/components/layout/PaymentStatus/SuccessView.tsx
-import { BadgeCheck } from 'lucide-react'
+import { BadgeCheck, Calendar } from 'lucide-react'
 import { motion } from 'motion/react'
 import Link from 'next/link'
-import { EventPoster } from '@features/events/components/display/EventPoster'
+import { EventPoster } from '@features/events/components/EventGallery/EventPoster'
+import { EventSummaryCard } from '@features/registration/components/EventSummary'
 import { baseVariants, staggerVariants } from '@lib/animations'
-import { CalendarButton } from '@registration/components/checkout/CalendarButton'
-import { EventSummaryCard } from '@registration/components/display/EventSummaryCard'
 import type { RegistrationDetails } from '@registration/types/registrations'
 import { Button } from '@ui/button'
 
 interface SuccessViewProps {
   details: RegistrationDetails
   title: string
+}
+
+export function CalendarButton({
+  event,
+}: {
+  event: { name: string; date: string }
+}) {
+  const handleAddToCalendar = () => {
+    const eventDate = new Date(event.date)
+    const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(event.name)}&dates=${eventDate.toISOString().replace(/[-:]/g, '').split('.')[0]}/${eventDate.toISOString().replace(/[-:]/g, '').split('.')[0]}`
+    window.open(url, '_blank')
+  }
+
+  return (
+    <Button
+      variant="link"
+      onClick={() => handleAddToCalendar()}
+      className="p-0 m-0"
+    >
+      <Calendar size={16} />
+      Ajouter au calendrier
+    </Button>
+  )
 }
 
 export function SuccessView({ details, title }: SuccessViewProps) {

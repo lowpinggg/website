@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from 'motion/react'
-import { EventPoster } from '@events/components/display'
 import type { EventsGridProps } from '@events/types'
 import { isEventPassed } from '@events/utils/eventHelpers'
+import { EventPoster } from '@features/events/components/EventGallery/EventPoster'
 import { useScreenResolution } from '@hooks/use-screen-resolution'
 import { TRANSITIONS } from '@lib/animations'
 import { cn } from '@lib/utils'
