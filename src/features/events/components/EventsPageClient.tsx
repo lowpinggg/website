@@ -2,13 +2,15 @@
 'use client'
 
 import { AnimatePresence, motion } from 'motion/react'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Footer } from '@components/Footer'
 import { EventsContent } from '@features/events/components/EventGallery/EventsContent'
 import { Header } from '@features/events/components/Header'
 import { setScrollLock } from '@hooks/use-lockscroll'
 import { introVariants } from '@lib/animations'
-
+import { EventFilters } from './EventGallery/EventFilters'
+import { FilterType } from '../types'
+import { useEvents } from '../hooks/useEvents'
 function IntroOverlay({ onComplete }: { onComplete: () => void }) {
   return (
     <motion.div
@@ -24,6 +26,9 @@ function IntroOverlay({ onComplete }: { onComplete: () => void }) {
 }
 
 export function EventsPageClient() {
+  const [activeFilter, setActiveFilter] = useState<FilterType>('all')
+  const { filterEvents } = useEvents()
+
   useEffect(() => {
     setScrollLock(true)
   }, [])
@@ -47,9 +52,18 @@ export function EventsPageClient() {
               animate="animate"
               className="overflow-hidden pb-24"
             >
+              <div className="flex w-full flex-col justify-between gap-4 xs:flex-row sm:items-center">
+                <h1 className="text-2xl font-bold text-foreground sm:text-4xl">
+                  Événements
+                </h1>
+                <EventFilters
+                  activeFilter={activeFilter}
+                  onFilterChange={setActiveFilter}
+                />
+              </div>
               <EventsContent
-                showFilters={true}
-                className="py-10 container mx-auto"
+                events={filterEvents(activeFilter)}
+                className="container mx-auto py-10"
               />
             </motion.div>
             <motion.div

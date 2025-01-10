@@ -104,7 +104,7 @@ export function CallToActions() {
   ]
 
   return (
-    <main className="container mx-auto pb-10">
+    <main className="container mx-auto">
       <div className="grid grid-cols-1 gap-6 md:grid-cols-1">
         {cards.map((card, index) => (
           <ActionCard key={index} {...card} />

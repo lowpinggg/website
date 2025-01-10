@@ -32,7 +32,7 @@ export function PaymentStatusPageClient({
   }, [status])
 
   return (
-    <div className="py-12 flex flex-col min-h-screen items-center justify-center">
+    <div className="flex min-h-screen flex-col items-center justify-center py-12">
       {status === 'success' && details ? (
         <SuccessView details={details} title={title} />
       ) : (

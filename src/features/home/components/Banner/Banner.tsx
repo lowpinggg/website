@@ -6,14 +6,14 @@ import { Button } from '@ui/button'
 
 export function Banner() {
   const { scrollYProgress } = useScroll({
-    offset: ['start start', 'end start'],
+    offset: ['start end', 'end start'],
   })
 
-  const height = useTransform(scrollYProgress, [0, 1], ['600px', '100px'])
+  const height = useTransform(scrollYProgress, [0, 1], ['700px', '100px'])
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0.8])
 
   return (
-    <div className="container relative py-20">
+    <div className="container relative">
       <motion.div
         className="bg-background [mask-image:radial-gradient(650px_circle_at_center,white,transparent)]"
         style={{ height }}
@@ -36,7 +36,7 @@ export function Banner() {
             </div>
             <Button
               size="lg"
-              className="bg-white font-medium tracking-wide text-black hover:bg-white/90 min-h-12"
+              className="min-h-12 bg-white font-medium tracking-wide text-black hover:bg-white/90"
             >
               Prochaine évènement
               <ArrowRightIcon size={18} />
