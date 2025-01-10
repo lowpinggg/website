@@ -2,7 +2,7 @@
 
 // TODO: Animation on the events section is WIP and should be extracted to a separate component
 import { motion, useScroll, useTransform } from 'motion/react'
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { Footer } from '@components/Footer'
 import { NavBar } from '@components/NavBar'
 import { EventsContent } from '@features/events/components/EventGallery/EventsContent'
@@ -13,6 +13,9 @@ import { Hero } from './Hero'
 import { TextSection } from './TextSection'
 
 function AnimatedEventsSection() {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   const sectionRef = useRef<HTMLDivElement>(null)
 
   const { scrollYProgress } = useScroll({
@@ -29,7 +32,7 @@ function AnimatedEventsSection() {
         title="Nos prochains événements"
         showCTA={true}
         limitEvents={4}
-        className="py-24 container mx-auto"
+        className="container mx-auto py-24"
       />
     </motion.div>
   )

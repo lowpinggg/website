@@ -3,8 +3,8 @@
   "tabWidth": 2,
   "singleQuote": true,
   "plugins": [
-    "prettier-plugin-tailwindcss",
-    "@ianvs/prettier-plugin-sort-imports"
+    "@trivago/prettier-plugin-sort-imports",
+    "prettier-plugin-tailwindcss"
   ],
   "importOrder": ["^react(.*)$", "^next(.*)$", "^@(.*)$", "^[./]"]
 }

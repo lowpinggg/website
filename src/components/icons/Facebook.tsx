@@ -1,5 +1,4 @@
 // components/icons/FacebookLogo.tsx
-import clsx from 'clsx'
 import { type ComponentProps } from 'react'
 
 type IconProps = {
@@ -15,7 +14,7 @@ export function Facebook({ className, size = 32, ...props }: IconProps) {
       viewBox="3 2 9 19"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className={clsx('text-white', className)}
+      className={className}
       {...props}
     >
       <path

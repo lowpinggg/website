@@ -1,5 +1,4 @@
 // components/icons/DiscordLogo.tsx
-import clsx from 'clsx'
 import { type ComponentProps } from 'react'
 
 type IconProps = {
@@ -15,7 +14,7 @@ export function Discord({ className, size = 32, ...props }: IconProps) {
       viewBox="0 0 30 30"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className={clsx('text-white', className)}
+      className={className}
       {...props}
     >
       <path

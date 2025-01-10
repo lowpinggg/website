@@ -3,6 +3,7 @@ import { useRef } from 'react'
 import { Discord } from '@components/icons'
 import { Button } from '@components/ui/button'
 import { BorderBeam } from '@ui/border-beam'
+import type { ButtonProps } from '@components/ui/button'
 
 interface ActionCardProps {
   title: string
@@ -11,16 +12,12 @@ interface ActionCardProps {
     label: string
     icon?: React.ReactNode
     className?: string
-  }
-  backgroundImage: string
+    variant?: ButtonProps['variant']
+  }[]
+  videoSrc: string
 }
 
-function ActionCard({
-  title,
-  description,
-  button,
-  backgroundImage,
-}: ActionCardProps) {
+function ActionCard({ title, description, button, videoSrc }: ActionCardProps) {
   const cardRef = useRef<HTMLDivElement>(null)
 
   const { scrollYProgress } = useScroll({
@@ -28,8 +25,10 @@ function ActionCard({
     offset: ['start end', 'end start'],
   })
 
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [0, 1])
-  const y = useTransform(scrollYProgress, [0, 0.5], [100, 0])
+  const opacity = useTransform(scrollYProgress, [0, 0.4], [0, 1])
+  const y = useTransform(scrollYProgress, [0, 0.4], [50, 0])
+
+  const scale = useTransform(scrollYProgress, [0, 0.4], [1.1, 1])
 
   return (
     <motion.div
@@ -37,28 +36,46 @@ function ActionCard({
       style={{
         opacity,
         y,
-        backgroundImage: `url(${backgroundImage})`,
       }}
       className="
-        [mask-image:radial-gradient(800px_circle_at_center,white,transparent)]
-        bg-center
-        flex flex-col h-full items-center relative overflow-hidden py-16 text-white bg-cover bg-no-repeat rounded-lg border border-white/10"
+        relative
+        flex h-full flex-col items-center overflow-hidden rounded border border-white/10 py-24 text-white [mask-image:radial-gradient(600px_circle_at_center,white,transparent)]"
     >
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 -z-10 h-full w-full object-cover object-top"
+        src={videoSrc}
+      />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-background to-transparent" />
+
       <BorderBeam colorFrom="white" colorTo="transparent" />
-      <div className="flex flex-col gap-2 mb-auto items-center mix-blend-screen">
-        <h2 className="text-4xl font-bold leading-tighter tracking-normal text-center">
+      <motion.div
+        style={{ scale, y }}
+        className="relative mb-auto flex flex-col items-center gap-3 mix-blend-screen"
+      >
+        <h2 className="leading-tighter tracking-snug text-center text-4xl font-bold">
           {title}
         </h2>
-        <p className="text-base font-light text-white/90 leading-0 tracking-tight max-w-xl text-center">
+        <p className="leading-0 max-w-2xl text-center text-base font-light tracking-tight text-white/90">
           {description}
         </p>
-      </div>
-      <div className="mt-6 mix-blend-screen">
-        <Button size="lg" className={button.className}>
-          {button.label}
-          {button.icon}
-        </Button>
-      </div>
+        <div className="mt-5 flex gap-2">
+          {button.map((btn, index) => (
+            <Button
+              size="lg"
+              className={btn.className}
+              key={index}
+              variant={btn.variant}
+            >
+              {btn.label}
+              {btn.icon}
+            </Button>
+          ))}
+        </div>
+      </motion.div>
     </motion.div>
   )
 }
@@ -66,21 +83,29 @@ function ActionCard({
 export function CallToActions() {
   const cards: ActionCardProps[] = [
     {
-      title: 'Ne manquez aucun de nos tournois à venir',
+      title: "Propulsez l'esport vers de nouveaux sommets",
       description:
-        'Rejoignez notre communauté Discord et soyez les premiers informés de nos événements à venir. Ne manquez aucune annonce importante!',
-      button: {
-        label: 'Discord',
-        icon: <Discord className="text-[#000]" />,
-        className: 'text-background bg-white hover:bg-white/80 px-6',
-      },
-      backgroundImage: '/textsection.png',
+        "Nous recherchons activement des partenaires pour développer la scène compétitive. Une opportunité de contribuer à l'avenir de l'esport",
+      button: [
+        {
+          label: 'Discord',
+          icon: <Discord className="text-[#000000]" />,
+          className: 'text-background bg-white hover:bg-white/80 px-8',
+        },
+        {
+          label: 'Contacter-nous',
+          icon: null,
+          className: 'px-6 bg-[#1e1e1e]',
+          variant: 'outline',
+        },
+      ],
+      videoSrc: '/animated-aurelionsol.webm',
     },
   ]
 
   return (
     <main className="container mx-auto pb-10">
-      <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-1">
         {cards.map((card, index) => (
           <ActionCard key={index} {...card} />
         ))}
