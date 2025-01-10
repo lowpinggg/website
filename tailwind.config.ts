@@ -24,6 +24,7 @@ export default {
     extend: {
       animation: {
         shine: 'shine var(--duration) infinite linear',
+        'border-beam': 'border-beam calc(var(--duration)*1s) infinite linear',
       },
       keyframes: {
         shine: {
@@ -35,6 +36,11 @@ export default {
           },
           to: {
             'background-position': '0% 0%',
+          },
+        },
+        'border-beam': {
+          '100%': {
+            'offset-distance': '100%',
           },
         },
       },

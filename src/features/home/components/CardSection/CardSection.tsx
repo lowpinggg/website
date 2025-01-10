@@ -2,6 +2,8 @@
 import { HeadphonesIcon, Smartphone, Zap } from 'lucide-react'
 import CardItem from './CardItem'
 
+// TODO: Add animation to the cards and enhance the design
+
 export const CardSection: React.FC = () => {
   const cards = [
     {

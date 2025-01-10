@@ -16,7 +16,7 @@ interface FooterProps {
 export function Footer({ className }: FooterProps) {
   return (
     <footer
-      className={cn('py-12 container mx-auto gap-8 flex flex-col', className)}
+      className={cn('py-6 container mx-auto gap-8 flex flex-col', className)}
     >
       {/* First Row */}
       <div className="flex justify-between items-end">

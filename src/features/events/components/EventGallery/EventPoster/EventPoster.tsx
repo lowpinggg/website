@@ -23,7 +23,7 @@ const DEFAULT_TILT_CONFIG: TiltConfig = {
   glareEnable: true,
   glareMaxOpacity: 0.5,
   glareColor: 'rgba(255, 243, 230, 1)',
-  glareBorderRadius: '6px',
+  glareBorderRadius: '8px',
   glarePosition: 'all',
   transitionSpeed: 800,
   tiltEnable: true,
@@ -86,7 +86,7 @@ export function EventPoster({
 
   const PosterContent = (
     <motion.div
-      className="relative h-full overflow-hidden rounded-[6px]"
+      className="relative h-full overflow-hidden rounded-[8px]"
       initial="initial"
       whileHover={showCTA ? 'hover' : undefined}
     >

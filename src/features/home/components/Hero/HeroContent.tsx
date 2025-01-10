@@ -1,6 +1,7 @@
 // features/home/components/Hero/HeroContent.tsx
 import { Calendar } from 'lucide-react'
 import Link from 'next/link'
+import { Discord } from '@components/icons'
 import { Button } from '@ui/button'
 
 export function HeroContent() {
@@ -25,14 +26,18 @@ export function HeroContent() {
         </div>
         <div className="overflow-hidden">
           <div className="flex gap-2">
-            <Button variant="default">
+            <Button variant="default" size="lg" className="px-6">
               <Link href="/events" className="flex items-center gap-2">
                 <Calendar />
                 Évenements
               </Link>
             </Button>
-            <Button variant="outline" size="lg">
-              <Link href="/contact">Contacter</Link>
+            <Button
+              size="lg"
+              className="bg-white text-background hover:bg-white/80 px-6"
+            >
+              Discord
+              <Discord className="text-[#000]" />
             </Button>
           </div>
         </div>

@@ -4,6 +4,8 @@ import { motion } from 'motion/react'
 import { GameBadge } from '@components/GameBadge'
 import { staggerVariants } from '@lib/animations'
 
+// TODO: Add animation to the text section and enhance the design
+
 export function TextSection() {
   return (
     <section className="container mx-auto py-20">
