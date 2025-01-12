@@ -26,11 +26,19 @@
       "@features/*": ["./src/features/*"],
       "@events/*": ["./src/features/events/*"],
       "@registration/*": ["./src/features/registration/*"],
+      "@home/*": ["./src/features/home/*"],
       "@generated/*": ["./src/types/generated-types"],
       "@package": ["./package.json"],
-      "@app/*": ["./src/app/*"]
+      "@app/*": ["./src/app/*"],
+      "src/lib/utils": ["./src/lib/utils"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "src/features/home/components/Hero/HeroContent.tss"
+  ],
   "exclude": ["node_modules"]
 }

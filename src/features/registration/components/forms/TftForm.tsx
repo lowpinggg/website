@@ -1,7 +1,7 @@
 // features/registration/components/forms/TftForm.tsx
 'use client'
 
-import { BaseForm } from '@registration/components/forms/BaseForm'
+import { BaseForm } from '@features/registration/components/Forms/BaseForm'
 import { formRegistry, TftFormData } from '@registration/types/forms'
 
 type Props = {

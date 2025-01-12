@@ -25,13 +25,13 @@ export async function handleCheckout(event: Event, formData: FormData) {
               name: event.name,
               description: `Registration for ${event.name}`,
             },
-            unit_amount: event.price, // Price in cents
+            unit_amount: event.price * 100, // Price in cents
           },
           quantity: 1,
         },
       ],
-      success_url: `${baseUrl}/registration/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${baseUrl}/registration/cancelled`,
+      success_url: `${baseUrl}/events/registration/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${baseUrl}/events/registration/cancelled`,
       metadata: {
         event_id: event.id,
         registration_data: JSON.stringify(formData),

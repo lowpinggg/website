@@ -17,6 +17,7 @@
       "@features": ["src/features"],
       "@events": ["src/features/events"],
       "@registration": ["src/features/registration"],
+      "@home": ["src/features/home"],
       "@types": ["src/types"],
       "@app": ["src/app"]
     },
