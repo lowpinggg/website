@@ -2,42 +2,25 @@
 'use client'
 
 import { motion, useScroll, useTransform } from 'motion/react'
-//import Image from 'next/image'
-import { introVariants } from '@lib/animations'
+
+// features/home/components/Hero/HeroBackground.tsx
 
 export function HeroBackground() {
-  const { scrollYProgress } = useScroll()
+  const { scrollYProgress } = useScroll({
+    offset: ['start start', 'end start'],
+  })
+
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '100%'])
 
   return (
     <div className="absolute inset-0 top-0 [mask-image:linear-gradient(to_bottom,black_0%,transparent_100%)]">
       <motion.div
-        variants={introVariants.image}
-        initial={{
-          ...introVariants.image.initial,
-          y: 0,
-        }}
-        animate={{
-          ...introVariants.image.animate,
-          y: 0,
-          transition: { duration: 1, delay: 0 },
-        }}
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 2, duration: 0.8, ease: [0.77, 0, 0.175, 1] }}
         className="absolute inset-0 overflow-hidden rounded-[50px]"
         style={{ y }}
       >
-        {/* <Image
-          src="/banner-hero.png"
-          alt="Lowping"
-          fill
-          className="object-cover hidden"
-          style={{
-            objectFit: 'cover',
-            objectPosition: 'center',
-            width: '100%',
-          }}
-          quality={100}
-          priority
-        /> */}
         <video
           className="h-full w-full object-cover"
           autoPlay
