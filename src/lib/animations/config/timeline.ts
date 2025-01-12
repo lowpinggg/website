@@ -1,28 +1,67 @@
 // lib/animations/config/timeline.ts
-export const INTRO_TIMELINE = {
-  overlay: { start: 2, duration: 1 },
-  version: {
-    duration: 0.6,
-    delay: 1.1,
-  },
-  container: { start: 2, duration: 1 },
-  title: { start: 1, duration: 1 },
-  logo: { start: 2.1, duration: 1 },
-  content: { start: 2, duration: 1 },
-  colorTransition: {
-    delay: 2.5,
-    duration: 0,
-  },
-  events: {
-    start: 3,
-    duration: 1,
-  },
-  footer: {
-    start: 2.5,
-    duration: 1,
-  },
-  image: {
-    start: 2.5,
-    duration: 1.3,
+import { transitions } from './transitions'
+const { easing, duration } = transitions
+
+const introDuration = 3.5
+
+// lib/animations/config/timeline.ts
+export const timeline = {
+  intro: {
+    overlay: {
+      duration: duration.superSlow,
+      delay: introDuration,
+      ease: easing.expo,
+    },
+    background: {
+      duration: duration.superSlow,
+      delay: introDuration,
+      ease: easing.expo,
+    },
+    logo: {
+      duration: duration.superSlow,
+      showDelay: 0,
+      hideDelay: 0.9,
+      ease: easing.expo,
+    },
+    title: {
+      height: {
+        duration: duration.superSlow,
+        delay: 1.8,
+        ease: easing.expo,
+      },
+      y: {
+        duration: duration.superSlow,
+        delay: 1.2,
+        ease: easing.expo,
+      },
+      color: {
+        duration: 0.2,
+        delay: introDuration + 0.2,
+        ease: easing.expo,
+      },
+    },
+    content: {
+      container: {
+        height: {
+          duration: duration.superSlow,
+          delay: introDuration,
+          ease: easing.expo,
+        },
+        y: {
+          duration: duration.superSlow,
+          delay: introDuration + 0.5,
+          ease: easing.expo,
+        },
+      },
+      button: {
+        duration: duration.superSlow,
+        delay: introDuration + 0.5,
+        ease: easing.expo,
+      },
+    },
   },
 } as const
+
+type TimelineConfig = typeof timeline
+
+export type { TimelineConfig }

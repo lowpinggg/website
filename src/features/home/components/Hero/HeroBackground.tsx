@@ -2,6 +2,7 @@
 'use client'
 
 import { motion, useScroll, useTransform } from 'motion/react'
+import { introVariants } from '@lib/animations'
 
 // features/home/components/Hero/HeroBackground.tsx
 
@@ -15,9 +16,9 @@ export function HeroBackground() {
   return (
     <div className="absolute inset-0 top-0 [mask-image:linear-gradient(to_bottom,black_0%,transparent_100%)]">
       <motion.div
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 2, duration: 0.8, ease: [0.77, 0, 0.175, 1] }}
+        variants={introVariants.background}
+        initial="initial"
+        animate="animate"
         className="absolute inset-0 overflow-hidden rounded-[50px]"
         style={{ y }}
       >

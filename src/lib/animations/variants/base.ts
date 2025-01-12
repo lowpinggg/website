@@ -1,5 +1,5 @@
 // lib/animations/variants/base.ts
-import { TRANSITIONS } from '../config/transitions'
+import { transitions } from '../config'
 import { createTransition } from '../utils/createTransition'
 
 export const baseVariants = {
@@ -7,7 +7,11 @@ export const baseVariants = {
     initial: { opacity: 0 },
     animate: {
       opacity: 1,
-      transition: createTransition(TRANSITIONS.duration.medium),
+      transition: createTransition(
+        transitions.duration.medium,
+        transitions.delay.minimal,
+        transitions.easing.default,
+      ),
     },
   },
   slideUp: {
@@ -16,9 +20,9 @@ export const baseVariants = {
       y: 0,
       opacity: 1,
       transition: createTransition(
-        TRANSITIONS.duration.long,
-        0.3,
-        TRANSITIONS.ease,
+        transitions.duration.slower,
+        transitions.delay.short,
+        transitions.easing.default,
       ),
     },
   },

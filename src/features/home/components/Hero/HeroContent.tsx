@@ -1,78 +1,90 @@
 // features/home/components/Hero/HeroContent.tsx
 import { Calendar } from 'lucide-react'
-import { motion } from 'motion/react'
+import { motion, AnimatePresence } from 'motion/react'
 import Link from 'next/link'
 import { Discord } from '@components/icons'
 import { Button } from '@ui/button'
+//import { useScramble } from 'use-scramble'
+import { introVariants } from '@lib/animations'
+import { Full } from '@lowping/brand-kit'
+import { useState, useEffect } from 'react'
+import { timeline } from '@lib/animations'
 
 export function HeroContent() {
+  const [showLogo, setShowLogo] = useState(true)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowLogo(false)
+    }, timeline.intro.logo.hideDelay * 1000) // Convert to milliseconds
+
+    return () => clearTimeout(timer)
+  }, [])
+  // const { ref } = useScramble({
+  //   text: `TOURNOIS ESPORT SANS FRICTION`,
+  //   speed: 0.3,          // Slightly faster for smoother animation
+  //   tick: 1,
+  //   step: 1,             // Reduced to 1 for more granular animation
+  //   scramble: 8,         // Reduced from 12 for less chaotic effect
+  //   seed: 1,             // Reduced seed for more controlled randomization
+  //   chance: 0.5,         // Reduced chance for clearer text visibility
+  //   ignore: [' '],       // Keep ignoring spaces
+  //   overdrive: false,     // Keep the underscore effect
+  //   range: [65, 90]      // Limit to uppercase letters only (A-Z)
+  // })
   return (
     <motion.div className="container relative z-50">
       <div className="flex h-fit max-w-4xl flex-col justify-center gap-6">
-        <div className="flex flex-col gap-5 overflow-hidden">
+        <div className="overflow-hidden">
+          <div className="overflow-hidden">
+            <AnimatePresence>
+              {showLogo && (
+                <motion.div
+                  variants={introVariants.logo}
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                  className="origin-top mix-blend-darken"
+                >
+                  <Full width={210} color="black" />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
           <div className="overflow-hidden ">
             <motion.div
-              initial={{ y: 300 }}
-              animate={{ y: 0 }}
-              transition={{
-                duration: 0.8,
-                ease: [0.77, 0, 0.175, 1],
-              }}
+              variants={introVariants.title.container}
+              initial="initial"
+              animate="animate"
               className="relative overflow-hidden"
             >
-              {/* White text underneath */}
-              <motion.h1 className="relative text-8xl font-black leading-[85%] tracking-[0.64px] text-white">
+              <motion.h1
+                variants={introVariants.title.text}
+                className="relative text-8xl font-black leading-[85%] tracking-[0.64px]"
+              >
                 TOURNOIS ESPORT SANS FRICTION
               </motion.h1>
-
-              {/* Black text overlay */}
-              <motion.div
-                className="absolute inset-0 origin-top overflow-hidden"
-                initial={{ height: '100%' }}
-                animate={{ height: '0%' }}
-                transition={{
-                  delay: 1.8,
-                  duration: 0.8,
-                  ease: [0.77, 0, 0.175, 1],
-                }}
-              >
-                <h1 className="text-8xl font-black leading-[85%] tracking-[0.64px] text-black">
-                  TOURNOIS ESPORT SANS FRICTION
-                </h1>
-              </motion.div>
-            </motion.div>
-          </div>
-
-          <div className="overflow-hidden">
-            <motion.div
-              initial={{ opacity: 0, y: 100 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                delay: 2,
-                duration: 0.8,
-                ease: [0.19, 1, 0.22, 1],
-              }}
-            >
-              <p className="max-w-2xl text-base font-light leading-6 tracking-tight text-foreground/80">
-                La première plateforme dédiée à lorganisation pro de vos
-                tournois. Matchmaking équitable, gestion simplifiée -
-                concentrez-vous uniquement sur le jeu.
-              </p>
             </motion.div>
           </div>
         </div>
 
         <div className="overflow-hidden">
           <motion.div
-            initial={{ opacity: 0, y: 100 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              delay: 2,
-              duration: 0.8,
-              ease: [0.19, 1, 0.22, 1],
-            }}
+            variants={introVariants.content.container}
+            initial="initial"
+            animate="animate"
+            className="flex origin-top flex-col gap-6"
           >
-            <div className="flex gap-2">
+            <p className="max-w-2xl text-base font-light leading-6 tracking-tight text-foreground/80">
+              La première plateforme dédiée à lorganisation pro de vos tournois.
+              Matchmaking équitable, gestion simplifiée - concentrez-vous
+              uniquement sur le jeu.
+            </p>
+            <motion.div
+              variants={introVariants.content.button}
+              initial="initial"
+              animate="animate"
+              className="flex gap-2"
+            >
               <Button
                 variant="default"
                 size="lg"
@@ -90,7 +102,7 @@ export function HeroContent() {
                 Discord
                 <Discord className="text-[#000000]" />
               </Button>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>
