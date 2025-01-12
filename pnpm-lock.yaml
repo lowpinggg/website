@@ -3118,7 +3118,7 @@ snapshots:
 
   '@lowping/brand-kit@1.0.4(react@19.0.0)':
     dependencies:
-      dist: link:../-lowping-brand-kit/dist
+      dist: link:C:/Users/John/Dropbox/In.Progress/@lowping/-lowping-brand-kit/dist
       react: 19.0.0
 
   '@next/env@15.0.4': {}

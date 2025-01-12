@@ -1,6 +1,7 @@
 // Footer.tsx
 'use client'
 
+import { Calendar } from 'lucide-react'
 import Link from 'next/link'
 import { Discord, Facebook, Instagram, X } from '@components/icons'
 import { cn } from '@lib/utils'
@@ -8,7 +9,8 @@ import { Full } from '@lowping/brand-kit'
 import packageJson from '@package'
 import { Badge } from '@ui/badge'
 import { Button } from '@ui/button'
-import { Calendar } from 'lucide-react'
+
+// Footer.tsx
 
 interface FooterProps {
   className?: string
@@ -18,7 +20,7 @@ export function Footer({ className }: FooterProps) {
   return (
     <footer
       className={cn(
-        'container mx-auto flex flex-col gap-8 pb-12 pt-40',
+        'container mx-auto flex flex-col gap-12 pb-6 pt-24',
         className,
       )}
     >

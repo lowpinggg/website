@@ -2,8 +2,8 @@
 import { HeadphonesIcon, Smartphone, Zap } from 'lucide-react'
 import { motion, useScroll, useTransform } from 'motion/react'
 import { useRef } from 'react'
-import CardItem from './CardItem'
 import { Button } from '@ui/button'
+import CardItem from './CardItem'
 
 export const CardSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null)
@@ -43,7 +43,7 @@ export const CardSection: React.FC = () => {
     <section
       ref={sectionRef}
       className="
-    container mx-auto w-full pb-32 pt-40 [mask-image:radial-gradient(1200px_circle_at_center,white,transparent)]"
+    container mx-auto w-full py-24 [mask-image:radial-gradient(1200px_circle_at_center,white,transparent)]"
     >
       <div className="flex flex-col items-center gap-12">
         <motion.h2

@@ -2,10 +2,10 @@
 
 import { motion, useScroll, useTransform } from 'motion/react'
 import { useEffect, useRef } from 'react'
-import { EventsContent } from '@events/components/EventGallery/EventsContent'
-import { useEvents } from '@events/hooks/useEvents'
 import Link from 'next/link'
 import { Button } from '@components/ui/button'
+import { EventsContent } from '@events/components/EventGallery/EventsContent'
+import { useEvents } from '@events/hooks/useEvents'
 
 export function EventShowcase() {
   const { events } = useEvents(4)
@@ -28,7 +28,7 @@ export function EventShowcase() {
     <motion.div
       ref={sectionRef}
       style={{ opacity, y }}
-      className="container relative mx-auto flex flex-col gap-6 pb-40"
+      className="container relative mx-auto flex flex-col gap-6 py-12"
     >
       <div className="flex w-full flex-col justify-between gap-4 xs:flex-row sm:items-center">
         <h1 className="text-2xl font-bold text-foreground sm:text-4xl">

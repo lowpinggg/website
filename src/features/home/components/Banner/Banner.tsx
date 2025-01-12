@@ -2,21 +2,25 @@
 
 import { ArrowRightIcon } from 'lucide-react'
 import { motion, useScroll, useTransform } from 'motion/react'
+import { useRef } from 'react'
 import { Button } from '@ui/button'
 
 export function Banner() {
+  const sectionRef = useRef(null)
   const { scrollYProgress } = useScroll({
+    target: sectionRef,
     offset: ['start end', 'end start'],
   })
 
-  const height = useTransform(scrollYProgress, [0, 1], ['700px', '100px'])
+  const height = useTransform(scrollYProgress, [0, 0.5], ['200px', '500px'])
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0.8])
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [0, 1])
 
   return (
-    <div className="container relative">
+    <motion.div ref={sectionRef} className="container relative py-24">
       <motion.div
         className="bg-background [mask-image:radial-gradient(650px_circle_at_center,white,transparent)]"
-        style={{ height }}
+        style={{ height, opacity }}
       >
         <motion.div className="relative h-full overflow-hidden rounded-[20px] border border-white/20">
           <motion.div className="flex h-full flex-col items-center justify-center gap-8 mix-blend-screen">
@@ -52,6 +56,6 @@ export function Banner() {
           />
         </motion.div>
       </motion.div>
-    </div>
+    </motion.div>
   )
 }

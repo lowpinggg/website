@@ -2,8 +2,8 @@ import { motion, useScroll, useTransform } from 'motion/react'
 import { useRef } from 'react'
 import { Discord } from '@components/icons'
 import { Button } from '@components/ui/button'
-import { BorderBeam } from '@ui/border-beam'
 import type { ButtonProps } from '@components/ui/button'
+import { BorderBeam } from '@ui/border-beam'
 
 interface ActionCardProps {
   title: string
@@ -28,7 +28,7 @@ function ActionCard({ title, description, button, videoSrc }: ActionCardProps) {
   const opacity = useTransform(scrollYProgress, [0, 0.4], [0, 1])
   const y = useTransform(scrollYProgress, [0, 0.4], [50, 0])
 
-  const scale = useTransform(scrollYProgress, [0, 0.4], [1.1, 1])
+  const scale = useTransform(scrollYProgress, [0, 0.6], [1.1, 1])
 
   return (
     <motion.div
@@ -104,7 +104,7 @@ export function CallToActions() {
   ]
 
   return (
-    <main className="container mx-auto">
+    <main className="container mx-auto pt-24">
       <div className="grid grid-cols-1 gap-6 md:grid-cols-1">
         {cards.map((card, index) => (
           <ActionCard key={index} {...card} />

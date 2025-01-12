@@ -1,20 +1,31 @@
-// features/home/components/TextSection/TextSection.tsx
-
-import { motion } from 'motion/react'
+import { motion, useScroll, useTransform } from 'motion/react'
+import { useRef } from 'react'
 import { GameBadge } from '@components/GameBadge'
-import { staggerVariants } from '@lib/animations'
-
-// TODO: Add animation to the text section and enhance the design
 
 export function TextSection() {
+  const sectionRef = useRef<HTMLElement>(null)
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'end start'],
+  })
+
+  const y = useTransform(scrollYProgress, [0, 0.3], [-20, 0])
+  const opacity = useTransform(scrollYProgress, [0, 0.4], [0, 1])
+
   return (
-    <section className="container mx-auto py-40">
-      <div className="grid grid-cols-2 gap-8">
+    <motion.section
+      ref={sectionRef}
+      style={{ opacity, y }}
+      className="container mx-auto py-24 [mask-image:radial-gradient(1200px_circle_at_center,white,transparent)]"
+    >
+      <motion.div style={{ y }} className="grid grid-cols-2 gap-12">
         <h2 className="leading-tighter text-5xl font-black">
           {
             "Une organisation pour des tournois fluides. Vous n'avez plus qu'à jouer."
           }
         </h2>
+
         <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-2">
             <h2 className="hidden text-2xl font-black uppercase tracking-tight text-zinc-200">
@@ -26,21 +37,13 @@ export function TextSection() {
               layer component reesizing community ipsum editor.
             </p>
           </div>
-          <motion.div
-            variants={staggerVariants.parent}
-            initial="initial"
-            animate="animate"
-            className="flex gap-2"
-          >
-            <motion.div variants={staggerVariants.child}>
-              <GameBadge game="League of Legends" />
-            </motion.div>
-            <motion.div variants={staggerVariants.child}>
-              <GameBadge game="Teamfight Tactics" />
-            </motion.div>
-          </motion.div>
+
+          <div className="flex gap-2">
+            <GameBadge game="League of Legends" />
+            <GameBadge game="Teamfight Tactics" />
+          </div>
         </div>
-      </div>
-    </section>
+      </motion.div>
+    </motion.section>
   )
 }
