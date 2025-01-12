@@ -5,9 +5,9 @@ import { generateMetadata } from '@app/metadata'
 import { Providers } from '@app/Providers'
 import { Cursor } from '@components/Cursor'
 import { SmoothScroll } from '@components/SmoothScroll'
-import { cn } from '@lib/utils'
 import { Toaster } from '@ui/toaster'
 import '@app/globals.css'
+import { cn } from '@lib/utils'
 
 const alexandria = Alexandria({
   subsets: ['latin'],
@@ -27,12 +27,7 @@ export default function RootLayout({
       <head>
         <script src="https://js.stripe.com/v3" async />
       </head>
-      <body
-        className={cn(
-          'relative bg-background font-alexandria text-white antialiased dark',
-          alexandria.variable,
-        )}
-      >
+      <body className={cn(alexandria.variable, 'overflow-x-hidden')}>
         <Cursor />
         <SmoothScroll>
           <div className="pattern-overlay z-50" />

@@ -4,9 +4,9 @@ import { getEvents } from '../api/getEvents'
 import type { FilterType } from '../types'
 import { isEventPassed } from '../utils/eventHelpers'
 
-export function useEvents() {
+export function useEvents(limit?: number) {
   const {
-    data: events = [],
+    data: rawEvents = [],
     isLoading,
     error,
   } = useQuery({
@@ -18,6 +18,9 @@ export function useEvents() {
     },
     staleTime: 1000 * 60 * 60 * 24, // 24 hours
   })
+
+  // Apply limit to the events before returning
+  const events = limit ? rawEvents.slice(0, limit) : rawEvents
 
   const filterEvents = (filter: FilterType) => {
     return events.filter((event) => {
