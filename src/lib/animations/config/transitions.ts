@@ -10,6 +10,7 @@ export const transitions = {
     snappy: [0.16, 1, 0.3, 1],
     decelerate: [0, 0.55, 0.45, 1],
     accelerate: [0.4, 0, 1, 1],
+    linear: [0.4, 0, 0.2, 1],
   },
 
   // Duration presets

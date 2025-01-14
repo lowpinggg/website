@@ -1,19 +1,29 @@
 // variants/intro.ts
 import { timeline } from '../config/timeline'
 import { createTransition } from '../utils/createTransition'
+
 // TODO: Use helper to create variants
 
 const transforms = {
   overlay: {
-    initial: { scaleY: 1 },
-    final: { scaleY: 0 },
+    initial: { clipPath: 'inset(0 0 0 0)' }, // starts fully visible
+    final: { clipPath: 'inset(0 0 100% 0)' }, // clips from bottom to up
+    transition: {
+      duration: timeline.intro.overlay.duration,
+      delay: timeline.intro.overlay.delay,
+      ease: timeline.intro.overlay.ease,
+    },
+  },
+  slideMask: {
+    initial: { height: '100%' },
+    final: { height: '0%' },
   },
   background: {
     initial: {
       opacity: 0,
       y: -1,
-      scale: 1.5,
-      filter: 'blur(10px)',
+      scale: 1.2,
+      filter: 'blur(30px)',
     },
     final: {
       opacity: 1,
@@ -42,8 +52,8 @@ const transforms = {
       final: { y: 0, height: 'auto' },
     },
     text: {
-      initial: { color: '#000000' },
-      final: { color: '#FFFFFF' },
+      initial: { clipPath: 'inset(0 0 0 0)' },
+      final: { clipPath: 'inset(0 0 100% 0)' },
     },
   },
   content: {
@@ -127,9 +137,9 @@ export const introVariants = {
       animate: {
         ...transforms.title.text.final,
         transition: createTransition(
-          timeline.intro.title.color.duration,
-          timeline.intro.title.color.delay,
-          timeline.intro.title.color.ease,
+          timeline.intro.title.clipPath.duration,
+          timeline.intro.title.clipPath.delay,
+          timeline.intro.title.clipPath.ease,
         ),
       },
     },

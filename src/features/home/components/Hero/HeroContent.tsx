@@ -1,14 +1,14 @@
 // features/home/components/Hero/HeroContent.tsx
 import { Calendar } from 'lucide-react'
 import { motion, AnimatePresence } from 'motion/react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { Discord } from '@components/icons'
-import { Button } from '@ui/button'
 //import { useScramble } from 'use-scramble'
 import { introVariants } from '@lib/animations'
-import { Full } from '@lowping/brand-kit'
-import { useState, useEffect } from 'react'
 import { timeline } from '@lib/animations'
+import { Full } from '@lowping/brand-kit'
+import { Button } from '@ui/button'
 
 export function HeroContent() {
   const [showLogo, setShowLogo] = useState(true)
@@ -50,16 +50,24 @@ export function HeroContent() {
               )}
             </AnimatePresence>
           </div>
-          <div className="overflow-hidden ">
+          <div className="overflow-hidden">
             <motion.div
               variants={introVariants.title.container}
               initial="initial"
               animate="animate"
               className="relative overflow-hidden"
             >
+              {/* Base white text with original animations */}
+              <motion.h1 className="relative text-8xl font-black leading-[85%] tracking-[0.64px] text-white">
+                TOURNOIS ESPORT SANS FRICTION
+              </motion.h1>
+
+              {/* Black text clone with same animations plus clip */}
               <motion.h1
                 variants={introVariants.title.text}
-                className="relative text-8xl font-black leading-[85%] tracking-[0.64px]"
+                initial="initial"
+                animate="animate"
+                className="absolute inset-0 text-8xl font-black leading-[85%] tracking-[0.64px] text-black"
               >
                 TOURNOIS ESPORT SANS FRICTION
               </motion.h1>
