@@ -35,18 +35,13 @@ export const timeline = {
         delay: 1.2,
         ease: easing.expo,
       },
-      clipPath: {
-        duration: 0.7,
-        delay: 3.5,
-        ease: easing.smooth,
-      },
     },
     content: {
       container: {
         height: {
-          duration: duration.superSlow,
+          duration: duration.slowest,
           delay: introDuration,
-          ease: easing.expo,
+          ease: easing.smooth,
         },
         y: {
           duration: duration.superSlow,
@@ -56,7 +51,7 @@ export const timeline = {
       },
       button: {
         duration: duration.superSlow,
-        delay: introDuration + 0.5,
+        delay: introDuration + 1.5,
         ease: easing.expo,
       },
     },

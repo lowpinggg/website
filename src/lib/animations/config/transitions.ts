@@ -23,7 +23,7 @@ export const transitions = {
     slow: 0.8,
     slower: 1.0,
     slowest: 1.5,
-    superSlow: 2.05,
+    superSlow: 2.0,
   },
 
   // Delay presets

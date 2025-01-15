@@ -6,8 +6,8 @@ import { createTransition } from '../utils/createTransition'
 
 const transforms = {
   overlay: {
-    initial: { clipPath: 'inset(0 0 0 0)' }, // starts fully visible
-    final: { clipPath: 'inset(0 0 100% 0)' }, // clips from bottom to up
+    initial: { clipPath: 'inset(0 0 0 0)' },
+    final: { clipPath: 'inset(0 0 100% 0)' }, // Slides up
     transition: {
       duration: timeline.intro.overlay.duration,
       delay: timeline.intro.overlay.delay,
@@ -22,8 +22,8 @@ const transforms = {
     initial: {
       opacity: 0,
       y: -1,
-      scale: 1.2,
-      filter: 'blur(30px)',
+      scale: 1.3,
+      filter: 'blur(24px)',
     },
     final: {
       opacity: 1,
@@ -53,7 +53,7 @@ const transforms = {
     },
     text: {
       initial: { clipPath: 'inset(0 0 0 0)' },
-      final: { clipPath: 'inset(0 0 100% 0)' },
+      final: { clipPath: 'inset(100% 0 0 0)' }, // Changed to slide up
     },
   },
   content: {
@@ -130,17 +130,6 @@ export const introVariants = {
             timeline.intro.title.y.ease,
           ),
         },
-      },
-    },
-    text: {
-      initial: transforms.title.text.initial,
-      animate: {
-        ...transforms.title.text.final,
-        transition: createTransition(
-          timeline.intro.title.clipPath.duration,
-          timeline.intro.title.clipPath.delay,
-          timeline.intro.title.clipPath.ease,
-        ),
       },
     },
   },
