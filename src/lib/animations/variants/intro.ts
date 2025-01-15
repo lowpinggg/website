@@ -8,15 +8,6 @@ const transforms = {
   overlay: {
     initial: { clipPath: 'inset(0 0 0 0)' },
     final: { clipPath: 'inset(0 0 100% 0)' }, // Slides up
-    transition: {
-      duration: timeline.intro.overlay.duration,
-      delay: timeline.intro.overlay.delay,
-      ease: timeline.intro.overlay.ease,
-    },
-  },
-  slideMask: {
-    initial: { height: '100%' },
-    final: { height: '0%' },
   },
   background: {
     initial: {
@@ -58,8 +49,12 @@ const transforms = {
   },
   content: {
     container: {
-      initial: { height: 0, y: 100 },
-      final: { height: 'auto', y: 0 },
+      initial: { height: 0 },
+      final: { height: 'auto' },
+    },
+    text: {
+      initial: { y: 50 },
+      final: { y: 0 },
     },
     button: {
       initial: { y: 50 },
@@ -145,12 +140,18 @@ export const introVariants = {
             timeline.intro.content.container.height.delay,
             timeline.intro.content.container.height.ease,
           ),
-          y: createTransition(
-            timeline.intro.content.container.y.duration,
-            timeline.intro.content.container.y.delay,
-            timeline.intro.content.container.y.ease,
-          ),
         },
+      },
+    },
+    text: {
+      initial: transforms.content.text.initial,
+      animate: {
+        ...transforms.content.text.final,
+        transition: createTransition(
+          timeline.intro.content.text.duration,
+          timeline.intro.content.text.delay,
+          timeline.intro.content.text.ease,
+        ),
       },
     },
     button: {
