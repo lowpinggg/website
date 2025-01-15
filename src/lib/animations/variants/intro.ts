@@ -1,19 +1,20 @@
 // variants/intro.ts
 import { timeline } from '../config/timeline'
 import { createTransition } from '../utils/createTransition'
+
 // TODO: Use helper to create variants
 
 const transforms = {
   overlay: {
-    initial: { scaleY: 1 },
-    final: { scaleY: 0 },
+    initial: { clipPath: 'inset(0 0 0 0)' },
+    final: { clipPath: 'inset(0 0 100% 0)' }, // Slides up
   },
   background: {
     initial: {
       opacity: 0,
       y: -1,
-      scale: 1.5,
-      filter: 'blur(10px)',
+      scale: 1.3,
+      filter: 'blur(24px)',
     },
     final: {
       opacity: 1,
@@ -42,14 +43,18 @@ const transforms = {
       final: { y: 0, height: 'auto' },
     },
     text: {
-      initial: { color: '#000000' },
-      final: { color: '#FFFFFF' },
+      initial: { clipPath: 'inset(0 0 0 0)' },
+      final: { clipPath: 'inset(100% 0 0 0)' }, // Changed to slide up
     },
   },
   content: {
     container: {
-      initial: { height: 0, y: 100 },
-      final: { height: 'auto', y: 0 },
+      initial: { height: 0 },
+      final: { height: 'auto' },
+    },
+    text: {
+      initial: { y: 50 },
+      final: { y: 0 },
     },
     button: {
       initial: { y: 50 },
@@ -122,17 +127,6 @@ export const introVariants = {
         },
       },
     },
-    text: {
-      initial: transforms.title.text.initial,
-      animate: {
-        ...transforms.title.text.final,
-        transition: createTransition(
-          timeline.intro.title.color.duration,
-          timeline.intro.title.color.delay,
-          timeline.intro.title.color.ease,
-        ),
-      },
-    },
   },
 
   content: {
@@ -146,12 +140,18 @@ export const introVariants = {
             timeline.intro.content.container.height.delay,
             timeline.intro.content.container.height.ease,
           ),
-          y: createTransition(
-            timeline.intro.content.container.y.duration,
-            timeline.intro.content.container.y.delay,
-            timeline.intro.content.container.y.ease,
-          ),
         },
+      },
+    },
+    text: {
+      initial: transforms.content.text.initial,
+      animate: {
+        ...transforms.content.text.final,
+        transition: createTransition(
+          timeline.intro.content.text.duration,
+          timeline.intro.content.text.delay,
+          timeline.intro.content.text.ease,
+        ),
       },
     },
     button: {

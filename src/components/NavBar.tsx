@@ -12,6 +12,9 @@ import { Full } from '@lowping/brand-kit'
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // NavBar.tsx
 
+/* eslint-disable @typescript-eslint/no-unused-vars */
+// NavBar.tsx
+
 interface NavBarProps {
   className?: string
 }
@@ -42,7 +45,7 @@ export function NavBar({ className }: NavBarProps) {
   const borderOpacity = useTransform(scrollY, scrollRange, [0, 0.1])
 
   return (
-    <nav className={cn('absolute left-0 right-0 top-16 z-30', className)}>
+    <nav className={cn('absolute left-0 right-0 top-12 z-30', className)}>
       <motion.div
         className="container mx-auto"
         // style={{

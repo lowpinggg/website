@@ -1,10 +1,10 @@
 // lib/animations/config/timeline.ts
 import { transitions } from './transitions'
+
 const { easing, duration } = transitions
 
 const introDuration = 3.5
 
-// lib/animations/config/timeline.ts
 export const timeline = {
   intro: {
     overlay: {
@@ -14,7 +14,7 @@ export const timeline = {
     },
     background: {
       duration: duration.superSlow,
-      delay: introDuration,
+      delay: introDuration + 0.5,
       ease: easing.expo,
     },
     logo: {
@@ -34,11 +34,6 @@ export const timeline = {
         delay: 1.2,
         ease: easing.expo,
       },
-      color: {
-        duration: 0.2,
-        delay: introDuration + 0.2,
-        ease: easing.expo,
-      },
     },
     content: {
       container: {
@@ -47,15 +42,15 @@ export const timeline = {
           delay: introDuration,
           ease: easing.expo,
         },
-        y: {
-          duration: duration.superSlow,
-          delay: introDuration + 0.5,
-          ease: easing.expo,
-        },
+      },
+      text: {
+        duration: duration.superSlow,
+        delay: introDuration + 1,
+        ease: easing.expo,
       },
       button: {
         duration: duration.superSlow,
-        delay: introDuration + 0.5,
+        delay: introDuration + 1.5,
         ease: easing.expo,
       },
     },
