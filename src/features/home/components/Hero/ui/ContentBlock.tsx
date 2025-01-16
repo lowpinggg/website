@@ -3,8 +3,6 @@ import { introVariants } from '@lib/animations'
 import { cn } from '@lib/utils'
 import { ActionButtons } from './ActionButtons'
 
-//TODO: Review the usage of isOverlay
-
 export function ContentBlock() {
   return (
     <motion.div

@@ -15,6 +15,8 @@ import { Title } from './ui/Title'
 
 // features/home/components/Hero/Hero.tsx
 
+// features/home/components/Hero/Hero.tsx
+
 export function Logo({ show }: { show: boolean }) {
   return (
     <div className="relative z-50 overflow-hidden">
@@ -60,7 +62,7 @@ export function Hero() {
             <div className="flex h-fit max-w-4xl flex-col justify-center px-4 md:px-0">
               <Logo show={showLogo} />
               <Title isOverlay />
-              <ContentBlock isOverlay />
+              <ContentBlock />
             </div>
           </div>
         </motion.div>
