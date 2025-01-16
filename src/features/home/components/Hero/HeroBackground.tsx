@@ -2,25 +2,32 @@
 'use client'
 
 import { motion, useScroll, useTransform } from 'motion/react'
+import { useRef } from 'react'
 import { introVariants } from '@lib/animations'
 
 // features/home/components/Hero/HeroBackground.tsx
 
 export function HeroBackground() {
+  const ref = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
-    offset: ['start start', 'end start'],
+    target: ref,
+    offset: ['start start', '50% start'],
   })
 
-  const y = useTransform(scrollYProgress, [0, 1], ['0%', '100%'])
+  const y = useTransform(scrollYProgress, [0, 1], ['0%', '10%'])
+  const radius = useTransform(scrollYProgress, [0, 1], ['0rem', '10rem'])
 
   return (
-    <div className="absolute inset-0 top-0 [mask-image:linear-gradient(to_bottom,black_0%,transparent_100%)]">
+    <motion.div
+      ref={ref}
+      className="absolute inset-0 mx-auto [mask-image:linear-gradient(to_bottom,black_0%,transparent_100%)]"
+    >
       <motion.div
         variants={introVariants.background}
         initial="initial"
         animate="animate"
-        className="absolute inset-0 overflow-hidden rounded-[50px]"
-        style={{ y }}
+        style={{ y, borderRadius: radius }}
+        className="absolute overflow-hidden"
       >
         <video
           className="h-full w-full object-cover"
@@ -37,6 +44,6 @@ export function HeroBackground() {
         <div className="absolute inset-0 bg-background/60" />
         <div className="absolute inset-0 bg-gradient-to-r from-primary/50 to-[#14FF00]/50 mix-blend-overlay" />
       </motion.div>
-    </div>
+    </motion.div>
   )
 }

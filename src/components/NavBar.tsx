@@ -2,15 +2,13 @@
 // NavBar.tsx
 'use client'
 
+// TODO: Better animation
 import { Calendar } from 'lucide-react'
 import { motion, useScroll, useTransform } from 'motion/react'
 import Link from 'next/link'
 import { Button } from '@components/ui/button'
 import { cn } from '@lib/utils'
 import { Full } from '@lowping/brand-kit'
-
-/* eslint-disable @typescript-eslint/no-unused-vars */
-// NavBar.tsx
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // NavBar.tsx

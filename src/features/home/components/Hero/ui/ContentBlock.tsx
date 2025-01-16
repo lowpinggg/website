@@ -3,16 +3,15 @@ import { introVariants } from '@lib/animations'
 import { cn } from '@lib/utils'
 import { ActionButtons } from './ActionButtons'
 
-export function ContentBlock({ isOverlay = false }) {
+//TODO: Review the usage of isOverlay
+
+export function ContentBlock() {
   return (
     <motion.div
       variants={introVariants.content.container}
       initial="initial"
       animate="animate"
-      className={cn(
-        `flex origin-top flex-col gap-6`,
-        isOverlay ? 'invisible' : '',
-      )}
+      className={cn(`z-20 flex origin-top flex-col gap-6`)}
     >
       <div className="overflow-hidden">
         <motion.p
@@ -26,7 +25,7 @@ export function ContentBlock({ isOverlay = false }) {
           sur le jeu.
         </motion.p>
       </div>
-      <div className={cn('overflow-hidden', isOverlay ? 'invisible' : '')}>
+      <div className={cn('overflow-hidden')}>
         <ActionButtons />
       </div>
     </motion.div>
