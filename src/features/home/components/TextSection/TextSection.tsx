@@ -17,7 +17,7 @@ export function TextSection() {
     <motion.section
       ref={sectionRef}
       style={{ opacity, y }}
-      className="container mx-auto py-24 [mask-image:radial-gradient(1200px_circle_at_center,white,transparent)]"
+      className="container mx-auto py-32 [mask-image:radial-gradient(1200px_circle_at_center,white,transparent)]"
     >
       <motion.div style={{ y }} className="grid grid-cols-2 gap-12">
         <h2 className="leading-tighter text-5xl font-black">

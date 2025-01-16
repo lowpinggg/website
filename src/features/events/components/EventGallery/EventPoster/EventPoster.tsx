@@ -9,11 +9,11 @@ import Link from 'next/link'
 import type { EventPosterProps, TiltConfig } from '@events/types'
 import { getFullImageUrl } from '@events/utils/eventHelpers'
 import { useScreenResolution } from '@hooks/use-screen-resolution'
-import { TRANSITIONS } from '@lib/animations'
+import { transitions } from '@lib/animations'
 import { cn } from '@lib/utils'
 import { Button } from '@ui/button'
 
-const HOVER_TRANSITION = { ease: TRANSITIONS.easeOutExpo, duration: 0.8 }
+const HOVER_TRANSITION = { ease: transitions.easing.expo, duration: 0.8 }
 
 const DEFAULT_TILT_CONFIG: TiltConfig = {
   perspective: 1000,
@@ -77,7 +77,7 @@ export function EventPoster({
       variants={hoverVariants}
       transition={HOVER_TRANSITION}
     >
-      <Button className="w-full h-12 flex items-center justify-center gap-2 rounded-none bg-white text-black hover:bg-white/90">
+      <Button className="flex h-12 w-full items-center justify-center gap-2 rounded-none bg-white text-black hover:bg-white/90">
         <span className="relative z-10 text-black">Inscription</span>
         <ExternalLink size={14} className="relative z-10 text-black" />
       </Button>
@@ -97,7 +97,7 @@ export function EventPoster({
           width={604}
           height={854}
           quality={80}
-          className="object-cover w-full h-full"
+          className="h-full w-full object-cover"
           sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
           priority
         />
@@ -114,7 +114,7 @@ export function EventPoster({
     <div
       className={cn(
         SIZE_DIMENSIONS[size],
-        'aspect-[604/854] relative',
+        'relative aspect-[604/854]',
         className,
       )}
     >
@@ -122,7 +122,7 @@ export function EventPoster({
         <Link
           href={`/events/${event.slug}/register`}
           target="_blank"
-          className="block w-full h-full"
+          className="block h-full w-full"
         >
           <TiltWrapper>{PosterContent}</TiltWrapper>
         </Link>

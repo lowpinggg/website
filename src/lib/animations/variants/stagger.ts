@@ -1,5 +1,7 @@
 // lib/animations/variants/stagger.ts
-import { TRANSITIONS } from '../config/transitions'
+import { transitions } from '../config/transitions'
+
+const { stagger, delay, easing, duration } = transitions
 
 export const staggerVariants = {
   parent: {
@@ -7,9 +9,9 @@ export const staggerVariants = {
     animate: {
       opacity: 1,
       transition: {
-        staggerChildren: TRANSITIONS.stagger.short,
-        delayChildren: TRANSITIONS.delay.short,
-        ease: TRANSITIONS.ease,
+        staggerChildren: stagger.short,
+        delayChildren: delay.short,
+        ease: easing.default,
       },
     },
   },
@@ -19,8 +21,8 @@ export const staggerVariants = {
       y: 0,
       opacity: 1,
       transition: {
-        duration: TRANSITIONS.duration.long,
-        ease: TRANSITIONS.ease,
+        duration: duration.slower,
+        ease: easing.default,
       },
     },
   },
