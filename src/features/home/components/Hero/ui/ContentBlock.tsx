@@ -9,7 +9,7 @@ export function ContentBlock() {
       variants={introVariants.content.container}
       initial="initial"
       animate="animate"
-      className={cn(`z-20 flex origin-top flex-col gap-6`)}
+      className="z-20 flex origin-top flex-col gap-6 text-center"
     >
       <div className="overflow-hidden">
         <motion.p

@@ -1,37 +1,65 @@
-// NavBar.tsx
 'use client'
 
-// TODO: Better animation
 import { Calendar } from 'lucide-react'
+import { motion } from 'motion/react'
 import Link from 'next/link'
 import { Button } from '@components/ui/button'
+import { introVariants } from '@lib/animations'
 import { Full } from '@lowping/brand-kit'
 
-// NavBar.tsx
+const navLinks = [
+  { href: '/tournaments', label: 'Règlement' },
+  { href: '/contact', label: 'Contacter' },
+]
 
 export function NavBar() {
   return (
     <nav className="absolute left-0 right-0 top-12 z-30">
       <div className="container mx-auto">
-        <div className="flex items-center justify-between">
-          <Link
-            href="/"
-            className="flex items-center gap-2 transition-opacity hover:opacity-80"
+        <div className="flex items-center justify-between overflow-hidden">
+          {/* Logo */}
+          <motion.div
+            variants={introVariants.navigation.logo}
+            initial="initial"
+            animate="animate"
           >
-            <Full width={160} />
-          </Link>
+            <Link
+              href="/"
+              className="flex items-center gap-2 transition-opacity hover:opacity-80"
+            >
+              <Full width={160} />
+            </Link>
+          </motion.div>
 
+          {/* Desktop Navigation */}
           <div className="hidden items-center gap-4 md:flex">
-            <div className="flex items-center gap-1">
-              <NavLink href="/tournaments">Règlement</NavLink>
-              <NavLink href="/contact">Contacter</NavLink>
-            </div>
-            <Button variant="default">
-              <Link href="/events" className="flex items-center gap-2">
-                <Calendar />
-                Évenements
-              </Link>
-            </Button>
+            <motion.div
+              variants={introVariants.navigation.navLinks.container}
+              initial="initial"
+              animate="animate"
+              className="flex items-center gap-1"
+            >
+              {navLinks.map((link) => (
+                <motion.div
+                  key={link.href}
+                  variants={introVariants.navigation.navLinks.item}
+                >
+                  <NavLink href={link.href}>{link.label}</NavLink>
+                </motion.div>
+              ))}
+
+              <motion.div
+                variants={introVariants.navigation.navLinks.item}
+                className="ml-2"
+              >
+                <Button variant="default">
+                  <Link href="/events" className="flex items-center gap-2">
+                    <Calendar />
+                    Évenements
+                  </Link>
+                </Button>
+              </motion.div>
+            </motion.div>
           </div>
 
           {/* Mobile Menu Button */}
