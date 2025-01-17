@@ -57,8 +57,8 @@ const transforms = {
   },
   title: {
     container: {
-      initial: { y: 350, height: 0 },
-      final: { y: 0, height: 'auto' },
+      initial: { height: 0 },
+      final: { height: 'auto' },
     },
     text: {
       initial: { clipPath: 'inset(0 0 0 0)' },
@@ -176,11 +176,6 @@ export const introVariants = {
             timeline.intro.title.height.duration,
             timeline.intro.title.height.delay,
             timeline.intro.title.height.ease,
-          ),
-          y: createTransition(
-            timeline.intro.title.y.duration,
-            timeline.intro.title.y.delay,
-            timeline.intro.title.y.ease,
           ),
         },
       },
