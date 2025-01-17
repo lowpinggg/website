@@ -7,6 +7,8 @@ import { introVariants } from '@lib/animations'
 
 // features/home/components/Hero/HeroBackground.tsx
 
+// features/home/components/Hero/HeroBackground.tsx
+
 export function HeroBackground() {
   const ref = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
@@ -14,8 +16,7 @@ export function HeroBackground() {
     offset: ['start start', '50% start'],
   })
 
-  const y = useTransform(scrollYProgress, [0, 1], ['0%', '10%'])
-  const radius = useTransform(scrollYProgress, [0, 1], ['0rem', '10rem'])
+  const y = useTransform(scrollYProgress, [0, 1], ['0%', '20%'])
 
   return (
     <motion.div
@@ -26,7 +27,7 @@ export function HeroBackground() {
         variants={introVariants.background}
         initial="initial"
         animate="animate"
-        style={{ y, borderRadius: radius }}
+        style={{ y }}
         className="absolute overflow-hidden"
       >
         <video
@@ -35,9 +36,6 @@ export function HeroBackground() {
           loop
           muted
           playsInline
-          style={{
-            objectPosition: 'top',
-          }}
         >
           <source src="/arclight-brand.1920x1080.mp4" type="video/mp4" />
         </video>

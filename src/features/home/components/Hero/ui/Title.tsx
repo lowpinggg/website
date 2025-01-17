@@ -8,7 +8,7 @@ export function Title({ isOverlay = false }) {
       variants={introVariants.title.container}
       initial="initial"
       animate="animate"
-      className="relative overflow-hidden"
+      className="relative overflow-hidden text-center"
     >
       <h1
         className={cn(

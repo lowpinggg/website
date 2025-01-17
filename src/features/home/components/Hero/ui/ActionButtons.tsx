@@ -12,7 +12,7 @@ export function ActionButtons() {
       variants={introVariants.content.button}
       initial="initial"
       animate="animate"
-      className="flex flex-col gap-2 sm:flex-row"
+      className="flex flex-col justify-center gap-2 sm:flex-row"
     >
       <Button variant="default" size="lg" className="px-6 mix-blend-screen">
         <Link href="/events" className="flex items-center gap-2">
