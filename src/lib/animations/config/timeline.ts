@@ -3,7 +3,7 @@ import { transitions } from './transitions'
 
 const { easing, duration } = transitions
 
-const introDuration = 3.5
+const introDuration = 3
 
 export const timeline = {
   intro: {
@@ -16,6 +16,25 @@ export const timeline = {
       duration: duration.superSlow,
       delay: introDuration + 0.5,
       ease: easing.expo,
+    },
+    navigation: {
+      logo: {
+        duration: duration.superSlow,
+        delay: introDuration + 1,
+        ease: easing.expo,
+      },
+      navLinks: {
+        container: {
+          duration: duration.superSlow,
+          staggerDelay: 0.2,
+          delay: introDuration + 1,
+          ease: easing.expo,
+        },
+        item: {
+          duration: duration.superSlow,
+          ease: easing.expo,
+        },
+      },
     },
     logo: {
       duration: duration.superSlow,

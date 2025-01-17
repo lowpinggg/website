@@ -9,6 +9,24 @@ const transforms = {
     initial: { clipPath: 'inset(0 0 0 0)' },
     final: { clipPath: 'inset(0 0 100% 0)' }, // Slides up
   },
+
+  navigation: {
+    logo: {
+      initial: { y: 100 },
+      final: { y: 0 },
+    },
+    navLinks: {
+      container: {
+        initial: {},
+        final: {},
+      },
+      item: {
+        initial: { y: 100 },
+        final: { y: 0 },
+      },
+    },
+  },
+
   background: {
     initial: {
       opacity: 0,
@@ -44,7 +62,7 @@ const transforms = {
     },
     text: {
       initial: { clipPath: 'inset(0 0 0 0)' },
-      final: { clipPath: 'inset(100% 0 0 0)' }, // Changed to slide up
+      final: { clipPath: 'inset(100% 0 0 0)' },
     },
   },
   content: {
@@ -73,6 +91,46 @@ export const introVariants = {
         timeline.intro.overlay.delay,
         timeline.intro.overlay.ease,
       ),
+    },
+  },
+
+  navigation: {
+    logo: {
+      initial: transforms.navigation.logo.initial,
+      animate: {
+        ...transforms.navigation.logo.final,
+        transition: createTransition(
+          timeline.intro.navigation.logo.duration,
+          timeline.intro.navigation.logo.delay,
+          timeline.intro.navigation.logo.ease,
+        ),
+      },
+    },
+    navLinks: {
+      container: {
+        initial: transforms.navigation.navLinks.container.initial,
+        animate: {
+          ...transforms.navigation.navLinks.container.final,
+          transition: {
+            duration: timeline.intro.navigation.navLinks.container.duration,
+            delay: timeline.intro.navigation.navLinks.container.delay,
+            ease: timeline.intro.navigation.navLinks.container.ease,
+            staggerChildren:
+              timeline.intro.navigation.navLinks.container.staggerDelay,
+            delayChildren: timeline.intro.navigation.navLinks.container.delay,
+          },
+        },
+      },
+      item: {
+        initial: transforms.navigation.navLinks.item.initial,
+        animate: {
+          ...transforms.navigation.navLinks.item.final,
+          transition: {
+            duration: timeline.intro.navigation.navLinks.item.duration,
+            ease: timeline.intro.navigation.navLinks.item.ease,
+          },
+        },
+      },
     },
   },
 
