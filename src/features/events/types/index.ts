@@ -34,4 +34,5 @@ export interface EventPosterProps {
   className?: string
   tiltProps?: Partial<TiltConfig>
   showCTA?: boolean
+  isHovered?: boolean
 }

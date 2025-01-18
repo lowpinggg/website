@@ -3,7 +3,7 @@
 import { ExternalLink } from 'lucide-react'
 import { motion } from 'motion/react'
 import { useEffect, useRef, useState } from 'react'
-import Tilt from 'react-parallax-tilt'
+import Tilt, { type GlarePosition } from 'react-parallax-tilt'
 import Image from 'next/image'
 import Link from 'next/link'
 import type { EventPosterProps, TiltConfig } from '@events/types'
@@ -13,20 +13,11 @@ import { transitions } from '@lib/animations'
 import { cn } from '@lib/utils'
 import { Button } from '@ui/button'
 
-const HOVER_TRANSITION = { ease: transitions.easing.expo, duration: 0.8 }
-
-const DEFAULT_TILT_CONFIG: TiltConfig = {
-  perspective: 1000,
-  scale: 1.05,
-  tiltMaxAngleX: 8,
-  tiltMaxAngleY: 8,
-  glareEnable: true,
-  glareMaxOpacity: 0.5,
-  glareColor: 'rgba(255, 243, 230, 1)',
-  glareBorderRadius: '8px',
-  glarePosition: 'all',
-  transitionSpeed: 800,
-  tiltEnable: true,
+const ANIMATION_CONFIG = {
+  transition: {
+    duration: transitions.duration.slow,
+    ease: transitions.easing.smooth,
+  },
 }
 
 const SIZE_DIMENSIONS = {
@@ -44,10 +35,14 @@ export function EventPoster({
   className,
   tiltProps = {},
   showCTA = true,
+  isHovered = false,
 }: EventPosterProps) {
-  const buttonRef = useRef<HTMLDivElement>(null)
   const [buttonHeight, setButtonHeight] = useState(0)
+  const buttonRef = useRef<HTMLDivElement>(null)
   const { isMobile } = useScreenResolution()
+  const [localHover, setLocalHover] = useState(false)
+
+  const isActive = isHovered || localHover
 
   useEffect(() => {
     if (buttonRef.current) {
@@ -55,42 +50,32 @@ export function EventPoster({
     }
   }, [])
 
-  const tiltConfig = {
-    ...DEFAULT_TILT_CONFIG,
-    ...tiltProps,
-    tiltEnable: !isMobile,
+  const tiltConfig: TiltConfig = {
+    perspective: 1000,
+    scale: 1.05,
+    tiltMaxAngleX: 8,
+    tiltMaxAngleY: 8,
     glareEnable: !isMobile,
+    glareMaxOpacity: 0.5,
+    glareColor: 'rgba(255, 243, 230, 1)',
+    glareBorderRadius: '8px',
+    glarePosition: 'all' as GlarePosition,
+    transitionSpeed: 800,
+    tiltEnable: !isMobile,
+    ...tiltProps,
   }
-
-  const hoverVariants = showCTA
-    ? {
-        initial: { y: 0 },
-        hover: { y: -buttonHeight },
-      }
-    : undefined
-
-  const CTAButton = showCTA && (
-    <motion.div
-      ref={buttonRef}
-      className="absolute left-0 right-0"
-      style={{ bottom: -buttonHeight }}
-      variants={hoverVariants}
-      transition={HOVER_TRANSITION}
-    >
-      <Button className="flex h-12 w-full items-center justify-center gap-2 rounded-none bg-white text-black hover:bg-white/90">
-        <span className="relative z-10 text-black">Inscription</span>
-        <ExternalLink size={14} className="relative z-10 text-black" />
-      </Button>
-    </motion.div>
-  )
 
   const PosterContent = (
     <motion.div
       className="relative h-full overflow-hidden rounded-[8px]"
-      initial="initial"
-      whileHover={showCTA ? 'hover' : undefined}
+      onHoverStart={() => setLocalHover(true)}
+      onHoverEnd={() => setLocalHover(false)}
     >
-      <motion.div variants={hoverVariants} transition={HOVER_TRANSITION}>
+      <motion.div
+        className="relative"
+        animate={{ y: isActive ? -buttonHeight : 0 }}
+        transition={ANIMATION_CONFIG.transition}
+      >
         <Image
           src={getFullImageUrl(event.poster_url || '')}
           alt={event.name}
@@ -101,13 +86,21 @@ export function EventPoster({
           sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
           priority
         />
-      </motion.div>
-      {CTAButton}
-    </motion.div>
-  )
 
-  const TiltWrapper = ({ children }: { children: React.ReactNode }) => (
-    <Tilt {...tiltConfig}>{children}</Tilt>
+        {showCTA && (
+          <div
+            ref={buttonRef}
+            className="absolute left-0 right-0"
+            style={{ bottom: -buttonHeight }}
+          >
+            <Button className="flex h-12 w-full items-center justify-center gap-2 rounded-none bg-white text-black hover:bg-white/90">
+              <span className="relative z-10 text-black">Inscription</span>
+              <ExternalLink size={14} className="relative z-10 text-black" />
+            </Button>
+          </div>
+        )}
+      </motion.div>
+    </motion.div>
   )
 
   return (
@@ -124,10 +117,10 @@ export function EventPoster({
           target="_blank"
           className="block h-full w-full"
         >
-          <TiltWrapper>{PosterContent}</TiltWrapper>
+          <Tilt {...tiltConfig}>{PosterContent}</Tilt>
         </Link>
       ) : (
-        <TiltWrapper>{PosterContent}</TiltWrapper>
+        <Tilt {...tiltConfig}>{PosterContent}</Tilt>
       )}
     </div>
   )

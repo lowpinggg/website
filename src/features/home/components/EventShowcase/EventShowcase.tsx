@@ -2,45 +2,70 @@
 
 import { motion, useScroll, useTransform } from 'motion/react'
 import { useEffect, useRef } from 'react'
-import Link from 'next/link'
-import { Button } from '@components/ui/button'
-import { EventsContent } from '@events/components/EventGallery/EventsContent'
+import { useState } from 'react'
+import { EventPoster } from '@events/components/EventGallery/EventPoster'
 import { useEvents } from '@events/hooks/useEvents'
 
 export function EventShowcase() {
   const { events } = useEvents(4)
-
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
-
+  const upcomingEvent = events[0]
   const sectionRef = useRef<HTMLDivElement>(null)
+  const [isHovered, setIsHovered] = useState(false)
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ['start end', 'center center'],
+    offset: ['start end', 'end start'],
   })
 
-  const opacity = useTransform(scrollYProgress, [0, 1], [0, 1])
-  const y = useTransform(scrollYProgress, [0, 1], [100, 0])
+  useEffect(() => {
+    const unsubscribe = scrollYProgress.on('change', (latest) => {
+      if (latest > 0.4 && latest < 0.6) {
+        setIsHovered(true)
+      } else {
+        setIsHovered(false)
+      }
+    })
+
+    return () => unsubscribe()
+  }, [scrollYProgress])
+
+  const posterY = useTransform(scrollYProgress, [0, 0.4, 1], [500, 0, -50])
+  const posterRotation = useTransform(
+    scrollYProgress,
+    [0, 0.5, 1],
+    [45, 10, -10],
+  )
+  const posterScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.5, 1, 1.1])
+  const textY = useTransform(scrollYProgress, [0.3, 0.8, 1], [-100, 0, -20])
+  const textOpacity = useTransform(scrollYProgress, [0, 0.5], [0, 1])
+  const textScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.3, 1, 0.9])
 
   return (
-    <motion.div
-      ref={sectionRef}
-      style={{ opacity, y }}
-      className="container relative mx-auto flex flex-col gap-6 py-12"
-    >
-      <div className="flex w-full flex-col justify-between gap-4 xs:flex-row sm:items-center">
-        <h1 className="text-2xl font-bold text-foreground sm:text-4xl">
-          Événements
-        </h1>
-        <Link href={'/events'}>
-          <Button variant="outline" size="sm">
-            Voir tous
-          </Button>
-        </Link>
+    <motion.div ref={sectionRef} className="container py-24">
+      <div className="relative flex items-center justify-center">
+        <motion.h1
+          style={{
+            y: textY,
+            opacity: textOpacity,
+            scale: textScale,
+          }}
+          className="pointer-events-none absolute z-10 text-6xl font-bold text-foreground"
+        >
+          Prochain événement
+        </motion.h1>
+        <motion.div
+          className="relative z-0 flex w-full items-center justify-center"
+          style={{ y: posterY, rotate: posterRotation, scale: posterScale }}
+        >
+          {upcomingEvent && (
+            <EventPoster
+              size="md"
+              event={upcomingEvent}
+              isHovered={isHovered}
+            />
+          )}
+        </motion.div>
       </div>
-      <EventsContent events={events} />
     </motion.div>
   )
 }
