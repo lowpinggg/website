@@ -23,24 +23,30 @@ export default {
     },
     extend: {
       animation: {
-        shine: 'shine var(--duration) infinite linear',
         'border-beam': 'border-beam calc(var(--duration)*1s) infinite linear',
+        'line-shadow': 'line-shadow 15s linear infinite',
+        'shiny-text': 'shiny-text 8s infinite',
       },
       keyframes: {
-        shine: {
+        'line-shadow': {
           '0%': {
-            'background-position': '0% 0%',
+            'background-position': '0 0',
           },
-          '50%': {
-            'background-position': '100% 100%',
-          },
-          to: {
-            'background-position': '0% 0%',
+          '100%': {
+            'background-position': '100% -100%',
           },
         },
         'border-beam': {
           '100%': {
             'offset-distance': '100%',
+          },
+        },
+        'shiny-text': {
+          '0%, 90%, 100%': {
+            'background-position': 'calc(-100% - var(--shiny-width)) 0',
+          },
+          '30%, 60%': {
+            'background-position': 'calc(100% + var(--shiny-width)) 0',
           },
         },
       },

@@ -1,6 +1,6 @@
 // features/events/hooks/useEvents.ts
 import { useQuery } from '@tanstack/react-query'
-import { getEvents } from '../api/getEvents'
+import { getEvents, getUpcomingEvents } from '../api/getEvents'
 import type { FilterType } from '../types'
 import { isEventPassed } from '../utils/eventHelpers'
 
@@ -19,7 +19,6 @@ export function useEvents(limit?: number) {
     staleTime: 1000 * 60 * 60 * 24, // 24 hours
   })
 
-  // Apply limit to the events before returning
   const events = limit ? rawEvents.slice(0, limit) : rawEvents
 
   const filterEvents = (filter: FilterType) => {
@@ -35,5 +34,28 @@ export function useEvents(limit?: number) {
     isLoading,
     error,
     filterEvents,
+  }
+}
+
+export function useUpcomingEvent() {
+  const {
+    data: upcomingEvent,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ['upcomingEvent'],
+    queryFn: async () => {
+      const { data, error } = await getUpcomingEvents()
+      if (error) throw error
+      return data || null // Return null if no upcoming event
+    },
+    staleTime: 1000 * 60 * 60 * 24, // 24 hours
+  })
+
+  return {
+    upcomingEvent,
+    isLoading,
+    error,
+    isEmpty: !upcomingEvent,
   }
 }

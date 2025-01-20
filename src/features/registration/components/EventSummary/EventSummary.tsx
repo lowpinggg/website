@@ -13,6 +13,7 @@ import type { Database } from '@generated/index'
 import { staggerVariants } from '@lib/animations'
 
 //TODO: Make prize pool dynamic from the database
+//TODO: Add dropdown with more info about the event
 
 type Props = {
   event: Database['public']['Tables']['events']['Row']
@@ -23,9 +24,9 @@ export function EventSummaryCard({ event }: Props) {
     <div className="flex flex-col gap-4">
       <motion.div
         variants={staggerVariants.child}
-        className="bg-gradient-to-r from-[#BFF603]/10 to-[#BFF603]/5 rounded-md p-4 border border-[#BFF603]/20"
+        className="rounded-md border border-[#BFF603]/20 bg-gradient-to-r from-[#BFF603]/10 to-[#BFF603]/5 p-4"
       >
-        <div className="flex justify-between items-center">
+        <div className="flex items-center justify-between">
           <div className="flex flex-col gap-1.5">
             <div className="flex items-center gap-1">
               <Trophy size={16} className="text-[#BFF603]" />
@@ -40,7 +41,7 @@ export function EventSummaryCard({ event }: Props) {
           <div>
             <TooltipProvider delayDuration={0} skipDelayDuration={500}>
               <Tooltip>
-                <TooltipTrigger className="cursor-null hover:bg-black/50 rounded-full p-2 text-[#BFF603] hover:-translate-y-0.5 hover:text-white  transition-all duration-1200">
+                <TooltipTrigger className="cursor-null duration-1200 rounded-full p-2 text-[#BFF603] transition-all hover:-translate-y-0.5  hover:bg-black/50 hover:text-white">
                   <Info size={16} />
                 </TooltipTrigger>
                 <TooltipContent className="TooltipContent w-full">
@@ -58,11 +59,11 @@ export function EventSummaryCard({ event }: Props) {
 
       <motion.div
         variants={staggerVariants.child}
-        className="p-5 bg-black/30 border border-white/10 rounded-lg w-full"
+        className="w-full rounded-lg border border-white/10 bg-black/30 p-5"
       >
         <div className="flex flex-col space-y-4">
-          <div className="flex flex-col-reverse lg:flex-row gap-2 lg:gap-0 justify-between items-start">
-            <h3 className="text-base font-bold text-white pr-6">
+          <div className="flex flex-col-reverse items-start justify-between gap-2 lg:flex-row lg:gap-0">
+            <h3 className="pr-6 text-base font-bold text-white">
               {event.name}
             </h3>
             <GameBadge game={event.game} />
@@ -76,7 +77,7 @@ export function EventSummaryCard({ event }: Props) {
                 <Calendar size={14} className="text-white/50" />
                 <p className="text-xs text-white/50">Date</p>
               </div>
-              <p className="text-sm text-white font-medium">
+              <p className="text-sm font-medium text-white">
                 {formatters.date(event.date)}
               </p>
             </div>
@@ -86,7 +87,7 @@ export function EventSummaryCard({ event }: Props) {
                 <Clock size={14} className="text-white/50" />
                 <p className="text-xs text-white/50">Heure</p>
               </div>
-              <p className="text-sm text-white font-medium">
+              <p className="text-sm font-medium text-white">
                 {formatters.time(event.time)} EST
               </p>
             </div>
@@ -96,7 +97,7 @@ export function EventSummaryCard({ event }: Props) {
                 <Ticket size={14} className="text-white/50" />
                 <p className="text-xs text-white/50">Inscription</p>
               </div>
-              <p className="text-sm text-white font-medium">
+              <p className="text-sm font-medium text-white">
                 ${formatters.price(event.price)}
               </p>
             </div>
