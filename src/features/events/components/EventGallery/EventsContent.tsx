@@ -3,10 +3,12 @@
 
 import { motion, AnimatePresence } from 'motion/react'
 import { useEvents } from '@events/hooks/useEvents'
+import type { Event } from '@events/types'
 import { EventsGrid } from '@features/events/components/EventGallery/EventsGrid'
 import { baseVariants } from '@lib/animations'
 import { cn } from '@lib/utils'
-import type { Event } from '@events/types'
+
+// features/events/components/layout/EventsContent.tsx
 
 function LoadingSpinner() {
   return (
@@ -26,7 +28,7 @@ function ErrorMessage() {
         exit="exit"
         className="rounded-sm border border-white border-opacity-10 py-40 text-center text-sm text-muted-foreground"
       >
-        Failed to load events. Please try again later.
+        Échec du chargement des événements. Veuillez réessayer plus tard.
       </motion.div>
     </AnimatePresence>
   )

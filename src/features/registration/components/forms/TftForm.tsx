@@ -1,8 +1,10 @@
 // features/registration/components/forms/TftForm.tsx
 'use client'
 
-import { BaseForm } from '@features/registration/components/Forms/BaseForm'
+import { BaseForm } from '@features/registration/components/forms/BaseForm'
 import { formRegistry, TftFormData } from '@registration/types/forms'
+
+// features/registration/components/forms/TftForm.tsx
 
 type Props = {
   onComplete: (data: TftFormData) => void

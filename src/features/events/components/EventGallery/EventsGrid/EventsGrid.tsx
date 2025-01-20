@@ -35,7 +35,6 @@ export function EventsGrid({ events }: EventsGridProps) {
                 <EventPoster
                   event={event}
                   size="responsive"
-                  showCTA={!eventHasPassed}
                   tiltProps={{
                     tiltMaxAngleX: 8,
                     tiltMaxAngleY: 8,
@@ -43,6 +42,11 @@ export function EventsGrid({ events }: EventsGridProps) {
                     transitionSpeed: 800,
                     scale: isMobile ? 1 : 1.02,
                   }}
+                  {...(!eventHasPassed && {
+                    cta: {
+                      label: 'Inscription',
+                    },
+                  })}
                 />
               </div>
             </motion.div>

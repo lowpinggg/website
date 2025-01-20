@@ -16,7 +16,7 @@ export function ContentBlock() {
           variants={introVariants.content.text}
           initial="initial"
           animate="animate"
-          className="max-w-2xl text-base font-light leading-6 tracking-tight text-foreground/80"
+          className="text-md max-w-2xl font-light leading-5 tracking-tight text-foreground/80"
         >
           La première plateforme dédiée à lorganisation pro de vos tournois.
           Matchmaking équitable, gestion simplifiée - concentrez-vous uniquement

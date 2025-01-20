@@ -1,9 +1,10 @@
 'use client'
 
-import { Calendar } from 'lucide-react'
 import { motion } from 'motion/react'
 import Link from 'next/link'
+import { Thunder } from '@components/icons'
 import { Button } from '@components/ui/button'
+import { useUpcomingEvent } from '@features/events/hooks/useEvents'
 import { introVariants } from '@lib/animations'
 import { Full } from '@lowping/brand-kit'
 
@@ -13,6 +14,7 @@ const navLinks = [
 ]
 
 export function NavBar() {
+  const { upcomingEvent } = useUpcomingEvent()
   return (
     <nav className="absolute left-0 right-0 top-12 z-30">
       <div className="container mx-auto">
@@ -37,7 +39,7 @@ export function NavBar() {
               variants={introVariants.navigation.navLinks.container}
               initial="initial"
               animate="animate"
-              className="flex items-center gap-1"
+              className="flex items-center gap-0"
             >
               {navLinks.map((link) => (
                 <motion.div
@@ -52,10 +54,18 @@ export function NavBar() {
                 variants={introVariants.navigation.navLinks.item}
                 className="ml-2"
               >
-                <Button variant="default">
-                  <Link href="/events" className="flex items-center gap-2">
-                    <Calendar />
-                    Évenements
+                <Button
+                  variant="default"
+                  size="sm"
+                  className="flex h-10 items-center gap-1.5 pl-2.5 pr-3 mix-blend-screen"
+                >
+                  <Thunder size={16} />
+                  <Link
+                    href={`/events/${upcomingEvent?.slug}/register`}
+                    target="_blank"
+                    className="flex items-center gap-2 text-sm"
+                  >
+                    Évènement
                   </Link>
                 </Button>
               </motion.div>

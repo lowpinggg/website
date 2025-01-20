@@ -1,7 +1,6 @@
 // Footer.tsx
 'use client'
 
-import { Calendar } from 'lucide-react'
 import Link from 'next/link'
 import { Discord, Facebook, Instagram, X } from '@components/icons'
 import { cn } from '@lib/utils'
@@ -33,9 +32,13 @@ export function Footer({ className }: FooterProps) {
             Tournois Esport Sans Friction
           </p>
           <div className="mt-3 flex items-center gap-2">
-            <Button variant="default" size="sm" className="flex gap-1 text-xs">
-              <Calendar />
-              <Link href="/events">Évenements</Link>
+            <Button
+              variant="default"
+              size="sm"
+              className="flex gap-1 bg-white text-xs hover:bg-white/90"
+            >
+              <Discord size={14} />
+              <span>Discord</span>
             </Button>
             <Button variant="outline" size="sm" className="text-xs">
               <Link href="/contact">Contacter</Link>
@@ -43,7 +46,6 @@ export function Footer({ className }: FooterProps) {
           </div>
         </div>
 
-        {/* Right Side - Nav Links and Alpha Badge */}
         <div className="flex flex-col items-end justify-end gap-6">
           <Badge variant="secondary" className="font-normal">
             {`Alpha v${packageJson.version}`}
@@ -56,17 +58,7 @@ export function Footer({ className }: FooterProps) {
             >
               <Facebook
                 size={18}
-                className="text-zinc-500 hover:text-foreground"
-              />
-            </Link>
-            <Link
-              href="https://discord.gg/lowping"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Discord
-                size={18}
-                className="text-zinc-500 hover:text-foreground"
+                className="h-5 w-5 text-zinc-500 hover:text-foreground"
               />
             </Link>
             <Link
@@ -74,7 +66,10 @@ export function Footer({ className }: FooterProps) {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <X size={18} className="text-zinc-500 hover:text-foreground" />
+              <X
+                size={18}
+                className="h-5 w-5 text-zinc-500 hover:text-foreground"
+              />
             </Link>
             <Link
               href="https://www.instagram.com/lowping.fr"
@@ -83,7 +78,7 @@ export function Footer({ className }: FooterProps) {
             >
               <Instagram
                 size={18}
-                className="text-zinc-500 hover:text-foreground"
+                className="h-5 w-5 text-zinc-500 hover:text-foreground"
               />
             </Link>
           </div>

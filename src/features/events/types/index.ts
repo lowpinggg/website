@@ -34,4 +34,11 @@ export interface EventPosterProps {
   className?: string
   tiltProps?: Partial<TiltConfig>
   showCTA?: boolean
+  isHovered?: boolean
+  buttonText?: string
+  cta?: {
+    label: string
+    icon?: React.ComponentType<{ className?: string }>
+  }
+  buttonBounce?: boolean
 }
