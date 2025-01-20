@@ -1,5 +1,6 @@
 'use client'
 
+import { ArrowRight } from 'lucide-react'
 import { motion, useScroll, useTransform } from 'motion/react'
 import { useEffect, useRef } from 'react'
 import { useState } from 'react'
@@ -76,10 +77,15 @@ export function EventShowcase() {
           >
             {upcomingEvent && (
               <EventPoster
+                cta={{
+                  label: 'INSCRIPTION',
+                  icon: ArrowRight,
+                }}
                 tiltProps={{
                   tiltMaxAngleX: 16,
                   tiltMaxAngleY: 16,
                 }}
+                buttonBounce={true}
                 size="md"
                 event={upcomingEvent}
                 isHovered={isHovered}

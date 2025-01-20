@@ -2,7 +2,7 @@
 import { motion } from 'motion/react'
 import { CheckoutSummary } from '@features/registration/components/CheckoutSummary/CheckoutSummary'
 import { EventSummaryCard } from '@features/registration/components/EventSummary/EventSummary'
-import { DynamicForm } from '@features/registration/components/Forms/DynamicForm'
+import { DynamicForm } from '@features/registration/components/forms'
 import type { Database } from '@generated/index'
 import { staggerVariants } from '@lib/animations'
 import type { FormData } from '@registration/types/forms'
@@ -42,7 +42,7 @@ export function RegistrationContent({
         variants={staggerVariants.child}
         className="flex flex-col gap-4"
       >
-        <div className="bg-black/20 rounded-lg border border-white/10 p-4 lg:p-6 overflow-hidden mt-4">
+        <div className="mt-4 overflow-hidden rounded-lg border border-white/10 bg-black/20 p-4 lg:p-6">
           {step === 1 ? (
             <DynamicForm
               type={event.type}
@@ -60,7 +60,7 @@ export function RegistrationContent({
 
         <motion.p
           variants={staggerVariants.child}
-          className="text-xs text-muted-foreground text-center"
+          className="text-center text-xs text-muted-foreground"
         >
           En vous inscrivant, vous acceptez nos conditions générales de
           participation.

@@ -67,7 +67,7 @@ export const CardSection: React.FC = () => {
         <motion.div style={{ opacity: buttonOpacity, y: buttonY }}>
           <Button
             size="lg"
-            className=" bg-white text-black mix-blend-screen hover:bg-white/80"
+            className=" min-h-12 bg-white px-4 text-black mix-blend-screen hover:bg-white/80"
           >
             Lire les règlements
           </Button>

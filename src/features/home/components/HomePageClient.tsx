@@ -3,11 +3,11 @@
 import { Footer } from '@components/Footer'
 import { NavBar } from '@components/NavBar'
 import { Banner } from './Banner'
-import { CallToActions } from './CallToActions'
 import { CardSection } from './CardSection'
+import { ContactSection } from './ContactSection'
+import { EventShowcase } from './EventShowcase'
 import { Hero } from './Hero'
 import { TextSection } from './TextSection'
-import { EventShowcase } from './EventShowcase'
 
 export function HomeClient() {
   return (
@@ -18,7 +18,7 @@ export function HomeClient() {
       <Banner />
       <CardSection />
       <EventShowcase />
-      <CallToActions />
+      <ContactSection />
       <Footer />
     </>
   )

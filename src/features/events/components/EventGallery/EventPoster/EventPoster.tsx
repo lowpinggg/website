@@ -1,7 +1,7 @@
 'use client'
 
-import { ExternalLink } from 'lucide-react'
 import { motion } from 'motion/react'
+import React from 'react'
 import { useEffect, useRef, useState } from 'react'
 import Tilt, { type GlarePosition } from 'react-parallax-tilt'
 import Image from 'next/image'
@@ -34,8 +34,9 @@ export function EventPoster({
   size = 'responsive',
   className,
   tiltProps = {},
-  showCTA = true,
   isHovered = false,
+  cta = undefined,
+  buttonBounce = false,
 }: EventPosterProps) {
   const [buttonHeight, setButtonHeight] = useState(0)
   const buttonRef = useRef<HTMLDivElement>(null)
@@ -87,15 +88,40 @@ export function EventPoster({
           priority
         />
 
-        {showCTA && (
+        {cta && (
           <div
             ref={buttonRef}
             className="absolute left-0 right-0"
             style={{ bottom: -buttonHeight }}
           >
-            <Button className="flex h-12 w-full items-center justify-center gap-2 rounded-none bg-white text-black hover:bg-white/90">
-              <span className="relative z-10 text-black">Inscription</span>
-              <ExternalLink size={14} className="relative z-10 text-black" />
+            <Button className="h-12 w-full rounded-none bg-white text-black hover:bg-white/90">
+              <motion.div
+                className="flex items-center justify-center gap-1"
+                animate={
+                  buttonBounce
+                    ? {
+                        x: [10, 0, 10],
+                      }
+                    : {}
+                }
+                transition={
+                  buttonBounce
+                    ? {
+                        duration: 2,
+                        ease: 'easeInOut',
+                        repeat: Infinity,
+                        repeatType: 'loop',
+                        times: [0, 0.5, 1],
+                      }
+                    : {}
+                }
+              >
+                <span className="relative z-10 text-black">{cta.label}</span>
+                {cta.icon &&
+                  React.createElement(cta.icon, {
+                    className: 'relative z-10 text-black',
+                  })}
+              </motion.div>
             </Button>
           </div>
         )}
@@ -111,7 +137,7 @@ export function EventPoster({
         className,
       )}
     >
-      {showCTA ? (
+      {cta ? (
         <Link
           href={`/events/${event.slug}/register`}
           target="_blank"
