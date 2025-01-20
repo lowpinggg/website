@@ -1,6 +1,12 @@
 import { Calendar, Clock, Info, Ticket, Trophy } from 'lucide-react'
 import { motion } from 'motion/react'
 import { GameBadge } from '@components/GameBadge'
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@components/ui/accordion'
 import { Separator } from '@components/ui/separator'
 import {
   Tooltip,
@@ -102,6 +108,20 @@ export function EventSummaryCard({ event }: Props) {
               </p>
             </div>
           </div>
+          <Separator className="bg-white/5" />
+
+          <Accordion type="single" collapsible>
+            <AccordionItem value="item-1" className="border-none">
+              <AccordionTrigger className="py-0">
+                <p className="text-sm font-medium text-white">
+                  {"Plus d'informations"}
+                </p>
+              </AccordionTrigger>
+              <AccordionContent className="tracking-snug pb-0 pt-2 text-xs font-light leading-snug text-white/50">
+                {event.description}
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
         </div>
       </motion.div>
     </div>

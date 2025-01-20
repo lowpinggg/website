@@ -27,6 +27,8 @@ import { BaseField, FormData } from '../../types/forms'
 
 // features/registration/components/forms/BaseForm.tsx
 
+// features/registration/components/forms/BaseForm.tsx
+
 interface BaseFormProps<T extends FormData> {
   baseFields: readonly BaseField[]
   specificFields: readonly BaseField[]
@@ -81,7 +83,7 @@ export function BaseForm<T extends FormData>({
                 </Select>
               ) : (
                 <Input
-                  className="focus:!ring-white"
+                  className="rounded-sm focus:!ring-white"
                   type={field.type}
                   placeholder={field.placeholder}
                   {...formField}
