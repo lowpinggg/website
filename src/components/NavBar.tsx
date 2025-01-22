@@ -34,7 +34,7 @@ export function NavBar() {
           </motion.div>
 
           {/* Desktop Navigation */}
-          <div className="hidden items-center gap-4 md:flex">
+          <div className="hidden items-center gap-4 sm:flex">
             <motion.div
               variants={introVariants.navigation.navLinks.container}
               initial="initial"
@@ -73,7 +73,7 @@ export function NavBar() {
           </div>
 
           {/* Mobile Menu Button */}
-          <button className="p-2 md:hidden">
+          <button className="p-2 sm:hidden">
             <span className="sr-only">Open menu</span>
           </button>
         </div>
