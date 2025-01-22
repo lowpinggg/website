@@ -16,7 +16,7 @@ const navLinks = [
 export function NavBar() {
   const { upcomingEvent } = useUpcomingEvent()
   return (
-    <nav className="absolute left-0 right-0 top-12 z-30">
+    <nav className="absolute left-0 right-0 top-0 z-30 w-full pt-12">
       <div className="container mx-auto">
         <div className="flex items-center justify-between overflow-hidden">
           {/* Logo */}
