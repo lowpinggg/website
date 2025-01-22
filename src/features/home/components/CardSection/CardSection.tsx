@@ -21,21 +21,21 @@ export const CardSection: React.FC = () => {
   const cards = [
     {
       Icon: Zap,
-      title: 'Règles équitables',
+      title: 'Gestion Pro',
       description:
-        'Une équipe dédiée à chaque tournoi. Du planning à la finale, nous assurons une gestion impeccable de votre événement.',
+        "Des règles claires et une équipe d'experts qui gère votre tournoi de A à Z, du planning jusqu'à la finale.",
     },
     {
       Icon: HeadphonesIcon,
-      title: 'Support dédié',
+      title: 'Support Live',
       description:
-        'Une équipe disponible durant vos tournois. Des réponses rapides pour résoudre vos questions ou problèmes.',
+        'Des admins présents pendant toute la durée du tournoi pour répondre à vos questions et résoudre les problèmes instantanément.',
     },
     {
       Icon: Smartphone,
-      title: 'Expérience fluide',
+      title: 'Expérience Simple',
       description:
-        "Interface intuitive, processus simplifiés. De l'inscription à la finale, tout est pensé pour faciliter votre expérience.",
+        "De l'inscription aux résultats, un processus simplifié sans complications administratives pour vous concentrer sur le jeu.",
     },
   ]
 

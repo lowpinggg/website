@@ -16,11 +16,11 @@ export function ContentBlock() {
           variants={introVariants.content.text}
           initial="initial"
           animate="animate"
-          className="text-md max-w-2xl font-light leading-5 tracking-tight text-foreground/80"
+          className="text-md tracking-snug max-w-2xl font-light leading-5 text-foreground/80"
         >
-          La première plateforme dédiée à lorganisation pro de vos tournois.
-          Matchmaking équitable, gestion simplifiée - concentrez-vous uniquement
-          sur le jeu.
+          {
+            "La première solution professionnelle pour vos tournois esport. Notre équipe s'occupe de tout : organisation, arbitrage, et diffusion - concentrez-vous uniquement sur le jeu."
+          }
         </motion.p>
       </div>
       <div className={cn('overflow-hidden')}>

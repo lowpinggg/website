@@ -43,7 +43,7 @@ const CardItem: React.FC<CardItemProps> = ({
         gradientTo="transparent"
         className="flex min-h-[230px] flex-col items-start justify-center gap-4 rounded-xl p-6"
       >
-        <Icon size={24} className="text-white" />
+        <Icon size={24} className="mb-4 text-white" />
         <h3 className="py-2 text-xl font-semibold text-white">{title}</h3>
         <p className="text-sm font-light leading-normal tracking-wide text-zinc-400">
           {description}

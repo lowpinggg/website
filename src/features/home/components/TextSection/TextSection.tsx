@@ -32,9 +32,9 @@ export function TextSection() {
               {'Vos jeux, vos tournois.'}
             </h2>
             <p className="tracking-snug text-lg font-light leading-relaxed">
-              Figma ipsum component variant main layer. Asset shadow community
-              inspect pencil ellipse background content. Link effect invite
-              layer component reesizing community ipsum editor.
+              {
+                "Notre équipe gère l'intégralité de vos tournois : organisation, arbitrage, support et diffusion. Une solution clé en main pour des compétitions de qualité professionnelle."
+              }
             </p>
           </div>
 
