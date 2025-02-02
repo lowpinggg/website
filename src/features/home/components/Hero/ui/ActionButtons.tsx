@@ -14,7 +14,7 @@ export function ActionButtons() {
       variants={introVariants.content.button}
       initial="initial"
       animate="animate"
-      className="flex flex-row gap-2"
+      className="flex flex-row justify-center gap-2"
     >
       <Button
         variant="default"

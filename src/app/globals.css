@@ -15,7 +15,7 @@
 @layer base {
   :root {
     /* Base colors */
-    --background: 130 21% 3%; /* #060D05 */
+    --background: 130 21% 5%; /* #060D05 */
     --foreground: 0 0% 98%;
 
     /* Primary - Using exact BFF603 */

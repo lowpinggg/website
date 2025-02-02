@@ -48,7 +48,7 @@ export function TextSection() {
     <motion.section
       ref={sectionRef}
       style={{ opacity: sectionOpacity, y: sectionY }}
-      className="container mx-auto py-24 [mask-image:radial-gradient(1200px_circle_at_center,white,transparent)] md:pb-32 md:pt-24"
+      className="container mx-auto py-24 [mask-image:radial-gradient(1200px_circle_at_center,white,transparent)] md:py-32"
     >
       <motion.div
         style={{ y: sectionY }}

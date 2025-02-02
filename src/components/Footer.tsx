@@ -3,6 +3,7 @@
 
 import Link from 'next/link'
 import { Discord, Facebook, Instagram, X } from '@components/icons'
+import { useUpcomingEvent } from '@features/events/hooks/useEvents'
 import { cn } from '@lib/utils'
 import { Full } from '@lowping/brand-kit'
 import packageJson from '@package'
@@ -11,13 +12,12 @@ import { Button } from '@ui/button'
 
 // Footer.tsx
 
-// Footer.tsx
-
 interface FooterProps {
   className?: string
 }
 
 export function Footer({ className }: FooterProps) {
+  const { upcomingEvent } = useUpcomingEvent()
   return (
     <footer
       className={cn(
@@ -94,7 +94,8 @@ export function Footer({ className }: FooterProps) {
         </p>
         <div className="flex gap-4">
           <Link
-            href="/events"
+            target="_blank"
+            href={`/events/${upcomingEvent?.slug}/register`}
             className="text-xs text-muted-foreground hover:text-foreground"
           >
             Événements

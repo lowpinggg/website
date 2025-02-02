@@ -18,8 +18,8 @@ export function Banner() {
 
   const height = useTransform(
     scrollYProgress,
-    [0, 0.5],
-    isMobile ? ['300px', '420px'] : ['200px', '500px'],
+    [0.2, 1],
+    isMobile ? ['300px', '420px'] : ['500px', '350px'],
   )
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0.8])
   const opacity = useTransform(scrollYProgress, [0, 0.5], [0, 1])
@@ -33,7 +33,7 @@ export function Banner() {
       >
         <motion.div className="relative h-full overflow-hidden rounded-[20px] border border-white/20">
           <motion.div className="flex h-full flex-col items-center justify-center gap-8 mix-blend-screen">
-            <div className="flex flex-col">
+            <div className="flex flex-col gap-1">
               <motion.h2
                 style={{ scale }}
                 className="text-center text-5xl font-bold tracking-tight text-white sm:text-6xl"
@@ -42,9 +42,9 @@ export function Banner() {
               </motion.h2>
               <motion.p
                 style={{ scale }}
-                className="text-center text-2xl font-medium tracking-tight text-white md:text-3xl"
+                className="text-center text-xl font-normal tracking-tight text-white/80 md:text-2xl"
               >
-                Joueurs. Tournois. Compétition. Simple.
+                Pour une expérience fluide du joueur au tournoi.
               </motion.p>
             </div>
             <Button
