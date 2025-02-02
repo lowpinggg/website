@@ -1,6 +1,6 @@
 {
-  "name": "eventhubs",
-  "version": "0.2.5",
+  "name": "website",
+  "version": "1.1.0",
   "private": true,
   "scripts": {
     "build": "next build",
