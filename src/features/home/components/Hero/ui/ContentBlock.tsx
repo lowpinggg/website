@@ -1,6 +1,5 @@
 import { motion } from 'motion/react'
 import { introVariants } from '@lib/animations'
-import { cn } from '@lib/utils'
 import { ActionButtons } from './ActionButtons'
 
 export function ContentBlock() {
@@ -9,7 +8,7 @@ export function ContentBlock() {
       variants={introVariants.content.container}
       initial="initial"
       animate="animate"
-      className="z-20 flex max-w-xl origin-top flex-col gap-6 text-center"
+      className="z-20 flex max-w-xl origin-top flex-col gap-6"
     >
       <div className="overflow-hidden">
         <motion.p
@@ -23,7 +22,7 @@ export function ContentBlock() {
           }
         </motion.p>
       </div>
-      <div className={cn('overflow-hidden')}>
+      <div className="overflow-hidden">
         <ActionButtons />
       </div>
     </motion.div>

@@ -7,9 +7,11 @@ import { useState } from 'react'
 import { VelocityScroll } from '@components/ui/scroll-based-velocity'
 import { EventPoster } from '@events/components/EventGallery/EventPoster'
 import { useUpcomingEvent } from '@events/hooks/useEvents'
+import { useScreenResolution } from '@hooks/use-screen-resolution'
 
 export function EventShowcase() {
   const { upcomingEvent } = useUpcomingEvent()
+  const { isMobile } = useScreenResolution()
   const sectionRef = useRef<HTMLDivElement>(null)
   const [isHovered, setIsHovered] = useState(false)
 
@@ -33,14 +35,14 @@ export function EventShowcase() {
   const posterY = useTransform(scrollYProgress, [0, 0.5, 1], [100, 0, -50])
   const posterRotation = useTransform(
     scrollYProgress,
-    [0, 0.5, 1],
-    [25, -5, -15],
+    isMobile ? [0, 0.5, 1] : [0, 0.5, 1],
+    isMobile ? [15, 0, -5] : [25, -5, -15],
   )
   const posterScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.9, 1, 0.8])
 
-  const textY = useTransform(scrollYProgress, [0.3, 0.5, 1], [-100, 0, -20])
+  const textY = useTransform(scrollYProgress, [0.3, 0.5, 1], [100, 0, -20])
   const textOpacity = useTransform(scrollYProgress, [0, 0.5], [0, 1])
-  const textScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.3, 1, 0.9])
+  const textScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.5, 1, 0.9])
 
   const divOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0, 1, 0])
 
@@ -61,7 +63,7 @@ export function EventShowcase() {
           }}
           className="pointer-events-none absolute z-0 flex h-full items-center justify-center text-6xl font-black uppercase tracking-tight text-foreground [mask-image:radial-gradient(600px_circle_at_center,white,transparent)]"
         >
-          <VelocityScroll defaultVelocity={0.5}>
+          <VelocityScroll defaultVelocity={1} numRows={3}>
             Prochain événement Inscription ouverte
           </VelocityScroll>
           ;

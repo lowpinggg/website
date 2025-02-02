@@ -15,8 +15,6 @@ import { Title } from './ui/Title'
 
 // features/home/components/Hero/Hero.tsx
 
-// features/home/components/Hero/Hero.tsx
-
 export function Logo({ show }: { show: boolean }) {
   return (
     <div className="relative z-50 overflow-hidden">
@@ -58,7 +56,7 @@ export function Hero() {
           className="fixed inset-0 z-30 origin-top overflow-hidden bg-[#BFF603]"
           onAnimationComplete={() => setScrollLock(false)}
         >
-          <div className="container flex h-full max-w-5xl flex-col items-center justify-center">
+          <div className="container flex h-full flex-col items-start justify-center">
             <Logo show={showLogo} />
             <Title isOverlay />
             <ContentBlock />
@@ -66,7 +64,7 @@ export function Hero() {
         </motion.div>
       </AnimatePresence>
 
-      <div className="relative flex min-h-screen flex-col items-center justify-center">
+      <div className="relative flex min-h-screen">
         <HeroBackground />
         <HeroContent />
       </div>

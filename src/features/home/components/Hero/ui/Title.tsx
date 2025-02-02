@@ -9,11 +9,11 @@ export function Title({ isOverlay = false }) {
         variants={introVariants.title.container}
         initial="initial"
         animate="animate"
-        className="relative overflow-hidden text-center"
+        className="relative overflow-hidden text-start"
       >
         <h1
           className={cn(
-            `leading-tighter text-6xl font-black tracking-[0.64px] md:text-7xl lg:text-[80px] lg:leading-[85%]`,
+            `text-[15vw] font-black leading-[85%] tracking-[0.64px] xs:text-[64px] sm:text-[80px] sm:leading-[85%] md:text-9xl md:leading-[85%]`,
             isOverlay ? 'text-black' : 'text-white',
           )}
         >

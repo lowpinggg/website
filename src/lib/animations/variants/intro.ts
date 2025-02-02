@@ -71,11 +71,11 @@ const transforms = {
       final: { height: 'auto' },
     },
     text: {
-      initial: { y: 50 },
+      initial: { y: 100 },
       final: { y: 0 },
     },
     button: {
-      initial: { y: 50 },
+      initial: { y: 100 },
       final: { y: 0 },
     },
   },

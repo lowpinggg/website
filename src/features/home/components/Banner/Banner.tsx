@@ -5,22 +5,28 @@ import { motion, useScroll, useTransform } from 'motion/react'
 import { useRef } from 'react'
 import Link from 'next/link'
 import { useUpcomingEvent } from '@features/events/hooks/useEvents'
+import { useScreenResolution } from '@hooks/use-screen-resolution'
 import { Button } from '@ui/button'
 
 export function Banner() {
+  const { isMobile } = useScreenResolution()
   const sectionRef = useRef(null)
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start end', 'end start'],
   })
 
-  const height = useTransform(scrollYProgress, [0, 0.5], ['200px', '500px'])
+  const height = useTransform(
+    scrollYProgress,
+    [0, 0.5],
+    isMobile ? ['300px', '420px'] : ['200px', '500px'],
+  )
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0.8])
   const opacity = useTransform(scrollYProgress, [0, 0.5], [0, 1])
   const { upcomingEvent } = useUpcomingEvent()
 
   return (
-    <motion.div ref={sectionRef} className="container relative py-24">
+    <motion.div ref={sectionRef} className="container relative py-16 md:py-24">
       <motion.div
         className="bg-background [mask-image:radial-gradient(650px_circle_at_center,white,transparent)]"
         style={{ height, opacity }}
@@ -30,13 +36,13 @@ export function Banner() {
             <div className="flex flex-col">
               <motion.h2
                 style={{ scale }}
-                className="text-center text-6xl font-bold tracking-tight text-white"
+                className="text-center text-5xl font-bold tracking-tight text-white sm:text-6xl"
               >
                 Nous réduisons les écarts
               </motion.h2>
               <motion.p
                 style={{ scale }}
-                className="text-center text-3xl font-medium tracking-tight text-white"
+                className="text-center text-2xl font-medium tracking-tight text-white md:text-3xl"
               >
                 Joueurs. Tournois. Compétition. Simple.
               </motion.p>
