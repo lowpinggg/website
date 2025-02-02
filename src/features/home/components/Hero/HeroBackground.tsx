@@ -7,8 +7,6 @@ import { introVariants } from '@lib/animations'
 
 // features/home/components/Hero/HeroBackground.tsx
 
-// features/home/components/Hero/HeroBackground.tsx
-
 export function HeroBackground() {
   const ref = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
@@ -28,10 +26,9 @@ export function HeroBackground() {
         initial="initial"
         animate="animate"
         style={{ y }}
-        className="absolute overflow-hidden"
       >
         <video
-          className="h-full w-full object-cover"
+          className="h-screen w-full object-cover"
           autoPlay
           loop
           muted

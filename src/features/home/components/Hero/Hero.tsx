@@ -15,6 +15,8 @@ import { Title } from './ui/Title'
 
 // features/home/components/Hero/Hero.tsx
 
+// features/home/components/Hero/Hero.tsx
+
 export function Logo({ show }: { show: boolean }) {
   return (
     <div className="relative z-50 overflow-hidden">
@@ -64,7 +66,7 @@ export function Hero() {
         </motion.div>
       </AnimatePresence>
 
-      <div className="relative flex min-h-screen flex-col items-center justify-center">
+      <div className="relative flex min-h-screen">
         <HeroBackground />
         <HeroContent />
       </div>

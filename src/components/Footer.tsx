@@ -3,6 +3,7 @@
 
 import Link from 'next/link'
 import { Discord, Facebook, Instagram, X } from '@components/icons'
+import { useUpcomingEvent } from '@features/events/hooks/useEvents'
 import { cn } from '@lib/utils'
 import { Full } from '@lowping/brand-kit'
 import packageJson from '@package'
@@ -16,6 +17,7 @@ interface FooterProps {
 }
 
 export function Footer({ className }: FooterProps) {
+  const { upcomingEvent } = useUpcomingEvent()
   return (
     <footer
       className={cn(
@@ -24,9 +26,9 @@ export function Footer({ className }: FooterProps) {
       )}
     >
       {/* First Row */}
-      <div className="flex items-end justify-between">
+      <div className="flex flex-col items-center justify-between gap-6 xs:flex-row xs:items-end">
         {/* Left Side - Logo and CTAs */}
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col items-center gap-3 xs:items-start xs:gap-1">
           <Full width={112} />
           <p className="text-sm text-muted-foreground">
             Tournois Esport Sans Friction
@@ -46,11 +48,11 @@ export function Footer({ className }: FooterProps) {
           </div>
         </div>
 
-        <div className="flex flex-col items-end justify-end gap-6">
+        <div className="flex flex-col items-center justify-end gap-6 xs:items-end">
           <Badge variant="secondary" className="font-normal">
             {`Alpha v${packageJson.version}`}
           </Badge>
-          <div className="flex gap-2">
+          <div className="flex items-end gap-2">
             <Link
               href="https://www.facebook.com/lowping.fr"
               target="_blank"
@@ -86,13 +88,14 @@ export function Footer({ className }: FooterProps) {
       </div>
 
       {/* Third Row - Copyright and Social */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col-reverse items-center gap-4 xs:flex-row xs:justify-between">
         <p className="text-xs text-muted-foreground">
           &copy; {new Date().getFullYear()} Lowping. Tous droits réservés.
         </p>
         <div className="flex gap-4">
           <Link
-            href="/events"
+            target="_blank"
+            href={`/events/${upcomingEvent?.slug}/register`}
             className="text-xs text-muted-foreground hover:text-foreground"
           >
             Événements

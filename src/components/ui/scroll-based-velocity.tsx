@@ -28,11 +28,7 @@ export const wrap = (min: number, max: number, v: number) => {
   return ((((v - min) % rangeSize) + rangeSize) % rangeSize) + min
 }
 
-function ParallaxText({
-  children,
-  baseVelocity = 100,
-  ...props
-}: ParallaxProps) {
+function ParallaxText({ children, baseVelocity = 1, ...props }: ParallaxProps) {
   const baseX = useMotionValue(0)
   const { scrollY } = useScroll()
   const scrollVelocity = useVelocity(scrollY)
@@ -60,15 +56,17 @@ function ParallaxText({
     }
 
     calculateRepetitions()
-
     window.addEventListener('resize', calculateRepetitions)
     return () => window.removeEventListener('resize', calculateRepetitions)
   }, [children])
 
-  const x = useTransform(baseX, (v) => `${wrap(-100 / repetitions, 0, v)}%`)
-
+  const x = useTransform(
+    baseX,
+    (v: number) => `${wrap(-100 / repetitions, 0, v)}%`,
+  )
   const directionFactor = React.useRef<number>(1)
-  useAnimationFrame((t, delta) => {
+
+  useAnimationFrame((_t: number, delta: number) => {
     let moveBy = directionFactor.current * baseVelocity * (delta / 1000)
 
     if (velocityFactor.get() < 0) {
@@ -78,7 +76,6 @@ function ParallaxText({
     }
 
     moveBy += directionFactor.current * moveBy * velocityFactor.get()
-
     baseX.set(baseX.get() + moveBy)
   })
 
@@ -100,16 +97,37 @@ function ParallaxText({
 }
 
 export function VelocityScroll({
-  defaultVelocity = 5,
-  numRows = 2,
+  defaultVelocity = 0.5,
+  numRows = 4,
   children,
   className,
   ...props
 }: VelocityScrollProps) {
+  const [screenWidth, setScreenWidth] = useState(
+    typeof window !== 'undefined' ? window.innerWidth : 0,
+  )
+
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth)
+    }
+
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  const getAdaptiveVelocity = (): number => {
+    if (screenWidth < 640) return defaultVelocity * 0.3
+    if (screenWidth < 1024) return defaultVelocity * 0.6
+    return defaultVelocity
+  }
+
   return (
     <div
+      key={screenWidth}
       className={cn(
-        'relative w-full text-4xl font-bold tracking-[-0.02em] md:text-7xl md:leading-[5rem]',
+        'relative w-full text-5xl font-bold tracking-[-0.02em] md:text-7xl md:leading-[5rem]',
         className,
       )}
       {...props}
@@ -117,7 +135,7 @@ export function VelocityScroll({
       {Array.from({ length: numRows }).map((_, i) => (
         <ParallaxText
           key={i}
-          baseVelocity={defaultVelocity * (i % 2 === 0 ? 1 : -1)}
+          baseVelocity={getAdaptiveVelocity() * (i % 2 === 0 ? 1 : -1)}
         >
           {children}
         </ParallaxText>

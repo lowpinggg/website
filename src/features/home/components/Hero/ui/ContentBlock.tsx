@@ -1,6 +1,5 @@
 import { motion } from 'motion/react'
 import { introVariants } from '@lib/animations'
-import { cn } from '@lib/utils'
 import { ActionButtons } from './ActionButtons'
 
 export function ContentBlock() {
@@ -9,21 +8,21 @@ export function ContentBlock() {
       variants={introVariants.content.container}
       initial="initial"
       animate="animate"
-      className="z-20 flex origin-top flex-col gap-6 text-center"
+      className="z-20 flex max-w-2xl origin-top flex-col gap-6"
     >
       <div className="overflow-hidden">
         <motion.p
           variants={introVariants.content.text}
           initial="initial"
           animate="animate"
-          className="text-md tracking-snug max-w-2xl font-light leading-5 text-foreground/80"
+          className="tracking-snug w-full text-center text-sm font-light leading-5 text-foreground/80 sm:text-base"
         >
           {
-            "La première solution professionnelle pour vos tournois esport. Notre équipe s'occupe de tout : organisation, arbitrage, et diffusion - concentrez-vous uniquement sur le jeu."
+            "La première solution professionnelle pour vos tournois esport. Notre équipe s'occupe de tout. Organisation, arbitrage, et diffusion. Concentrez-vous uniquement sur le jeu."
           }
         </motion.p>
       </div>
-      <div className={cn('overflow-hidden')}>
+      <div className="overflow-hidden">
         <ActionButtons />
       </div>
     </motion.div>

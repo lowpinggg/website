@@ -13,7 +13,7 @@ export function Title({ isOverlay = false }) {
       >
         <h1
           className={cn(
-            `text-[80px] font-black leading-[85%] tracking-[0.64px]`,
+            `text-[15vw] font-black leading-[85%] tracking-[0.64px] xs:text-[64px] sm:text-[80px] sm:leading-[85%] md:text-8xl md:leading-[85%]`,
             isOverlay ? 'text-black' : 'text-white',
           )}
         >
