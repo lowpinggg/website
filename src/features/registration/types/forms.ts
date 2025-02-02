@@ -1,7 +1,7 @@
 // features/registration/types/forms.ts
 import { Database } from '@generated/index'
 import { schemas } from '@registration/schemas'
-import { TftForm } from '../components/Forms/TftForm'
+import { TftForm } from '../components/forms'
 
 // ============================================================================
 // Base Types
