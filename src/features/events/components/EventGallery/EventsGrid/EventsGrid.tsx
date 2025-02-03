@@ -1,10 +1,10 @@
-import { AnimatePresence, motion } from 'motion/react'
 import type { EventsGridProps } from '@events/types'
 import { isEventPassed } from '@events/utils/eventHelpers'
 import { EventPoster } from '@features/events/components/EventGallery/EventPoster'
 import { useScreenResolution } from '@hooks/use-screen-resolution'
 import { transitions } from '@lib/animations'
 import { cn } from '@lib/utils'
+import { AnimatePresence, motion } from 'motion/react'
 
 export function EventsGrid({ events }: EventsGridProps) {
   const { isMobile } = useScreenResolution()

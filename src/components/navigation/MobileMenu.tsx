@@ -1,10 +1,10 @@
 // components/navigation/MobileMenu.tsx
-import { X as XIcon } from 'lucide-react'
-import { motion } from 'motion/react'
 import Link from 'next/link'
 import { Discord, Facebook, Instagram, X } from '@components/icons'
 import { menuVariants } from '@lib/animations/variants/menu'
 import { Full } from '@lowping/brand-kit'
+import { X as XIcon } from 'lucide-react'
+import { motion } from 'motion/react'
 
 interface MobileMenuProps {
   onClose: () => void

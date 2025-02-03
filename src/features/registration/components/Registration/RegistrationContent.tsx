@@ -1,11 +1,11 @@
 // components/layout/Registration/RegistrationContent.tsx
-import { motion } from 'motion/react'
 import { CheckoutSummary } from '@features/registration/components/CheckoutSummary/CheckoutSummary'
 import { EventSummaryCard } from '@features/registration/components/EventSummary/EventSummary'
 import { DynamicForm } from '@features/registration/components/forms'
 import type { Database } from '@generated/index'
 import { staggerVariants } from '@lib/animations'
 import type { FormData } from '@registration/types/forms'
+import { motion } from 'motion/react'
 import { RegistrationHeader } from './RegistrationHeader'
 
 interface RegistrationContentProps {

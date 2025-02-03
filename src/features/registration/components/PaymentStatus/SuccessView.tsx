@@ -1,12 +1,12 @@
 // features/registration/components/layout/PaymentStatus/SuccessView.tsx
-import { BadgeCheck, Calendar } from 'lucide-react'
-import { motion } from 'motion/react'
 import Link from 'next/link'
 import { EventPoster } from '@features/events/components/EventGallery/EventPoster'
 import { EventSummaryCard } from '@features/registration/components/EventSummary'
 import { baseVariants, staggerVariants } from '@lib/animations'
 import type { RegistrationDetails } from '@registration/types/registrations'
 import { Button } from '@ui/button'
+import { BadgeCheck, Calendar } from 'lucide-react'
+import { motion } from 'motion/react'
 
 interface SuccessViewProps {
   details: RegistrationDetails

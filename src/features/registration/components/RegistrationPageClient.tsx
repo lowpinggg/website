@@ -1,7 +1,6 @@
 // components/RegistrationPageClient.tsx
 'use client'
 
-import { motion } from 'motion/react'
 import { Footer } from '@components/Footer'
 import { EventPoster } from '@features/events/components/EventGallery/EventPoster'
 import { RegistrationContent } from '@features/registration/components/Registration'
@@ -9,14 +8,7 @@ import type { Database } from '@generated/index'
 import { useScreenResolution } from '@hooks/use-screen-resolution'
 import { staggerVariants } from '@lib/animations'
 import { useRegistration } from '@registration/hooks/useRegistration'
-
-// components/RegistrationPageClient.tsx
-
-// components/RegistrationPageClient.tsx
-
-// components/RegistrationPageClient.tsx
-
-// components/RegistrationPageClient.tsx
+import { motion } from 'motion/react'
 
 type Props = {
   event: Database['public']['Tables']['events']['Row']

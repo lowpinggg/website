@@ -1,8 +1,8 @@
-import { motion, useScroll, useTransform } from 'motion/react'
 import { useRef } from 'react'
 import { Discord } from '@components/icons'
 import { Button } from '@components/ui/button'
 import { BorderBeam } from '@ui/border-beam'
+import { motion, useScroll, useTransform } from 'motion/react'
 
 export function ContactSection() {
   const cardRef = useRef<HTMLDivElement>(null)

@@ -1,7 +1,5 @@
 'use client'
 
-import { Menu } from 'lucide-react'
-import { motion, AnimatePresence } from 'motion/react'
 import { useState } from 'react'
 import Link from 'next/link'
 import { Thunder } from '@components/icons'
@@ -10,6 +8,8 @@ import { useUpcomingEvent } from '@features/events/hooks/useEvents'
 import { setScrollLock } from '@hooks/use-lockscroll'
 import { introVariants } from '@lib/animations'
 import { Full } from '@lowping/brand-kit'
+import { Menu } from 'lucide-react'
+import { AnimatePresence, motion } from 'motion/react'
 import { MobileMenu } from './MobileMenu'
 
 const navLinks = [

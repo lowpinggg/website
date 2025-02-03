@@ -1,13 +1,12 @@
 'use client'
 
-import { ArrowRight } from 'lucide-react'
-import { motion, useScroll, useTransform } from 'motion/react'
-import { useEffect, useRef } from 'react'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { VelocityScroll } from '@components/ui/scroll-based-velocity'
 import { EventPoster } from '@events/components/EventGallery/EventPoster'
 import { useUpcomingEvent } from '@events/hooks/useEvents'
 import { useScreenResolution } from '@hooks/use-screen-resolution'
+import { ArrowRight } from 'lucide-react'
+import { motion, useScroll, useTransform } from 'motion/react'
 
 export function EventShowcase() {
   const { upcomingEvent } = useUpcomingEvent()

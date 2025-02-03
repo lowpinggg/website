@@ -3,14 +3,6 @@
 
 import { FormData, formRegistry, FormType } from '@registration/types/forms'
 
-// features/registration/components/forms/DynamicForm.tsx
-
-// features/registration/components/forms/DynamicForm.tsx
-
-// features/registration/components/forms/DynamicForm.tsx
-
-// features/registration/components/forms/DynamicForm.tsx
-
 type Props = {
   type: FormType
   onComplete: (data: FormData) => void

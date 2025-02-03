@@ -114,9 +114,9 @@ importers:
         specifier: ^3.24.1
         version: 3.24.1
     devDependencies:
-      '@trivago/prettier-plugin-sort-imports':
-        specifier: ^5.2.1
-        version: 5.2.1(prettier@3.4.2)
+      '@ianvs/prettier-plugin-sort-imports':
+        specifier: ^4.4.1
+        version: 4.4.1(prettier@3.4.2)
       '@types/canvas-confetti':
         specifier: ^1.6.4
         version: 1.9.0
@@ -161,7 +161,7 @@ importers:
         version: 2.5.6(prettier@3.4.2)
       prettier-plugin-tailwindcss:
         specifier: 0.5.12
-        version: 0.5.12(@trivago/prettier-plugin-sort-imports@5.2.1(prettier@3.4.2))(prettier-plugin-css-order@2.1.2(postcss@8.4.49)(prettier@3.4.2))(prettier-plugin-organize-attributes@1.0.0(prettier@3.4.2))(prettier@3.4.2)
+        version: 0.5.12(@ianvs/prettier-plugin-sort-imports@4.4.1(prettier@3.4.2))(@trivago/prettier-plugin-sort-imports@5.2.2(prettier@3.4.2))(prettier-plugin-css-order@2.1.2(postcss@8.4.49)(prettier@3.4.2))(prettier-plugin-organize-attributes@1.0.0(prettier@3.4.2))(prettier@3.4.2)
       pretty-quick:
         specifier: ^4.0.0
         version: 4.0.0(prettier@3.4.2)
@@ -197,8 +197,8 @@ packages:
     resolution: {integrity: sha512-Ed61U6XJc3CVRfkERJWDz4dJwKe7iLmmJsbOGu9wSloNSFttHV0I8g6UAgb7qnK5ly5bGLPd4oXZlxCdANBOWQ==}
     engines: {node: '>=6.9.0'}
 
-  '@babel/parser@7.26.5':
-    resolution: {integrity: sha512-SRJ4jYmXRqV1/Xc+TIVG84WjHBXKlxO9sHQnA2Pf12QQEAp1LOh6kDzNHXcUnbH1QI0FDoPPVOt+vyUDucxpaw==}
+  '@babel/parser@7.26.7':
+    resolution: {integrity: sha512-kEvgGGgEjRUutvdVvZhbn/BxVt+5VSpwXz1j3WYXQbXDo8KzFOPNG2GQbdAiNq8g6wn1yKk7C/qrke03a84V+w==}
     engines: {node: '>=6.0.0'}
     hasBin: true
 
@@ -206,12 +206,12 @@ packages:
     resolution: {integrity: sha512-9DGttpmPvIxBb/2uwpVo3dqJ+O6RooAFOS+lB+xDqoE2PVCE8nfoHMdZLpfCQRLwvohzXISPZcgxt80xLfsuwg==}
     engines: {node: '>=6.9.0'}
 
-  '@babel/traverse@7.26.5':
-    resolution: {integrity: sha512-rkOSPOw+AXbgtwUga3U4u8RpoK9FEFWBNAlTpcnkLFjL5CT+oyHNuUUC/xx6XefEJ16r38r8Bc/lfp6rYuHeJQ==}
+  '@babel/traverse@7.26.7':
+    resolution: {integrity: sha512-1x1sgeyRLC3r5fQOM0/xtQKsYjyxmFjaOrLJNtZ81inNjyJHGIolTULPiSc/2qe1/qfpFLisLQYFnnZl7QoedA==}
     engines: {node: '>=6.9.0'}
 
-  '@babel/types@7.26.5':
-    resolution: {integrity: sha512-L6mZmwFDK6Cjh1nRCLXpa6no13ZIioJDz7mdkzHv399pThrTa/k0nUlNaenOeh2kWu/iaOQYElEpKPUswUa9Vg==}
+  '@babel/types@7.26.7':
+    resolution: {integrity: sha512-t8kDRGrKXyp6+tjUh7hw2RLyclsW4TRoRvRHtSyAX9Bb5ldlFh+90YAYY6awRXrlB4G5G2izNeGySpATlFzmOg==}
     engines: {node: '>=6.9.0'}
 
   '@emnapi/runtime@1.3.1':
@@ -267,6 +267,15 @@ packages:
   '@humanwhocodes/object-schema@2.0.3':
     resolution: {integrity: sha512-93zYdMES/c1D69yZiKDBj0V24vqNzB/koF26KPaagAfd3P/4gUlh3Dys5ogAK+Exi9QyzlD8x/08Zt7wIKcDcA==}
     deprecated: Use @eslint/object-schema instead
+
+  '@ianvs/prettier-plugin-sort-imports@4.4.1':
+    resolution: {integrity: sha512-F0/Hrcfpy8WuxlQyAWJTEren/uxKhYonOGY4OyWmwRdeTvkh9mMSCxowZLjNkhwi/2ipqCgtXwwOk7tW0mWXkA==}
+    peerDependencies:
+      '@vue/compiler-sfc': 2.7.x || 3.x
+      prettier: 2 || 3
+    peerDependenciesMeta:
+      '@vue/compiler-sfc':
+        optional: true
 
   '@img/sharp-darwin-arm64@0.33.5':
     resolution: {integrity: sha512-UT4p+iz/2H4twwAoLCqfA9UH5pI6DggwKEGuaPy7nCVQ8ZsiY5PIcrRvD1DzuY3qYL07NtIQcWnBSY/heikIFQ==}
@@ -883,8 +892,8 @@ packages:
     peerDependencies:
       react: ^18 || ^19
 
-  '@trivago/prettier-plugin-sort-imports@5.2.1':
-    resolution: {integrity: sha512-NDZndt0fmVThIx/8cExuJHLZagUVzfGCoVrwH9x6aZvwfBdkrDFTYujecek6X2WpG4uUFsVaPg5+aNQPSyjcmw==}
+  '@trivago/prettier-plugin-sort-imports@5.2.2':
+    resolution: {integrity: sha512-fYDQA9e6yTNmA13TLVSA+WMQRc5Bn/c0EUBditUHNfMMxN7M82c38b1kEggVE3pLpZ0FwkwJkUEKMiOi52JXFA==}
     engines: {node: '>18.12'}
     peerDependencies:
       '@vue/compiler-sfc': 3.x
@@ -2968,8 +2977,8 @@ snapshots:
 
   '@babel/generator@7.26.5':
     dependencies:
-      '@babel/parser': 7.26.5
-      '@babel/types': 7.26.5
+      '@babel/parser': 7.26.7
+      '@babel/types': 7.26.7
       '@jridgewell/gen-mapping': 0.3.8
       '@jridgewell/trace-mapping': 0.3.25
       jsesc: 3.1.0
@@ -2978,29 +2987,29 @@ snapshots:
 
   '@babel/helper-validator-identifier@7.25.9': {}
 
-  '@babel/parser@7.26.5':
+  '@babel/parser@7.26.7':
     dependencies:
-      '@babel/types': 7.26.5
+      '@babel/types': 7.26.7
 
   '@babel/template@7.25.9':
     dependencies:
       '@babel/code-frame': 7.26.2
-      '@babel/parser': 7.26.5
-      '@babel/types': 7.26.5
+      '@babel/parser': 7.26.7
+      '@babel/types': 7.26.7
 
-  '@babel/traverse@7.26.5':
+  '@babel/traverse@7.26.7':
     dependencies:
       '@babel/code-frame': 7.26.2
       '@babel/generator': 7.26.5
-      '@babel/parser': 7.26.5
+      '@babel/parser': 7.26.7
       '@babel/template': 7.25.9
-      '@babel/types': 7.26.5
+      '@babel/types': 7.26.7
       debug: 4.4.0
       globals: 11.12.0
     transitivePeerDependencies:
       - supports-color
 
-  '@babel/types@7.26.5':
+  '@babel/types@7.26.7':
     dependencies:
       '@babel/helper-string-parser': 7.25.9
       '@babel/helper-validator-identifier': 7.25.9
@@ -3065,6 +3074,17 @@ snapshots:
   '@humanwhocodes/module-importer@1.0.1': {}
 
   '@humanwhocodes/object-schema@2.0.3': {}
+
+  '@ianvs/prettier-plugin-sort-imports@4.4.1(prettier@3.4.2)':
+    dependencies:
+      '@babel/generator': 7.26.5
+      '@babel/parser': 7.26.7
+      '@babel/traverse': 7.26.7
+      '@babel/types': 7.26.7
+      prettier: 3.4.2
+      semver: 7.6.3
+    transitivePeerDependencies:
+      - supports-color
 
   '@img/sharp-darwin-arm64@0.33.5':
     optionalDependencies:
@@ -3616,17 +3636,18 @@ snapshots:
       '@tanstack/query-core': 5.62.16
       react: 19.0.0
 
-  '@trivago/prettier-plugin-sort-imports@5.2.1(prettier@3.4.2)':
+  '@trivago/prettier-plugin-sort-imports@5.2.2(prettier@3.4.2)':
     dependencies:
       '@babel/generator': 7.26.5
-      '@babel/parser': 7.26.5
-      '@babel/traverse': 7.26.5
-      '@babel/types': 7.26.5
+      '@babel/parser': 7.26.7
+      '@babel/traverse': 7.26.7
+      '@babel/types': 7.26.7
       javascript-natural-sort: 0.7.1
       lodash: 4.17.21
       prettier: 3.4.2
     transitivePeerDependencies:
       - supports-color
+    optional: true
 
   '@types/canvas-confetti@1.9.0': {}
 
@@ -4186,8 +4207,8 @@ snapshots:
       '@typescript-eslint/parser': 8.19.1(eslint@8.57.1)(typescript@5.7.3)
       eslint: 8.57.1
       eslint-import-resolver-node: 0.3.9
-      eslint-import-resolver-typescript: 3.7.0(eslint-plugin-import@2.31.0)(eslint@8.57.1)
-      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@8.19.1(eslint@8.57.1)(typescript@5.7.3))(eslint-import-resolver-typescript@3.7.0)(eslint@8.57.1)
+      eslint-import-resolver-typescript: 3.7.0(eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.19.1(eslint@8.57.1)(typescript@5.7.3))(eslint@8.57.1))(eslint@8.57.1)
+      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@8.19.1(eslint@8.57.1)(typescript@5.7.3))(eslint-import-resolver-typescript@3.7.0(eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.19.1(eslint@8.57.1)(typescript@5.7.3))(eslint@8.57.1))(eslint@8.57.1))(eslint@8.57.1)
       eslint-plugin-jsx-a11y: 6.10.2(eslint@8.57.1)
       eslint-plugin-react: 7.37.3(eslint@8.57.1)
       eslint-plugin-react-hooks: 5.1.0(eslint@8.57.1)
@@ -4206,7 +4227,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-import-resolver-typescript@3.7.0(eslint-plugin-import@2.31.0)(eslint@8.57.1):
+  eslint-import-resolver-typescript@3.7.0(eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.19.1(eslint@8.57.1)(typescript@5.7.3))(eslint@8.57.1))(eslint@8.57.1):
     dependencies:
       '@nolyfill/is-core-module': 1.0.39
       debug: 4.4.0
@@ -4218,18 +4239,18 @@ snapshots:
       is-glob: 4.0.3
       stable-hash: 0.0.4
     optionalDependencies:
-      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@8.19.1(eslint@8.57.1)(typescript@5.7.3))(eslint-import-resolver-typescript@3.7.0)(eslint@8.57.1)
+      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@8.19.1(eslint@8.57.1)(typescript@5.7.3))(eslint-import-resolver-typescript@3.7.0(eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.19.1(eslint@8.57.1)(typescript@5.7.3))(eslint@8.57.1))(eslint@8.57.1))(eslint@8.57.1)
     transitivePeerDependencies:
       - supports-color
 
-  eslint-module-utils@2.12.0(@typescript-eslint/parser@8.19.1(eslint@8.57.1)(typescript@5.7.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.7.0)(eslint@8.57.1):
+  eslint-module-utils@2.12.0(@typescript-eslint/parser@8.19.1(eslint@8.57.1)(typescript@5.7.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.7.0(eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.19.1(eslint@8.57.1)(typescript@5.7.3))(eslint@8.57.1))(eslint@8.57.1))(eslint@8.57.1):
     dependencies:
       debug: 3.2.7
     optionalDependencies:
       '@typescript-eslint/parser': 8.19.1(eslint@8.57.1)(typescript@5.7.3)
       eslint: 8.57.1
       eslint-import-resolver-node: 0.3.9
-      eslint-import-resolver-typescript: 3.7.0(eslint-plugin-import@2.31.0)(eslint@8.57.1)
+      eslint-import-resolver-typescript: 3.7.0(eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.19.1(eslint@8.57.1)(typescript@5.7.3))(eslint@8.57.1))(eslint@8.57.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -4238,7 +4259,7 @@ snapshots:
       chalk: 4.1.2
       eslint: 8.57.1
       eslint-import-resolver-node: 0.3.9
-      eslint-module-utils: 2.12.0(@typescript-eslint/parser@8.19.1(eslint@8.57.1)(typescript@5.7.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.7.0)(eslint@8.57.1)
+      eslint-module-utils: 2.12.0(@typescript-eslint/parser@8.19.1(eslint@8.57.1)(typescript@5.7.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.7.0(eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.19.1(eslint@8.57.1)(typescript@5.7.3))(eslint@8.57.1))(eslint@8.57.1))(eslint@8.57.1)
       micromatch: 4.0.8
     transitivePeerDependencies:
       - '@typescript-eslint/parser'
@@ -4246,7 +4267,7 @@ snapshots:
       - eslint-import-resolver-webpack
       - supports-color
 
-  eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.19.1(eslint@8.57.1)(typescript@5.7.3))(eslint-import-resolver-typescript@3.7.0)(eslint@8.57.1):
+  eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.19.1(eslint@8.57.1)(typescript@5.7.3))(eslint-import-resolver-typescript@3.7.0(eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.19.1(eslint@8.57.1)(typescript@5.7.3))(eslint@8.57.1))(eslint@8.57.1))(eslint@8.57.1):
     dependencies:
       '@rtsao/scc': 1.1.0
       array-includes: 3.1.8
@@ -4257,7 +4278,7 @@ snapshots:
       doctrine: 2.1.0
       eslint: 8.57.1
       eslint-import-resolver-node: 0.3.9
-      eslint-module-utils: 2.12.0(@typescript-eslint/parser@8.19.1(eslint@8.57.1)(typescript@5.7.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.7.0)(eslint@8.57.1)
+      eslint-module-utils: 2.12.0(@typescript-eslint/parser@8.19.1(eslint@8.57.1)(typescript@5.7.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.7.0(eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.19.1(eslint@8.57.1)(typescript@5.7.3))(eslint@8.57.1))(eslint@8.57.1))(eslint@8.57.1)
       hasown: 2.0.2
       is-core-module: 2.16.1
       is-glob: 4.0.3
@@ -4804,7 +4825,8 @@ snapshots:
     optionalDependencies:
       '@pkgjs/parseargs': 0.11.0
 
-  javascript-natural-sort@0.7.1: {}
+  javascript-natural-sort@0.7.1:
+    optional: true
 
   jiti@1.21.7: {}
 
@@ -4888,7 +4910,8 @@ snapshots:
 
   lodash.merge@4.6.2: {}
 
-  lodash@4.17.21: {}
+  lodash@4.17.21:
+    optional: true
 
   log-update@6.1.0:
     dependencies:
@@ -5211,11 +5234,12 @@ snapshots:
     optionalDependencies:
       prettier: 3.4.2
 
-  prettier-plugin-tailwindcss@0.5.12(@trivago/prettier-plugin-sort-imports@5.2.1(prettier@3.4.2))(prettier-plugin-css-order@2.1.2(postcss@8.4.49)(prettier@3.4.2))(prettier-plugin-organize-attributes@1.0.0(prettier@3.4.2))(prettier@3.4.2):
+  prettier-plugin-tailwindcss@0.5.12(@ianvs/prettier-plugin-sort-imports@4.4.1(prettier@3.4.2))(@trivago/prettier-plugin-sort-imports@5.2.2(prettier@3.4.2))(prettier-plugin-css-order@2.1.2(postcss@8.4.49)(prettier@3.4.2))(prettier-plugin-organize-attributes@1.0.0(prettier@3.4.2))(prettier@3.4.2):
     dependencies:
       prettier: 3.4.2
     optionalDependencies:
-      '@trivago/prettier-plugin-sort-imports': 5.2.1(prettier@3.4.2)
+      '@ianvs/prettier-plugin-sort-imports': 4.4.1(prettier@3.4.2)
+      '@trivago/prettier-plugin-sort-imports': 5.2.2(prettier@3.4.2)
       prettier-plugin-css-order: 2.1.2(postcss@8.4.49)(prettier@3.4.2)
       prettier-plugin-organize-attributes: 1.0.0(prettier@3.4.2)
 

@@ -1,10 +1,10 @@
 // features/home/components/Card/CardSection.tsx
-import clsx from 'clsx'
-import { HeadphonesIcon, Smartphone, Zap } from 'lucide-react'
-import { motion, useScroll, useTransform } from 'motion/react'
 import { useRef } from 'react'
 import { useScreenResolution } from '@hooks/use-screen-resolution'
 import { Button } from '@ui/button'
+import clsx from 'clsx'
+import { HeadphonesIcon, Smartphone, Zap } from 'lucide-react'
+import { motion, useScroll, useTransform } from 'motion/react'
 import CardItem from './CardItem'
 
 export const CardSection: React.FC = () => {

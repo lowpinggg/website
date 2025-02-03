@@ -1,9 +1,9 @@
-import { motion } from 'motion/react'
 import { formatters } from '@events/utils/eventHelpers'
 import { Database } from '@generated/index'
 import { staggerVariants } from '@lib/animations'
 import { Button } from '@ui/button'
 import { Separator } from '@ui/separator'
+import { motion } from 'motion/react'
 import { useCheckout } from '../../hooks/useCheckout'
 import { BaseField, FormData, formRegistry, FormType } from '../../types/forms'
 
@@ -13,7 +13,6 @@ type Props = {
   onBack: () => void
 }
 
-// features/registration/components/checkout/CheckoutSummary.tsx
 export function CheckoutSummary({ event, formData, onBack }: Props) {
   const { isLoading, handleCheckout } = useCheckout()
   const config = formRegistry[event.type as FormType]

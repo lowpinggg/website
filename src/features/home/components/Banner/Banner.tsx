@@ -1,11 +1,11 @@
 'use client'
 
-import { ArrowRightIcon } from 'lucide-react'
-import { motion, useScroll, useTransform } from 'motion/react'
 import { useRef } from 'react'
 import Link from 'next/link'
 import { useUpcomingEvent } from '@features/events/hooks/useEvents'
 import { Button } from '@ui/button'
+import { ArrowRightIcon } from 'lucide-react'
+import { motion, useScroll, useTransform } from 'motion/react'
 
 export function Banner() {
   const sectionRef = useRef(null)

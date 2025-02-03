@@ -1,6 +1,6 @@
 // components/layout/Registration/RegistrationHeader.tsx
-import { motion } from 'motion/react'
 import { staggerVariants } from '@lib/animations'
+import { motion } from 'motion/react'
 
 interface RegistrationHeaderProps {
   step: number

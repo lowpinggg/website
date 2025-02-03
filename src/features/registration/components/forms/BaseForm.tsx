@@ -1,8 +1,6 @@
 // features/registration/components/forms/BaseForm.tsx
 'use client'
 
-import { motion } from 'motion/react'
-import { z } from 'zod'
 import { DefaultValues, Path, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { staggerVariants } from '@lib/animations'
@@ -23,11 +21,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@ui/select'
+import { motion } from 'motion/react'
+import { z } from 'zod'
 import { BaseField, FormData } from '../../types/forms'
-
-// features/registration/components/forms/BaseForm.tsx
-
-// features/registration/components/forms/BaseForm.tsx
 
 interface BaseFormProps<T extends FormData> {
   baseFields: readonly BaseField[]

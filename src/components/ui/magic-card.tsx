@@ -1,8 +1,8 @@
 'use client'
 
+import React, { useCallback, useEffect, useRef } from 'react'
 import { motion, useMotionTemplate, useMotionValue } from 'motion/react'
 import { cn } from 'src/lib/utils'
-import React, { useCallback, useEffect, useRef } from 'react'
 
 interface MagicCardProps extends React.HTMLAttributes<HTMLDivElement> {
   gradientSize?: number

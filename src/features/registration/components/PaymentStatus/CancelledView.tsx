@@ -1,9 +1,9 @@
 // features/registration/components/layout/PaymentStatus/CancelledView.tsx
-import { X } from 'lucide-react'
-import { motion } from 'motion/react'
 import Link from 'next/link'
 import { baseVariants, staggerVariants } from '@lib/animations'
 import { Button } from '@ui/button'
+import { X } from 'lucide-react'
+import { motion } from 'motion/react'
 
 interface CancelledViewProps {
   title: string

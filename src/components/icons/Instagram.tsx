@@ -6,7 +6,6 @@ type IconProps = {
   size?: number | string
 } & Omit<ComponentProps<'svg'>, 'width' | 'height'>
 
-// components/icons/Instagram.tsx
 export function Instagram({ className, size = 32, ...props }: IconProps) {
   return (
     <svg

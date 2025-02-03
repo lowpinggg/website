@@ -5,7 +5,7 @@ import { createTransition } from '../utils/createTransition'
 const transforms = {
   overlay: {
     initial: { clipPath: 'inset(0 0 0 0)' },
-    final: { clipPath: 'inset(0 0 100% 0)' }, // Slides up
+    final: { clipPath: 'inset(0 0 100% 0)' },
   },
 
   navigation: {

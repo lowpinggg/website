@@ -1,8 +1,6 @@
 'use client'
 
-import { motion } from 'motion/react'
-import React from 'react'
-import { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Tilt, { type GlarePosition } from 'react-parallax-tilt'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -12,6 +10,7 @@ import { useScreenResolution } from '@hooks/use-screen-resolution'
 import { transitions } from '@lib/animations'
 import { cn } from '@lib/utils'
 import { Button } from '@ui/button'
+import { motion } from 'motion/react'
 
 const ANIMATION_CONFIG = {
   transition: {
