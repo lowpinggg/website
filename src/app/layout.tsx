@@ -7,6 +7,7 @@ import { Cursor } from '@components/Cursor'
 import { SmoothScroll } from '@components/SmoothScroll'
 import { cn } from '@lib/utils'
 import { Toaster } from '@ui/toaster'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 export { generateMetadata } from '@app/metadata'
 
@@ -30,7 +31,10 @@ export default function RootLayout({
         <Cursor />
         <SmoothScroll>
           <div className="pattern-overlay z-50" />
-          <Providers>{children}</Providers>
+          <Providers>
+            {children}
+            <SpeedInsights />
+          </Providers>
           <Toaster />
         </SmoothScroll>
       </body>
