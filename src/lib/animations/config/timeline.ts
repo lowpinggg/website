@@ -23,6 +23,16 @@ export const timeline = {
         delay: introDuration + 1,
         ease: easing.expo,
       },
+      button: {
+        duration: duration.superSlow,
+        delay: introDuration + 1,
+        ease: easing.expo,
+      },
+      mobileButton: {
+        duration: duration.superSlow,
+        delay: introDuration + 1,
+        ease: easing.expo,
+      },
       navLinks: {
         container: {
           duration: duration.superSlow,

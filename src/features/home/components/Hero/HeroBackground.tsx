@@ -1,21 +1,9 @@
 // features/home/components/Hero/HeroBackground.tsx
 'use client'
 
-import { motion, useScroll, useTransform } from 'motion/react'
 import { useRef } from 'react'
 import { introVariants } from '@lib/animations'
-
-// features/home/components/Hero/HeroBackground.tsx
-
-// features/home/components/Hero/HeroBackground.tsx
-
-// features/home/components/Hero/HeroBackground.tsx
-
-// features/home/components/Hero/HeroBackground.tsx
-
-// features/home/components/Hero/HeroBackground.tsx
-
-// features/home/components/Hero/HeroBackground.tsx
+import { motion, useScroll, useTransform } from 'motion/react'
 
 export function HeroBackground() {
   const ref = useRef<HTMLDivElement>(null)

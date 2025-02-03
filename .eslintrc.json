@@ -25,7 +25,7 @@
       {
         "type": "shared",
         "pattern": [
-          "src/components/**/*",
+          "src/components/ui/**/*",
           "src/hooks/**/*",
           "src/lib/**/*",
           "src/types/**/*"

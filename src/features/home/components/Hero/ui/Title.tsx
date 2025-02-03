@@ -1,6 +1,6 @@
-import { motion } from 'motion/react'
 import { introVariants } from '@lib/animations'
 import { cn } from '@lib/utils'
+import { motion } from 'motion/react'
 
 export function Title({ isOverlay = false }) {
   return (

@@ -1,10 +1,10 @@
 // components/header/HeaderContent.tsx
-import { ExternalLink } from 'lucide-react'
-import { motion } from 'motion/react'
 import Link from 'next/link'
 import { Discord } from '@components/icons/Discord'
 import { introVariants } from '@lib/animations'
 import { Button } from '@ui/button'
+import { ExternalLink } from 'lucide-react'
+import { motion } from 'motion/react'
 
 export function HeaderContent() {
   return (

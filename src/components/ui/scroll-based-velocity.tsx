@@ -1,5 +1,6 @@
 'use client'
 
+import React, { useEffect, useRef, useState } from 'react'
 import {
   motion,
   useAnimationFrame,
@@ -10,7 +11,6 @@ import {
   useVelocity,
 } from 'motion/react'
 import { cn } from 'src/lib/utils'
-import React, { useEffect, useRef, useState } from 'react'
 
 interface VelocityScrollProps extends React.HTMLAttributes<HTMLDivElement> {
   defaultVelocity?: number

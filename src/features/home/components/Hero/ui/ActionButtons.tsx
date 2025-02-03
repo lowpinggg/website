@@ -1,11 +1,10 @@
 // features/home/components/Hero/components/ActionButtons.tsx
-import { motion } from 'motion/react'
 import Link from 'next/link'
-import { Discord } from '@components/icons'
-import { Thunder } from '@components/icons'
+import { Discord, Thunder } from '@components/icons'
 import { useUpcomingEvent } from '@features/events/hooks/useEvents'
 import { introVariants } from '@lib/animations'
 import { Button } from '@ui/button'
+import { motion } from 'motion/react'
 
 export function ActionButtons() {
   const { upcomingEvent } = useUpcomingEvent()

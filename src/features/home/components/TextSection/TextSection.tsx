@@ -1,7 +1,6 @@
-import { motion, useScroll, useTransform } from 'motion/react'
-import { MotionValue } from 'motion/react'
 import { useRef } from 'react'
 import { GameBadge } from '@components/GameBadge'
+import { motion, MotionValue, useScroll, useTransform } from 'motion/react'
 
 interface BadgeWrapperProps {
   game: string

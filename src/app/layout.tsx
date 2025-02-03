@@ -1,5 +1,4 @@
 // app/layout.tsx
-import 'lenis/dist/lenis.css'
 import { Alexandria } from 'next/font/google'
 import { Providers } from '@app/Providers'
 import '@app/globals.css'
@@ -8,6 +7,7 @@ import { SmoothScroll } from '@components/SmoothScroll'
 import { cn } from '@lib/utils'
 import { Toaster } from '@ui/toaster'
 import { SpeedInsights } from '@vercel/speed-insights/next'
+import 'lenis/dist/lenis.css'
 
 export { generateMetadata } from '@app/metadata'
 

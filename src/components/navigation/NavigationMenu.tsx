@@ -1,39 +1,44 @@
 'use client'
 
-import { motion } from 'motion/react'
+import { useState } from 'react'
 import Link from 'next/link'
 import { Thunder } from '@components/icons'
 import { Button } from '@components/ui/button'
 import { useUpcomingEvent } from '@features/events/hooks/useEvents'
+import { setScrollLock } from '@hooks/use-lockscroll'
 import { introVariants } from '@lib/animations'
 import { Full } from '@lowping/brand-kit'
+import { Menu } from 'lucide-react'
+import { AnimatePresence, motion } from 'motion/react'
+import { MobileMenu } from './MobileMenu'
 
 const navLinks = [
   { href: '/tournaments', label: 'Règlement' },
   { href: '/contact', label: 'Contacter' },
 ]
 
-export function NavBar() {
+export function NavigationMenu() {
+  const [isOpen, setIsOpen] = useState(false)
   const { upcomingEvent } = useUpcomingEvent()
+
   return (
-    <nav className="absolute left-0 right-0 top-0 z-30 w-full pt-12">
+    <nav className="absolute left-0 right-0 top-0 z-30 w-full pt-4">
       <div className="container mx-auto">
         <div className="flex items-center justify-between overflow-hidden">
-          {/* Logo */}
           <motion.div
             variants={introVariants.navigation.logo}
             initial="initial"
             animate="animate"
+            className="z-20" // Changed to z-20 to match hamburger menu
           >
             <Link
               href="/"
-              className="flex items-center gap-2 transition-opacity hover:opacity-80"
+              className="flex items-center gap-2 p-1.5 transition-opacity hover:opacity-80"
             >
-              <Full width={160} />
+              <Full width={160} color="white" />
             </Link>
           </motion.div>
 
-          {/* Desktop Navigation */}
           <div className="hidden items-center gap-4 sm:flex">
             <motion.div
               variants={introVariants.navigation.navLinks.container}
@@ -49,7 +54,6 @@ export function NavBar() {
                   <NavLink href={link.href}>{link.label}</NavLink>
                 </motion.div>
               ))}
-
               <motion.div
                 variants={introVariants.navigation.navLinks.item}
                 className="ml-2"
@@ -72,12 +76,41 @@ export function NavBar() {
             </motion.div>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button className="p-2 sm:hidden">
+          <motion.button
+            className="relative z-20 p-1.5 sm:hidden"
+            onClick={() => {
+              setIsOpen(!isOpen)
+              setScrollLock(true)
+            }}
+            variants={introVariants.navigation.mobileButton}
+            initial="initial"
+            animate="animate"
+          >
+            <Menu size={32} color="white" />
             <span className="sr-only">Open menu</span>
-          </button>
+          </motion.button>
         </div>
       </div>
+
+      <AnimatePresence>
+        {isOpen && (
+          <MobileMenu
+            onClose={() => {
+              setIsOpen(false)
+              setScrollLock(false)
+            }}
+            navLinks={[
+              { href: '/', label: 'Accueil' },
+              { href: '/tournaments', label: 'Règlement' },
+              {
+                href: `/events/${upcomingEvent?.slug}/register`,
+                label: 'Évènement',
+              },
+              { href: '/contact', label: 'Contacter' },
+            ]}
+          />
+        )}
+      </AnimatePresence>
     </nav>
   )
 }
@@ -98,5 +131,3 @@ const NavLink = ({
     </Button>
   </Link>
 )
-
-export default NavBar

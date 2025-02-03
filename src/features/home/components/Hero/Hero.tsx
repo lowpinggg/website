@@ -1,20 +1,15 @@
 // features/home/components/Hero/Hero.tsx
 'use client'
 
-import { AnimatePresence, motion } from 'motion/react'
 import { useEffect, useState } from 'react'
 import { setScrollLock } from '@hooks/use-lockscroll'
-import { introVariants } from '@lib/animations'
-import { timeline } from '@lib/animations'
+import { introVariants, timeline } from '@lib/animations'
 import { Full } from '@lowping/brand-kit'
+import { AnimatePresence, motion } from 'motion/react'
 import { HeroBackground } from './HeroBackground'
 import { HeroContent } from './HeroContent'
 import { ContentBlock } from './ui/ContentBlock'
 import { Title } from './ui/Title'
-
-// features/home/components/Hero/Hero.tsx
-
-// features/home/components/Hero/Hero.tsx
 
 export function Logo({ show }: { show: boolean }) {
   return (

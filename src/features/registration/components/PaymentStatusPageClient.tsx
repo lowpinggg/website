@@ -1,21 +1,13 @@
 // features/registration/components/PaymentStatusPageClient.tsx
 'use client'
 
-import confetti from 'canvas-confetti'
 import { useEffect } from 'react'
 import {
   CancelledView,
   SuccessView,
 } from '@registration/components/PaymentStatus'
 import type { PaymentStatusProps } from '@registration/types/registrations'
-
-// features/registration/components/PaymentStatusPageClient.tsx
-
-// features/registration/components/PaymentStatusPageClient.tsx
-
-// features/registration/components/PaymentStatusPageClient.tsx
-
-// features/registration/components/PaymentStatusPageClient.tsx
+import confetti from 'canvas-confetti'
 
 export function PaymentStatusPageClient({
   status,

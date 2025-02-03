@@ -1,8 +1,8 @@
-import { motion, useScroll, useTransform } from 'motion/react'
 import Image from 'next/image'
 import { HeaderContent } from '@features/events/components/Header/HeaderContent'
 import { HeaderTitle } from '@features/events/components/Header/HeaderTitle'
 import { Full } from '@lowping/brand-kit'
+import { motion, useScroll, useTransform } from 'motion/react'
 
 export function Header() {
   const { scrollYProgress } = useScroll()

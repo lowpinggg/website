@@ -1,22 +1,12 @@
 // features/events/components/layout/EventsContent.tsx
 'use client'
 
-import { motion, AnimatePresence } from 'motion/react'
 import { useEvents } from '@events/hooks/useEvents'
 import type { Event } from '@events/types'
 import { EventsGrid } from '@features/events/components/EventGallery/EventsGrid'
 import { baseVariants } from '@lib/animations'
 import { cn } from '@lib/utils'
-
-// features/events/components/layout/EventsContent.tsx
-
-// features/events/components/layout/EventsContent.tsx
-
-// features/events/components/layout/EventsContent.tsx
-
-// features/events/components/layout/EventsContent.tsx
-
-// features/events/components/layout/EventsContent.tsx
+import { AnimatePresence, motion } from 'motion/react'
 
 function LoadingSpinner() {
   return (

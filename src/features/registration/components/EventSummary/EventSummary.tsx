@@ -1,5 +1,3 @@
-import { Calendar, Clock, Info, Ticket, Trophy } from 'lucide-react'
-import { motion } from 'motion/react'
 import { GameBadge } from '@components/GameBadge'
 import {
   Accordion,
@@ -17,6 +15,8 @@ import {
 import { formatters } from '@events/utils/eventHelpers'
 import type { Database } from '@generated/index'
 import { staggerVariants } from '@lib/animations'
+import { Calendar, Clock, Info, Ticket, Trophy } from 'lucide-react'
+import { motion } from 'motion/react'
 
 type Props = {
   event: Database['public']['Tables']['events']['Row']

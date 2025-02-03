@@ -1,5 +1,5 @@
-import { motion } from 'motion/react'
 import { introVariants } from '@lib/animations'
+import { motion } from 'motion/react'
 import { ActionButtons } from './ActionButtons'
 
 export function ContentBlock() {

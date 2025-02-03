@@ -10,16 +10,6 @@ import packageJson from '@package'
 import { Badge } from '@ui/badge'
 import { Button } from '@ui/button'
 
-// Footer.tsx
-
-// Footer.tsx
-
-// Footer.tsx
-
-// Footer.tsx
-
-// Footer.tsx
-
 interface FooterProps {
   className?: string
 }

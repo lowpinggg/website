@@ -1,7 +1,7 @@
 // features/home/components/Card/CardItem.tsx
+import { MagicCard } from '@ui/magic-card'
 import { LucideIcon } from 'lucide-react'
 import { motion, useTransform, type MotionValue } from 'motion/react'
-import { MagicCard } from '@ui/magic-card'
 
 interface CardItemProps {
   title: string
