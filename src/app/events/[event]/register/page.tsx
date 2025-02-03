@@ -24,7 +24,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return baseGenerateMetadata({
     title: event.name,
     description: `Inscrivez-vous à ${event.name} dès maintenant!`,
-    path: `/${slug}/register`,
   })
 }
 

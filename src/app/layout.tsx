@@ -1,21 +1,21 @@
 // app/layout.tsx
 import 'lenis/dist/lenis.css'
 import { Alexandria } from 'next/font/google'
-import { generateMetadata } from '@app/metadata'
 import { Providers } from '@app/Providers'
+import '@app/globals.css'
 import { Cursor } from '@components/Cursor'
 import { SmoothScroll } from '@components/SmoothScroll'
-import { Toaster } from '@ui/toaster'
-import '@app/globals.css'
 import { cn } from '@lib/utils'
+import { Toaster } from '@ui/toaster'
+import { SpeedInsights } from '@vercel/speed-insights/next'
+
+export { generateMetadata } from '@app/metadata'
 
 const alexandria = Alexandria({
   subsets: ['latin'],
   variable: '--font-alexandria',
   weight: ['300', '400', '500', '700', '800', '900'],
 })
-
-export const metadata = generateMetadata()
 
 export default function RootLayout({
   children,
@@ -31,7 +31,10 @@ export default function RootLayout({
         <Cursor />
         <SmoothScroll>
           <div className="pattern-overlay z-50" />
-          <Providers>{children}</Providers>
+          <Providers>
+            {children}
+            <SpeedInsights />
+          </Providers>
           <Toaster />
         </SmoothScroll>
       </body>
