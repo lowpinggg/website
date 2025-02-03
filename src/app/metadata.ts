@@ -27,11 +27,16 @@ export async function generateMetadata({
     title,
     description,
     metadataBase: new URL('https://lowping.gg'),
+
     openGraph: {
       title,
       description,
       url: 'https://lowping.gg',
-      images: ['/opengraph-image.png'],
+      images: [
+        {
+          url: 'https://lowping.gg/opengraph-image.png',
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
