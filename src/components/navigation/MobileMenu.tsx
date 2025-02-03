@@ -20,7 +20,7 @@ export function MobileMenu({ onClose, navLinks }: MobileMenuProps) {
       animate="animate"
       exit="exit"
     >
-      <div className="absolute left-0 right-0 top-0 z-30 w-full px-5 pt-10 lg:pt-14">
+      <div className="absolute left-0 right-0 top-0 z-30 w-full pt-8">
         <div className="container mx-auto">
           <div className="flex items-center justify-between overflow-hidden">
             <motion.div className="z-50">
@@ -43,7 +43,7 @@ export function MobileMenu({ onClose, navLinks }: MobileMenuProps) {
       </div>
       <div className="container absolute inset-0 mx-auto flex h-screen flex-col justify-end">
         <motion.div
-          className="flex flex-col justify-end gap-2 overflow-hidden px-5 pb-12"
+          className="flex flex-col justify-end gap-2 overflow-hidden pb-12"
           variants={menuVariants.container}
           initial="initial"
           animate="animate"
@@ -71,7 +71,7 @@ export function MobileMenu({ onClose, navLinks }: MobileMenuProps) {
           variants={menuVariants.social}
           initial="initial"
           animate="animate"
-          className="flex w-full justify-start gap-4 overflow-hidden px-5 py-6"
+          className="flex w-full justify-start gap-4 overflow-hidden py-6"
         >
           <motion.div variants={menuVariants.item}>
             <Link

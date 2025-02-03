@@ -22,7 +22,7 @@ export function NavigationMenu() {
   const { upcomingEvent } = useUpcomingEvent()
 
   return (
-    <nav className="absolute left-0 right-0 top-0 z-30 w-full px-5 pt-10 lg:pt-14">
+    <nav className="absolute left-0 right-0 top-0 z-30 w-full pt-8">
       <div className="container mx-auto">
         <div className="flex items-center justify-between overflow-hidden">
           <motion.div
@@ -61,7 +61,7 @@ export function NavigationMenu() {
                 <Button
                   variant="default"
                   size="sm"
-                  className="flex h-10 items-center gap-1.5 rounded-full pl-2.5 pr-3 mix-blend-screen"
+                  className="flex h-10 items-center gap-1.5 rounded-full pl-3 pr-4 mix-blend-screen"
                 >
                   <Thunder size={16} />
                   <Link
