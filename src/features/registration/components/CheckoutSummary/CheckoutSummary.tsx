@@ -31,10 +31,10 @@ export function CheckoutSummary({ event, formData, onBack }: Props) {
     >
       {/* User Information */}
       <motion.div variants={staggerVariants.child} className="space-y-4">
-        <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wide">
+        <h3 className="text-sm font-medium uppercase tracking-wide text-muted-foreground">
           Vos informations
         </h3>
-        <div className="gap-4 grid grid-cols-2">
+        <div className="grid grid-cols-2 gap-4">
           {allFields.map((field: BaseField) => {
             const key = field.name as keyof FormData
             return (
@@ -57,9 +57,9 @@ export function CheckoutSummary({ event, formData, onBack }: Props) {
 
       {/* Price and Actions */}
       <motion.div variants={staggerVariants.child} className="space-y-6">
-        <div className="flex justify-between items-center">
+        <div className="flex items-center justify-between">
           <span className="text-sm font-medium">Total</span>
-          <span className="text-2xl font-bold text-primary">
+          <span className="text-2xl font-bold text-primary text-white">
             {formatters.price(event.price)}
           </span>
         </div>
@@ -76,13 +76,14 @@ export function CheckoutSummary({ event, formData, onBack }: Props) {
           <Button
             onClick={() => handleCheckout(event, formData)}
             disabled={isLoading}
-            className="flex-1"
+            className="flex-1 bg-white text-background hover:bg-white/80"
+            variant="default"
           >
             {isLoading ? 'En cours...' : 'Payer maintenant'}
           </Button>
         </div>
 
-        <p className="text-xs text-muted-foreground text-center">
+        <p className="text-center text-xs text-muted-foreground">
           En cliquant sur <strong>Payer maintenant</strong>, vous serez redirigé
           vers Stripe pour effectuer votre paiement de manière sécurisée.
         </p>

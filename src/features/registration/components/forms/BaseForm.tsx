@@ -27,8 +27,6 @@ import { BaseField, FormData } from '../../types/forms'
 
 // features/registration/components/forms/BaseForm.tsx
 
-// features/registration/components/forms/BaseForm.tsx
-
 interface BaseFormProps<T extends FormData> {
   baseFields: readonly BaseField[]
   specificFields: readonly BaseField[]
@@ -49,7 +47,6 @@ export function BaseForm<T extends FormData>({
     defaultValues,
   })
 
-  // Combine all fields
   const allFields = [...baseFields, ...specificFields]
 
   const renderField = (field: BaseField) => (
