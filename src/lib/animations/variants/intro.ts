@@ -2,8 +2,6 @@
 import { timeline } from '../config/timeline'
 import { createTransition } from '../utils/createTransition'
 
-// TODO: Use helper to create variants
-
 const transforms = {
   overlay: {
     initial: { clipPath: 'inset(0 0 0 0)' },

@@ -28,7 +28,7 @@ export function ContactSection() {
           muted
           playsInline
           className="absolute inset-0 -z-10 h-full w-full object-cover object-top"
-          src="/animated-aurelionsol.webm"
+          src="/animated-aurelionsol-web.webm"
         />
         <div className="absolute inset-0 -z-10 bg-gradient-to-t from-background to-transparent" />
         <BorderBeam colorFrom="white" colorTo="transparent" />

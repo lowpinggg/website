@@ -9,6 +9,14 @@ import {
 } from '@registration/components/PaymentStatus'
 import type { PaymentStatusProps } from '@registration/types/registrations'
 
+// features/registration/components/PaymentStatusPageClient.tsx
+
+// features/registration/components/PaymentStatusPageClient.tsx
+
+// features/registration/components/PaymentStatusPageClient.tsx
+
+// features/registration/components/PaymentStatusPageClient.tsx
+
 export function PaymentStatusPageClient({
   status,
   details,

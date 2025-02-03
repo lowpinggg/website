@@ -10,6 +10,14 @@ import { FilterType } from '@features/events/types'
 
 // features/events/pages/EventsPage.tsx
 
+// features/events/pages/EventsPage.tsx
+
+// features/events/pages/EventsPage.tsx
+
+// features/events/pages/EventsPage.tsx
+
+// features/events/pages/EventsPage.tsx
+
 export function EventsPageClient() {
   const [activeFilter, setActiveFilter] = useState<FilterType>('all')
   const { filterEvents } = useEvents()

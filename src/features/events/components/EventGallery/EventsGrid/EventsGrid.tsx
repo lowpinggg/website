@@ -34,7 +34,7 @@ export function EventsGrid({ events }: EventsGridProps) {
               <div className="h-full w-full">
                 <EventPoster
                   event={event}
-                  size="responsive"
+                  size="full"
                   tiltProps={{
                     tiltMaxAngleX: 8,
                     tiltMaxAngleY: 8,

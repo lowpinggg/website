@@ -1,7 +1,6 @@
 // features/home/components/Hero/Hero.tsx
 'use client'
 
-//TODO: make the mask a component and pass the radius PX as a props
 import { AnimatePresence, motion } from 'motion/react'
 import { useEffect, useState } from 'react'
 import { setScrollLock } from '@hooks/use-lockscroll'

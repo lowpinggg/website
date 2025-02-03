@@ -6,6 +6,14 @@ import { formRegistry, TftFormData } from '@registration/types/forms'
 
 // features/registration/components/forms/TftForm.tsx
 
+// features/registration/components/forms/TftForm.tsx
+
+// features/registration/components/forms/TftForm.tsx
+
+// features/registration/components/forms/TftForm.tsx
+
+// features/registration/components/forms/TftForm.tsx
+
 type Props = {
   onComplete: (data: TftFormData) => void
   defaultValues?: Partial<TftFormData>

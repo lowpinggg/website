@@ -52,7 +52,7 @@ export function TextSection() {
     >
       <motion.div
         style={{ y: sectionY }}
-        className="container grid grid-cols-1 gap-8 md:grid-cols-2 lg:gap-12"
+        className="container grid grid-cols-1 gap-8 sm:max-w-none md:grid-cols-2 lg:gap-12 xl:!p-0"
       >
         <h2 className="leading-tighter text-4xl font-black md:text-5xl">
           Nous gérons votre tournoi, vous vivez la compétition
@@ -68,7 +68,7 @@ export function TextSection() {
               }
             </p>
           </div>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <BadgeWrapper
               game="League of Legends"
               scrollProgress={scrollYProgress}

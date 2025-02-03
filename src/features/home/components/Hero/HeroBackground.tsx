@@ -7,6 +7,16 @@ import { introVariants } from '@lib/animations'
 
 // features/home/components/Hero/HeroBackground.tsx
 
+// features/home/components/Hero/HeroBackground.tsx
+
+// features/home/components/Hero/HeroBackground.tsx
+
+// features/home/components/Hero/HeroBackground.tsx
+
+// features/home/components/Hero/HeroBackground.tsx
+
+// features/home/components/Hero/HeroBackground.tsx
+
 export function HeroBackground() {
   const ref = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
@@ -33,9 +43,8 @@ export function HeroBackground() {
           loop
           muted
           playsInline
-        >
-          <source src="/arclight-brand.1920x1080.mp4" type="video/mp4" />
-        </video>
+          src="/arclight-brand.1920x1080-web.webm"
+        />
         <div className="absolute inset-0 bg-background/60" />
         <div className="absolute inset-0 bg-gradient-to-r from-primary/50 to-[#14FF00]/50 mix-blend-overlay" />
       </motion.div>
