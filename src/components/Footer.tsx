@@ -12,14 +12,6 @@ import { Button } from '@ui/button'
 
 // Footer.tsx
 
-// Footer.tsx
-
-// Footer.tsx
-
-// Footer.tsx
-
-// Footer.tsx
-
 interface FooterProps {
   className?: string
 }

@@ -13,6 +13,10 @@ const transforms = {
       initial: { y: 100 },
       final: { y: 0 },
     },
+    mobileButton: {
+      initial: { y: 100, opacity: 0 },
+      final: { y: 0, opacity: 1 },
+    },
     navLinks: {
       container: {
         initial: {},
@@ -101,6 +105,17 @@ export const introVariants = {
           timeline.intro.navigation.logo.duration,
           timeline.intro.navigation.logo.delay,
           timeline.intro.navigation.logo.ease,
+        ),
+      },
+    },
+    mobileButton: {
+      initial: transforms.navigation.mobileButton.initial,
+      animate: {
+        ...transforms.navigation.mobileButton.final,
+        transition: createTransition(
+          timeline.intro.navigation.mobileButton.duration,
+          timeline.intro.navigation.mobileButton.delay,
+          timeline.intro.navigation.mobileButton.ease,
         ),
       },
     },

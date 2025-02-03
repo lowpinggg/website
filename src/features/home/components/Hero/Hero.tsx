@@ -14,8 +14,6 @@ import { Title } from './ui/Title'
 
 // features/home/components/Hero/Hero.tsx
 
-// features/home/components/Hero/Hero.tsx
-
 export function Logo({ show }: { show: boolean }) {
   return (
     <div className="relative z-50 overflow-hidden">
