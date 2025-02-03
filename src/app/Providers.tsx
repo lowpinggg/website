@@ -5,6 +5,14 @@ import { AnimatePresence } from 'motion/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
+// components/Providers.tsx
+
+// components/Providers.tsx
+
+// components/Providers.tsx
+
+// components/Providers.tsx
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {

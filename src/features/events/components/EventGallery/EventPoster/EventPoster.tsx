@@ -21,17 +21,16 @@ const ANIMATION_CONFIG = {
 }
 
 const SIZE_DIMENSIONS = {
-  sm: 'w-full max-w-[200px]',
-  md: 'w-full max-w-[340px]',
-  lg: 'w-full sm:max-w-[420px]',
-  xl: 'w-full max-w-[680px]',
-  full: 'w-full',
-  responsive: 'w-full max-w-full',
+  sm: 'w-full max-w-[200px] h-auto',
+  md: 'w-full max-w-[340px] h-auto',
+  lg: 'w-full sm:max-w-[420px] h-auto',
+  xl: 'w-full max-w-[680px] h-auto',
+  full: 'w-full h-full',
 } as const
 
 export function EventPoster({
   event,
-  size = 'responsive',
+  size = 'full',
   className,
   tiltProps = {},
   isHovered = false,
@@ -83,7 +82,7 @@ export function EventPoster({
           width={604}
           height={854}
           quality={80}
-          className="h-full w-full object-cover"
+          className="max-w-full object-cover"
           sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
           priority
         />

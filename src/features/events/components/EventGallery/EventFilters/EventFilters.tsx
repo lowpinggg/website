@@ -28,11 +28,11 @@ export function EventFilters({
             onClick={() => handleFilterChange(value)}
             size="sm"
             className={clsx(
-              'px-3 py-1 rounded-full text-sm transition-colors h-full',
+              'h-full rounded-full px-3 py-1 text-sm transition-colors',
               {
-                'bg-white text-primary-foreground text-black pointer-events-none':
+                'pointer-events-none bg-white text-black text-primary-foreground':
                   activeFilter === value,
-                'bg-muted hover:bg-muted/80 text-white': activeFilter !== value,
+                'bg-muted text-white hover:bg-muted/80': activeFilter !== value,
               },
             )}
             type="button"

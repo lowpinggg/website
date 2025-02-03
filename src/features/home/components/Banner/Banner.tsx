@@ -5,22 +5,16 @@ import { motion, useScroll, useTransform } from 'motion/react'
 import { useRef } from 'react'
 import Link from 'next/link'
 import { useUpcomingEvent } from '@features/events/hooks/useEvents'
-import { useScreenResolution } from '@hooks/use-screen-resolution'
 import { Button } from '@ui/button'
 
 export function Banner() {
-  const { isMobile } = useScreenResolution()
   const sectionRef = useRef(null)
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start end', 'end start'],
   })
 
-  const height = useTransform(
-    scrollYProgress,
-    [0.2, 1],
-    isMobile ? ['300px', '420px'] : ['500px', '350px'],
-  )
+  const height = useTransform(scrollYProgress, [0.2, 1], ['500px', '350px'])
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0.8])
   const opacity = useTransform(scrollYProgress, [0, 0.5], [0, 1])
   const { upcomingEvent } = useUpcomingEvent()
@@ -67,7 +61,7 @@ export function Banner() {
             muted
             playsInline
             className="absolute inset-0 -z-10 h-full w-full object-cover"
-            src="/animated-darkstar-thresh.webm"
+            src="/animated-darkstar-thresh-web.webm"
           />
         </motion.div>
       </motion.div>

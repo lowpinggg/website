@@ -28,7 +28,10 @@ export function GameBadge({ game, className }: GameBadgeProps) {
   return (
     <Badge
       variant="secondary"
-      className={clsx('font-normal flex items-center gap-1 px-2', className)}
+      className={clsx(
+        'flex items-center gap-1 whitespace-nowrap px-2 font-normal',
+        className,
+      )}
     >
       {IconComponent && <IconComponent size={18} />}
       {game}

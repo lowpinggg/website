@@ -12,7 +12,7 @@ export interface EventsGridProps {
   events: Event[]
 }
 
-export type PosterSize = 'sm' | 'md' | 'lg' | 'xl' | 'responsive' | 'full'
+export type PosterSize = 'sm' | 'md' | 'lg' | 'xl' | 'full'
 
 export interface TiltConfig {
   perspective?: number

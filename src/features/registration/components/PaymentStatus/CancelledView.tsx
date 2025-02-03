@@ -20,7 +20,7 @@ export function CancelledView({ title, description }: CancelledViewProps) {
     >
       <motion.div
         variants={staggerVariants.parent}
-        className="flex flex-col items-center gap-4 max-w-md text-center"
+        className="flex max-w-md flex-col items-center gap-4 text-center"
       >
         <motion.div variants={staggerVariants.child}>
           <X size={50} className="text-red-500" />
@@ -33,7 +33,7 @@ export function CancelledView({ title, description }: CancelledViewProps) {
         </motion.h1>
         <motion.p
           variants={staggerVariants.child}
-          className="text-muted-foreground text-sm"
+          className="text-sm text-muted-foreground"
         >
           {description}
         </motion.p>

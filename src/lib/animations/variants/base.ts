@@ -15,14 +15,14 @@ export const baseVariants = {
     },
   },
   slideUp: {
-    initial: { y: 50, opacity: 0 },
+    initial: { y: 100, opacity: 0 },
     animate: {
       y: 0,
       opacity: 1,
       transition: createTransition(
-        transitions.duration.slower,
-        transitions.delay.short,
-        transitions.easing.default,
+        transitions.duration.superSlow,
+        transitions.delay.medium,
+        transitions.easing.expo,
       ),
     },
   },

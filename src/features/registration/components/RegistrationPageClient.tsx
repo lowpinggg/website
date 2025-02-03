@@ -10,6 +10,14 @@ import { useScreenResolution } from '@hooks/use-screen-resolution'
 import { staggerVariants } from '@lib/animations'
 import { useRegistration } from '@registration/hooks/useRegistration'
 
+// components/RegistrationPageClient.tsx
+
+// components/RegistrationPageClient.tsx
+
+// components/RegistrationPageClient.tsx
+
+// components/RegistrationPageClient.tsx
+
 type Props = {
   event: Database['public']['Tables']['events']['Row']
 }
@@ -25,11 +33,11 @@ export function RegistrationPageClient({ event }: Props) {
         variants={staggerVariants.parent}
         initial="initial"
         animate="animate"
-        className="grid grid-cols-1 md:grid-cols-2 items-start py-12 gap-6 lg:gap-0"
+        className="grid grid-cols-1 items-start gap-6 py-12 md:grid-cols-2 lg:gap-0"
       >
         <motion.div
           variants={staggerVariants.child}
-          className="flex items-center justify-center md:sticky top-10"
+          className="top-10 flex items-center justify-center md:sticky"
         >
           <EventPoster
             tiltProps={{ scale: 1.02, glareMaxOpacity: 0.3 }}
@@ -39,7 +47,7 @@ export function RegistrationPageClient({ event }: Props) {
           />
         </motion.div>
 
-        <div className="flex items-center w-full justify-center">
+        <div className="flex w-full items-center justify-center">
           <RegistrationContent
             step={step}
             event={event}

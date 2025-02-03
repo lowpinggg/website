@@ -28,7 +28,7 @@ export function CalendarButton({
     <Button
       variant="link"
       onClick={() => handleAddToCalendar()}
-      className="p-0 m-0"
+      className="m-0 p-0 text-white"
     >
       <Calendar size={16} />
       Ajouter au calendrier
@@ -40,47 +40,54 @@ export function SuccessView({ details, title }: SuccessViewProps) {
   if (!details?.event) return null
 
   return (
-    <motion.div
-      variants={staggerVariants.parent}
-      initial="initial"
-      animate="animate"
-      className="flex flex-col md:flex-row items-center justify-center gap-12 h-full w-full"
-    >
-      <motion.div variants={baseVariants.slideUp}>
+    <div className="grid h-full w-full grid-cols-1 items-center gap-12 overflow-hidden md:grid-cols-2 md:gap-2">
+      <motion.div
+        variants={baseVariants.slideUp}
+        initial="initial"
+        animate="animate"
+        className="flex justify-center"
+      >
         <EventPoster event={details.event} showCTA={false} size="md" />
       </motion.div>
 
-      <div className="flex flex-col items-center md:items-start max-w-md">
+      <div className="flex w-full flex-col items-center md:max-w-md md:items-start">
         <motion.div
-          variants={staggerVariants.child}
-          className="flex flex-col gap-6 w-full"
+          variants={staggerVariants.parent}
+          initial="initial"
+          animate="animate"
+          className="flex w-full flex-col gap-6"
         >
           <motion.div
             variants={staggerVariants.child}
             className="flex flex-col gap-2 text-center md:text-left"
           >
-            <h1 className="flex items-center gap-2 justify-center md:justify-start text-2xl font-bold">
+            <h1 className="flex items-center justify-center gap-2 text-2xl font-bold md:justify-start">
               <BadgeCheck className="text-green-500" size={28} />
               {title}
             </h1>
             {details.registration && (
-              <p className="text-muted-foreground text-sm">
+              <p className="text-sm text-muted-foreground">
                 Un email de confirmation a été envoyé à{' '}
                 {details.registration.email}
               </p>
             )}
           </motion.div>
 
-          <motion.div variants={staggerVariants.child} className="w-full">
+          <motion.div
+            variants={staggerVariants.child}
+            className="mx-auto w-full xs:w-3/4 md:w-full"
+          >
             <EventSummaryCard event={details.event} />
           </motion.div>
 
           <motion.div
             variants={staggerVariants.child}
-            className="flex gap-2 mx-auto md:mx-0"
+            className="mx-auto flex gap-2 md:mx-0"
           >
             <Link href="/">
-              <Button>Retour</Button>
+              <Button className="bg-white text-background hover:bg-white/80">
+                Retour
+              </Button>
             </Link>
             {details.receipt_url && (
               <Link href={details.receipt_url} target="_blank">
@@ -89,11 +96,14 @@ export function SuccessView({ details, title }: SuccessViewProps) {
             )}
           </motion.div>
 
-          <motion.div variants={staggerVariants.child}>
+          <motion.div
+            variants={staggerVariants.child}
+            className="self-center md:self-start"
+          >
             <CalendarButton event={details.event} />
           </motion.div>
         </motion.div>
       </div>
-    </motion.div>
+    </div>
   )
 }

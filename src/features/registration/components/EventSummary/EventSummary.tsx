@@ -18,9 +18,6 @@ import { formatters } from '@events/utils/eventHelpers'
 import type { Database } from '@generated/index'
 import { staggerVariants } from '@lib/animations'
 
-//TODO: Make prize pool dynamic from the database
-//TODO: Add dropdown with more info about the event
-
 type Props = {
   event: Database['public']['Tables']['events']['Row']
 }
