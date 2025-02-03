@@ -8,7 +8,7 @@ import { motion } from 'motion/react'
 
 interface MobileMenuProps {
   onClose: () => void
-  navLinks: Array<{ href: string; label: string }>
+  navLinks: Array<{ href: string; label: string; target?: '_self' | '_blank' }>
 }
 
 export function MobileMenu({ onClose, navLinks }: MobileMenuProps) {
@@ -20,28 +20,30 @@ export function MobileMenu({ onClose, navLinks }: MobileMenuProps) {
       animate="animate"
       exit="exit"
     >
-      <div className="container mx-auto py-4">
-        <div className="flex items-center justify-between overflow-hidden">
-          <motion.div className="z-50">
-            <Link
-              href="/"
-              className="flex items-center gap-2 p-1.5 transition-opacity hover:opacity-80"
+      <div className="absolute left-0 right-0 top-0 z-30 w-full px-5 pt-10 lg:pt-14">
+        <div className="container mx-auto">
+          <div className="flex items-center justify-between overflow-hidden">
+            <motion.div className="z-50">
+              <Link
+                href="/"
+                className="flex items-center gap-2 p-1.5 transition-opacity hover:opacity-80"
+              >
+                <Full width={170} color="black" />
+              </Link>
+            </motion.div>
+            <motion.button
+              className="relative z-50 p-1.5 transition-transform duration-300 hover:scale-90"
+              onClick={onClose}
             >
-              <Full width={160} color="black" />
-            </Link>
-          </motion.div>
-          <motion.button
-            className="relative z-50 p-1.5 transition-transform duration-300 hover:scale-90"
-            onClick={onClose}
-          >
-            <XIcon size={32} color="black" />
-            <span className="sr-only">Close menu</span>
-          </motion.button>
+              <XIcon size={32} color="black" />
+              <span className="sr-only">Close menu</span>
+            </motion.button>
+          </div>
         </div>
       </div>
       <div className="container absolute inset-0 mx-auto flex h-screen flex-col justify-end">
         <motion.div
-          className="flex flex-col justify-end gap-2 overflow-hidden pb-12"
+          className="flex flex-col justify-end gap-2 overflow-hidden px-5 pb-12"
           variants={menuVariants.container}
           initial="initial"
           animate="animate"
@@ -55,6 +57,7 @@ export function MobileMenu({ onClose, navLinks }: MobileMenuProps) {
               >
                 <Link
                   href={link.href}
+                  target={link.target || '_self'}
                   className="text-5xl  font-medium tracking-tight text-background hover:text-background/80"
                   onClick={onClose}
                 >
@@ -68,7 +71,7 @@ export function MobileMenu({ onClose, navLinks }: MobileMenuProps) {
           variants={menuVariants.social}
           initial="initial"
           animate="animate"
-          className="flex w-full justify-start gap-4 overflow-hidden py-6"
+          className="flex w-full justify-start gap-4 overflow-hidden px-5 py-6"
         >
           <motion.div variants={menuVariants.item}>
             <Link

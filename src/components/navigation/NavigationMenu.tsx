@@ -22,7 +22,7 @@ export function NavigationMenu() {
   const { upcomingEvent } = useUpcomingEvent()
 
   return (
-    <nav className="absolute left-0 right-0 top-0 z-30 w-full pt-4">
+    <nav className="absolute left-0 right-0 top-0 z-30 w-full px-5 pt-10 lg:pt-14">
       <div className="container mx-auto">
         <div className="flex items-center justify-between overflow-hidden">
           <motion.div
@@ -35,7 +35,7 @@ export function NavigationMenu() {
               href="/"
               className="flex items-center gap-2 p-1.5 transition-opacity hover:opacity-80"
             >
-              <Full width={160} color="white" />
+              <Full width={170} color="white" />
             </Link>
           </motion.div>
 
@@ -61,7 +61,7 @@ export function NavigationMenu() {
                 <Button
                   variant="default"
                   size="sm"
-                  className="flex h-10 items-center gap-1.5 pl-2.5 pr-3 mix-blend-screen"
+                  className="flex h-10 items-center gap-1.5 rounded-full pl-2.5 pr-3 mix-blend-screen"
                 >
                   <Thunder size={16} />
                   <Link
@@ -105,6 +105,7 @@ export function NavigationMenu() {
               {
                 href: `/events/${upcomingEvent?.slug}/register`,
                 label: 'Évènement',
+                target: '_blank',
               },
               { href: '/contact', label: 'Contacter' },
             ]}

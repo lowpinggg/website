@@ -15,7 +15,7 @@ export function ContentBlock() {
           variants={introVariants.content.text}
           initial="initial"
           animate="animate"
-          className="tracking-snug w-full text-center text-sm font-light leading-5 text-foreground/80 sm:text-base"
+          className="tracking-snug w-full text-center text-sm font-light leading-5 text-foreground/80 md:text-base"
         >
           {
             "La première solution professionnelle pour vos tournois esport. Notre équipe s'occupe de tout. Organisation, arbitrage, et diffusion. Concentrez-vous uniquement sur le jeu."

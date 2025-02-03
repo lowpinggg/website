@@ -18,7 +18,7 @@ export function ActionButtons() {
       <Button
         variant="default"
         size="lg"
-        className="flex items-center gap-1.5 pl-3 pr-4 mix-blend-screen"
+        className="flex items-center gap-2 pl-4 pr-5 mix-blend-screen"
       >
         <Thunder size={18} />
         <Link

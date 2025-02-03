@@ -50,7 +50,7 @@
     --ring: 75 97% 50%;
 
     /* Border radius */
-    --radius: 0.2rem;
+    --radius: 0.3rem;
   }
 }
 
@@ -69,6 +69,10 @@
 
   body {
     @apply relative bg-background font-alexandria text-white antialiased;
+  }
+
+  button {
+    @apply !rounded-full;
   }
 }
 

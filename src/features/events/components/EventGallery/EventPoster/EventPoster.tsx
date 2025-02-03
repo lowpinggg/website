@@ -92,7 +92,7 @@ export function EventPoster({
             className="absolute left-0 right-0"
             style={{ bottom: -buttonHeight }}
           >
-            <Button className="h-12 w-full rounded-none bg-white text-black hover:bg-white/90">
+            <Button className="h-12 w-full !rounded-none bg-white text-black hover:bg-white/90">
               <motion.div
                 className="flex items-center justify-center gap-1"
                 animate={
